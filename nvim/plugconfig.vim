@@ -12,9 +12,10 @@ let g:suda_smart_edit = 1
 " Note that config opts are in whichkey.vim
 
 " Theme 
+syntax on
 set termguicolors
 let g:edge_enable_italic = 1
 let g:edge_disable_italic_comment = 1
 let g:edge_transparent_background = 1
-let g:airline_theme = 'deus'
 colorscheme edge
+let g:airline_theme = 'deus'
