@@ -1,0 +1,152 @@
+=dev-lang/python-3.7* ~amd64
+sys-config/ltoize ~amd64
+sys-apps/earlyoom ~amd64
+www-client/firefox ~amd64
+media-libs/libvpx ~amd64
+media-libs/libwebp ~amd64
+media-sound/pulsemixer ~amd64
+media-gfx/prusa-slice ~amd64r
+media-gfx/cura ~amd64
+app-emulation/wine-staging ~amd64
+app-emulation/winetricks ~amd64 
+sys-devel/clang ~amd64
+sys-devel/lld ~amd64
+sys-libs/compiler-rt ~amd64
+sys-libs/compiler-rt-sanitizers ~amd64
+sys-devel/clang-runtime ~amd66 ~amd64
+sys-devel/llvmgold ~amd64
+sys-libs/libomp ~amd64
+sys-devel/llvm ~amd64
+sys-devel/lld ~amd64
+sys-devel/clang-common ~amd64
+app-portage/lto-rebuild ~amd64
+media-libs/mesa ~amd64
+x11-terms/kitty ~amd64
+x11-terms/kitty-terminfo ~amd64
+sys-devel/gcc ~amd64
+sys-devel/binutils ~amd64
+sys-libs/binutils-libs ~amd64
+dev-util/pycharm-community
+media-libs/libaom ~amd64
+dev-libs/nss
+dev-lang/rust ~amd64
+virtual/rust ~amd64
+app-misc/radeontop ~amd64
+media-libs/libplacebo ~amd64
+mail-client/neomutt ~amd64
+mail-client/mutt-wizard ~amd64
+app-portage/flaggie **
+net-mail/notmuch ~amd64
+app-emulation/wine-mono ~amd64
+sys-devel/llvm-common ~amd64
+app-admin/doas ~amd64
+dev-libs/elfutils ~amd64
+net-misc/openntpd ~amd64
+media-sound/audacity ~amd64
+media-sound/picard ~amd64
+sys-apps/iproute2 ~amd64
+www-client/w3m ~amd64
+dev-libs/olm ~amd64
+dev-python/matrix-nio ~amd64
+dev-python/aiofiles ~amd64
+dev-python/unpaddedbase64 ~amd64
+sys-libs/gdbm ~amd64
+media-gfx/waifu2x-ncnn-vulkan
+dev-util/perf ~amd64
+media-gfx/prusa-slicer ~amd64
+dev-util/clinfo ~amd64
+app-portage/portage-bashrc-mv ~amd64
+app-misc/dateutils ~amd64
+app-shells/fzf ~amd64
+sys-libs/libcxx
+sys-libs/libcxxabi
+media-gfx/openvdb
+dev-libs/nspr
+media-video/ffmpeg
+media-video/rav1e
+dev-util/cargo-c
+dev-libs/cereal
+dev-cpp/tbb
+dev-libs/openssl 
+dev-lang/python:2.7
+x11-misc/polybar
+x11-apps/glava
+sys-kernel/gentoo-sources
+app-crypt/p11-kit
+dev-libs/ncnn
+dev-util/cmake
+games-util/lutris
+dev-python/python-evdev
+kde-apps/kdenlive
+app-crypt/qca::libressl
+media-libs/harfbuzz
+app-misc/OpenRGB
+app-office/libreoffice
+sci-libs/coinor-mp
+sci-libs/coinor-cbc
+sci-libs/coinor-clp
+sci-libs/coinor-cgl
+sci-libs/coinor-dylp
+sci-libs/coinor-osi
+sci-libs/coinor-utils
+sci-libs/coinor-vol
+app-office/libreoffice-l10n
+games-action/minecraft-launcher
+games-action/multimc
+media-sound/lame
+app-shells/dash
+x11-misc/qt5ct
+media-libs/dav1d
+app-emulation/vkd3d
+app-emulation/wine-vanilla
+www-client/chromium
+kde-frameworks/*
+games-util/steam-meta
+games-util/steam-client-meta
+games-util/steam-games-meta
+games-util/steam-launcher
+games-util/esteam
+app-emulation/virtualbox
+app-emulation/virtualbox-modules
+dev-util/kbuild
+app-emulation/virtualbox-extpack-oracle
+app-emulation/virtualbox-additions
+dev-util/bear
+sys-kernel/gentoo-kernel
+app-arch/zstd
+media-libs/x264 **
+media-video/obs-studio
+x11-misc/picom
+dev-qt/*
+sys-auth/polkit
+dev-lang/spidermonkey
+sys-kernel/linux-headers
+media-gfx/freecad
+dev-libs/OpenNI2
+sci-libs/med
+x11-themes/materia-theme
+x11-themes/materia-kde
+sci-libs/orocos_kdl
+sci-libs/opencascade
+sci-libs/vtk
+dev-python/pivy
+dev-python/pyside2
+dev-python/shiboken2
+dev-python/pyside2-tools
+media-libs/quarter
+x11-themes/kvantum
+app-eselect/eselect-opencascade
+sci-mathematics/cgal
+media-gfx/openscad -~amd64
+media-libs/lib3mf
+app-editors/neovim
+dev-python/filetype
+media-gfx/blender
+sys-process/htop
+media-video/peek
+app-misc/cheat
+app-text/pandoc
+dev-haskell/aeson
+dev-haskell/*
+dev-lang/ghc
+app-admin/haskell-updater

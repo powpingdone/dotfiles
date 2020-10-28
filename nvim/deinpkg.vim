@@ -31,7 +31,7 @@ if dein#load_state('$HOME/.config/nvim/dein')
   call dein#add('vim-ctrlspace/vim-ctrlspace') " Provides the ctrl+space ui for switching between files
   call dein#add('wsdjeg/dein-ui.vim') " Creates the :DeinUpdate command for quick updating
   call dein#add('junegunn/fzf') " fzf for finding files
-  call dein#add('junegunn/fzf.vim') " fzf vim bindings/commands
+  call dein#add('junegunn/fzf.vim') " fzf for finding files
   call dein#add('liuchengxu/vim-which-key') " See what keys do
   call dein#add('lambdalisue/suda.vim') " use sudo to open files I cant open normallf
 

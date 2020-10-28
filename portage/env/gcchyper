@@ -1,0 +1,4 @@
+CFLAGS="${CFLAGS} -fno-common -fipa-pta -fdevirtualize-at-ltrans -fgraphite-identity -floop-nest-optimize" 
+CXXFLAGS="${CXXFLAGS} -fno-common -fipa-pta -fdevirtualize-at-ltrans -fgraphite-identity -floop-nest-optimize"
+FCFLAGS="${FCFLAGS} -fno-common -fipa-pta -fdevirtualize-at-ltrans -fgraphite-identity -floop-nest-optimize"
+FFFLAGS="${FFFLAGS} -fno-common -fipa-pta -fdevirtualize-at-ltrans -fgraphite-identity -floop-nest-optimize"

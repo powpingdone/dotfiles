@@ -1,0 +1,108 @@
+# created by eselect-repo
+
+[lto-overlay]
+location = /var/db/repos/lto-overlay
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/lto-overlay.git
+
+[mv]
+location = /var/db/repos/mv
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/mv.git
+
+[haarp]
+location = /var/db/repos/haarp
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/haarp.git
+
+[vifino-overlay]
+location = /var/db/repos/vifino-overlay
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/vifino-overlay.git
+
+[flatpak-overlay]
+location = /var/db/repos/flatpak-overlay
+sync-type = git
+sync-uri = https://github.com/fosero/flatpak-overlay.git
+
+[wine]
+location = /var/db/repos/wine
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/wine.git
+
+[chymeric]
+location = /var/db/repos/chymeric
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/chymeric.git
+
+[sorrow]
+location = /var/db/repos/sorrow
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/sorrow.git
+
+[pixlra]
+location = /var/db/repos/pixlra
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/pixlra.git
+
+[science]
+location = /var/db/repos/science
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/science.git
+
+[pentoo]
+location = /var/db/repos/pentoo
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/pentoo.git
+
+[matrix]
+location = /var/db/repos/matrix
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/matrix.git
+
+[SwordArMor]
+location = /var/db/repos/SwordArMor
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/SwordArMor.git
+
+[rust]
+location = /var/db/repos/rust
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/rust.git
+
+[sk-overlay]
+location = /var/db/repos/sk-overlay
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/sk-overlay.git
+
+[guru]
+location = /var/db/repos/guru
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/guru.git
+
+[steam-overlay]
+location = /var/db/repos/steam-overlay
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/steam-overlay.git
+
+
+
+[waebbl]
+location = /var/db/repos/waebbl
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/waebbl.git
+
+[raiagent]
+location = /var/db/repos/raiagent
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/raiagent.git
+
+[jorgicio]
+location = /var/db/repos/jorgicio
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/jorgicio.git
+
+[booboo]
+location = /var/db/repos/booboo
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/booboo.git
