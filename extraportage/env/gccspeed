@@ -1,0 +1,4 @@
+CFLAGS="-O3 -march=native -pipe"
+CXXFLAGS="-O3 -march=native -pipe"
+FCFLAGS="-O3 -march=native -pipe"
+FFFLAGS="-O3 -march=native -pipe"
