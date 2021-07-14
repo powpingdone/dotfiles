@@ -1,3 +1,4 @@
 {
-    "rust-client.disableRustup": true
+    "rust-client.disableRustup": true,
+    "coc.preferences.semanticTokensHighlights": false
 }
