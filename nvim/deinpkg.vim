@@ -23,6 +23,7 @@ if dein#load_state('$HOME/.config/nvim/dein')
   call dein#add('Chiel92/vim-autoformat') " Creates the :Autoformat for formatting
   call dein#add('neoclide/coc.nvim', {'rev': 'release'}) " Provides language server support.
   call dein#add('sheerun/vim-polyglot') " Proper syntax highlighting
+  call dein#add('uiiaoo/java-syntax.vim') " proper java highlighting
   call dein#add('octol/vim-cpp-enhanced-highlight') " cpp syntax highlighting
   call dein#add('tpope/vim-commentary') " Easy commenting with gd
   call dein#add('liuchengxu/vista.vim') " Lang server symbols
