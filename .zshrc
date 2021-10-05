@@ -101,5 +101,4 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias eeix="eix --format '<category>/<name>: \"<description>\"\n' | fzf "
 alias grep="rg"
-alias record="ffmpeg -hwaccel vaapi -hwaccel_device /dev/dri/renderD128 -framerate 60 -f x11grab -i :0.0 -f pulse -ac 2 -i default -vf \"scale=1920:1080\""
-export PATH="/home/argil/.cargo/bin:/home/argil/.local/bin:${PATH}"
+export PATH="$HOME/.cargo/bin:$HOME/.local/bin:${PATH}"
