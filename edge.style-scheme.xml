@@ -87,9 +87,6 @@
   <color name="dark1"                        value="#1e1e1e"/>
   <color name="dark2"                        value="#303030"/>
 
-  <!-- Spellchecker Matching nd -->
-  <style name="misspelled-match"            foreground="#000000" background="#b3d4fc"/>
-
   <!-- Comments nd -->
   <style name="def:comment"                 foreground="aluminium4"/>
   <style name="def:shebang"                 foreground="aluminium4" bold="true"/>
@@ -213,7 +210,7 @@
   <style name="cursor"                      foreground="fg"/>
   <style name="current-line"                background="bg1"/>
   <style name="current-line-number"         background="grey"/>
-  <style name="line-numbers"                foreground="grey" background="dark1"/>
+  <style name="line-numbers"                foreground="grey" background="bg0"/>
   <style name="draw-spaces"                 foreground="bg4"/>
   <style name="background-pattern"          background="bg_grey"/>
   <style name="map-overlay"                 background="#rgba(136,138,133,0.25)"/>
@@ -247,6 +244,8 @@
   <!-- Search Shadow -->
   <style name="search-shadow"               background="#rgba(0,0,0,0.4)"/>
 
+  <!-- Spellchecker Matching -->
+  <style name="misspelled-match"            foreground="black" background="bg_blue"/>
 
 </style-scheme>
 
