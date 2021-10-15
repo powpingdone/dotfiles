@@ -27,7 +27,7 @@
 <style-scheme id="edge" name="Edge" version="1.0">
 
   <author>Aidan Case</author>
-  <description>Dark color scheme, based on the vim color scheme of the same name from sainnhe/edge</description>
+  <description>Dark color scheme, based on the vim color scheme of the same name by sainnhe on github</description>
   
   <!-- edge pallette -->
   <color name="black"                        value="#202023"/>
@@ -86,11 +86,6 @@
   <color name="red1"                        value="#ff0000"/>
   <color name="dark1"                        value="#1e1e1e"/>
   <color name="dark2"                        value="#303030"/>
-
-  <!-- Comments nd -->
-  <style name="def:comment"                 foreground="aluminium4"/>
-  <style name="def:shebang"                 foreground="aluminium4" bold="true"/>
-  <style name="def:doc-comment-element"     italic="true"/>
 
   <!-- Constants nd -->
   <style name="def:constant"                foreground="yellow" italic="true"/>
@@ -152,7 +147,8 @@
   <style name="c:type"                      foreground="#669900" bold="true"/>
   <style name="c:macro-name"                foreground="#677685" bold="false"/>
   <style name="c:enum-name"                 foreground="#dd4a68" bold="false"/>
-
+  
+  <!-- Diff nd -->
   <style name="diff:added-line"             foreground="chameleon2"/>
   <style name="diff:removed-line"           foreground="plum1"/>
   <style name="diff:changed-line"           foreground="blue1"/>
@@ -172,10 +168,12 @@
   <style name="gtk-doc:signal-name"         bold="true"/>
   <style name="gtk-doc:property-name"       bold="true"/>
 
+  <!-- Gutter -->
   <style name="gutter:added-line"           foreground="chameleon2"/>
   <style name="gutter:changed-line"         foreground="blue"/>
   <style name="gutter:removed-line"         foreground="scarletred3"/>
 
+  <!-- JavaScript -->
   <style name="js:built-in-constructor"     foreground="pink1"/>
   <style name="js:keyword"                  foreground="#2b85aa"/>
   <style name="js:string"                   foreground="#669900"/>
@@ -183,9 +181,11 @@
   <style name="js:built-in-function"        foreground="pink1"/>
   <style name="js:built-in-method"          foreground="pink1"/>
 
+  <!-- LaTeX -->
   <style name="latex:command"               foreground="chameleon1" bold="true"/>
   <style name="latex:include"               use-style="def:preprocessor"/>
 
+  <!-- XML -->
   <style name="xml:comment"                 foreground="#8b9eab"/>
   <style name="xml:attribute-name"          foreground="#orange3" bold="false"/>
   <style name="xml:attribute-value"         foreground="#669900"/>
@@ -200,7 +200,7 @@
   <style name="symboltree::class"           foreground="#000000" background="#FFEF98"/>
   <style name="symboltree::attribute"       foreground="#000000" background="#F0E68C"/>
   
-  <!-- Snippets nd -->
+  <!-- Snippets nd uk -->
   <style name="snippet::tab-stop"           background="orange3" foreground="aluminium6"/>
   <style name="snippet::area"               background="#rgba(86,114,151,.5)"/>
 
@@ -227,6 +227,9 @@
   <style name="debugger::breakpoint"         foreground="bg0" background="bg_red"/>
   
   <!-- Search Matching -->
+  <!-- Liberty Taken: Edge uses alternating colors when doing a Search (bg_green and bg_blue
+       for selected and unselected) but because the same color is used for selection as the
+       "Found Selected" color its impossible to represent. Use bg_green as a blanket.-->
   <style name="search-match"                foreground="bg0" background="bg_green"/>
   <!-- bg_green .25 transparent -->
   <style name="quick-highlight-match"       background="#rgba(160,201,128,.25)"/> 
@@ -238,7 +241,7 @@
   <style name="bracket-match"               foreground="fg" bold="true"/>
   <style name="bracket-mismatch"            foreground="purple" bold="true"/>
   
-  <!-- Right Margin -->
+  <!-- Right Margin uk -->
   <style name="right-margin"                foreground="bg4" background="bg4"/>
 
   <!-- Search Shadow -->
@@ -246,6 +249,12 @@
 
   <!-- Spellchecker Matching -->
   <style name="misspelled-match"            foreground="black" background="bg_blue"/>
+  
+  <!-- Comments -->
+  <style name="def:comment"                 foreground="grey" italic="true"/>
+  <style name="def:shebang"                 foreground="purple"/>
+  <!-- uk -->
+  <style name="def:doc-comment-element"     foreground="green"/>
 
 </style-scheme>
 
