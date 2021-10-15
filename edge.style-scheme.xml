@@ -168,12 +168,12 @@
   <style name="gtk-doc:signal-name"         bold="true"/>
   <style name="gtk-doc:property-name"       bold="true"/>
 
-  <!-- Gutter -->
+  <!-- Gutter nd -->
   <style name="gutter:added-line"           foreground="chameleon2"/>
   <style name="gutter:changed-line"         foreground="blue"/>
   <style name="gutter:removed-line"         foreground="scarletred3"/>
 
-  <!-- JavaScript -->
+  <!-- JavaScript nd -->
   <style name="js:built-in-constructor"     foreground="pink1"/>
   <style name="js:keyword"                  foreground="#2b85aa"/>
   <style name="js:string"                   foreground="#669900"/>
@@ -181,11 +181,11 @@
   <style name="js:built-in-function"        foreground="pink1"/>
   <style name="js:built-in-method"          foreground="pink1"/>
 
-  <!-- LaTeX -->
+  <!-- LaTeX nd -->
   <style name="latex:command"               foreground="chameleon1" bold="true"/>
   <style name="latex:include"               use-style="def:preprocessor"/>
 
-  <!-- XML -->
+  <!-- XML nd -->
   <style name="xml:comment"                 foreground="#8b9eab"/>
   <style name="xml:attribute-name"          foreground="#orange3" bold="false"/>
   <style name="xml:attribute-value"         foreground="#669900"/>
@@ -213,6 +213,7 @@
   <style name="line-numbers"                foreground="grey" background="bg0"/>
   <style name="draw-spaces"                 foreground="bg4"/>
   <style name="background-pattern"          background="bg_grey"/>
+  <!-- uk -->
   <style name="map-overlay"                 background="#rgba(136,138,133,0.25)"/>
 
   <!-- Diagnostics Underlining -->
