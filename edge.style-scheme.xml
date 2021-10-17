@@ -28,7 +28,7 @@
 
   <author>Aidan Case</author>
   <description>Dark color scheme, based on the vim color scheme of the same name by sainnhe on github</description>
-  
+
   <!-- edge pallette -->
   <color name="black"                        value="#202023"/>
   <color name="bg0"                          value="#2c2e34"/>
@@ -55,154 +55,6 @@
   <color name="grey"                         value="#7f8490"/>
   <color name="grey_dim"                     value="#5b616e"/>
   <!-- <color name="none"                         value="NONE"/> **NULL color -->
-
-  <!-- Tango Palette -->
-  <color name="chameleon1"                  value="#8ae234"/>
-  <color name="chameleon2"                  value="#73d216"/>
-  <color name="chameleon3"                  value="#4e9a06"/>
-  <color name="orange1"                     value="#fcaf3e"/>
-  <color name="orange2"                     value="#f57900"/>
-  <color name="orange3"                     value="#ce5c00"/>
-  <color name="skyblue1"                    value="#729fcf"/>
-  <color name="skyblue2"                    value="#3465a4"/>
-  <color name="skyblue3"                    value="#204a87"/>
-  <color name="plum1"                       value="#ad7fa8"/>
-  <color name="plum2"                       value="#75507b"/>
-  <color name="plum3"                       value="#5c3566"/>
-  <color name="chocolate1"                  value="#e9b96e"/>
-  <color name="chocolate2"                  value="#c17d11"/>
-  <color name="chocolate3"                  value="#8f5902"/>
-  <color name="scarletred1"                 value="#ef2929"/>
-  <color name="scarletred2"                 value="#cc0000"/>
-  <color name="scarletred3"                 value="#a40000"/>
-  <color name="aluminium1"                  value="#eeeeec"/>
-  <color name="aluminium2"                  value="#d3d7cf"/>
-  <color name="aluminium3"                  value="#babdb6"/>
-  <color name="aluminium4"                  value="#888a85"/>
-  <color name="aluminium5"                  value="#555753"/>
-  <color name="aluminium6"                  value="#2e3436"/>
-  <color name="white"                       value="#ffffff"/>
-  <color name="pink1"                       value="#dd4a68"/>
-  <color name="red1"                        value="#ff0000"/>
-  <color name="dark1"                        value="#1e1e1e"/>
-  <color name="dark2"                        value="#303030"/>
-
-  <!-- Constants nd -->
-  <style name="def:constant"                foreground="yellow" italic="true"/>
-  <style name="def:string"                  foreground="#0077aa"/>
-  <style name="def:special-char"            foreground="#dd4a68"/>
-  <style name="def:special-constant"        foreground="plum1"/>
-  <style name="def:floating-point"          foreground="orange3"/>
-  <style name="def:function"                foreground="#4186A8"/>
-
-  <!-- Identifiers nd -->
-  <style name="def:identifier"              foreground="skyblue1"/>
-
-  <!-- Statements nd -->
-  <style name="def:statement"               foreground="white" bold="true"/>
-
-  <!-- Types nd -->
-  <style name="def:type"                    foreground="chameleon1" bold="true"/>
-
-  <!-- Markup nd -->
-  <style name="def:emphasis"                italic="true"/>
-  <style name="def:strong-emphasis"         foreground="white" bold="true"/>
-  <style name="def:inline-code"             foreground="skyblue1"/>
-  <style name="def:insertion"               underline="single"/>
-  <style name="def:deletion"                strikethrough="true"/>
-  <style name="def:link-text"               foreground="aluminium4"/>
-  <style name="def:link-symbol"             foreground="aluminium4" bold="true"/>
-  <style name="def:link-destination"        italic="true" underline="true"/>
-  <style name="def:heading"                 foreground="chameleon1" bold="true"/>
-  <style name="def:thematic-break"          foreground="chameleon1" bold="true"/>
-  <style name="def:preformatted-section"    foreground="skyblue1"/>
-  <style name="def:list-marker"             foreground="white" bold="true"/>
-
-  <!-- Others nd -->
-  <style name="def:preprocessor"            foreground="#dd4a68"/>
-  <style name="def:error"                   foreground="aluminium1" background="scarletred2" bold="true"/>
-  <style name="def:warning"                 foreground="aluminium1" background="plum1"/>
-  <style name="def:note"                    background="blue" foreground="bg0" bold="true"/>
-  <style name="def:net-address"             italic="true" underline="true"/>
-
-  <!-- Heading styles, uncomment to enable -->
-  <!--
-  <style name="def:heading0"                scale="5.0"/>
-  <style name="def:heading1"                scale="2.5"/>
-  <style name="def:heading2"                scale="2.0"/>
-  <style name="def:heading3"                scale="1.7"/>
-  <style name="def:heading4"                scale="1.5"/>
-  <style name="def:heading5"                scale="1.3"/>
-  <style name="def:heading6"                scale="1.2"/>
-  -->
-
-  <!-- Language specific nd -->
-  <style name="c:comment"                   foreground="#8b9eab"/>
-  <style name="c:preprocessor"              foreground="#8194a6" bold="false"/>
-  <style name="c:boolean"                   foreground="#0077aa"/>
-  <style name="c:keyword"                   foreground="#0077aa" bold="true"/>
-  <style name="c:string"                    foreground="#669900"/>
-  <style name="c:included-file"             foreground="orange3"/>
-  <style name="c:storage-class"             foreground="orange3" bold="true"/>
-  <style name="c:type"                      foreground="#669900" bold="true"/>
-  <style name="c:macro-name"                foreground="#677685" bold="false"/>
-  <style name="c:enum-name"                 foreground="#dd4a68" bold="false"/>
-  
-  <!-- Diff nd -->
-  <style name="diff:added-line"             foreground="chameleon2"/>
-  <style name="diff:removed-line"           foreground="plum1"/>
-  <style name="diff:changed-line"           foreground="blue1"/>
-  <style name="diff:diff-file"              foreground="chameleon1" bold="true"/>
-  <style name="diff:location"               foreground="chameleon1"/>
-  <style name="diff:special-case"           foreground="white" bold="true"/>
-
-  <!-- GTK Doc nd -->
-  <style name="gtk-doc:function-name"       bold="true"/>
-  <style name="gtk-doc:function"            bold="true"/>
-  <style name="gtk-doc:parameter"           bold="true"/>
-  <style name="gtk-doc:constant"            bold="true"/>
-  <style name="gtk-doc:type"                bold="true"/>
-  <style name="gtk-doc:since"               bold="true"/>
-  <style name="gtk-doc:return"              bold="true"/>
-  <style name="gtk-doc:deprecated"          bold="true"/>
-  <style name="gtk-doc:signal-name"         bold="true"/>
-  <style name="gtk-doc:property-name"       bold="true"/>
-
-  <!-- Gutter nd -->
-  <style name="gutter:added-line"           foreground="chameleon2"/>
-  <style name="gutter:changed-line"         foreground="blue"/>
-  <style name="gutter:removed-line"         foreground="scarletred3"/>
-
-  <!-- JavaScript nd -->
-  <style name="js:built-in-constructor"     foreground="pink1"/>
-  <style name="js:keyword"                  foreground="#2b85aa"/>
-  <style name="js:string"                   foreground="#669900"/>
-  <style name="js:template-literal"         foreground="#669900"/>
-  <style name="js:built-in-function"        foreground="pink1"/>
-  <style name="js:built-in-method"          foreground="pink1"/>
-
-  <!-- LaTeX nd -->
-  <style name="latex:command"               foreground="chameleon1" bold="true"/>
-  <style name="latex:include"               use-style="def:preprocessor"/>
-
-  <!-- XML nd -->
-  <style name="xml:comment"                 foreground="#8b9eab"/>
-  <style name="xml:attribute-name"          foreground="#orange3" bold="false"/>
-  <style name="xml:attribute-value"         foreground="#669900"/>
-  <style name="xml:tag-match"               background="#rgba(114,159,207,.20)"/>
-
-  <!-- Symbol-tree xml-pack coloring nd -->
-  <style name="symboltree::label"           foreground="#000000" background="#D5E7FC"/>
-  <style name="symboltree::id"              foreground="#000000" background="#D9E7BD"/>
-  <style name="symboltree::style-class"     foreground="#000000" background="#DFCD9B"/>
-  <style name="symboltree::type"            foreground="#000000" background="#F4DAC3"/>
-  <style name="symboltree::parent"          foreground="#000000" background="#DEBECF"/>
-  <style name="symboltree::class"           foreground="#000000" background="#FFEF98"/>
-  <style name="symboltree::attribute"       foreground="#000000" background="#F0E68C"/>
-  
-  <!-- Snippets nd uk -->
-  <style name="snippet::tab-stop"           background="orange3" foreground="aluminium6"/>
-  <style name="snippet::area"               background="#rgba(86,114,151,.5)"/>
 
   <!-- Global Settings -->
   <style name="text"                        foreground="fg" background="bg0"/>
@@ -256,6 +108,110 @@
   <style name="def:shebang"                 foreground="purple"/>
   <!-- uk -->
   <style name="def:doc-comment-element"     foreground="green"/>
+
+  <!-- Constants -->
+  <style name="def:constant"                foreground="yellow" italic="true"/>
+  <style name="def:string"                  foreground="green"/>
+  <style name="def:special-char"            foreground="yellow"/>
+  <style name="def:floating-point"          foreground="green"/>
+  <style name="def:function"                foreground="blue"/>
+  <style name="def:macro-name"              foreground="yellow"/>
+  <style name="def:enum-name"               foreground="yellow"/>
+  <!-- uk -->
+  <style name="def:special-constant"        foreground="cyan" italic="true"/>
+
+  <!-- Identifiers -->
+  <style name="def:identifier"              foreground="cyan" italic="true"/>
+
+  <!-- Statements -->
+  <style name="def:statement"               foreground="purple"/>
+
+  <!-- Types -->
+  <style name="def:type"                    foreground="red"/>
+
+  <!-- Others -->
+  <style name="def:preprocessor"            foreground="red" italic="true"/>
+  <style name="def:error"                   background="diff_red" bold="true"/>
+  <style name="def:warning"                 background="diff_yellow"/>
+  <style name="def:note"                    background="diff_blue" bold="true"/>
+  <style name="def:net-address"             italic="true" underline="true"/>
+  <style name="def:keyword"                 foreground="purple"/>
+  <style name="def:boolean"                 foreground="green"/>
+
+  <!-- Heading styles, uncomment to enable -->
+  <!--
+  <style name="def:heading0"                scale="5.0"/>
+  <style name="def:heading1"                scale="2.5"/>
+  <style name="def:heading2"                scale="2.0"/>
+  <style name="def:heading3"                scale="1.7"/>
+  <style name="def:heading4"                scale="1.5"/>
+  <style name="def:heading5"                scale="1.3"/>
+  <style name="def:heading6"                scale="1.2"/>
+  -->
+  
+  <!-- LaTeX -->
+  <style name="latex:command"               foreground="red"/>
+
+  <!-- Language specific nd -->
+  <style name="c:included-file"             foreground="purple"/>
+  <style name="c:storage-class"             foreground="purple"/>
+  
+  <!-- Diff -->
+  <style name="diff:added-line"             foreground="fg" background="diff_green"/>
+  <style name="diff:removed-line"           foreground="fg" background="diff_red"/>
+  <style name="diff:changed-line"           foreground="fg" background="diff_blue"/>
+  <style name="diff:diff-file"              foreground="fg"/>
+  <style name="diff:location"               foreground="fg" background="diff_purple"/>
+  <style name="diff:special-case"           foreground="fg"/>
+
+  <!-- GTK Doc -->
+  <style name="gtk-doc:function-name"       bold="true"/>
+  <style name="gtk-doc:function"            bold="true"/>
+  <style name="gtk-doc:parameter"           bold="true"/>
+  <style name="gtk-doc:constant"            bold="true"/>
+  <style name="gtk-doc:type"                bold="true"/>
+  <style name="gtk-doc:since"               bold="true"/>
+  <style name="gtk-doc:return"              bold="true"/>
+  <style name="gtk-doc:deprecated"          bold="true"/>
+  <style name="gtk-doc:signal-name"         bold="true"/>
+  <style name="gtk-doc:property-name"       bold="true"/>
+
+  <!-- Gutter -->
+  <style name="gutter:added-line"           use-style="diff:added-line"/>
+  <style name="gutter:changed-line"         use-style="diff:changed-line"/>
+  <style name="gutter:removed-line"         use-style="diff:removed-line"/>
+
+  <!-- JavaScript -->
+  <style name="js:built-in-constructor"     foreground="cyan"/>
+  <style name="js:keyword"                  foreground="def:keyword"/>
+  <style name="js:string"                   foreground="def:string"/>
+  <style name="js:template-literal"         foreground="yellow"/>
+  <style name="js:built-in-function"        foreground="blue"/>
+  <style name="js:built-in-method"          foreground="cyan" italic="true"/>
+  
+  <!-- Rust -->
+  <style name="rust:scope"                  foreground="red" italic="true"/>
+  <style name="rust:macro"                  foreground="cyan" italic="true"/>
+  <style name="rust:attribute"              foreground="yellow"/>
+
+  <!-- XML -->
+  <style name="xml:doctype"                 foreground="grey"/>
+  <style name="xml:cdata-delim"             foreground="grey"/>
+  <style name="xml:tag"                     foreground="purple"/>
+
+  <!-- Markup -->
+  <style name="def:emphasis"                italic="true"/>
+  <style name="def:strong-emphasis"         bold="true"/>
+  <style name="def:inline-code"             foreground="green"/>
+  <style name="def:insertion"               underline="single"/>
+  <style name="def:deletion"                strikethrough="true"/>
+  <style name="def:link-text"               foreground="grey" underline="true"/>
+  <style name="def:link-symbol"             foreground="purple"/>
+  <style name="def:link-destination"        foreground="green" italic="true" underline="true"/>
+  <style name="def:heading"                 foreground="purple" bold="true"/>
+  <style name="def:thematic-break"          foreground="grey" bold="true"/>
+  <style name="def:preformatted-section"    foreground="yellow"/>
+  <style name="def:list-marker"             foreground="red"/>
 
 </style-scheme>
 
