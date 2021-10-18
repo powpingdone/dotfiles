@@ -130,7 +130,7 @@
   <style name="def:type"                    foreground="red"/>
 
   <!-- Others -->
-  <style name="def:preprocessor"            foreground="red" italic="true"/>
+  <style name="def:preprocessor"            foreground="purple"/>
   <style name="def:error"                   background="diff_red" bold="true"/>
   <style name="def:warning"                 background="diff_yellow"/>
   <style name="def:note"                    background="diff_blue" bold="true"/>
@@ -188,7 +188,15 @@
   <style name="js:template-literal"         foreground="yellow"/>
   <style name="js:built-in-function"        foreground="blue"/>
   <style name="js:built-in-method"          foreground="cyan" italic="true"/>
-  
+
+  <!-- Java -->
+  <style name="java:null-value"             foreground="yellow" italic="true"/>
+  <style name="java:type"                   foreground="red" italic="true"/>
+  <style name="java:storage-class"          use-style="java:type"/>
+  <style name="java:declaration"            use-style="java:type"/>
+  <style name="java:scope-declaration"      foreground="purple"/>
+  <style name="java:memory"                 foreground="purple"/>
+
   <!-- Rust -->
   <style name="rust:scope"                  foreground="red" italic="true"/>
   <style name="rust:macro"                  foreground="cyan" italic="true"/>
