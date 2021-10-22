@@ -112,7 +112,7 @@
   <!-- Constants -->
   <style name="def:constant"                foreground="yellow" italic="true"/>
   <style name="def:string"                  foreground="green"/>
-  <style name="def:special-char"            foreground="yellow"/>
+  <style name="def:special-char"            foreground="yellow" italic="false"/>
   <style name="def:floating-point"          foreground="green"/>
   <style name="def:function"                foreground="blue"/>
   <style name="def:macro-name"              foreground="yellow"/>
