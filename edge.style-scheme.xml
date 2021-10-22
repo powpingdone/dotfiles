@@ -112,7 +112,8 @@
   <!-- Constants -->
   <style name="def:constant"                foreground="yellow" italic="true"/>
   <style name="def:string"                  foreground="green"/>
-  <style name="def:special-char"            foreground="yellow" italic="false"/>
+  <style name="def:character"               foreground="green"/>
+  <style name="def:special-char"            foreground="yellow"/>
   <style name="def:floating-point"          foreground="green"/>
   <style name="def:function"                foreground="blue"/>
   <style name="def:macro-name"              foreground="yellow"/>
@@ -152,7 +153,8 @@
   <!-- LaTeX -->
   <style name="latex:command"               foreground="red"/>
 
-  <!-- Language specific nd -->
+  <!-- Language specific -->
+  <!-- C -->
   <style name="c:included-file"             foreground="purple"/>
   <style name="c:storage-class"             foreground="purple"/>
   
