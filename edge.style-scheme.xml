@@ -201,6 +201,8 @@
 
   <!-- Rust -->
   <style name="rust:scope"                  foreground="red" italic="true"/>
+  <style name="rust:type"                   foreground="red" italic="true"/>
+  <style name="rust:lifetime"               foreground="yellow"/>
   <style name="rust:macro"                  foreground="cyan" italic="true"/>
   <style name="rust:attribute"              foreground="yellow"/>
 
