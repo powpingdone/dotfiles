@@ -159,11 +159,11 @@
   <style name="c:storage-class"             foreground="purple"/>
   
   <!-- Diff -->
-  <style name="diff:added-line"             foreground="fg" background="diff_green"/>
-  <style name="diff:removed-line"           foreground="fg" background="diff_red"/>
-  <style name="diff:changed-line"           foreground="fg" background="diff_blue"/>
+  <style name="diff:added-line"             foreground="diff_green"/>
+  <style name="diff:removed-line"           foreground="diff_red"/>
+  <style name="diff:changed-line"           foreground="diff_yellow"/>
   <style name="diff:diff-file"              foreground="fg"/>
-  <style name="diff:location"               foreground="fg" background="diff_purple"/>
+  <style name="diff:location"               foreground="diff_blue"/>
   <style name="diff:special-case"           foreground="fg"/>
 
   <!-- GTK Doc -->
