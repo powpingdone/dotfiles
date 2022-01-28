@@ -38,13 +38,13 @@
   <color name="bg4"                          value="#414550"/>
   <color name="bg_grey"                      value="#828a98"/>
   <color name="bg_red"                       value="#ec7279"/>
-  <color name="diff_red"                     value="#55393d"/>
+  <color name="diff_red"                     value="#8c2b39"/>
   <color name="bg_green"                     value="#a0c980"/>
-  <color name="diff_green"                   value="#394634"/>
+  <color name="diff_green"                   value="#7ab34f"/>
   <color name="bg_blue"                      value="#6cb6eb"/>
   <color name="diff_blue"                    value="#354157"/>
   <color name="bg_purple"                    value="#d38aea"/>
-  <color name="diff_yellow"                  value="#4e432f"/>
+  <color name="diff_yellow"                  value="#8f8b14"/>
   <color name="fg"                           value="#c5cdd9"/>
   <color name="red"                          value="#ec7279"/>
   <color name="yellow"                       value="#deb974"/>
