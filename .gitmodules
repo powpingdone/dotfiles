@@ -1,0 +1,6 @@
+[submodule "toolbox-vscode"]
+	path = toolbox-vscode
+	url = https://github.com/owtaylor/toolbox-vscode
+[submodule "rustup-toolbox"]
+	path = rustup-toolbox
+	url = https://github.com/owtaylor/rustup-toolbox
