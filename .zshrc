@@ -106,8 +106,8 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias eeix="eix --format '<category>/<name>: \"<description>\"\n' | fzf "
 alias grep="rg"
+alias docker="podman"
 export PATH="$HOME/.cargo/bin:$HOME/.local/bin:${PATH}"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
