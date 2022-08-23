@@ -6,6 +6,7 @@ git submodule update --depth 1
 # nerd font
 mkdir -p ~/.local/share/fonts
 nerd-fonts/install.sh
+fc-cache -rf
 
 # zsh
 RUNZSH=no sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
