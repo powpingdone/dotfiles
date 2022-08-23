@@ -20,13 +20,16 @@ mkdir -p ~/.config/nvim/lua/user/
 ln -s "$(realpath init.lua)" ~/.config/nvim/lua/user/
 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
-# vscodium 
-flatpak install -y com.vscodium.codium
-mkdir -p ~/.var/app/com.vscodium.codium/config/Code/User
-ln -s "$(realpath settings.json)" ~/.var/app/com.vscodium.codium/config/Code/User/
-cat vscode_exts.txt | xargs -n 1 flatpak run com.vscodium.codium --install-extension
+# vscode 
+flatpak install -y com.visualstudio.code
+mkdir -p ~/.var/app/com.visualstudio.code/config/Code/User
+ln -s "$(realpath settings.json)" ~/.var/app/com.visualstudio.code/config/Code/User/
+cat vscode_exts.txt | xargs -n 1 flatpak run com.visualstudio.code --install-extension
+mkdir -p ~/.local/bin
+ln -s "$(realpath toolbox-vscode/code.sh)" ~/.local/bin/code
 
-echo -e "\n\n:::REMINDER:::"
+echo -e "\n\n:::REMINDERS:::"
 echo -e "packages needed:"
 echo -e "\tzsh zsh-autosuggestions zsh-syntax-highlighting neovim"
 echo -e "\tpowerline-fonts fontawesome-fonts git-credential-libsecret"
+echo -e "\nmake sure you setup toolbox-vscode"
