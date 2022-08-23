@@ -1,0 +1,13 @@
+{
+  "remote.containers.dockerPath": "/var/home/powpingdone/.local/bin/podman-host",
+  "workbench.colorTheme": "Edge Dark",
+  "editor.fontFamily": "\"Source Code Pro\",'Droid Sans Mono', 'monospace', monospace",
+  "editor.inlayHints.padding": true,
+  "editor.inlayHints.enabled": "offUnlessPressed",
+  "workbench.colorCustomizations": {
+    "[Edge Dark]": {
+      "editorInlayHint.background": "#424553f0",
+      "editorInlayHint.foreground": "#c5cdd9",
+    },
+  },
+}

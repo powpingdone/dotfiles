@@ -5,7 +5,7 @@ git submodule update --depth 1
 
 # nerd font
 mkdir -p ~/.local/share/fonts
-cd ~/.local/share/fonts && curl -fLo ""
+nerd-fonts/install.sh
 
 # zsh
 RUNZSH=no sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -17,6 +17,15 @@ ln -s "$(realpath .p10k.zsh)" ~
 git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
 mkdir -p ~/.config/nvim/lua/user/
 ln -s "$(realpath init.lua)" ~/.config/nvim/lua/user/
-nvim  --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
-echo -e "\nREMINDER:::\npackages needed: zsh zsh-autosuggestions zsh-syntax-highlighting\n\tneovim powerline-fonts fontawesome-fonts git-credential-libsecret"
+# vscodium 
+flatpak install -y com.vscodium.codium
+mkdir -p ~/.var/app/com.vscodium.codium/config/Code/User
+ln -s "$(realpath settings.json)" ~/.var/app/com.vscodium.codium/config/Code/User/
+cat vscode_exts.txt | xargs -n 1 flatpak run com.vscodium.codium --install-extension
+
+echo -e "\n\n:::REMINDER:::"
+echo -e "packages needed:"
+echo -e "\tzsh zsh-autosuggestions zsh-syntax-highlighting neovim"
+echo -e "\tpowerline-fonts fontawesome-fonts git-credential-libsecret"
