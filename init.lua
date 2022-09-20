@@ -28,6 +28,9 @@ local config = {
     opt = {
       relativenumber = false,
       hidden = true,
+      expandtab = true,
+      tabstop = 4,
+      shiftwidth = 4,
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader

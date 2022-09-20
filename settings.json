@@ -10,4 +10,23 @@
       "editorInlayHint.foreground": "#c5cdd9",
     },
   },
+  "[toml]": {
+    "editor.defaultFormatter": "bodil.prettier-toml"
+  },
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "xprotocol"
+      },
+      "previewLimit": 50,
+      "server": "127.0.0.1",
+      "port": 33060,
+      "driver": "MySQL",
+      "name": "school",
+      "database": "sakila",
+      "username": "user",
+      "password": "password",
+      "connectionTimeout": 100
+    }
+  ],
 }
