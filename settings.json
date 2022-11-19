@@ -29,4 +29,5 @@
       "connectionTimeout": 100
     }
   ],
+  "window.titleBarStyle": "custom",
 }
