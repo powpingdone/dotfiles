@@ -108,6 +108,7 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias grep="rg"
 alias docker="podman"
+alias code="code --ozone-platform=wayland --unity-launch"
 export PATH="$HOME/.cargo/bin:$HOME/.local/bin:${PATH}"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

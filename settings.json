@@ -13,21 +13,9 @@
   "[toml]": {
     "editor.defaultFormatter": "bodil.prettier-toml"
   },
-  "sqltools.connections": [
-    {
-      "mysqlOptions": {
-        "authProtocol": "xprotocol"
-      },
-      "previewLimit": 50,
-      "server": "127.0.0.1",
-      "port": 33060,
-      "driver": "MySQL",
-      "name": "school",
-      "database": "sakila",
-      "username": "user",
-      "password": "password",
-      "connectionTimeout": 100
-    }
-  ],
   "window.titleBarStyle": "custom",
+  "vscode-pets.petSize": "medium",
+  "vscode-pets.petType": "dog",
+  "vscode-pets.petColor": "yellow",
+  "vscode-pets.theme": "forest",
 }
