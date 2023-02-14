@@ -35,5 +35,6 @@
   "auto-build.build.silent": false,
   "rust-analyzer.rustfmt.overrideCommand": [
     "/cargo/bin/genemichaels"
-  ]
+  ],
+  "git.openRepositoryInParentFolders": "never"
 }
