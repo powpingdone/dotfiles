@@ -41,6 +41,11 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = { "BufNewFile", "BufEnter" },
+    servers = {
+      jsonls = {
+        meson = false,
+      },
+    },
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
