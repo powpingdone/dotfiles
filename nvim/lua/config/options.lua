@@ -7,3 +7,4 @@ vim.g.edge_diagnostic_virtual_text = 1
 vim.g.edge_better_performance = 1
 vim.opt.showtabline = 0
 vim.opt.relativenumber = false
+vim.opt.tabstop = 4
