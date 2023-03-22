@@ -13,8 +13,8 @@ if [[ ! -x "$(which git)" ]]; then
 	exit 1
 fi
 
-set -e
 git submodule update --depth 1 --init --remote --merge
+set -e
 
 # nerd font
 if [[ -x "$(which fc-cache)" ]]; then
