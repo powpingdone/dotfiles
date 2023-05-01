@@ -78,11 +78,12 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(git colorize pip python rust)
 
 source $ZSH/oh-my-zsh.sh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# fedora
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh >/dev/null 2>&1 
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh >/dev/null 2>&1
 # arch
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh >/dev/null 2>&1
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh >/dev/null 2>&1
 
 # User configuration
 
