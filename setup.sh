@@ -1,8 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 
 # initial setup
-which which 2 &
->1 >/dev/null
+which which 
 if [[ "$?" -ne "0" ]]; then
 	echo "install which for this script."
 	exit 1
@@ -39,13 +38,13 @@ echo -e "\nsymlinking neovim"
 ln -fs "$(realpath nvim)" ~/.config/
 
 # vscode
-if [[ -x "$(which flatpak)" ]]; then
-	echo -e "installing special vscode stuff"
-	flatpak install -y com.visualstudio.code
-	mkdir -p ~/.var/app/com.visualstudio.code/config/Code/User
-	ln -fs "$(realpath settings.json)" ~/.var/app/com.visualstudio.code/config/Code/User/
-	cat vscode_exts.txt | xargs -n 1 flatpak run com.visualstudio.code --install-extension
-fi
+#if [[ -x "$(which flatpak)" ]]; then
+#	echo -e "installing special vscode stuff"
+#	flatpak install -y com.visualstudio.code
+#	mkdir -p ~/.var/app/com.visualstudio.code/config/Code/User
+#	ln -fs "$(realpath settings.json)" ~/.var/app/com.visualstudio.code/config/Code/User/
+#	cat vscode_exts.txt | xargs -n 1 flatpak run com.visualstudio.code --install-extension
+#fi
 
 # toolbox vscode
 mkdir -p ~/.local/bin
@@ -57,3 +56,4 @@ echo -e "\tzsh zsh-autosuggestions zsh-syntax-highlighting neovim"
 echo -e "\tpowerline-fonts fontawesome-fonts git-credential-libsecret"
 echo -e "\nmake sure you setup toolbox-vscode"
 echo -e "\nvscode also needs access to wayland"
+echo -e "vscode helper script is no longer installed"
