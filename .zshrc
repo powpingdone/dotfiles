@@ -112,6 +112,7 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias grep="rg"
 alias docker="podman"
+alias vscodium="vscodium --ozone-platform=wayland --unity-launch"
 alias code="code --ozone-platform=wayland --unity-launch"
 export PATH="$HOME/.cargo/bin:$HOME/.local/bin:${PATH}"
 alias toolbox="distrobox"

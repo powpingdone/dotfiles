@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # initial setup
-which which 
+which which
 if [[ "$?" -ne "0" ]]; then
 	echo "install which for this script."
 	exit 1

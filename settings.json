@@ -14,7 +14,7 @@
     },
   },
   "[toml]": {
-    "editor.defaultFormatter": "bodil.prettier-toml"
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
   },
   "window.titleBarStyle": "custom",
   "vscode-pets.petSize": "medium",
@@ -34,7 +34,9 @@
   "auto-build.defaultEnv.name": "rambo",
   "auto-build.build.silent": false,
   "rust-analyzer.rustfmt.overrideCommand": [
-    "/cargo/bin/genemichaels"
+    "${userHome}/.cargo/bin/genemichaels"
   ],
-  "git.openRepositoryInParentFolders": "never"
+  "git.openRepositoryInParentFolders": "never",
+  "terminal.integrated.fontFamily": "'RobotoMono Nerd Font Mono'",
+  "terminal.integrated.fontSize": 13
 }
