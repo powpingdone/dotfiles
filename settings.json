@@ -31,7 +31,7 @@
       "command": "/var/home/powpingdone/extern/slint/target/release/slint-fmt /dev/stdin"
     }
   ],
-  "auto-build.defaultEnv.name": "rambo",
+  "auto-build.defaultEnv.name": "STM32F103RE_creality",
   "auto-build.build.silent": false,
   "rust-analyzer.rustfmt.overrideCommand": [
     "${userHome}/.cargo/bin/genemichaels"
