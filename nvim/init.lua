@@ -13,7 +13,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- load
-require("preconfig")
-require("plugs")
-require("binds")
-require("postconfig")
+require("nvim.preconfig")
+require("nvim.plugs")
+require("nvim.binds")
+require("nvim.postconfig")
