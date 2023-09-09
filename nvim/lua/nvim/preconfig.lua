@@ -15,7 +15,6 @@ end
 vim.g.edge_better_performance = 1
 
 -- rainbow delimeters
-
 vim.g.rainbow_delimiters = {
 	highlight = {
 		'RainbowDelimeterYellow',

@@ -25,7 +25,7 @@ require("lazy").setup({
 				ensure_installed = { "lua", "vim", "vimdoc", "query" },
 				sync_install = false,
 				highlight = { enable = true },
-				indent = { enable = true },
+				indent = { enable = true, disable = { 'dart' } },
 			})
 		end
 	},
@@ -107,4 +107,18 @@ require("lazy").setup({
 			require('noice').setup()
 		end
 	},
+	{
+		"lewis6991/gitsigns.nvim",
+		dependencies = {
+			'nvim-tree/nvim-web-devicons',
+			'folke/trouble.nvim',
+		},
+	},
+	{
+		"akinsho/flutter-tools.nvim",
+		lazy = false,
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+		},
+	}
 })

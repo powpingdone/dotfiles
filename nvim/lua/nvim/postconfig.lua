@@ -1,10 +1,12 @@
+local whichkey = require('which-key')
+
 -- lsp
 local lsp = require("lsp-zero")
 lsp.preset("recommended")
 lsp.nvim_workspace()
 lsp.ensure_installed({})
 
-lsp.on_attach(function(_, bufnr)
+local lsp_attach = function(_, bufnr)
 	local opts = { buffer = bufnr, remap = false }
 
 	vim.keymap.set("n", "<leader>ld", vim.lsp.buf.definition, opts)
@@ -17,10 +19,10 @@ lsp.on_attach(function(_, bufnr)
 	vim.keymap.set("n", "<leader>lR", vim.lsp.buf.references, opts)
 	vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, opts)
 	vim.keymap.set("n", "<leader>lF", vim.lsp.buf.format, opts)
-	vim.keymap.set('n', '<leader>lt', require('treesj').toggle)
+	vim.keymap.set('n', '<leader>lt', require('treesj').toggle, opts)
 
-	require('which-key').register({
-		 l = {
+	whichkey.register({
+		l = {
 			name = "LSP",
 			d = "Definition",
 			s = "Symbol",
@@ -33,11 +35,43 @@ lsp.on_attach(function(_, bufnr)
 			F = "Format File",
 			t = "Expand/Inline Code"
 		}
-	}, {prefix = "<leader>"} )
-end)
+	}, { prefix = "<leader>" })
+end
 
+-- dartls
+--require("lspconfig").dartls.setup({
+--	cmd = { "dart", "language-server", "--protocol=lsp" },
+--	filetypes = { "dart" },
+--	init_options = {
+--		closingLabels = true,
+--		flutterOutline = true,
+--		onlyAnalyzeProjectsWithOpenFiles = true,
+--		outline = true,
+--		suggestFromUnimportedLibraries = true,
+--	},
+--	-- root_dir = root_pattern("pubspec.yaml"),
+--	settings = {
+--		dart = {
+--			completeFunctionCalls = true,
+--			showTodos = true,
+--		},
+--	},
+--	on_attach = lsp_attach,
+--})
+
+
+require('flutter-tools').setup({
+	lsp = {
+		on_attach = lsp_attach,
+	}, 
+})
+
+
+lsp.on_attach(lsp_attach)
 lsp.setup()
 
 vim.diagnostic.config({
-	virtual_text = true
+	virtual_text = true,
+	update_in_insert = true,
 })
+
