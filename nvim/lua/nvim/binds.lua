@@ -18,7 +18,7 @@ whichkey.register({
 		h = "Vim Help",
 		w = "Diagnostics"
 	},
-}, {prefix = "<leader>"})
+}, { prefix = "<leader>" })
 
 -- gitsigns
 require('gitsigns').setup({
@@ -28,8 +28,10 @@ require('gitsigns').setup({
 
 		vim.keymap.set('n', '<leader>gs', gs.stage_hunk, opts)
 		vim.keymap.set('n', '<leader>gr', gs.reset_hunk, opts)
-		vim.keymap.set('v', '<leader>gs', function() gs.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end, opts)
-		vim.keymap.set('v', '<leader>gr', function() gs.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end, opts)
+		vim.keymap.set('v', '<leader>gs', function() gs.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end,
+			opts)
+		vim.keymap.set('v', '<leader>gr', function() gs.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end,
+			opts)
 		vim.keymap.set('n', '<leader>gS', gs.stage_buffer, opts)
 		vim.keymap.set('n', '<leader>gu', gs.undo_stage_hunk, opts)
 		vim.keymap.set('n', '<leader>gR', gs.reset_buffer, opts)
@@ -58,3 +60,7 @@ require('gitsigns').setup({
 		}, { prefix = "<leader>" })
 	end
 })
+
+-- zen
+vim.keymap.set('n', '<leader>Z', require("zen-mode").toggle, {})
+whichkey.register({ Z = "Zen Mode" }, { prefix = "<leader>" })

@@ -13,7 +13,12 @@ require("lazy").setup({
 	{
 		'nvim-telescope/telescope.nvim',
 		branch = '0.1.x',
-		dependencies = { 'nvim-lua/plenary.nvim' }
+		dependencies = { 'nvim-lua/plenary.nvim' },
+		config = function()
+			local tsc = require("telescope")
+			tsc.load_extension("flutter")
+			tsc.setup({})
+		end,
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -93,7 +98,7 @@ require("lazy").setup({
 		'nvim-lualine/lualine.nvim',
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
 		config = function()
-			require('lualine').setup()
+			require('lualine').setup({})
 		end
 	},
 	{
@@ -120,5 +125,34 @@ require("lazy").setup({
 		dependencies = {
 			'nvim-lua/plenary.nvim',
 		},
-	}
+	},
+	{
+		"folke/zen-mode.nvim",
+		opts = {
+			window = {
+				backdrop = 0.92,
+			},
+			plugins = {
+				twilight = false,
+			},
+		}
+	},
+	{
+		"folke/neodev.nvim"
+	},
+	{
+		'saecki/crates.nvim',
+		event = { "BufRead Cargo.toml" },
+		dependencies = {
+			'VonHeikemen/lsp-zero.nvim',
+			'nvim-lua/plenary.nvim'
+		},
+		config = function()
+			require('crates').setup()
+		end,
+	},
+	{
+		"tpope/vim-sleuth",
+		event = "BufRead",
+	},
 })

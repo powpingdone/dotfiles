@@ -1,6 +1,7 @@
 local whichkey = require('which-key')
 
 -- lsp
+require("neodev").setup()
 local lsp = require("lsp-zero")
 lsp.preset("recommended")
 lsp.nvim_workspace()
@@ -38,32 +39,33 @@ local lsp_attach = function(_, bufnr)
 	}, { prefix = "<leader>" })
 end
 
--- dartls
---require("lspconfig").dartls.setup({
---	cmd = { "dart", "language-server", "--protocol=lsp" },
---	filetypes = { "dart" },
---	init_options = {
---		closingLabels = true,
---		flutterOutline = true,
---		onlyAnalyzeProjectsWithOpenFiles = true,
---		outline = true,
---		suggestFromUnimportedLibraries = true,
---	},
---	-- root_dir = root_pattern("pubspec.yaml"),
---	settings = {
---		dart = {
---			completeFunctionCalls = true,
---			showTodos = true,
---		},
---	},
---	on_attach = lsp_attach,
---})
+-- vim lua
+require("lspconfig").lua_ls.setup({
+	settings = {
+		Lua = {
+			completion = {
+				callSnippet = "Replace"
+			}
+		}
+	}
+})
 
-
+-- flutter
 require('flutter-tools').setup({
 	lsp = {
-		on_attach = lsp_attach,
-	}, 
+		on_attach = function(_, bufnr)
+			lsp_attach(_, bufnr)
+			local opts = { buffer = bufnr, remap = false }
+
+			vim.keymap.set("n", "<leader>fU", require('telescope').extensions.flutter.commands, opts)
+
+			whichkey.register({
+				f = {
+					U = "Flutter Menu"
+				}
+			}, { prefix = "<leader>" })
+		end,
+	},
 })
 
 
@@ -75,3 +77,11 @@ vim.diagnostic.config({
 	update_in_insert = true,
 })
 
+-- crates.nvim
+vim.api.nvim_create_autocmd("BufRead", {
+	group = vim.api.nvim_create_augroup("CmpSourceCargo", { clear = true }),
+	pattern = "Cargo.toml",
+	callback = function()
+		require("cmp").setup.buffer({ sources = { { name = "crates" } } })
+	end,
+})

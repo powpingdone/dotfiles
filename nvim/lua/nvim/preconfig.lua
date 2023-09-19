@@ -17,7 +17,7 @@ vim.g.edge_better_performance = 1
 -- rainbow delimeters
 vim.g.rainbow_delimiters = {
 	highlight = {
-		'RainbowDelimeterYellow',
+		'RainbowDelimeterRed',
 		'RainbowDelimeterCyan',
 		'RainbowDelimeterViolet',
 	}
@@ -26,8 +26,8 @@ vim.g.rainbow_delimiters = {
 vim.cmd([[
 	augroup EdgeCustom
 		autocmd!
-		autocmd ColorScheme edge highlight! link RainbowDelimeterYellow Yellow
+		autocmd ColorScheme edge highlight! link RainbowDelimeterRed Red
 		autocmd ColorScheme edge highlight! link RainbowDelimeterCyan Cyan
 		autocmd ColorScheme edge highlight! link RainbowDelimeterViolet Purple
-	augroup END	
+	augroup END
 ]])
