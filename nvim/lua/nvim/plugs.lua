@@ -155,4 +155,8 @@ require("lazy").setup({
 		"tpope/vim-sleuth",
 		event = "BufRead",
 	},
+	{
+		"slint-ui/vim-slint",
+		event = "BufRead"
+	},
 })

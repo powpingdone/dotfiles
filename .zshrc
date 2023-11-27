@@ -84,6 +84,9 @@ source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh >/dev/null 2>&1
 # arch
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh >/dev/null 2>&1
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh >/dev/null 2>&1
+# gentoo
+source /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh >/dev/null 2>&1
+source /usr/share/zsh/site-functions/zsh-autosuggestions.zsh >/dev/null 2>&1
 
 # User configuration
 
