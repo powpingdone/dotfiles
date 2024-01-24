@@ -37,6 +37,10 @@ mkdir -p ~/.config/
 echo -e "\nsymlinking neovim"
 ln -fs "$(realpath nvim)" ~/.config/
 
+# helix
+echo -e "\n symlinking helix"
+ln -fs "$(realpath helix)" ~/.config/
+
 # vscode
 #if [[ -x "$(which flatpak)" ]]; then
 #	echo -e "installing special vscode stuff"
@@ -47,8 +51,8 @@ ln -fs "$(realpath nvim)" ~/.config/
 #fi
 
 # toolbox vscode
-mkdir -p ~/.local/bin
-ln -fs "$(realpath toolbox-vscode/code.sh)" ~/.local/bin/code
+#mkdir -p ~/.local/bin
+#ln -fs "$(realpath toolbox-vscode/code.sh)" ~/.local/bin/code
 
 echo -e "\n\n:::REMINDERS:::"
 echo -e "packages needed:"

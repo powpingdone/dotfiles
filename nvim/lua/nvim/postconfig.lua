@@ -77,6 +77,7 @@ vim.diagnostic.config({
 	update_in_insert = true,
 })
 
+
 -- crates.nvim
 vim.api.nvim_create_autocmd("BufRead", {
 	group = vim.api.nvim_create_augroup("CmpSourceCargo", { clear = true }),
