@@ -40,6 +40,7 @@ require("lazy").setup({
 		config = function()
 			require("treesitter-context").setup({
 				mode = 'topline',
+				max_lines = 4,
 			})
 		end,
 	},

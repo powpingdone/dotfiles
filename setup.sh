@@ -57,7 +57,7 @@ ln -fs "$(realpath helix)" ~/.config/
 echo -e "\n\n:::REMINDERS:::"
 echo -e "packages needed:"
 echo -e "\tzsh zsh-autosuggestions zsh-syntax-highlighting neovim"
-echo -e "\tpowerline-fonts fontawesome-fonts git-credential-libsecret"
+echo -e "\tpowerline-fonts fontawesome-fonts git-credential-oauth"
 echo -e "\nmake sure you setup toolbox-vscode"
 echo -e "\nvscode also needs access to wayland"
 echo -e "vscode helper script is no longer installed"

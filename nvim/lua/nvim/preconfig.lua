@@ -5,7 +5,7 @@ vim.opt.numberwidth = 4
 vim.opt.showbreak = ">> "
 vim.opt.incsearch = true
 vim.opt.signcolumn = "yes:2"
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 6 
 
 -- edge
 if vim.fn.has("termguicolors") then
