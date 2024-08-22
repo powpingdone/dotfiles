@@ -35,9 +35,9 @@ ln -fs "$(realpath nvim)" ~/.config/
 # emacs
 ln -fs "$(realpath doomemacs)" ~/.config/emacs
 ln -fs "$(realpath doomcfg)" ~/.config/doom
-~/.config/emacs/bin/doom install
 
 echo -e "\n\n:::REMINDERS:::"
 echo -e "packages needed:"
 echo -e "\tzsh zsh-autosuggestions zsh-syntax-highlighting neovim"
 echo -e "\tgit-credential-oauth"
+echo -e "\nrun the doom emacs install (doom install)"
