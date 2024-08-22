@@ -33,8 +33,9 @@ echo -e "\nsymlinking neovim"
 ln -fs "$(realpath nvim)" ~/.config/
 
 # emacs
-ln -fs "$(realpath doomemacs)" ~/.config/emacs
-ln -fs "$(realpath doomcfg)" ~/.config/doom
+echo -e "\ndeploying doomemacs"
+git clone https://github.com/doomemacs/doomemacs ~/.emacs.d
+ln -fs "$(realpath .doom.d)" ~/.doom.d
 
 echo -e "\n\n:::REMINDERS:::"
 echo -e "packages needed:"
