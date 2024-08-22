@@ -118,7 +118,7 @@ alias docker="podman"
 alias vscodium="vscodium --ozone-platform=wayland --unity-launch"
 alias code="code --ozone-platform=wayland --unity-launch"
 alias vscodium="vscodium --ozone-platform=wayland --unity-launch"
-export PATH="$HOME/.cargo/bin:$HOME/.local/bin:${PATH}"
+export PATH="$HOME/.config/emacs/bin:$HOME/.cargo/bin:$HOME/.local/bin:${PATH}"
 alias toolbox="distrobox"
 export CPATH="$(clang -v 2>&1 | grep "Selected GCC installation" | rev | cut -d' ' -f1 | rev)/include"
 
