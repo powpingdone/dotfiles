@@ -179,6 +179,7 @@ require("lazy").setup({
 	},
 	{
 		"mustache/vim-mustache-handlebars",
+		priority = 1,
 		event = "BufRead",
 	},
 })
