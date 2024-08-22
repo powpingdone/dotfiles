@@ -73,5 +73,31 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+(use-package! tramp :config
+              (require 'tramp)
+              (setq tramp-distrobox-program "flatpak-spawn --host distrobox")
+              (tramp-enable-method "distrobox")
+              (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
 
-(after! tramp '(tramp-enable-method "distrobox"))
+;;(use-package! rustic :custom
+;;              (rustic-lsp-server 'rust-analyzer)
+;;              (rustic-analyzer-command '("rustup" "run" "stable" "rust-analyzer")))
+
+
+;; distrobox utils
+(defun find-file-in-distrobox ()
+  "Open file in distrobox, using read-file-name."
+  (interactive)
+  (let ((path-out (read-file-name "Select Distrobox: " "/distrobox:")))
+    ;; if we didn't select a file
+    (when (string-match-p "^/distrobox:[[:alnum:]]+$" path-out)
+      (setq path-out (read-file-name "Find file: " path-out)))
+    ;; if we did select a file
+    (when (string-match-p "^/distrobox:[[:alnum:]]+:.*$" path-out)
+      (find-file path-out)))
+  )
+
+(map! :leader
+      (:prefix ("d" . "distrobox")
+       :desc "Find file in Distrobox" "f" #'find-file-in-distrobox)
+      )
