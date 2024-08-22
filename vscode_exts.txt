@@ -1,4 +1,0 @@
-ms-vscode-remote.remote-containers
-sainnhe.edge
-tonybaloney.vscode-pets
-vscodevim.vim
