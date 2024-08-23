@@ -73,16 +73,22 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+;; use tree sitter, because tree sitter is good
+(use-package! tree-sitter :config
+              (require 'tree-sitter)
+              (global-tree-sitter-mode)
+              (add-hook! 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
+              (setq +tree-sitter-hl-enabled-modes t))
+
+;; minor tramp config things
 (use-package! tramp :config
               (require 'tramp)
+              ;; enable distrobox in flatpak
               (setq tramp-distrobox-program "flatpak-spawn --host distrobox")
               (tramp-enable-method "distrobox")
+              ;; use remote binaries first
               (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
-
-;;(use-package! rustic :custom
-;;              (rustic-lsp-server 'rust-analyzer)
-;;              (rustic-analyzer-command '("rustup" "run" "stable" "rust-analyzer")))
-
 
 ;; distrobox utils
 (defun find-file-in-distrobox ()
@@ -99,5 +105,4 @@
 
 (map! :leader
       (:prefix ("d" . "distrobox")
-       :desc "Find file in Distrobox" "f" #'find-file-in-distrobox)
-      )
+       :desc "Find file in Distrobox" "f" #'find-file-in-distrobox))
