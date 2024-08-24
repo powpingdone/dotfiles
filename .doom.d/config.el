@@ -81,14 +81,15 @@
               (add-hook! 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
               (setq +tree-sitter-hl-enabled-modes t))
 
-;; minor tramp config things
-(use-package! tramp :config
-              (require 'tramp)
-              ;; enable distrobox in flatpak
-              (setq tramp-distrobox-program "flatpak-spawn --host distrobox")
-              (tramp-enable-method "distrobox")
-              ;; use remote binaries first
-              (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
+;; minor tramp emacs flatpak config things
+(when (locate-file "flatpak-spawn" exec-path exec-suffixes 1)
+  (use-package! tramp :config
+                (require 'tramp)
+                ;; enable distrobox in flatpak
+                (setq tramp-distrobox-program "flatpak-spawn --host distrobox")
+                (tramp-enable-method "distrobox")
+                ;; use remote binaries first
+                (add-to-list 'tramp-remote-path 'tramp-own-remote-path)))
 
 ;; distrobox utils
 (defun find-file-in-distrobox ()
