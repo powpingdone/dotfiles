@@ -124,3 +124,5 @@ export CPATH="$(clang -v 2>&1 | grep "Selected GCC installation" | rev | cut -d'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+if [ -e /home/powpingdone/.nix-profile/etc/profile.d/nix.sh ]; then . /home/powpingdone/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

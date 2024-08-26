@@ -82,16 +82,17 @@
               (setq +tree-sitter-hl-enabled-modes t))
 
 ;; minor tramp emacs flatpak config things
-(when (locate-file "flatpak-spawn" exec-path exec-suffixes 1)
-  (use-package! tramp :config
-                (require 'tramp)
-                ;; enable distrobox in flatpak
-                (setq tramp-distrobox-program "flatpak-spawn --host distrobox")
-                (tramp-enable-method "distrobox")
-                ;; use remote binaries first
-                (add-to-list 'tramp-remote-path 'tramp-own-remote-path)))
+(use-package! tramp :config
+              (require 'tramp)
+              ;; enable distrobox in flatpak
+              (when (locate-file "flatpak-spawn" exec-path exec-suffixes 1)
+                (setq tramp-distrobox-program "flatpak-spawn --host distrobox"))
+              ;; enable distrobox
+              (tramp-enable-method "distrobox")
+              ;; use remote binaries first
+              (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
 
-;; distrobox utils
+;; distrobox util to select distrobox and then run
 (defun find-file-in-distrobox ()
   "Open file in distrobox, using read-file-name."
   (interactive)
