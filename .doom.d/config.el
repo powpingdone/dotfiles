@@ -43,7 +43,12 @@
 (setq org-roam-directory (file-truename "~/org/roam"))
 (setq org-roam-capture-templates '(("c" "card" plain "%?"
                                     :if-new
-                                    (file+head "cards/${slug}-%<%T>.org" "#+title: ${title}\n#+filetags: :card:"))
+                                    (file+head "cards/${slug}-%<%T>.org"
+                                               "#+title: ${title}\n#+filetags: :card:"))
+                                   ("r" "resource" plain "%?"
+                                    :if-new
+                                    (file+head "resc/${slug}-%<%T>.org"
+                                               "#+title: ${title}\n#+filetags: :resc:"))
                                    ))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
@@ -109,6 +114,16 @@
       (find-file path-out)))
   )
 
+;; !
+;; ! Mappings group
+;; !
+
+;; development
 (map! :leader
       (:prefix ("d" . "distrobox")
        :desc "Find file in Distrobox" "f" #'find-file-in-distrobox))
+
+;; note taking
+(map! :map org-noter-notes-mode-map
+      :desc "Insert note for document" :nvi "C-c r" #'org-noter-insert-note
+      :desc "Insert precise note for document" :nvi "C-c R" #'org-noter-insert-precise-note)
