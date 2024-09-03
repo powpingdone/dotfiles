@@ -122,6 +122,7 @@ export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$HOME/go/bin:${PATH}"
 alias toolbox="distrobox"
 export CPATH="$(clang -v 2>&1 | grep "Selected GCC installation" | rev | cut -d' ' -f1 | rev)/include"
 
+source $HOME/.zsh_profile
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
