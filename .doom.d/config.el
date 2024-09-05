@@ -51,6 +51,20 @@
                                                "#+title: ${title}\n#+filetags: :resc:"))
                                    ))
 
+(use-package! org-transclusion
+  :config
+  (add-hook 'org-mode-hook #'org-transclusion-mode))
+
+(use-package! blk
+  :after (org org-transclusion)
+  :config
+  (setq blk-directories
+        (list (expand-file-name "~/org")
+              user-emacs-directory))
+  (add-hook 'org-mode-hook #'blk-enable-completion)
+  (blk-configure-org-transclusion)
+  (setq blk-use-cache t)) ;; makes completion faster
+
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
