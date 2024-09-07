@@ -98,22 +98,26 @@
 ;; they are implemented.
 
 ;; use tree sitter, because tree sitter is good
-(use-package! tree-sitter :config
-              (require 'tree-sitter)
-              (global-tree-sitter-mode)
-              (add-hook! 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
-              (setq +tree-sitter-hl-enabled-modes t))
+(use-package! tree-sitter
+  :init
+  (setq tsc-dyn-get-from '(:compilation :github))
+  :config
+  (require 'tree-sitter)
+  (global-tree-sitter-mode)
+  (add-hook! 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
+  (setq +tree-sitter-hl-enabled-modes t))
 
 ;; minor tramp emacs flatpak config things
-(use-package! tramp :config
-              (require 'tramp)
-              ;; enable distrobox in flatpak
-              (when (locate-file "flatpak-spawn" exec-path exec-suffixes 1)
-                (setq tramp-distrobox-program "flatpak-spawn --host distrobox"))
-              ;; enable distrobox
-              (tramp-enable-method "distrobox")
-              ;; use remote binaries first
-              (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
+(use-package! tramp
+  :config
+  (require 'tramp)
+  ;; enable distrobox in flatpak
+  (when (locate-file "flatpak-spawn" exec-path exec-suffixes 1)
+    (setq tramp-distrobox-program "flatpak-spawn --host distrobox"))
+  ;; enable distrobox
+  (tramp-enable-method "distrobox")
+  ;; use remote binaries first
+  (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
 
 ;; distrobox util to select distrobox and then run
 (defun find-file-in-distrobox ()

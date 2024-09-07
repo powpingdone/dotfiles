@@ -7,9 +7,9 @@
 
 (package! tramp :pin "638423a")
 
-(package! blk :pin "aaddc98" :recipe (:host github :repo "mahmoodsh36/blk"))
-
-(package! org-transclusion :pin "e6e6387")
+(when (package! org-transclusion)
+  (package! blk :recipe (:host github :repo "mahmoodsh36/blk")))
+;; installed by blk
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;; (package! some-package)
