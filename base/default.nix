@@ -65,4 +65,10 @@
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
   };
+
+  users.users.powpingdone = {
+     isNormalUser = true;
+     extraGroups = [ "wheel" "networkmanager" ];
+     shell = pkgs.zsh;
+  };
 }
