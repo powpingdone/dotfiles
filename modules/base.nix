@@ -1,4 +1,4 @@
-{ ... }:
+{ nixpkgs, ... }:
 {
   boot.loader.systemd-boot = {
     enable = true;
@@ -52,10 +52,21 @@
 
   # base packages that I *always* need.
   environment.systemPackages = with pkgs; [
+    emacs-gtk
     neovim
     wget
     htop
     git
+  ];
+
+  # base overrides
+  nixpkgs.overlays = [
+    (final: prev: {
+      # use clang
+      webkitgtk = prev.webkitgtk.override { stdenv = nixpkgs.llvmPackages.stdenv; };
+      webkitgtk_4_1 = prev.webkitgtk_4_1.override { stdenv = nixpkgs.llvmPackages.stdenv; };
+      webkitgtk_6_0 = prev.webkitgtk_6_0.override { stdenv = nixpkgs.llvmPackages.stdenv; };
+    })
   ];
 
   # the funny shell
@@ -65,10 +76,7 @@
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
   };
-
-  users.users.powpingdone = {
-     isNormalUser = true;
-     extraGroups = [ "wheel" "networkmanager" ];
-     shell = pkgs.zsh;
+  programs.starship = {
+    enable = true;
   };
 }
