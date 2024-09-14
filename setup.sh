@@ -26,6 +26,7 @@ ZSH=~/.oh-my-zsh RUNZSH=no sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/oh
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 ln -fs "$(realpath .zshrc)" ~
 ln -fs "$(realpath .p10k.zsh)" ~
+touch ~/.zsh_profile
 
 
 # nvim
