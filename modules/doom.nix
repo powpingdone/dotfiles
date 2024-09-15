@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, nixpkgs, pkgs, inputs, ... }:
 # "sourced" from https://github.com/hlissner/dotfiles/blob/master/modules/editors/emacs.nix
 let
   doomdir = ../../.doom.d;
@@ -10,7 +10,7 @@ in {
   config = lib.mkIf config.modules.emacs.enable {
     # emacs packages
     nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
-    user.packages = with pkgs; [
+    user.packages = with nixpkgs; [
       ## Emacs itself
       emacs-pgtk.emacsWithPackages (epkgs: with epkgs; [
         treesit-grammars.with-all-grammars
@@ -42,7 +42,7 @@ in {
     ];
 
     # add doom
-    env.PATH = [ "$XDG_CONFIG_HOME/emacs/bin" ];
+    environment.variables.PATH = [ "$XDG_CONFIG_HOME/emacs/bin" ];
 
     # nerd fonts stuff
     fonts.packages = [

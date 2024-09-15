@@ -1,6 +1,6 @@
-{ inputs, nixpkgs, config, lib, ... }:
+{ home-manager, inputs, nixpkgs, config, lib, ... }:
 {
-  home-manager = {
+  home-manager = { 
     extraSpecialArgs = { inherit inputs; };
     users.powpingdone = {
       home.username = "powpingdone";

@@ -6,7 +6,6 @@
   };
 
   boot.initrd.systemd.enable = true;
-  hardware.graphics.enable = true;
 
   hardware.enableRedistributableFirmware = true;
 
