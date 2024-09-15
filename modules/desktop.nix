@@ -2,7 +2,7 @@
 {
   options = {
     modules.ppdesktop.enable = lib.mkEnableOption "Enable Desktop";
-  }
+  };
 
   config = lib.mkIf config.modules.ppdesktop.enable {
     # Enable pipewire sound.
@@ -36,7 +36,7 @@
     };
 
     # I don't need the gnome web browser and email client
-    environment.gnome.excludePackages = with pkgs; [
+    environment.gnome.excludePackages = with nixpkgs; [
       epiphany
       geary
     ];

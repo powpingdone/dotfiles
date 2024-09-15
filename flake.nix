@@ -15,31 +15,29 @@
     emacs-overlay.url = "github:nix-community/emacs-overlay";
   };
 
-  outputs = { self, ... } @ inputs: {
+  outputs = { self, nixpkgs, ... } @ inputs: {
     nixosConfigurations = {
       PPD-ARMTOP = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs;
-          inherit system;
         };
         system = "aarch64-linux";
         modules = [
           ./modules
           ./hosts/armtop
-          inputs.nixpkgs.nixosModules.notDetected
+	  inputs.nixpkgs.nixosModules.notDetected
           inputs.home-manager.nixosModules
         ];
       };
       PPD-TOWER = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs;
-          inherit system;
         };
         system = "x86_64-linux";
         modules = [
           ./modules
           ./hosts/tower
-          inputs.nixpkgs.nixosModules.notDetected
+	  inputs.nixpkgs.nixosModules.notDetected
           inputs.home-manager.nixosModules
         ];
       };

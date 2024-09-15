@@ -1,4 +1,4 @@
-{ inputs, nixpkgs, config, ... }:
+{ inputs, nixpkgs, config, lib, ... }:
 {
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
@@ -28,18 +28,16 @@
       programs.neovim.enable = true;
 
       # desktop
-      if modules.ppdesktop.enable then {
+      config = lib.mkIf (config.modules.ppdesktop.enable) {
         programs.firefox.enable = true;
-        modules.emacs.enable = true;
-        import ./doom.nix {};
+        config.modules.emacs.enable = lib.mkForce true;
 
         # enable dark mode for gtk4
         dconf = {
           enable = true;
           settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
         };
-      }
-      else {}
+      };
 
       # home state
       stateVersion = "24.11";

@@ -1,4 +1,4 @@
-{ nixpkgs, ... }:
+{ nixpkgs, lib, ... }:
 {
   boot.loader.systemd-boot = {
     enable = true;
@@ -30,7 +30,7 @@
   };
 
   services.xserver = {
-    # Configure keymap
+    # Configure keymappkgs
     xkb.layout = "us";
   };
 
@@ -41,8 +41,7 @@
   };
 
   # base packages that I *always* need.
-  environment.systemPackages = with pkgs; [
-    emacs-gtk
+  environment.systemPackages = with nixpkgs; [
     neovim
     wget
     htop

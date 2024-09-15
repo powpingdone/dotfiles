@@ -4,10 +4,10 @@ let
   doomdir = ../../.doom.d;
 in {
   options.modules.emacs = {
-    enable = mkBoolOpt false;
+    enable = lib.mkEnableOption "Use (doom) emacs";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf config.modules.emacs.enable {
     # emacs packages
     nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
     user.packages = with pkgs; [
