@@ -34,16 +34,6 @@
     xkb.layout = "us";
   };
 
-  # emacs likes taking up open files
-  security.pam.loginLimits = [
-    {
-      domain = "*";
-      type = "-";
-      item = "nofile";
-      value = "2048";
-    }
-  ];
-
   # networkmanager is good
   networking.networkmanager = {
     enable = true;
@@ -79,4 +69,6 @@
   programs.starship = {
     enable = true;
   };
+  users.defaultUserShell = nixpkgs.zsh;
+  environment.shells = [ nixpkgs.zsh ];
 }

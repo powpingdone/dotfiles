@@ -1,10 +1,10 @@
-{ lib, config, nixpkgs, ... }:
+{ lib, config, nixpkgs, inputs, ... }:
 {
   options = {
-    ppdesktop.enable = lib.mkEnableOption "Enable Desktop";
+    modules.ppdesktop.enable = lib.mkEnableOption "Enable Desktop";
   }
 
-  config = lib.mkIf config.ppdesktop.enable {
+  config = lib.mkIf config.modules.ppdesktop.enable {
     # Enable pipewire sound.
     hardware.pulseaudio.enable = false;
     services.pipewire = {
@@ -29,18 +29,19 @@
       desktopManager.gnome.enable = true;
     };
 
+    # setup gdm properly
     services.displayManager = {
       enable = true;
       defaultSession = "gnome";
     };
 
+    # I don't need the gnome web browser and email client
     environment.gnome.excludePackages = with pkgs; [
       epiphany
       geary
     ];
 
-    programs.firefox.enable = true;
-
+    # enable portals
     xdg.portal = {
       enable = true;
       xdgOpenUsePortal = true;

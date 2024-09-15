@@ -2,26 +2,45 @@
   description = "PPD's flake for nixos";
 
   inputs = {
+    # generic nixos stuff
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # external flakes
+    flake-utils.url = "github:numtide/flake-utils";
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, ... } @ inputs: {
     nixosConfigurations = {
-      PPD-ARMPC = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+      PPD-ARMTOP = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs;
+          inherit system;
+        };
         system = "aarch64-linux";
         modules = [
           ./modules
-          ./hosts/armpc
+          ./hosts/armtop
           inputs.nixpkgs.nixosModules.notDetected
-          # inputs.home-manager.nixosModules.default
+          inputs.home-manager.nixosModules
+        ];
+      };
+      PPD-TOWER = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs;
+          inherit system;
+        };
+        system = "x86_64-linux";
+        modules = [
+          ./modules
+          ./hosts/tower
+          inputs.nixpkgs.nixosModules.notDetected
+          inputs.home-manager.nixosModules
         ];
       };
     };
