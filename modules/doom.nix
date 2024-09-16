@@ -1,7 +1,10 @@
-{ config, lib, nixpkgs, pkgs, inputs, ... }:
+{ config, lib, inputs, ... }:
 # "sourced" from https://github.com/hlissner/dotfiles/blob/master/modules/editors/emacs.nix
 let
   doomdir = ../../.doom.d;
+  pkgs = import inputs.nixpkgs {
+    overlays = [ inputs.emacs-overlay.overlays.default ];
+  };
 in {
   options.modules.emacs = {
     enable = lib.mkEnableOption "Use (doom) emacs";
@@ -9,8 +12,7 @@ in {
 
   config = lib.mkIf config.modules.emacs.enable {
     # emacs packages
-    nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
-    user.packages = with nixpkgs; [
+    user.packages = with pkgs; [
       ## Emacs itself
       emacs-pgtk.emacsWithPackages (epkgs: with epkgs; [
         treesit-grammars.with-all-grammars

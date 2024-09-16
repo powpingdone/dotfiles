@@ -1,4 +1,4 @@
-{ nixpkgs, lib, ... }:
+{ pkgs, lib, ... }:
 {
   boot.loader.systemd-boot = {
     enable = true;
@@ -40,7 +40,7 @@
   };
 
   # base packages that I *always* need.
-  environment.systemPackages = with nixpkgs; [
+  environment.systemPackages = with pkgs; [
     neovim
     wget
     htop
@@ -50,10 +50,10 @@
   # base overrides
   nixpkgs.overlays = [
     (final: prev: {
-      # use clang
-      webkitgtk = prev.webkitgtk.override { stdenv = nixpkgs.llvmPackages.stdenv; };
-      webkitgtk_4_1 = prev.webkitgtk_4_1.override { stdenv = nixpkgs.llvmPackages.stdenv; };
-      webkitgtk_6_0 = prev.webkitgtk_6_0.override { stdenv = nixpkgs.llvmPackages.stdenv; };
+      # use clang, because it uses less ram during compiles
+      webkitgtk = prev.webkitgtk.override { stdenv = pkgs.llvmPackages.stdenv; };
+      webkitgtk_4_1 = prev.webkitgtk_4_1.override { stdenv = pkgs.llvmPackages.stdenv; };
+      webkitgtk_6_0 = prev.webkitgtk_6_0.override { stdenv = pkgs.llvmPackages.stdenv; };
     })
   ];
 
@@ -67,6 +67,6 @@
   programs.starship = {
     enable = true;
   };
-  users.defaultUserShell = nixpkgs.zsh;
-  environment.shells = [ nixpkgs.zsh ];
+  users.defaultUserShell = pkgs.zsh;
+  environment.shells = [ pkgs.zsh ];
 }

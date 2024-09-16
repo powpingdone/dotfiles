@@ -1,4 +1,4 @@
-{ lib, config, nixpkgs, inputs, ... }:
+{ lib, config, pkgs, ... }:
 {
   options = {
     modules.ppdesktop.enable = lib.mkEnableOption "Enable Desktop";
@@ -36,9 +36,9 @@
     };
 
     # I don't need the gnome web browser and email client
-    environment.gnome.excludePackages = with nixpkgs; [
+    environment.gnome.excludePackages = with pkgs; [
       epiphany
-      geary
+      gnome.geary
     ];
 
     # enable portals

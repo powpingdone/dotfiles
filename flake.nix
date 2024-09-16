@@ -5,41 +5,36 @@
     # generic nixos stuff
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #home-manager = {
+    #  url = "github:nix-community/home-manager";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
 
     # external flakes
     flake-utils.url = "github:numtide/flake-utils";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
   };
 
-  outputs = { self, nixpkgs, home-manager, unstable, flake-utils, emacs-overlay } @ inputs: {
-    nixosConfigurations = {
+  outputs =
+
+{ self, nixpkgs, unstable, ... } @ inputs: {
+  nixosConfigurations =
+    let
+      def_mods = [
+        ./modules
+        inputs.nixpkgs.nixosModules.notDetected
+      ];
+    in
+    {
       PPD-ARMTOP = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs nixpkgs emacs-overlay;
-        };
+        specialArgs = inputs;
         system = "aarch64-linux";
-        modules = [
-          ./modules
-          ./hosts/armtop
-	  inputs.nixpkgs.nixosModules.notDetected
-          inputs.home-manager.nixosModules.home-manager 
-        ];
+        modules = def_mods ++ [ ./hosts/armtop ];
       };
       PPD-TOWER = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs nixpkgs emacs-overlay;
-        };
+        specialArgs = inputs;
         system = "x86_64-linux";
-        modules = [
-          ./modules
-          ./hosts/tower
-	  inputs.nixpkgs.nixosModules.notDetected
-          inputs.home-manager.nixosModules.home-manager
-        ];
+        modules = def_mods ++ [ ./hosts/tower ];
       };
     };
   };

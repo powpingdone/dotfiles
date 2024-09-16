@@ -3,5 +3,5 @@
 {
   networking.hostName = "PPD-TOWER";
 
-  ppdesktop.enable = true;
+  modules.ppdesktop.enable = true;
 }

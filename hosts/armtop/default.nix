@@ -1,8 +1,10 @@
-{ nixpkgs, unstable, lib, ... }:
+{ pkgs, nixpkgs, unstable, lib, ... }:
 {
   networking.hostName = "PPD-ARMTOP";
 
   modules.ppdesktop.enable = true;
+
+  system.stateVersion = "24.11";
 
   imports = [
     ./hardware-configuration.nix
@@ -20,7 +22,7 @@
       pd-mapper = final.callPackage ./pd-mapper.nix { };
 
       # mesa >= 24.2 needed
-      mesa = unstable.mesa;
+      mesa = unstable.legacyPackages.aarch64-linux.mesa;
     })
   ];
 
@@ -35,7 +37,7 @@
     enable = true;
     description = "Qualcomm PD mapper service";
     serviceConfig = {
-      ExecStart = "${nixpkgs.pd-mapper}/bin/pd-mapper";
+      ExecStart = "${pkgs.pd-mapper}/bin/pd-mapper";
       Restart = "always";
     };
     wantedBy = [ "multi-user.target" ];
@@ -126,14 +128,14 @@
   ];
 
   hardware.firmware = [
-    nixpkgs.x1e80100-lenovo-yoga-slim7x-firmware
-    nixpkgs.x1e80100-lenovo-yoga-slim7x-firmware-json
+    pkgs.x1e80100-lenovo-yoga-slim7x-firmware
+    pkgs.x1e80100-lenovo-yoga-slim7x-firmware-json
   ];
 
   hardware.deviceTree.name = "qcom/x1e80100-lenovo-yoga-slim7x.dtb";
 
-  boot.kernelPackages = nixpkgs.linuxPackagesFor (nixpkgs.buildLinux {
-    src = nixpkgs.fetchFromGitHub {
+  boot.kernelPackages = pkgs.linuxPackagesFor (pkgs.buildLinux {
+    src = pkgs.fetchFromGitHub {
       owner = "jhovold";
       repo = "linux";
       rev = "b9c3748baa16efa16536bbb20b2ff2d2d02b28b5";
@@ -149,21 +151,21 @@
     kernelPatches = [
       {
         name = "driver core: Set deferred probe timeout to 0 if modules are disabled";
-        patch = nixpkgs.fetchpatch {
+        patch = pkgs.fetchpatch {
           url = "https://github.com/linux-surface/kernel/commit/fd9dc26bac9b2ca2331f6ca35c9180efcec82aed.patch";
           hash = "sha256-xMM5ibO9BcdhZ7HJbu22KVXs1Prg9+jqtx7jCYA7f7E=";
         };
       }
       {
         name = "driver core: Add fw_devlink.timeout param to stop waiting for devlinks ";
-        patch = nixpkgs.fetchpatch {
+        patch = pkgs.fetchpatch {
           url = "https://github.com/linux-surface/kernel/commit/431363f94cc23fc3a923cc73758b619a657b75f9.patch";
           hash = "sha256-9TXoOzmt0OpWHVGa0iaNXrBFvWWTuWFjLwU74cvOED0=";
         };
       }
       {
         name = "driver core: Disable driver deferred probe timeout by default";
-        patch = nixpkgs.fetchpatch {
+        patch = pkgs.fetchpatch {
           url = "https://github.com/linux-surface/kernel/commit/caa65dd351ed735b33371f26fbbd02d37a1d2098.patch";
           hash = "sha256-yGZ1hn/1nj0M4wn4mNwYzPkaV46JDaU2uZvAQvQ5lQY=";
         };
