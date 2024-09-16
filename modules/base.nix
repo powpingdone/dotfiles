@@ -1,5 +1,10 @@
 { pkgs, lib, ... }:
 {
+  nix.settings = {
+    auto-optimize-store = true;
+    experimental-features = [ "nix-command" "flakes" ];
+  };
+
   boot.loader.systemd-boot = {
     enable = true;
     configurationLimit = 3;
