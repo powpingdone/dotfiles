@@ -39,7 +39,7 @@
 	      # home-manager
 	      home-manager.nixosModules.home-manager {
                 home-manager.extraSpecialArgs = { 
-		  inherit inputs hostName; 
+		  inherit inputs; 
 		};
 	        home-manager.useGlobalPkgs = true;
 	        home-manager.useUserPackages = true;

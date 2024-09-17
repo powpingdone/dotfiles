@@ -1,9 +1,8 @@
-{ hostName, home-manager, inputs, pkgs, lib, ... }:
+{ home-manager, inputs, pkgs, lib, ... }:
 {
   imports = [
     ./desktop.nix
     ../options.nix
-    ../hosts/${hostName}/options.nix
   ];
 
   home.stateVersion = "24.11";
