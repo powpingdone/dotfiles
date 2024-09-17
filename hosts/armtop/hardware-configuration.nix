@@ -14,13 +14,31 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/d9569ef2-48b4-46d4-86ba-1b42fa1c9ecc";
+    { device = "/dev/disk/by-uuid/7436370d-9e2f-457d-9e93-aac1f8154cd0";
       fsType = "btrfs";
-      options = [ "compress=zstd:15" ];
+      options = [ "subvol=root" ];
+    };
+
+  fileSystems."/nix" =
+    { device = "/dev/disk/by-uuid/7436370d-9e2f-457d-9e93-aac1f8154cd0";
+      fsType = "btrfs";
+      options = [ "subvol=nix" ];
+    };
+
+  fileSystems."/home" =
+    { device = "/dev/disk/by-uuid/7436370d-9e2f-457d-9e93-aac1f8154cd0";
+      fsType = "btrfs";
+      options = [ "subvol=home" ];
+    };
+
+  fileSystems."/swap" =
+    { device = "/dev/disk/by-uuid/7436370d-9e2f-457d-9e93-aac1f8154cd0";
+      fsType = "btrfs";
+      options = [ "subvol=swap" ];
     };
 
   fileSystems."/boot/efi" =
-    { device = "/dev/disk/by-uuid/A39E-FA10";
+    { device = "/dev/disk/by-uuid/B53B-6762";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
@@ -35,4 +53,6 @@
   # networking.interfaces.wlP4p1s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
+  system.stateVersion = "24.11";
+
 }

@@ -38,7 +38,7 @@
     # I don't need the gnome web browser and email client
     environment.gnome.excludePackages = with pkgs; [
       epiphany
-      gnome.geary
+      geary
     ];
 
     # enable portals

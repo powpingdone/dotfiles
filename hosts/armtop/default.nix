@@ -4,11 +4,11 @@
 
   modules.ppdesktop.enable = true;
 
-  system.stateVersion = "24.11";
-
   imports = [
     ./hardware-configuration.nix
   ];
+
+  swapDevices = [ { device = "/swap/swapfile"; } ];
 
   # specific quirks regarding this laptop
   nixpkgs.overlays = [
@@ -20,9 +20,6 @@
       # along with loader for the firmware
       libqrtr = final.callPackage ./libqrtr.nix { };
       pd-mapper = final.callPackage ./pd-mapper.nix { };
-
-      # mesa >= 24.2 needed
-      mesa = unstable.legacyPackages.aarch64-linux.mesa;
     })
   ];
 
@@ -132,7 +129,10 @@
     pkgs.x1e80100-lenovo-yoga-slim7x-firmware-json
   ];
 
-  hardware.deviceTree.name = "qcom/x1e80100-lenovo-yoga-slim7x.dtb";
+  hardware.deviceTree = {
+    enable = true;
+    name = "qcom/x1e80100-lenovo-yoga-slim7x.dtb";
+  };
 
   boot.kernelPackages = pkgs.linuxPackagesFor (pkgs.buildLinux {
     src = pkgs.fetchFromGitHub {
@@ -147,29 +147,5 @@
     structuredExtraConfig = with lib.kernel; {
       MAGIC_SYSRQ = yes;
     };
-
-    kernelPatches = [
-      {
-        name = "driver core: Set deferred probe timeout to 0 if modules are disabled";
-        patch = pkgs.fetchpatch {
-          url = "https://github.com/linux-surface/kernel/commit/fd9dc26bac9b2ca2331f6ca35c9180efcec82aed.patch";
-          hash = "sha256-xMM5ibO9BcdhZ7HJbu22KVXs1Prg9+jqtx7jCYA7f7E=";
-        };
-      }
-      {
-        name = "driver core: Add fw_devlink.timeout param to stop waiting for devlinks ";
-        patch = pkgs.fetchpatch {
-          url = "https://github.com/linux-surface/kernel/commit/431363f94cc23fc3a923cc73758b619a657b75f9.patch";
-          hash = "sha256-9TXoOzmt0OpWHVGa0iaNXrBFvWWTuWFjLwU74cvOED0=";
-        };
-      }
-      {
-        name = "driver core: Disable driver deferred probe timeout by default";
-        patch = pkgs.fetchpatch {
-          url = "https://github.com/linux-surface/kernel/commit/caa65dd351ed735b33371f26fbbd02d37a1d2098.patch";
-          hash = "sha256-yGZ1hn/1nj0M4wn4mNwYzPkaV46JDaU2uZvAQvQ5lQY=";
-        };
-      }
-    ];
   });
 }
