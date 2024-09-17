@@ -1,5 +1,9 @@
 { home-manager, inputs, pkgs, lib, config, ... }:
 {
+  imports = [
+    ../modules
+  ];
+
   home.username = "powpingdone";
   home.homeDirectory = "/home/powpingdone";
   home.keyboard.layout = "us";

@@ -29,9 +29,6 @@
               home-manager.useGlobalPkgs = true;
 	      home-manager.useUserPackages = true;
 	      home-manager.users = {
-	        imports = [
-                  ./modules
-		];
 	        powpingdone = ./home/ppd.nix;
 	      };
 	    }
@@ -39,12 +36,12 @@
         in
         {
           PPD-ARMTOP = nixpkgs.lib.nixosSystem {
-            specialArgs = inputs;
+            specialArgs = { inherit inputs; };
             system = "aarch64-linux";
             modules = [ ./hosts/armtop ] ++ def_mods;
           };
           PPD-TOWER = nixpkgs.lib.nixosSystem {
-            specialArgs = inputs;
+            specialArgs = { inherit inputs; };
             system = "x86_64-linux";
             modules = [ ./hosts/tower ] ++ def_mods;
           };
