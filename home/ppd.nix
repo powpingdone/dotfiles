@@ -1,4 +1,4 @@
-{ home-manager, inputs, pkgs, lib, ... }:
+{ home-manager, inputs, pkgs, lib, config, ... }:
 {
   home.username = "powpingdone";
   home.homeDirectory = "/home/powpingdone";
@@ -23,12 +23,12 @@
   programs.neovim.enable = true;
 
   # desktop
-  programs.firefox.enable = desktop;
+  programs.firefox.enable = config.modules.ppdesktop.enable;
   #config.modules.emacs.enable = desktop;
 
   # enable dark mode for gtk4
   dconf = {
-    enable = desktop;
+    enable = config.modules.ppdesktop.enable;
     settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
   };
 }

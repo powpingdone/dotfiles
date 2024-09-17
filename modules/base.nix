@@ -77,4 +77,10 @@
   };
   users.defaultUserShell = pkgs.zsh;
   environment.shells = [ pkgs.zsh ];
+
+  users.users."powpingdone" = {
+    isNormalUser = true;
+    home = "/home/powpingdone";
+    extraGroups = [ "wheel" "networkmanager" ];
+  };
 }
