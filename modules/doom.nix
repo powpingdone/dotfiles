@@ -6,11 +6,8 @@ let
     overlays = [ inputs.emacs-overlay.overlays.default ];
   };
 in {
-  options.modules.emacs = {
-    enable = lib.mkEnableOption "Use (doom) emacs";
-  };
 
-  config = lib.mkIf config.modules.emacs.enable {
+  config = lib.mkIf config.emacs.enable {
     # emacs packages
     user.packages = with pkgs; [
       ## Emacs itself

@@ -1,10 +1,6 @@
 { lib, config, pkgs, ... }:
 {
-  options = {
-    modules.ppdesktop.enable = lib.mkEnableOption "Enable Desktop";
-  };
-
-  config = lib.mkIf config.modules.ppdesktop.enable {
+  config = lib.mkIf config.ppd.desktop.enable {
     # Enable pipewire sound.
     hardware.pulseaudio.enable = false;
     services.pipewire = {

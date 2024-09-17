@@ -1,8 +1,6 @@
 { pkgs, nixpkgs, unstable, lib, ... }:
 {
-  networking.hostName = "PPD-ARMTOP";
-
-  modules.ppdesktop.enable = true;
+  nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 
   imports = [
     ./hardware-configuration.nix

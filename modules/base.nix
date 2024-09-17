@@ -78,6 +78,8 @@
   users.defaultUserShell = pkgs.zsh;
   environment.shells = [ pkgs.zsh ];
 
+  # user stuff outside of home-manager
+  programs.home-manager.enable = true;
   users.users."powpingdone" = {
     isNormalUser = true;
     home = "/home/powpingdone";

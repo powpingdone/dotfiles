@@ -20,31 +20,32 @@
 
   outputs = 
     { self, nixpkgs, home-manager, ... } @ inputs: {
-      nixosConfigurations =
-        let
-          def_mods = [
-            ./modules
-            inputs.nixpkgs.nixosModules.notDetected
-	    home-manager.nixosModules.home-manager {
-              home-manager.useGlobalPkgs = true;
-	      home-manager.useUserPackages = true;
-	      home-manager.users = {
-	        powpingdone = ./home/ppd.nix;
-	      };
-	    }
-          ];
-        in
-        {
-          PPD-ARMTOP = nixpkgs.lib.nixosSystem {
-            specialArgs = { inherit inputs; };
-            system = "aarch64-linux";
-            modules = [ ./hosts/armtop ] ++ def_mods;
-          };
-          PPD-TOWER = nixpkgs.lib.nixosSystem {
-            specialArgs = { inherit inputs; };
-            system = "x86_64-linux";
-            modules = [ ./hosts/tower ] ++ def_mods;
-          };
+      nixosConfigurations = 
+	nixpkgs.lib.genAttrs [ "PPD-ARMTOP" "PPD-TOWER" ] (hostName: 
+	  (nixpkgs.lib.nixosSystem {
+	    specialArgs = { inherit inputs; };
+	    
+	    modules = [
+	      # host specific
+	      { networking.hostName = hostName; }
+	      ./hosts/${hostName}
+	      ./hosts/${hostName}/options.nix
+	      
+	      # general 
+	      ./options.nix
+	      ./modules
+              inputs.nixpkgs.nixosModules.notDetected
+	      
+	      # home-manager
+	      home-manager.nixosModules.home-manager {
+                home-manager.extraSpecialArgs = { 
+		  inherit inputs hostName; 
+		};
+	        home-manager.useGlobalPkgs = true;
+	        home-manager.useUserPackages = true;
+	        home-manager.users.powpingdone = import ./home/ppd.nix;
+	      }
+	    ];
+	  }));
         };
-    };
 }

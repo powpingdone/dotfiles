@@ -1,0 +1,4 @@
+{ ... }:
+{
+  ppd.desktop.enable = true;
+}
