@@ -6,10 +6,11 @@
 }: {
   options.ppd = {
     overlay = lib.mkOption {
-      type = (with lib.types; 
-        functionTo functionTo pkgs
+      type = (
+        with lib.types;
+          listOf functionTo functionTo pkgs
       );
-      default = (_: _: {});
+      default = [];
     };
     system = lib.mkOption {
       type = lib.types.string;

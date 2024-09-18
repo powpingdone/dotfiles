@@ -1,6 +1,5 @@
-{config, ...}:
-{
-config = lib.mkIf config.ppd.emacs.enable {
+{config, ...}: {
+  config = lib.mkIf config.ppd.emacs.enable {
     # emacs likes taking up open files
     security.pam.loginLimits = [
       {
@@ -9,5 +8,6 @@ config = lib.mkIf config.ppd.emacs.enable {
         item = "nofile";
         value = "2048";
       }
-    ];}
+    ];
+  };
 }

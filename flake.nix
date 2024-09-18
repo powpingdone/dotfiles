@@ -32,10 +32,11 @@
         system = ppdOpts.system;
         pkgs = import inputs.nixpkgs {
           inherit system;
-          overlays = [
-            ppdOpts.overlay
-            emacs-overlay.overlays.default
-          ];
+          overlays =
+            [
+              emacs-overlay.overlays.default
+            ]
+            ++ ppdOpts.overlays;
         };
       in
         nixpkgs.lib.nixosSystem {

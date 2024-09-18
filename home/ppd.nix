@@ -9,7 +9,7 @@
   imports = [
     ./desktop.nix
     ../options.nix
-    ./doom.nix
+    ./emacs
   ];
 
   home.stateVersion = "24.11";

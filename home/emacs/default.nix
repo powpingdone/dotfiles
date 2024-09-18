@@ -6,19 +6,22 @@
   ...
 }:
 # "sourced" from https://github.com/hlissner/dotfiles/blob/master/modules/editors/emacs.nix
-let
-  doomdir = ../../.doom.d;
-in {
+{
   config = lib.mkIf config.ppd.emacs.enable {
     # emacs packages
+    programs.emacs = {
+      enable = true;
+      package =
+        emacs-pgtk.emacsWithPackages
+        (epkgs:
+          with epkgs; [
+            treesit-grammars.with-all-grammars
+            vterm
+          ]);
+    };
+
     user.packages = with pkgs; [
       ## Emacs itself
-      emacs-pgtk.emacsWithPackages
-      (epkgs:
-        with epkgs; [
-          treesit-grammars.with-all-grammars
-          vterm
-        ])
       binutils # native-comp needs 'as', provided by this
 
       ## Doom dependencies
@@ -43,7 +46,6 @@ in {
       texlive.combined.scheme-medium
       # :lang nix
       age
-      
     ];
 
     # add doom
@@ -54,7 +56,7 @@ in {
       installDoomEmacs = ''
         if [ ! -d "$XDG_CONFIG_HOME/emacs" ]; then
            git clone --depth=1 --single-branch "https://github.com/doomemacs/doomemacs" "$XDG_CONFIG_HOME/emacs"
-           ln -s "${doomdir}" "$XDG_CONFIG_HOME/doom"
+           ln -s "${./doom}" "$XDG_CONFIG_HOME/doom"
         fi
       '';
     };
