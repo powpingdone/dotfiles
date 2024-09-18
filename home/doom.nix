@@ -2,14 +2,12 @@
   config,
   lib,
   inputs,
+  pkgs,
   ...
 }:
 # "sourced" from https://github.com/hlissner/dotfiles/blob/master/modules/editors/emacs.nix
 let
   doomdir = ../../.doom.d;
-  pkgs = import inputs.nixpkgs {
-    overlays = [inputs.emacs-overlay.overlays.default];
-  };
 in {
   config = lib.mkIf config.ppd.emacs.enable {
     # emacs packages
