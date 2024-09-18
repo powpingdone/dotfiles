@@ -11,7 +11,7 @@ let
     overlays = [inputs.emacs-overlay.overlays.default];
   };
 in {
-  config = lib.mkIf ppd.emacs.enable {
+  config = lib.mkIf config.ppd.emacs.enable {
     # emacs packages
     user.packages = with pkgs; [
       ## Emacs itself
@@ -47,7 +47,7 @@ in {
     ];
 
     # add doom
-    environment.variables.PATH = ["$XDG_CONFIG_HOME/emacs/bin"];
+    home.sessionPath = ["$XDG_CONFIG_HOME/emacs/bin"];
 
     # nerd fonts stuff
     fonts.packages = [
