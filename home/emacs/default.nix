@@ -12,7 +12,7 @@
     programs.emacs = {
       enable = true;
       package =
-        emacs-pgtk.emacsWithPackages
+        (pkgs.emacsPackagesFor pkgs.emacs-pgtk).emacsWithPackages
         (epkgs:
           with epkgs; [
             treesit-grammars.with-all-grammars
@@ -20,7 +20,7 @@
           ]);
     };
 
-    user.packages = with pkgs; [
+    home.packages = with pkgs; [
       ## Emacs itself
       binutils # native-comp needs 'as', provided by this
 
@@ -33,7 +33,7 @@
       ## Optional dependencies
       fd # faster projectile indexing
       imagemagick # for image-dired
-      (mkIf (config.programs.gnupg.agent.enable)
+      (lib.mkIf (config.services.gpg-agent.enable)
         pinentry_emacs) # in-emacs gnupg prompts
       zstd # for undo-fu-session/undo-tree compression
 
@@ -52,11 +52,11 @@
     home.sessionPath = ["$XDG_CONFIG_HOME/emacs/bin"];
 
     # auto install doom emacs
-    system.userActivationScripts = {
-      installDoomEmacs = ''
+    home.activation = {
+      installDoomEmacs = lib.hm.dag.entryAfter ["writeBoundary"] ''
         if [ ! -d "$XDG_CONFIG_HOME/emacs" ]; then
-           git clone --depth=1 --single-branch "https://github.com/doomemacs/doomemacs" "$XDG_CONFIG_HOME/emacs"
-           ln -s "${./doom}" "$XDG_CONFIG_HOME/doom"
+           run git clone $VERBOSE_ARG --depth=1 --single-branch "https://github.com/doomemacs/doomemacs" "$XDG_CONFIG_HOME/emacs"
+           run ln -s $VERBOSE_ARG "${./doom}" "$XDG_CONFIG_HOME/doom"
         fi
       '';
     };

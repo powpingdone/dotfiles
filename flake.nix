@@ -32,6 +32,7 @@
         system = ppdOpts.system;
         pkgs = import inputs.nixpkgs {
           inherit system;
+          config.allowUnfree = true;
           overlays =
             [
               emacs-overlay.overlays.default
