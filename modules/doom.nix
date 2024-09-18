@@ -1,37 +1,43 @@
-{ config, lib, inputs, ... }:
+{
+  config,
+  lib,
+  inputs,
+  ...
+}:
 # "sourced" from https://github.com/hlissner/dotfiles/blob/master/modules/editors/emacs.nix
 let
   doomdir = ../../.doom.d;
   pkgs = import inputs.nixpkgs {
-    overlays = [ inputs.emacs-overlay.overlays.default ];
+    overlays = [inputs.emacs-overlay.overlays.default];
   };
 in {
-
   config = lib.mkIf config.emacs.enable {
     # emacs packages
     user.packages = with pkgs; [
       ## Emacs itself
-      emacs-pgtk.emacsWithPackages (epkgs: with epkgs; [
-        treesit-grammars.with-all-grammars
-        vterm
-      ])
-      binutils       # native-comp needs 'as', provided by this
+      emacs-pgtk.emacsWithPackages
+      (epkgs:
+        with epkgs; [
+          treesit-grammars.with-all-grammars
+          vterm
+        ])
+      binutils # native-comp needs 'as', provided by this
 
       ## Doom dependencies
       git
       ripgrep
-      gnutls              # for TLS connectivity
+      gnutls # for TLS connectivity
 
       ## Optional dependencies
-      fd                  # faster projectile indexing
-      imagemagick         # for image-dired
+      fd # faster projectile indexing
+      imagemagick # for image-dired
       (mkIf (config.programs.gnupg.agent.enable)
-        pinentry_emacs)   # in-emacs gnupg prompts
-      zstd                # for undo-fu-session/undo-tree compression
+        pinentry_emacs) # in-emacs gnupg prompts
+      zstd # for undo-fu-session/undo-tree compression
 
       ## Module dependencies
       # :checkers spell
-      (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
+      (aspellWithDicts (ds: with ds; [en en-computers en-science]))
       # :tools lookup & :lang org +roam
       sqlite
       # :lang latex & :lang org (latex previews)
@@ -41,11 +47,11 @@ in {
     ];
 
     # add doom
-    environment.variables.PATH = [ "$XDG_CONFIG_HOME/emacs/bin" ];
+    environment.variables.PATH = ["$XDG_CONFIG_HOME/emacs/bin"];
 
     # nerd fonts stuff
     fonts.packages = [
-      (pkgs.nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+      (pkgs.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
     ];
 
     # auto install doom emacs

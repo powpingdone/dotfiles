@@ -1,5 +1,9 @@
-{ stdenv, fetchFromGitHub, libqrtr, xz }:
-
+{
+  stdenv,
+  fetchFromGitHub,
+  libqrtr,
+  xz,
+}:
 stdenv.mkDerivation {
   name = "pd-mapper";
   src = fetchFromGitHub {
@@ -11,6 +15,6 @@ stdenv.mkDerivation {
   patchPhase = ''
     sed -i "s|/lib/firmware/|/run/current-system/firmware/|g" pd-mapper.c
   '';
-  buildInputs = [ libqrtr xz ];
-  makeFlags = [ "DESTDIR=$(out)" "prefix=" ];
+  buildInputs = [libqrtr xz];
+  makeFlags = ["DESTDIR=$(out)" "prefix="];
 }

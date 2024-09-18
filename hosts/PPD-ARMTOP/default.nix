@@ -1,23 +1,28 @@
-{ pkgs, nixpkgs, unstable, lib, ... }:
 {
+  pkgs,
+  nixpkgs,
+  unstable,
+  lib,
+  ...
+}: {
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 
   imports = [
     ./hardware-configuration.nix
   ];
 
-  swapDevices = [ { device = "/swap/swapfile"; } ];
+  swapDevices = [{device = "/swap/swapfile";}];
 
   # specific quirks regarding this laptop
   nixpkgs.overlays = [
     (final: prev: {
       # custom firmware needed
-      x1e80100-lenovo-yoga-slim7x-firmware = final.callPackage ./x1e80100-lenovo-yoga-slim7x-firmware.nix { };
-      x1e80100-lenovo-yoga-slim7x-firmware-json = final.callPackage ./x1e80100-lenovo-yoga-slim7x-firmware-json.nix { };
+      x1e80100-lenovo-yoga-slim7x-firmware = final.callPackage ./x1e80100-lenovo-yoga-slim7x-firmware.nix {};
+      x1e80100-lenovo-yoga-slim7x-firmware-json = final.callPackage ./x1e80100-lenovo-yoga-slim7x-firmware-json.nix {};
 
       # along with loader for the firmware
-      libqrtr = final.callPackage ./libqrtr.nix { };
-      pd-mapper = final.callPackage ./pd-mapper.nix { };
+      libqrtr = final.callPackage ./libqrtr.nix {};
+      pd-mapper = final.callPackage ./pd-mapper.nix {};
     })
   ];
 
@@ -35,11 +40,11 @@
       ExecStart = "${pkgs.pd-mapper}/bin/pd-mapper";
       Restart = "always";
     };
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = ["multi-user.target"];
   };
 
   # kernel
-  boot.initrd.availableKernelModules = lib.mkForce ([
+  boot.initrd.availableKernelModules = lib.mkForce [
     # Needed by the NixOS iso for booting in general
     "squashfs"
     "iso9660"
@@ -107,7 +112,7 @@
     "lzo_rle"
     "dwc3-qcom"
     "evdev"
-  ]);
+  ];
 
   boot.initrd.kernelModules = [
     "i2c_hid"
@@ -115,7 +120,7 @@
     "i2c_qcom_geni"
   ];
 
-  boot.blacklistedKernelModules = [ "qcom_edac" ];
+  boot.blacklistedKernelModules = ["qcom_edac"];
 
   boot.kernelParams = [
     "pd_ignore_unused"

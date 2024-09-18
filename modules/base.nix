@@ -1,9 +1,12 @@
-{ pkgs, lib, ... }:
 {
+  pkgs,
+  lib,
+  ...
+}: {
   nix = {
     settings = {
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = ["nix-command" "flakes"];
     };
     channel.enable = false;
   };
@@ -44,7 +47,7 @@
   # networkmanager is good
   networking.networkmanager = {
     enable = true;
-    plugins = lib.mkForce [ ];
+    plugins = lib.mkForce [];
   };
 
   # base packages that I *always* need.
@@ -53,15 +56,17 @@
     wget
     htop
     git
+
+    alejandra
   ];
 
   # base overrides
   nixpkgs.overlays = [
     (final: prev: {
       # use clang, because it uses less ram during compiles
-      webkitgtk = prev.webkitgtk.override { stdenv = pkgs.llvmPackages.stdenv; };
-      webkitgtk_4_1 = prev.webkitgtk_4_1.override { stdenv = pkgs.llvmPackages.stdenv; };
-      webkitgtk_6_0 = prev.webkitgtk_6_0.override { stdenv = pkgs.llvmPackages.stdenv; };
+      webkitgtk = prev.webkitgtk.override {stdenv = pkgs.llvmPackages.stdenv;};
+      webkitgtk_4_1 = prev.webkitgtk_4_1.override {stdenv = pkgs.llvmPackages.stdenv;};
+      webkitgtk_6_0 = prev.webkitgtk_6_0.override {stdenv = pkgs.llvmPackages.stdenv;};
     })
   ];
 
@@ -72,20 +77,20 @@
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
     interactiveShellInit = ''
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
-'';
+      bindkey "^[[1;5C" forward-word
+      bindkey "^[[1;5D" backward-word
+    '';
   };
   programs.starship = {
     enable = true;
   };
   users.defaultUserShell = pkgs.zsh;
-  environment.shells = [ pkgs.zsh ];
+  environment.shells = [pkgs.zsh];
 
   # user stuff outside of home-manager
   users.users."powpingdone" = {
     isNormalUser = true;
     home = "/home/powpingdone";
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = ["wheel" "networkmanager"];
   };
 }

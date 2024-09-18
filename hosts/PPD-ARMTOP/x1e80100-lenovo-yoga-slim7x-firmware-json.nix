@@ -1,5 +1,4 @@
-{ runCommand }:
-
+{runCommand}:
 runCommand "x1e80100-lenovo-yoga-slim7x-firmware-json"
 {
   # The userspace pd-mapper daemon cannot handle zstd compressed firmware, so

@@ -1,4 +1,3 @@
-{ ... }:
-{
+{...}: {
   ppd.desktop.enable = true;
 }

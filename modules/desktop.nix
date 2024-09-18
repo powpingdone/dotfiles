@@ -1,5 +1,9 @@
-{ lib, config, pkgs, ... }:
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   config = lib.mkIf config.ppd.desktop.enable {
     # Enable pipewire sound.
     hardware.pulseaudio.enable = false;

@@ -11,45 +11,45 @@
 
     # external flakes
     flake-utils.url = "github:numtide/flake-utils";
-    emacs-overlay= {
+    emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "";
     };
   };
 
-  outputs = 
-    { self, nixpkgs, home-manager, flake-utils, ... } @ inputs: {
-      nixosConfigurations = 
-	nixpkgs.lib.genAttrs [ "PPD-ARMTOP" "PPD-TOWER" ] (hostName: 
-	  (nixpkgs.lib.nixosSystem {
-	    specialArgs = { inherit inputs; };
-	    
-	    modules = [
-	      # host specific
-	      { networking.hostName = hostName; }
-	      ./hosts/${hostName}
-	      ./hosts/${hostName}/options.nix
-	      
-	      # general 
-	      ./options.nix
-	      ./modules
-              inputs.nixpkgs.nixosModules.notDetected
-	      
-	      # home-manager
-	      home-manager.nixosModules.home-manager {
-                home-manager.extraSpecialArgs = { 
-		  inherit inputs; 
-		};
-	        home-manager.useGlobalPkgs = true;
-	        home-manager.useUserPackages = true;
-	        home-manager.users.powpingdone = import ./home/ppd.nix;
-	      }
-	    ];
-	  }));
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    flake-utils,
+    ...
+  } @ inputs: {
+    nixosConfigurations = nixpkgs.lib.genAttrs ["PPD-ARMTOP" "PPD-TOWER"] (hostName: (nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs;};
 
-    formatter = flake-utils.lib.eachDefaultSystem (system: {
-      ${system} = nixpkgs.legacyPackages.${system}.alejandra;
-    });
+      modules = [
+        # host specific
+        {networking.hostName = hostName;}
+        ./hosts/${hostName}
+        ./hosts/${hostName}/options.nix
+
+        # general
+        ./options.nix
+        ./modules
+        inputs.nixpkgs.nixosModules.notDetected
+
+        # home-manager
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.extraSpecialArgs = {
+            inherit inputs;
+          };
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.powpingdone = import ./home/ppd.nix;
+        }
+      ];
+    }));
   };
 }
