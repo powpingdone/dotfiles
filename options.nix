@@ -5,7 +5,7 @@
   ...
 }: {
   options.ppd = {
-    overlay = lib.mkOption {
+    overlays = lib.mkOption {
       type = (
         with lib.types;
           listOf functionTo functionTo pkgs
