@@ -8,6 +8,7 @@
   imports = [
     ./desktop.nix
     ../options.nix
+    ./doom.nix
   ];
 
   home.stateVersion = "24.11";

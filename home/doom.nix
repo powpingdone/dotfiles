@@ -11,7 +11,7 @@ let
     overlays = [inputs.emacs-overlay.overlays.default];
   };
 in {
-  config = lib.mkIf config.emacs.enable {
+  config = lib.mkIf ppd.emacs.enable {
     # emacs packages
     user.packages = with pkgs; [
       ## Emacs itself
