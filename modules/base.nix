@@ -71,6 +71,10 @@
     enableCompletion = true;
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
+    interactiveShellInit = ''
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+'';
   };
   programs.starship = {
     enable = true;

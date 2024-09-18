@@ -48,8 +48,8 @@
 	    ];
 	  }));
 
-	  formatter = flake-utils.lib.eachSystem flake-utils.allSystems (system: {
-	    ${system} = nixpkgs.legacyPackages.${system}.alejandra;
-	  });
-        };
+    formatter = flake-utils.lib.eachDefaultSystem (system: {
+      ${system} = nixpkgs.legacyPackages.${system}.alejandra;
+    });
+  };
 }
