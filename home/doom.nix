@@ -25,6 +25,7 @@ in {
       git
       ripgrep
       gnutls # for TLS connectivity
+      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
 
       ## Optional dependencies
       fd # faster projectile indexing
@@ -42,15 +43,11 @@ in {
       texlive.combined.scheme-medium
       # :lang nix
       age
+      
     ];
 
     # add doom
     home.sessionPath = ["$XDG_CONFIG_HOME/emacs/bin"];
-
-    # nerd fonts stuff
-    fonts.packages = [
-      (pkgs.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
-    ];
 
     # auto install doom emacs
     system.userActivationScripts = {
@@ -61,15 +58,5 @@ in {
         fi
       '';
     };
-
-    # emacs likes taking up open files
-    security.pam.loginLimits = [
-      {
-        domain = "*";
-        type = "-";
-        item = "nofile";
-        value = "2048";
-      }
-    ];
   };
 }

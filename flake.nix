@@ -33,7 +33,7 @@
         pkgs = import inputs.nixpkgs {
           inherit system;
           overlays = [
-            ppdOpts.overlays
+            ppdOpts.overlay
             emacs-overlay.overlays.default
           ];
         };
@@ -41,7 +41,7 @@
         nixpkgs.lib.nixosSystem {
           inherit system pkgs;
 
-          specialArgs = {inherit inputs hostName;};
+          specialArgs = {inherit inputs hostName ppdOpts;};
 
           modules = [
             # host specific
@@ -58,7 +58,7 @@
             home-manager.nixosModules.home-manager
             {
               home-manager.extraSpecialArgs = {
-                inherit inputs hostName;
+                inherit inputs hostName ppdOpts;
               };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
