@@ -5,8 +5,6 @@
   lib,
   ...
 }: {
-  nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
-
   imports = [
     ./hardware-configuration.nix
   ];

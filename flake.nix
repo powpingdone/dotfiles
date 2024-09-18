@@ -25,12 +25,17 @@
     flake-utils,
     ...
   } @ inputs: {
-    nixosConfigurations = nixpkgs.lib.genAttrs ["PPD-ARMTOP" "PPD-TOWER"] (hostName: (nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
+    nixosConfigurations = nixpkgs.lib.genAttrs ["PPD-ARMTOP" "PPD-TOWER"] (hostName: (
+let system = (import ./hosts/${hostName}/options.nix {}).ppd.system; 
+pkgs = import inputs.nixpkgs {inherit system;}; in
+     nixpkgs.lib.nixosSystem {
+      inherit system pkgs;
 
+      specialArgs = {inherit inputs hostName;};
+      
       modules = [
         # host specific
-        {networking.hostName = hostName;}
+        { networking.hostName = hostName; }
         ./hosts/${hostName}
         ./hosts/${hostName}/options.nix
 
@@ -43,7 +48,7 @@
         home-manager.nixosModules.home-manager
         {
           home-manager.extraSpecialArgs = {
-            inherit inputs;
+            inherit inputs hostName;
           };
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;

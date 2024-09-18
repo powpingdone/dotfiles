@@ -3,6 +3,7 @@
   inputs,
   pkgs,
   lib,
+  hostName,
   ...
 }: {
   imports = [

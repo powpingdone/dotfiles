@@ -8,6 +8,11 @@
   options.ppd = {
     desktop.enable = lib.mkEnableOption "Enable Desktop";
     emacs.enable = lib.mkEnableOption "Enable Doom Emacs";
+    system = lib.mkOption {
+      type = lib.types.string;
+      description = "System to be passed to nixosConfiguration";
+      default = "";
+    };
   };
 
   # defaults
