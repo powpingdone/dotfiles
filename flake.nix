@@ -19,7 +19,7 @@
   };
 
   outputs = 
-    { self, nixpkgs, home-manager, ... } @ inputs: {
+    { self, nixpkgs, home-manager, flake-utils, ... } @ inputs: {
       nixosConfigurations = 
 	nixpkgs.lib.genAttrs [ "PPD-ARMTOP" "PPD-TOWER" ] (hostName: 
 	  (nixpkgs.lib.nixosSystem {
@@ -47,5 +47,9 @@
 	      }
 	    ];
 	  }));
+
+	  formatter = flake-utils.lib.eachSystem flake-utils.allSystems (system: {
+	    ${system} = nixpkgs.legacyPackages.${system}.alejandra;
+	  });
         };
 }
