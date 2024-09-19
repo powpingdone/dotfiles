@@ -2,11 +2,17 @@
   nixosConfig,
   lib,
   ppd,
+  pkgs,
   ...
 }:
 lib.mkIf nixosConfig.ppd.desktop.enable {
   programs.firefox.enable = true;
   ppd.emacs.enable = true;
+
+  programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
+    { package = alphabetical-app-grid; }
+    { package = blur-my-shell; }
+  ];
 
   # enable dark mode for gtk4
   dconf = {
