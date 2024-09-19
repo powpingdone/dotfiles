@@ -10,8 +10,8 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
   ppd.emacs.enable = true;
 
   programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
-    { package = alphabetical-app-grid; }
-    { package = blur-my-shell; }
+    {package = alphabetical-app-grid;}
+    {package = blur-my-shell;}
   ];
 
   # enable dark mode for gtk4
@@ -21,7 +21,7 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
       "org/gnome/desktop/interface".color-scheme = "prefer-dark";
       "org/gnome/mutter" = {
         dynamic-workspaces = true;
-	edge-tiling = true;
+        edge-tiling = true;
       };
       "org/gnome/settings-daemon/plugins/media-keys".custom-keybindings = ["/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"];
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {

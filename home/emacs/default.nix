@@ -12,22 +12,22 @@
     programs.emacs = {
       enable = true;
       package =
-        (pkgs.emacsPackagesFor (pkgs.emacs29.override {
+        (pkgs.emacsPackagesFor (
+          pkgs.emacs29.override {
             withGTK3 = true;
-	    withWebP = true;
-	    withSQLite3 = true;
-	    withPgtk = true;
-	    withTreeSitter = true;
-	    withSmallJaDic = true;
-	    withImageMagick = true;
-	  }
-	))
-	.emacsWithPackages (epkgs:
+            withWebP = true;
+            withSQLite3 = true;
+            withPgtk = true;
+            withTreeSitter = true;
+            withSmallJaDic = true;
+            withImageMagick = true;
+          }
+        ))
+        .emacsWithPackages (epkgs:
           with epkgs; [
             treesit-grammars.with-all-grammars
             vterm
-          ]) 
-	  ;
+          ]);
     };
     services.emacs.enable = true;
 
