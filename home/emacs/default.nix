@@ -85,9 +85,9 @@
         if $SETUP; then
           run $HOME/.config/emacs/bin/doom install $VERBOSE_ARG --aot
 	  run ${pkgs.systemd}/bin/systemctl --user restart emacs
+          run emacsclient --eval "(eval-buffer (pdf-tools-install 't))"
         fi
         run $HOME/.config/emacs/bin/doom env $VERBOSE_ARG
-        run emacsclient --eval "(eval-buffer (pdf-tools-install 't))"
       '';
     };
   };
