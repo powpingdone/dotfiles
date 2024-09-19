@@ -73,19 +73,19 @@
     # auto install doom emacs
     home.activation = {
       installDoomEmacs = lib.hm.dag.entryAfter ["writeBoundary"] ''
-        if [ ! -d "$HOME/.config/emacs" ]; then
+        [ ! -d "$/.config/emacs" ]
+        export SETUP=$#
+	if $SETUP; then
            run nix-shell -p git --run 'git clone $VERBOSE_ARG --depth=1 --single-branch "https://github.com/doomemacs/doomemacs" "$HOME/.config/emacs"'
         fi
         run rm -f $VERBOSE_ARG "$HOME/.config/doom"
         run ln -s $VERBOSE_ARG "${../../.doom.d}" "$HOME/.config/doom"
 	# setup path for doom to install
         export PATH="$PATH:${pkgs.emacs}/bin:${pkgs.git}/bin:${pkgs.ripgrep}/bin:${pkgs.fd}/bin:${pkgs.findutils}/bin"
-        if [ ! -d "$HOME/.config/emacs" ]; then
+        if $SETUP; then
           run $HOME/.config/emacs/bin/doom install $VERBOSE_ARG --aot
 	  run ${pkgs.systemd}/bin/systemctl --user restart emacs
         fi
-        run $HOME/.config/emacs/bin/doom sync -u $VERBOSE_ARG --aot
-	run ${pkgs.systemd}/bin/systemctl --user restart emacs
         run $HOME/.config/emacs/bin/doom env $VERBOSE_ARG
         run emacsclient --eval "(eval-buffer (pdf-tools-install 't))"
       '';
