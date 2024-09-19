@@ -127,10 +127,10 @@
     src = pkgs.fetchFromGitHub {
       owner = "jhovold";
       repo = "linux";
-      rev = "b9c3748baa16efa16536bbb20b2ff2d2d02b28b5";
-      hash = "sha256-p5DcTD5Vt1ME3jb9d+QPBjoOpbpV371sucK7bb+V3JA=";
+      rev = "65e7f2a6a41263aef8069a06e86d40e2c511b223";
+      hash = "sha256-yQR1N3WDuKV1X3ph4wYXSFk5kVMbUDwvG4s8AjmpmnU=";
     };
-    version = "6.11.0-rc7";
+    version = "6.11.0";
     defconfig = "johan_defconfig";
 
     structuredExtraConfig = with lib.kernel; {

@@ -56,8 +56,6 @@
     wget
     htop
     git
-
-    alejandra
   ];
 
   # base overrides

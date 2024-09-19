@@ -20,7 +20,9 @@
   home.language.base = "en_US.utf8";
 
   # any extra packages I feel like I need
-  home.packages = with pkgs; [];
+  home.packages = with pkgs; [
+    alejandra
+  ];
   # shell related things
   home.shellAliases = {
     "grep" = "rg";

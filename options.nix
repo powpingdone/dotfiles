@@ -17,12 +17,13 @@
       description = "System to be passed to nixosConfiguration";
       default = "";
     };
-    # actual config options
     desktop.enable = lib.mkEnableOption "Enable Desktop";
     emacs.enable = lib.mkEnableOption "Enable Doom Emacs";
+    nixIndex.enable = lib.mkEnableOption "Enable nix-index (aka command-not-found for flakes)"
   };
 
   # option defaults
   config.ppd.desktop.enable = lib.mkOptionDefault false;
   config.ppd.emacs.enable = lib.mkOptionDefault false;
+  config.ppd.nixIndex.enable = lib.mkOptionDefault true;
 }
