@@ -1,4 +1,8 @@
-{config, lib, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   config = lib.mkIf config.ppd.emacs.enable {
     # emacs likes taking up open files
     security.pam.loginLimits = [

@@ -28,6 +28,7 @@
     home-manager,
     flake-utils,
     emacs-overlay,
+    nix-index-database,
     ...
   } @ inputs: {
     nixosConfigurations = nixpkgs.lib.genAttrs ["PPD-ARMTOP" "PPD-TOWER"] (hostName: (
