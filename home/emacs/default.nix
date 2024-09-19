@@ -49,14 +49,14 @@
     ];
 
     # add doom
-    home.sessionPath = ["$XDG_CONFIG_HOME/emacs/bin"];
+    home.sessionPath = ["$HOME/.config/emacs/bin"];
 
     # auto install doom emacs
     home.activation = {
       installDoomEmacs = lib.hm.dag.entryAfter ["writeBoundary"] ''
-        if [ ! -d "$XDG_CONFIG_HOME/emacs" ]; then
-           run git clone $VERBOSE_ARG --depth=1 --single-branch "https://github.com/doomemacs/doomemacs" "$XDG_CONFIG_HOME/emacs"
-           run ln -s $VERBOSE_ARG "${./doom}" "$XDG_CONFIG_HOME/doom"
+        if [ ! -d "$HOME/.config/emacs" ]; then
+           run nix-shell -p git --run 'git clone $VERBOSE_ARG --depth=1 --single-branch "https://github.com/doomemacs/doomemacs" "$HOME/.config/emacs"'
+           run ln -s $VERBOSE_ARG "${../../.doom.d}" "$HOME/.config/doom"
         fi
       '';
     };
