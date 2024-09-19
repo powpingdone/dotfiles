@@ -80,6 +80,9 @@
       bindkey "^[[1;5C" forward-word
       bindkey "^[[1;5D" backward-word
     '';
+    shellInit = ''
+      . "/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh"
+    '';
   };
   programs.starship = {
     enable = true;
