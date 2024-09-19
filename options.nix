@@ -23,7 +23,7 @@
   };
 
   # option defaults
-  config.ppd.desktop.enable = lib.mkOptionDefault false;
-  config.ppd.emacs.enable = lib.mkOptionDefault false;
-  config.ppd.nixIndex.enable = lib.mkOptionDefault true;
+  config.ppd.desktop.enable = lib.mkDefault false;
+  config.ppd.emacs.enable = lib.mkDefault false;
+  config.ppd.nixIndex.enable = lib.mkDefault true;
 }

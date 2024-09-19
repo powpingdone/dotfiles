@@ -8,6 +8,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # external flakes
     flake-utils.url = "github:numtide/flake-utils";
@@ -54,7 +58,8 @@
             # general
             ./options.nix
             ./modules
-            inputs.nixpkgs.nixosModules.notDetected
+            nixpkgs.nixosModules.notDetected
+            nix-index-database.nixosModules.nix-index
 
             # home-manager
             home-manager.nixosModules.home-manager

@@ -1,12 +1,10 @@
-{ config, lib, ...}:
+{ config, lib, pkgs, ...}:
 {
   config = lib.mkIf config.ppd.nixIndex.enable {
-    programs.command-not-found.enable = false;
-
-    environment.systemPackages = with pkgs; [
-      nix-index
-    ];
-
+    programs.nix-index-database = {
+      enable = true;
+      comma.enable = true;
+    };
     programs.zsh.interactiveShellInit = ''
         source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
       '';
