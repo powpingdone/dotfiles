@@ -79,11 +79,13 @@
         run rm -f $VERBOSE_ARG "$HOME/.config/doom"
         run ln -s $VERBOSE_ARG "${../../.doom.d}" "$HOME/.config/doom"
 	# setup path for doom to install
-        export PATH="$PATH:${pkgs.emacs}/bin:${pkgs.git}/bin:${pkgs.ripgrep}/bin"
+        export PATH="$PATH:${pkgs.emacs}/bin:${pkgs.git}/bin:${pkgs.ripgrep}/bin:${pkgs.fd}/bin:${pkgs.findutils}/bin"
         if [ ! -d "$HOME/.config/emacs" ]; then
           run $HOME/.config/emacs/bin/doom install $VERBOSE_ARG --aot
+	  run ${pkgs.systemd}/bin/systemctl --user restart emacs
         fi
         run $HOME/.config/emacs/bin/doom sync -u $VERBOSE_ARG --aot
+	run ${pkgs.systemd}/bin/systemctl --user restart emacs
         run $HOME/.config/emacs/bin/doom env $VERBOSE_ARG
         run emacsclient --eval "(eval-buffer (pdf-tools-install 't))"
       '';
