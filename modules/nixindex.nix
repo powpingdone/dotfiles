@@ -4,7 +4,7 @@
     programs.command-not-found.enable = false;
 
     environment.systemPackages = with pkgs; [
-      pkgs.nix-index;
+      nix-index
     ];
 
     programs.zsh.interactiveShellInit = ''
