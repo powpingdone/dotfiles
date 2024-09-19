@@ -19,7 +19,7 @@
     };
     desktop.enable = lib.mkEnableOption "Enable Desktop";
     emacs.enable = lib.mkEnableOption "Enable Doom Emacs";
-    nixIndex.enable = lib.mkEnableOption "Enable nix-index (aka command-not-found for flakes)"
+    nixIndex.enable = lib.mkEnableOption "Enable nix-index (aka command-not-found for flakes)";
   };
 
   # option defaults
