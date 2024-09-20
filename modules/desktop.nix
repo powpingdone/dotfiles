@@ -5,6 +5,11 @@
   ...
 }: {
   config = lib.mkIf config.ppd.desktop.enable {
+    # base packages that I *always* need.
+    environment.systemPackages = with pkgs; [
+      openjdk17
+    ];
+    
     # Enable pipewire sound.
     hardware.pulseaudio.enable = false;
     services.pipewire = {

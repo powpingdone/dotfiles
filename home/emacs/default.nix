@@ -44,6 +44,7 @@
       binutils # native-comp needs 'as', provided by this
 
       ## Doom dependencies
+      gzip # random errors seem to pop up
       git
       ripgrep
       gnutls # for TLS connectivity
@@ -65,6 +66,7 @@
       texlive.combined.scheme-medium
       # :lang nix
       age
+
     ];
 
     # add doom
