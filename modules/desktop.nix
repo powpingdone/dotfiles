@@ -9,7 +9,7 @@
     environment.systemPackages = with pkgs; [
       openjdk17
     ];
-    
+
     # Enable pipewire sound.
     hardware.pulseaudio.enable = false;
     services.pipewire = {

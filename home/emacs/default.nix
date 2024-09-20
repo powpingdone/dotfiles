@@ -8,34 +8,26 @@
 # "sourced" from https://github.com/hlissner/dotfiles/blob/master/modules/editors/emacs.nix
 {
   config = lib.mkIf config.ppd.emacs.enable {
-    ppd.overlays = [
-      (
-        final: prev: {
-          final.emacs =
-            (prev.emacsPackagesFor (
-              prev.emacs29.override {
-                withGTK3 = true;
-                withWebP = true;
-                withSQLite3 = true;
-                withPgtk = true;
-                withTreeSitter = true;
-                withSmallJaDic = true;
-                withImageMagick = true;
-              }
-            ))
-            .emacsWithPackages (epkgs:
-              with epkgs; [
-                treesit-grammars.with-all-grammars
-                vterm
-              ]);
-        }
-      )
-    ];
-
     # emacs packages
     programs.emacs = {
       enable = true;
-      package = pkgs.emacs;
+      package =
+        (pkgs.emacsPackagesFor (
+          pkgs.emacs29.override {
+            withGTK3 = true;
+            withWebP = true;
+            withSQLite3 = true;
+            withPgtk = true;
+            withTreeSitter = true;
+            withSmallJaDic = true;
+            withImageMagick = true;
+          }
+        ))
+        .emacsWithPackages (epkgs:
+          with epkgs; [
+            treesit-grammars.with-all-grammars
+            vterm
+          ]);
     };
     services.emacs.enable = true;
 
@@ -66,7 +58,6 @@
       texlive.combined.scheme-medium
       # :lang nix
       age
-
     ];
 
     # add doom
