@@ -5,16 +5,11 @@
   pkgs,
   ...
 }:
-# "sourced" from https://github.com/hlissner/dotfiles/blob/master/modules/editors/emacs.nix
 {
   config = lib.mkIf config.ppd.emacs.enable {
-    # emacs packages
-    programs.emacs = {
-      enable = true;
-      package =
-    };
     services.emacs.enable = true;
 
+    # emacs packages
     home.packages = with pkgs; [
       ## Emacs itself
       (emacsWithPackagesFromUsePackage {
@@ -30,6 +25,9 @@
 	config = ./emacs.org;
 	defaultInitFile = true;
 	alwaysTangle = true;
+	extraEmacsPackages = epkgs: (with epkgs; [
+          treesit-grammars.with-all-grammars
+	]);
       })
       binutils # native-comp needs 'as', provided by this
 

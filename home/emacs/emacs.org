@@ -13,10 +13,11 @@
 #+begin_src emacs-lisp
 
   (use-package evil
+    :demand
     :ensure 't
     :config
     (evil-mode 1))
-  
+
 #+end_src
 
 ** Which Key
