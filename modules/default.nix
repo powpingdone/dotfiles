@@ -8,5 +8,6 @@
     ./desktop.nix
     ./nixindex.nix
     ./emacs.nix
+    ./steam.nix
   ];
 }

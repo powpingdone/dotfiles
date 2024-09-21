@@ -20,10 +20,12 @@
     desktop.enable = lib.mkEnableOption "Enable Desktop";
     emacs.enable = lib.mkEnableOption "Enable Doom Emacs";
     nixIndex.enable = lib.mkEnableOption "Enable nix-index (aka command-not-found for flakes)";
+    steam.enable = lib.mkEnableOption "Install steam";
   };
 
   # option defaults
   config.ppd.desktop.enable = lib.mkDefault false;
   config.ppd.emacs.enable = lib.mkDefault false;
   config.ppd.nixIndex.enable = lib.mkDefault true;
+  config.ppd.steam.enable = lib.mkDefault true;
 }
