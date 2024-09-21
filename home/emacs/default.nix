@@ -34,11 +34,6 @@ in {
       package = emacs-pkg;
     };
 
-    programs.emacs = {
-      enable = true;
-      package = emacs-pkg;
-    };
-
     # emacs packages
     home.packages = with pkgs; [
       ## Emacs itself

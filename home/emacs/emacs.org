@@ -8,19 +8,44 @@
 + use-package is already loaded in nix
 
 * PRIORITY LOAD
+
+** Emacs main config
+
+#+begin_src emacs-lisp
+
+  (scroll-bar-mode -1)
+  (toolbar-mode -1)
+  (set-fringe-mode 16)
+  
+
+#+end_src
+
 ** Evil Mode (vim binds)
 
 #+begin_src emacs-lisp
 
   (use-package evil
-    :demand
-    :ensure 't
+    :demand t
+    :ensure t
+    :init
+    (setq evil-vsplit-window-right t)
+    (setq evil-split-window-below t)
     :config
     (evil-mode 1))
 
 #+end_src
 
 ** Which Key
+
+#+begin_src emacs-lisp
+
+    (use-package which-key
+      :ensure t
+      :diminish which-key-mode
+      :custom
+      (which-key-idle-delay 0.325))
+
+#+end_src
 
 ** General.el (binding creation)
 
