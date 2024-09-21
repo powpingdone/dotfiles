@@ -1,0 +1,25 @@
+#+TITLE: PPD's Emacs
+#+AUTHOR: powpingdone
+#+STARTUP showeverything
+#+OPTIONS: toc:2
+#+PROPERTY: header-args:emacs-lisp :tangle yes
+
+* NOTES:
++ use-package is already loaded in nix
+
+* PRIORITY LOAD
+** Evil Mode (vim binds)
+
+#+begin_src emacs-lisp
+
+  (use-package evil
+    :ensure 't
+    :config
+    (evil-mode 1))
+  
+#+end_src
+
+** Which Key
+
+** General.el (binding creation)
+

@@ -12,31 +12,28 @@
     programs.emacs = {
       enable = true;
       package =
-        (pkgs.emacsPackagesFor (
-          pkgs.emacs29.override {
-            withGTK3 = true;
-            withWebP = true;
-            withSQLite3 = true;
-            withPgtk = true;
-            withTreeSitter = true;
-            withSmallJaDic = true;
-            withImageMagick = true;
-          }
-        ))
-        .emacsWithPackages (epkgs:
-          with epkgs; [
-            treesit-grammars.with-all-grammars
-            vterm
-          ]);
     };
     services.emacs.enable = true;
 
     home.packages = with pkgs; [
       ## Emacs itself
+      (emacsWithPackagesFromUsePackage {
+        package = emacs29.override {
+          withGTK3 = true;
+          withWebP = true;
+          withSQLite3 = true;
+          withPgtk = true;
+          withTreeSitter = true;
+          withSmallJaDic = true;
+          withImageMagick = true;
+        };
+	config = ./emacs.org;
+	defaultInitFile = true;
+	alwaysTangle = true;
+      })
       binutils # native-comp needs 'as', provided by this
 
       ## Doom dependencies
-      gzip # random errors seem to pop up
       git
       ripgrep
       gnutls # for TLS connectivity
@@ -52,6 +49,7 @@
       ## Module dependencies
       # :checkers spell
       (aspellWithDicts (ds: with ds; [en en-computers en-science]))
+      ispell
       # :tools lookup & :lang org +roam
       sqlite
       # :lang latex & :lang org (latex previews)
@@ -59,29 +57,5 @@
       # :lang nix
       age
     ];
-
-    # add doom
-    home.sessionPath = ["$HOME/.config/emacs/bin"];
-
-    # auto install doom emacs
-    #home.activation = {
-    #  installDoomEmacs = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    #    [ ! -d "$/.config/emacs" ]
-    #    export SETUP=$#
-    #    if $SETUP; then
-    #       run nix-shell -p git --run 'git clone $VERBOSE_ARG --depth=1 --single-branch "https://github.com/doomemacs/doomemacs" "$HOME/.config/emacs"'
-    #    fi
-    #    run rm -f $VERBOSE_ARG "$HOME/.config/doom"
-    #    run ln -s $VERBOSE_ARG "${../../.doom.d}" "$HOME/.config/doom"
-    #    # setup path for doom to install
-    #    export PATH="$PATH:${pkgs.emacs}/bin:${pkgs.git}/bin:${pkgs.ripgrep}/bin:${pkgs.fd}/bin:${pkgs.findutils}/bin"
-    #    if $SETUP; then
-    #      run $HOME/.config/emacs/bin/doom install $VERBOSE_ARG --aot
-    #      run ${pkgs.systemd}/bin/systemctl --user restart emacs
-    #      run emacsclient --eval "(eval-buffer (pdf-tools-install 't))"
-    #    fi
-    #    run $HOME/.config/emacs/bin/doom env $VERBOSE_ARG
-    #  '';
-    #};
   };
 }
