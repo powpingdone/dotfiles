@@ -5,15 +5,9 @@
   pkgs,
   ...
 }:
-{
-  config = lib.mkIf config.ppd.emacs.enable {
-    services.emacs.enable = true;
-
-    # emacs packages
-    home.packages = with pkgs; [
-      ## Emacs itself
-      (emacsWithPackagesFromUsePackage {
-        package = emacs29.override {
+let emacs-pkg = 
+      (pkgs.emacsWithPackagesFromUsePackage {
+        package = pkgs.emacs29.override {
           withGTK3 = true;
           withWebP = true;
           withSQLite3 = true;
@@ -28,7 +22,27 @@
 	extraEmacsPackages = epkgs: (with epkgs; [
           treesit-grammars.with-all-grammars
 	]);
-      })
+      });
+in {
+  config = lib.mkIf config.ppd.emacs.enable {
+    xdg.configFile = {
+      "emacs/early-init.el".source = ./early-init.el;
+    };
+
+    services.emacs = {
+      enable = true;
+      package = emacs-pkg;
+    };
+
+    programs.emacs = {
+      enable = true;
+      package = emacs-pkg;
+    };
+
+    # emacs packages
+    home.packages = with pkgs; [
+      ## Emacs itself
+      emacs-pkg
       binutils # native-comp needs 'as', provided by this
 
       ## Doom dependencies
@@ -54,6 +68,7 @@
       texlive.combined.scheme-medium
       # :lang nix
       age
+
     ];
   };
 }
