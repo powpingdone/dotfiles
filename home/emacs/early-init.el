@@ -1,5 +1,3 @@
-
-
 (setopt package-enable-at-startup nil)
 
 (setopt use-package-ensure-function 'ignore)
