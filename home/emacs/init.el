@@ -1,2 +1,2 @@
 (require 'xdg)
-(org-babel-load-file (concat xdg-config-emacs "/emacs.org"))
+(org-babel-load-file (concat xdg-config-home "emacs/emacs.org"))
