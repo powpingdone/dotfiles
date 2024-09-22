@@ -23,14 +23,29 @@
 
 #+begin_src emacs-lisp
 
-  (use-package evil
-    :demand t
-    :ensure t
-    :init
-    (setq evil-vsplit-window-right t)
-    (setq evil-split-window-below t)
-    :config
-    (evil-mode 1))
+(use-package evil
+  :demand t
+  :ensure t
+  :init
+  (setq evil-vsplit-window-right t)
+  (setq evil-split-window-below t)
+  (setq evil-toggle-key "C-~")
+  :config
+  (evil-mode 1))
+
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init '(
+    calendar
+    ediff
+    calc
+    ibuffer
+    dashboard
+    org))
+)
+
+(use-package evil-tutor)
 
 #+end_src
 

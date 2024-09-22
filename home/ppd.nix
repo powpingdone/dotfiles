@@ -19,6 +19,8 @@
   home.keyboard.layout = "us";
   home.language.base = "en_US.utf8";
 
+  systemd.user.startServices = true;
+
   # any extra packages I feel like I need
   home.packages = with pkgs; [
     alejandra

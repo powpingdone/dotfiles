@@ -17,6 +17,8 @@ let emacs-pkg =
         }))
 	.emacsWithPackages(epkgs: (with epkgs; [
 	  evil
+	  evil-collection
+	  evil-tutor
 	  which-key
 	  org-make-toc
           treesit-grammars.with-all-grammars
