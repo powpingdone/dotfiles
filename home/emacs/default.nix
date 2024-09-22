@@ -6,9 +6,7 @@
   ...
 }:
 let emacs-pkg = 
-      (pkgs.emacsWithPackagesFromUsePackage {
-        package = 
-      pkgs.emacs29.override {
+      (pkgs.emacsPackagesFor (pkgs.emacs29.override {
           withGTK3 = true;
           withWebP = true;
           withSQLite3 = true;
@@ -16,11 +14,16 @@ let emacs-pkg =
           withTreeSitter = true;
           withSmallJaDic = true;
           withImageMagick = true;
-        };
-	config = ./emacs.org;
-	alwaysTangle = true;
-	alwaysEnsure = true;
-      });
+        })).emacsWithPackages (epkgs: with epkgs; [
+	  evil
+	  evil-collection
+	  evil-tutor
+	  which-key
+	  general
+          org-make-toc
+	  doom-themes
+	  doom-modeline
+	]);
       
 in {
   config = lib.mkIf config.ppd.emacs.enable {
