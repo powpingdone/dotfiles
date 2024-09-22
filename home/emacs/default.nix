@@ -26,6 +26,8 @@ in {
   config = lib.mkIf config.ppd.emacs.enable {
     xdg.configFile = {
       "emacs/early-init.el".source = ./early-init.el;
+      "emacs/init.el".source = ./init.el;
+      "emacs/emacs.org".source = ./emacs.org;
     };
 
     services.emacs = {
