@@ -45,6 +45,7 @@
 #+begin_src emacs-lisp
 
     (use-package evil
+        :ensure t
       :demand t
       :init
       (setq evil-vsplit-window-right t
@@ -54,11 +55,14 @@
       (evil-mode 1))
 
     (use-package evil-collection
+        :ensure t
       :after evil
       :config
       (evil-collection-init))
 
-    (use-package evil-tutor)
+    (use-package evil-tutor
+        :ensure t
+    )
 
 #+end_src
 
@@ -67,6 +71,7 @@
 #+begin_src emacs-lisp
 
   (use-package which-key
+        :ensure t
     :diminish which-key-mode
     :custom
     (which-key-idle-delay 0.325))
@@ -78,6 +83,7 @@
 #+begin_src emacs-lisp
 
   (use-package general
+        :ensure t
     :config
     (general-evil-setup))
 
@@ -87,13 +93,11 @@
 * ORG MODE
 
 ** General org mode packages
-:PROPERTIES:
-:TOC:
-:END:
 
 #+begin_src emacs-lisp
 
   (use-package org-make-toc
+        :ensure t
     :hook org-mode)
 
 #+end_src
@@ -105,6 +109,7 @@
 #+begin_src emacs-lisp
 
   (use-package doom-themes
+        :ensure t
     :demand t
     :config
     (setq doom-themes-enable-bold t
@@ -120,6 +125,7 @@
 #+begin_src emacs-lisp
 
       (use-package doom-modeline
+        :ensure t
         :demand t
         :hook after-init
   :init
