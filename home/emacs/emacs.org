@@ -1,7 +1,6 @@
 #+TITLE: PPD's Emacs
 #+AUTHOR: powpingdone
 #+STARTUP showeverything
-#+PROPERTY: header-args:emacs-lisp :tangle yes
 
 * TABLE OF CONTENTS
 :PROPERTIES:
