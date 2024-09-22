@@ -1,11 +1,10 @@
 #+TITLE: PPD's Emacs
 #+AUTHOR: powpingdone
 #+STARTUP showeverything
-#+OPTIONS: toc:2
 #+PROPERTY: header-args:emacs-lisp :tangle yes
 
 * NOTES:
-+ use-package is already loaded in nix
++ use-package is already loaded in nix, and as such packages come from nix
 
 * PRIORITY LOAD
 
@@ -14,6 +13,7 @@
 #+begin_src emacs-lisp
 
   (scroll-bar-mode -1)
+  (menu-bar-mode -1)
   (tool-bar-mode -1)
   (set-fringe-mode 16)
 
@@ -48,3 +48,13 @@
 
 ** General.el (binding creation)
 
+* ORG MODE
+
+** General org mode packages
+
+#+begin_src emacs-lisp
+
+  (use-package org-make-toc
+    :hook org-modeq)
+
+#+end_src
