@@ -103,6 +103,7 @@
 #+begin_src emacs-lisp
 
   (use-package doom-themes
+    :demand t
     :config
     (setq doom-themes-enable-bold t
   	  doom-themes-enable-italic t)
@@ -116,9 +117,10 @@
 
 #+begin_src emacs-lisp
 
-            (use-package doom-modeline
-              :hook after-init
-      	:init
-    	(setq doom-modeline-height 28))
+      (use-package doom-modeline
+        :demand t
+        :hook after-init
+  :init
+  (setq doom-modeline-height 28))
 
 #+end_src
