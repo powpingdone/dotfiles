@@ -6,7 +6,7 @@
   ...
 }:
 let emacs-pkg = 
-      (pkgs.emacsPackagesFor (pkgs.emacs29.override {
+      pkgs.emacs29.override {
           withGTK3 = true;
           withWebP = true;
           withSQLite3 = true;
@@ -14,22 +14,12 @@ let emacs-pkg =
           withTreeSitter = true;
           withSmallJaDic = true;
           withImageMagick = true;
-        }))
-	.emacsWithPackages(epkgs: (with epkgs; [
-	  evil
-	  evil-collection
-	  evil-tutor
-	  which-key
-	  org-make-toc
-          treesit-grammars.with-all-grammars
-	]));
+        };
       
 in {
   config = lib.mkIf config.ppd.emacs.enable {
     xdg.configFile = {
       "emacs/early-init.el".source = ./early-init.el;
-      "emacs/init.el".source = ./init.el;
-      "emacs/emacs.org".source = ./emacs.org;
     };
 
     services.emacs = {
@@ -40,7 +30,15 @@ in {
     # emacs packages
     home.packages = with pkgs; [
       ## Emacs itself
-      emacs-pkg
+      (
+      pkgs.emacsWithPackagesFromUsePackage {
+        package = emacs-pkg;
+	config = ./emacs.org;
+	alwaysTangle = true;
+	alwaysEnsure = true;
+      					   }
+  
+      )
       binutils # native-comp needs 'as', provided by this
 
       ## Doom dependencies
