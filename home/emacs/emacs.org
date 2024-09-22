@@ -45,7 +45,7 @@
     (use-package evil
       :demand t
       :init
-      (setq evil-vsplit-window-right t)
+      (setq evil-vsplit-window-right t
       evil-split-window-below t
       evil-toggle-key "C-~")
       :config

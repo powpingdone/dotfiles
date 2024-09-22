@@ -6,6 +6,8 @@
   ...
 }:
 let emacs-pkg = 
+      (pkgs.emacsWithPackagesFromUsePackage {
+        package = 
       pkgs.emacs29.override {
           withGTK3 = true;
           withWebP = true;
@@ -15,6 +17,10 @@ let emacs-pkg =
           withSmallJaDic = true;
           withImageMagick = true;
         };
+	config = ./emacs.org;
+	alwaysTangle = true;
+	alwaysEnsure = true;
+      });
       
 in {
   config = lib.mkIf config.ppd.emacs.enable {
@@ -30,15 +36,7 @@ in {
     # emacs packages
     home.packages = with pkgs; [
       ## Emacs itself
-      (
-      pkgs.emacsWithPackagesFromUsePackage {
-        package = emacs-pkg;
-	config = ./emacs.org;
-	alwaysTangle = true;
-	alwaysEnsure = true;
-      					   }
-  
-      )
+      emacs-pkg
       binutils # native-comp needs 'as', provided by this
 
       ## Doom dependencies
