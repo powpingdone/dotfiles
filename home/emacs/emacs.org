@@ -67,6 +67,7 @@
 #+begin_src emacs-lisp
 
   (use-package which-key
+    :demand t
     :diminish which-key-mode
     :custom
     (which-key-idle-delay 0.325))
@@ -87,9 +88,6 @@
 * ORG MODE
 
 ** General org mode packages
-:PROPERTIES:
-:TOC:
-:END:
 
 #+begin_src emacs-lisp
 
@@ -109,7 +107,7 @@
     :config
     (setq doom-themes-enable-bold t
   	  doom-themes-enable-italic t)
-    (load-theme 'doom-ephemeral t)
+    (load-theme 'doom-one t)
     (doom-themes-visual-bell-config)
     (doom-themes-org-config))
 
