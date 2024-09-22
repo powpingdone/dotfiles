@@ -8,4 +8,7 @@
 
 (require 'xdg)
 (startup-redirect-eln-cache
- (expand-file-name  "emacs/eln-cache/" (xdg-cache-home)))
+ (expand-file-name
+  (string-trim
+   (concat "emacs/eln-cache" (shell-command-to-string "emacs -Q --fingerprint") "/"))
+  (xdg-cache-home)))

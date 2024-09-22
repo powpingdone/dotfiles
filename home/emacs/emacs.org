@@ -14,9 +14,8 @@
 #+begin_src emacs-lisp
 
   (scroll-bar-mode -1)
-  (toolbar-mode -1)
+  (tool-bar-mode -1)
   (set-fringe-mode 16)
-  
 
 #+end_src
 
@@ -39,11 +38,11 @@
 
 #+begin_src emacs-lisp
 
-    (use-package which-key
-      :ensure t
-      :diminish which-key-mode
-      :custom
-      (which-key-idle-delay 0.325))
+  (use-package which-key
+    :ensure t
+    :diminish which-key-mode
+    :custom
+    (which-key-idle-delay 0.325))
 
 #+end_src
 

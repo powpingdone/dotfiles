@@ -6,8 +6,7 @@
   ...
 }:
 let emacs-pkg = 
-      (pkgs.emacsWithPackagesFromUsePackage {
-        package = pkgs.emacs29.override {
+      (pkgs.emacsPackagesFor (pkgs.emacs29.override {
           withGTK3 = true;
           withWebP = true;
           withSQLite3 = true;
@@ -15,18 +14,19 @@ let emacs-pkg =
           withTreeSitter = true;
           withSmallJaDic = true;
           withImageMagick = true;
-        };
-	config = ./emacs.org;
-	defaultInitFile = true;
-	alwaysTangle = true;
-	extraEmacsPackages = epkgs: (with epkgs; [
+        }))
+	.emacsWithPackages(epkgs: (with epkgs; [
+	  evil
+	  which-key
           treesit-grammars.with-all-grammars
-	]);
-      });
+	]));
+      
 in {
   config = lib.mkIf config.ppd.emacs.enable {
     xdg.configFile = {
       "emacs/early-init.el".source = ./early-init.el;
+      "emacs/init.el".source = ./init.el;
+      "emacs/emacs.org".source = ./emacs.org;
     };
 
     services.emacs = {
