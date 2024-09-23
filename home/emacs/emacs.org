@@ -36,8 +36,6 @@
 
     (require 'use-package-ensure)
     (setq use-package-always-ensure t)
-  (global-display-line-numbers-mode 1)
-  (global-visual-line-mode 1)
 
 #+end_src
 
@@ -80,28 +78,29 @@
 
 #+begin_src emacs-lisp
 
-      (use-package general
-        :demand t
-        :config
-        (general-evil-setup)
-        ;; LEADER -> space (thanks doomemacs!)
-        (general-create-definer leader-key
-          :states '(normal insert visual emacs)
-          :keymaps 'override
-          :prefix "SPC"
-          :global-prefix "M-SPC") ;; insert mode
+  (use-package general
+    :demand t
+    :config
+    (general-evil-setup)
+    
+    ;; LEADER is space (thanks doomemacs!)
+    (general-create-definer leader-key
+      :states '(normal insert visual emacs)
+      :keymaps 'override
+      :prefix "SPC"
+      :global-prefix "M-SPC") ;; insert mode
 
-        ;; buffer binds
-        (leader-key
-         "b" '(:ignore t :wk "buffer")
-         "b" "b" '(switch-to-buffer)
-         "b" "d" '(kill-this-buffer)
-         "b" "n" '(next-buffer)
-         "b" "p" '(previous-buffer)
-         "b" "r" '(revert-buffer :wk "reload buffer")
-         )
+    ;; buffer binds
+    (leader-key
+     "b" '(:ignore t :wk "buffer")
+     "b" "b" '(switch-to-buffer)
+     "b" "d" '(kill-this-buffer)
+     "b" "n" '(next-buffer)
+     "b" "p" '(previous-buffer)
+     "b" "r" '(revert-buffer :wk "reload buffer")
+     )
 
-        )
+    )
 
 #+end_src
 
@@ -155,6 +154,8 @@
   (menu-bar-mode -1)
   (tool-bar-mode -1)
   (set-fringe-mode 4)
+  (global-display-line-numbers-mode 1)
+  (global-visual-line-mode 1)
   
 #+end_src
 
