@@ -75,5 +75,11 @@ in {
       age
 
     ];
+
+    home.activation = {
+      rmEmacsEL = lib.hm.dag.entryAfter ["writeBoundary"] ''
+        run rm -f $VERBOSE_ARG ~/.config/emacs/emacs.el
+      '';
+    };
   };
 }

@@ -79,7 +79,6 @@
 #+begin_src emacs-lisp
 
   (use-package general
-    :demand t
     :config
     (general-evil-setup)
     
@@ -93,12 +92,11 @@
     ;; buffer binds
     (leader-key
      "b" '(:ignore t :wk "buffer")
-     "b" "b" '(switch-to-buffer)
-     "b" "d" '(kill-this-buffer)
-     "b" "n" '(next-buffer)
-     "b" "p" '(previous-buffer)
-     "b" "r" '(revert-buffer :wk "reload buffer")
-     )
+     "bb" '(switch-to-buffer :wk "switch buffer")
+     "bd" '(kill-this-buffer :wk "kill buffer")
+     "bn" '(next-buffer :wk "next buffer")
+     "bp" '(previous-buffer :wk "previous buffer")
+     "br" '(revert-buffer :wk "reload buffer"))
 
     )
 

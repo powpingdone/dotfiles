@@ -1,5 +1,6 @@
 {...}: {
   ppd.desktop.enable = true;
+  ppd.steam.enable = false;
   ppd.system = "aarch64-linux";
   ppd.overlays = [
     (final: prev: {
