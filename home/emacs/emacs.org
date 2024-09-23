@@ -15,6 +15,7 @@
   - [[#which-key][Which Key]]
   - [[#generalel-binding-creation][General.el (binding creation)]]
 - [[#org-mode][ORG MODE]]
+  - [[#general-config-and-appearance][General config and appearance]]
   - [[#table-of-contents][Table of contents]]
   - [[#note-taking][Note taking]]
 - [[#apperance][APPERANCE]]
@@ -33,8 +34,10 @@
 
 #+begin_src emacs-lisp
 
-  (require 'use-package-ensure)
-  (setq use-package-always-ensure t)
+    (require 'use-package-ensure)
+    (setq use-package-always-ensure t)
+  (global-display-line-numbers-mode 1)
+  (global-visual-line-mode 1)
 
 #+end_src
 
@@ -77,15 +80,43 @@
 
 #+begin_src emacs-lisp
 
-  (use-package general
-    :demand t
-    :config
-    (general-evil-setup))
+      (use-package general
+        :demand t
+        :config
+        (general-evil-setup)
+        ;; LEADER -> space (thanks doomemacs!)
+        (general-create-definer leader-key
+          :states '(normal insert visual emacs)
+          :keymaps 'override
+          :prefix "SPC"
+          :global-prefix "M-SPC") ;; insert mode
+
+        ;; buffer binds
+        (leader-key
+         "b" '(:ignore t :wk "buffer")
+         "b" "b" '(switch-to-buffer)
+         "b" "d" '(kill-this-buffer)
+         "b" "n" '(next-buffer)
+         "b" "p" '(previous-buffer)
+         "b" "r" '(revert-buffer :wk "reload buffer")
+         )
+
+        )
 
 #+end_src
 
 
 * ORG MODE
+
+** General config and appearance
+
+#+begin_src emacs-lisp
+
+    (add-hook 'org-mode-hook 'org-indent-mode)
+    (use-package org-bullets
+      :hook org-mode)
+      
+#+end_src
 
 ** Table of contents 
 
@@ -100,16 +131,18 @@
 
 #+begin_src emacs-lisp
 
-      (use-package org-roam
-        :hook org-mode)
-      (use-package pdf-tools
-        )  
+  (use-package org-roam
+    :hook org-mode)
+  (use-package pdf-tools
+    :magic ("%PDF" . pdf-view-mode)
+    :hook (pdf-view-mode-hook . (lambda () (line-number-mode 'nil) (display-line-numbers-mode 'nil))) 
+  )  
 
-          (use-package org-noter
-            :hook org-mode
-            :config
-            (org-noter-enable-org-roam-integration))
-          
+      (use-package org-noter
+        :hook org-mode
+        :config
+        (org-noter-enable-org-roam-integration))
+      
 #+end_src
 
 * APPERANCE

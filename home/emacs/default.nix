@@ -20,6 +20,7 @@ let emacs-pkg =
 	  evil-tutor
 	  which-key
 	  general
+	  org-bullets
           org-make-toc
 	  org-roam
 	  pdf-tools
