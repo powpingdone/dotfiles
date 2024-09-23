@@ -49,7 +49,7 @@ in {
     # restart emacs service if these files change
     systemd.user.services.emacs = {
       Service = {
-        ExecReload = "emacsclient -e '(ppd/reload-emacs)'";
+        ExecReload = "${emacs-pkg}/bin/emacsclient -e '(ppd/reload-emacs)'";
       };
       Unit = {
         X-Restart-Triggers = with builtins; [
@@ -91,11 +91,5 @@ in {
       # :lang nix
       age
     ];
-
-    home.activation = {
-      rmEmacsEL = lib.hm.dag.entryAfter ["writeBoundary"] ''
-        run rm -f $VERBOSE_ARG ~/.config/emacs/emacs.el
-      '';
-    };
   };
 }
