@@ -33,17 +33,24 @@ let emacs-pkg =
       
 in {
   config = lib.mkIf config.ppd.emacs.enable {
+    services.emacs = {
+      enable = true;
+      package = emacs-pkg;
+    };
+
     xdg.configFile = {
       "emacs/early-init.el".source = ./early-init.el;
       "emacs/init.el".source = ./init.el;
       "emacs/emacs.org".source = ./emacs.org;
     };
 
-    services.emacs = {
-      enable = true;
-      package = emacs-pkg;
-    };
-
+    # restart emacs service if these files change
+    systemd.user.services.emacs.Unit.X-Restart-Triggers = [
+      ./early-init.el
+      ./init.el
+      ./emacs.org
+    ];
+    
     # emacs packages
     home.packages = with pkgs; [
       ## Emacs itself

@@ -110,7 +110,7 @@
 #+begin_src emacs-lisp
 
   (add-hook 'org-mode-hook 'org-indent-mode)
-  (add-hook 'org-mode-hook (lambda () (display-line-numbers-mode 0)))
+  (add-hook 'org-mode-hook (lambda () (display-line-numbers-mode 'nil)))
   (use-package org-bullets
     :hook org-mode)
     
@@ -143,6 +143,7 @@
       
 #+end_src
 
+
 * APPERANCE
 
 ** Emacs Config
@@ -153,10 +154,10 @@
   (menu-bar-mode -1)
   (tool-bar-mode -1)
   (set-fringe-mode 4)
-  (global-display-line-numbers-mode 1)
+  (display-line-numbers-mode 1)
   (global-visual-line-mode 1)
   (dolist (mode '(term-mode-hook eshell-mode-hook))
-    (add-hook mode (lambda () (display-line-numbers-mode 0))))
+    (add-hook mode (lambda () (display-line-numbers-mode 'nil))))
   
 #+end_src
 
