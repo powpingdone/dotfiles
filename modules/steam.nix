@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   config = lib.mkIf config.ppd.steam.enable {
     environment.systemPackages = with pkgs; [
       steam-run

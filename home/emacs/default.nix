@@ -4,32 +4,34 @@
   inputs,
   pkgs,
   ...
-}:
-let emacs-pkg = 
-      (pkgs.emacsPackagesFor (pkgs.emacs29.override {
-          withGTK3 = true;
-          withWebP = true;
-          withSQLite3 = true;
-          withPgtk = true;
-          withTreeSitter = true;
-          withSmallJaDic = true;
-          withImageMagick = true;
-        })).emacsWithPackages (epkgs: with epkgs; [
-	  evil
-	  evil-collection
-	  evil-tutor
-	  which-key
-	  general
-	  org-bullets
-          org-make-toc
-	  org-roam
-	  pdf-tools
-	  org-noter
-	  doom-themes
-	  doom-modeline
-	  treesit-auto
-	  treesit-grammars.with-all-grammars
-	]);
+}: let
+  emacs-pkg =
+    (pkgs.emacsPackagesFor (pkgs.emacs29.override {
+      withGTK3 = true;
+      withWebP = true;
+      withSQLite3 = true;
+      withPgtk = true;
+      withTreeSitter = true;
+      withSmallJaDic = true;
+      withImageMagick = true;
+    }))
+    .emacsWithPackages (epkgs:
+      with epkgs; [
+        evil
+        evil-collection
+        evil-tutor
+        which-key
+        general
+        org-bullets
+        org-make-toc
+        org-roam
+        pdf-tools
+        org-noter
+        doom-themes
+        doom-modeline
+        treesit-auto
+        treesit-grammars.with-all-grammars
+      ]);
 in {
   config = lib.mkIf config.ppd.emacs.enable {
     services.emacs = {
@@ -45,15 +47,20 @@ in {
     };
 
     # restart emacs service if these files change
-    systemd.user.services.emacs.Unit = {
-      X-Restart-Triggers = with builtins; [
-        (hashFile "sha256" ./early-init.el)
-        (hashFile "sha256" ./init.el)
-        (hashFile "sha256" ./emacs.org)
-      ];
-      X-SwitchMethod = "stop-start";
+    systemd.user.services.emacs = {
+      Service = {
+        ExecReload = "emacsclient -e '(ppd/reload-emacs)'";
+      };
+      Unit = {
+        X-Restart-Triggers = with builtins; [
+          (hashFile "sha256" ./early-init.el)
+          (hashFile "sha256" ./init.el)
+          (hashFile "sha256" ./emacs.org)
+        ];
+        X-SwitchMethod = "reload";
+      };
     };
-    
+
     # emacs packages
     home.packages = with pkgs; [
       ## Emacs itself
@@ -83,7 +90,6 @@ in {
       texlive.combined.scheme-medium
       # :lang nix
       age
-
     ];
 
     home.activation = {
