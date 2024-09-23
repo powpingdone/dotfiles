@@ -49,7 +49,7 @@
     (setq evil-vsplit-window-right 't
     evil-split-window-below 't
     evil-toggle-key "C-~"
-    evil-want-keybinding 't)
+    evil-want-keybinding 'nil)
     :config
     (evil-mode 1))
 
@@ -122,7 +122,7 @@
 #+begin_src emacs-lisp
 
     (use-package org-make-toc
-      :hook org-mode)
+      :hook (org-mode . org-make-toc-mode))
 
 #+end_src
 
@@ -131,6 +131,7 @@
 #+begin_src emacs-lisp
 
   (use-package org-roam
+    :commands org-roam-mode
     :hook org-mode)
   (use-package pdf-tools
     :magic ("%PDF" . pdf-view-mode)
