@@ -109,12 +109,11 @@
 
 #+begin_src emacs-lisp
 
-    (use-package org-indent
-      :hook org-mode)
-    (add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
-    (use-package org-bullets
-      :hook org-mode)
-      
+  (add-hook 'org-mode-hook 'org-indent-mode)
+  (add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
+  (use-package org-bullets
+    :hook org-mode)
+    
 #+end_src
 
 ** Table of contents 
@@ -131,7 +130,6 @@
 #+begin_src emacs-lisp
 
   (use-package org-roam
-    :commands org-roam-mode
     :hook org-mode)
   (use-package pdf-tools
     :magic ("%PDF" . pdf-view-mode)
@@ -139,7 +137,7 @@
   )  
 
       (use-package org-noter
-        :hook org-mode
+        :commands org-noter
         :config
         (org-noter-enable-org-roam-integration))
       

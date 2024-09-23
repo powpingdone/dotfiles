@@ -30,7 +30,6 @@ let emacs-pkg =
 	  treesit-auto
 	  treesit-grammars.with-all-grammars
 	]);
-      
 in {
   config = lib.mkIf config.ppd.emacs.enable {
     services.emacs = {
@@ -47,11 +46,12 @@ in {
 
     # restart emacs service if these files change
     systemd.user.services.emacs.Unit = {
-      X-Restart-Triggers = [
-        ./early-init.el
-        ./init.el
-        ./emacs.org
+      X-Restart-Triggers = with builtins; [
+        (hashFile "sha256" ./early-init.el)
+        (hashFile "sha256" ./init.el)
+        (hashFile "sha256" ./emacs.org)
       ];
+      X-SwitchMethod = "stop-start";
     };
     
     # emacs packages
