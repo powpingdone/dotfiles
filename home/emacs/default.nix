@@ -36,6 +36,7 @@ in {
     services.emacs = {
       enable = true;
       package = emacs-pkg;
+      socketActivation.enable = true;
     };
 
     xdg.configFile = {
@@ -45,11 +46,13 @@ in {
     };
 
     # restart emacs service if these files change
-    systemd.user.services.emacs.Unit.X-Restart-Triggers = [
-      ./early-init.el
-      ./init.el
-      ./emacs.org
-    ];
+    systemd.user.services.emacs.Unit = {
+      X-Restart-Triggers = [
+        ./early-init.el
+        ./init.el
+        ./emacs.org
+      ];
+    };
     
     # emacs packages
     home.packages = with pkgs; [
