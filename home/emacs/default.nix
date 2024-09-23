@@ -5,26 +5,22 @@
   pkgs,
   ...
 }:
-let emacs-pkg = 
-      (pkgs.emacsPackagesFor (pkgs.emacs29.override {
-          withGTK3 = true;
-          withWebP = true;
-          withSQLite3 = true;
-          withPgtk = true;
-          withTreeSitter = true;
-          withSmallJaDic = true;
-          withImageMagick = true;
-        })).emacsWithPackages (epkgs: with epkgs; [
-	  evil
-	  evil-collection
-	  evil-tutor
-	  which-key
-	  general
-          org-make-toc
-	  doom-themes
-	  doom-modeline
-	]);
-      
+let
+  emacs-pkg = (pkgs.emacsWithPackagesFromUsePackage {
+    config = ./emacs.org;
+    defaultInitFile = true;
+    alwaysEnsure = true;
+    package = (pkgs.emacs29.override {
+      withGTK3 = true;
+      withWebP = true;
+      withSQLite3 = true;
+      withPgtk = true;
+      withTreeSitter = true;
+      # I don't need a big japanese dictionary
+      withSmallJaDic = true;
+      withImageMagick = true;
+    });
+  });
 in {
   config = lib.mkIf config.ppd.emacs.enable {
     xdg.configFile = {
