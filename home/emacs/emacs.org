@@ -109,10 +109,11 @@
 
 #+begin_src emacs-lisp
 
-    (add-hook 'org-mode-hook 'org-indent-mode)
-    (use-package org-bullets
-      :hook org-mode)
-      
+  (add-hook 'org-mode-hook 'org-indent-mode)
+  (add-hook 'org-mode-hook (lambda () (display-line-numbers-mode 0)))
+  (use-package org-bullets
+    :hook org-mode)
+    
 #+end_src
 
 ** Table of contents 
@@ -132,7 +133,7 @@
     :hook org-mode)
   (use-package pdf-tools
     :magic ("%PDF" . pdf-view-mode)
-    :hook (pdf-view-mode-hook . (lambda () (line-number-mode 'nil) (display-line-numbers-mode 'nil))) 
+    :hook (pdf-view-mode-hook . (lambda () (display-line-numbers-mode 0))) 
   )  
 
       (use-package org-noter
@@ -154,6 +155,8 @@
   (set-fringe-mode 4)
   (global-display-line-numbers-mode 1)
   (global-visual-line-mode 1)
+  (dolist (mode '(term-mode-hook eshell-mode-hook))
+    (add-hook mode (lambda () (display-line-numbers-mode 0))))
   
 #+end_src
 
