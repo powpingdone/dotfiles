@@ -21,8 +21,13 @@ let emacs-pkg =
 	  which-key
 	  general
           org-make-toc
+	  org-roam
+	  pdf-tools
+	  org-noter
 	  doom-themes
 	  doom-modeline
+	  treesit-auto
+	  treesit-grammars.with-all-grammars
 	]);
       
 in {

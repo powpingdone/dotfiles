@@ -1,27 +1,30 @@
 #+TITLE: PPD's Emacs
 #+AUTHOR: powpingdone
-#+STARTUP showeverything
+#+STARTUP: showeverything
 
 * TABLE OF CONTENTS
 :PROPERTIES:
-:TOC: :include all :ignore this :ignore 
+:TOC: :include all :ignore this :ignore NOTES
 :END:
 
 :CONTENTS:
-- [[#notes][NOTES:]]
+- [[#notes][NOTES]]
 - [[#priority-load][PRIORITY LOAD]]
   - [[#emacs-main-config][Emacs main config]]
   - [[#evil-mode-vim-binds][Evil Mode (vim binds)]]
   - [[#which-key][Which Key]]
   - [[#generalel-binding-creation][General.el (binding creation)]]
 - [[#org-mode][ORG MODE]]
-  - [[#general-org-mode-packages][General org mode packages]]
+  - [[#table-of-contents][Table of contents]]
+  - [[#note-taking][Note taking]]
 - [[#apperance][APPERANCE]]
+  - [[#emacs-config][Emacs Config]]
   - [[#doom-themes][Doom themes]]
   - [[#doom-modeline][Doom Modeline]]
+  - [[#tree-sitter][Tree sitter]]
 :END:
 
-* NOTES:
+* NOTES
 + use-package is already loaded in nix, and as such packages come from nix
 
 * PRIORITY LOAD
@@ -30,10 +33,6 @@
 
 #+begin_src emacs-lisp
 
-  (scroll-bar-mode -1)
-  (menu-bar-mode -1)
-  (tool-bar-mode -1)
-  (set-fringe-mode 16)
   (require 'use-package-ensure)
   (setq use-package-always-ensure t)
 
@@ -43,21 +42,22 @@
 
 #+begin_src emacs-lisp
 
-    (use-package evil
-      :demand t
-      :init
-      (setq evil-vsplit-window-right t
-      evil-split-window-below t
-      evil-toggle-key "C-~")
-      :config
-      (evil-mode 1))
+      (use-package evil
+        :demand t
+        :init
+        (setq evil-vsplit-window-right t
+        evil-split-window-below t
+        evil-toggle-key "C-~"
+        evil-want-keybinding t)
+        :config
+        (evil-mode 1))
 
-    (use-package evil-collection
-      :after evil
-      :config
-      (evil-collection-init))
+      (use-package evil-collection
+        :after evil
+        :config
+        (evil-collection-init))
 
-    (use-package evil-tutor)
+      (use-package evil-tutor)
 
 #+end_src
 
@@ -67,7 +67,7 @@
 
   (use-package which-key
     :demand t
-    :diminish which-key-mode
+    :config (which-key-mode)
     :custom
     (which-key-idle-delay 0.325))
 
@@ -78,6 +78,7 @@
 #+begin_src emacs-lisp
 
   (use-package general
+    :demand t
     :config
     (general-evil-setup))
 
@@ -86,16 +87,43 @@
 
 * ORG MODE
 
-** General org mode packages
+** Table of contents 
 
 #+begin_src emacs-lisp
 
-  (use-package org-make-toc
-    :hook org-mode)
+    (use-package org-make-toc
+      :hook org-mode)
 
 #+end_src
 
+** Note taking 
+
+#+begin_src emacs-lisp
+
+      (use-package org-roam
+        :hook org-mode)
+      (use-package pdf-tools
+        )  
+
+          (use-package org-noter
+            :hook org-mode
+            :config
+            (org-noter-enable-org-roam-integration))
+          
+#+end_src
+
 * APPERANCE
+
+** Emacs Config
+
+#+begin_src emacs-lisp
+
+  (scroll-bar-mode -1)
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (set-fringe-mode 4)
+  
+#+end_src
 
 ** Doom themes
 
@@ -121,5 +149,16 @@
         :hook after-init
   :init
   (setq doom-modeline-height 28))
+
+#+end_src
+
+** Tree sitter
+
+#+begin_src emacs-lisp
+
+ (use-package treesit-auto
+   :demand t
+   :config
+   (global-treesit-auto-mode))
 
 #+end_src
