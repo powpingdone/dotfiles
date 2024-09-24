@@ -6,7 +6,6 @@
 :PROPERTIES:
 :TOC: :include all :ignore this :ignore NOTES
 :END:
-
 :CONTENTS:
 - [[#notes][NOTES]]
 - [[#priority-load][PRIORITY LOAD]]
@@ -27,6 +26,7 @@
 
 * NOTES
 + use-package is already loaded in nix, and as such packages come from nix
+ 
   
 * PRIORITY LOAD
 
@@ -34,8 +34,8 @@
 
 #+begin_src emacs-lisp
 
-    (require 'use-package-ensure)
-    (setq use-package-always-ensure t)
+  (require 'use-package-ensure)
+  (setq use-package-always-ensure t)
 
 #+end_src
 
@@ -109,19 +109,19 @@
 
 #+begin_src emacs-lisp
 
-  (add-hook 'org-mode-hook 'org-indent-mode)
-  (add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
-  (use-package org-bullets
-    :hook org-mode)
-    
+      (add-hook 'org-mode-hook 'org-indent-mode)
+      (add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
+      (use-package org-bullets
+        :hook org-mode)
+        
 #+end_src
 
 ** Table of contents 
 
 #+begin_src emacs-lisp
 
-    (use-package org-make-toc
-      :hook (org-mode . org-make-toc-mode))
+  (use-package org-make-toc
+    :hook (org-mode . org-make-toc-mode))
 
 #+end_src
 
@@ -129,18 +129,18 @@
 
 #+begin_src emacs-lisp
 
-  (use-package org-roam
-    :hook org-mode)
-  (use-package pdf-tools
-    :magic ("%PDF" . pdf-view-mode)
-    :hook (pdf-view-mode . (lambda () (display-line-numbers-mode -1))) 
-  )  
+    (use-package org-roam)
+    (use-package pdf-tools
+      :magic ("%PDF" . pdf-view-mode)
+      :hook (pdf-view-mode . (lambda () (display-line-numbers-mode -1))) 
+    )  
 
-      (use-package org-noter
-        :commands org-noter
-        :config
-        (org-noter-enable-org-roam-integration))
-      
+        (use-package org-noter
+          :commands org-noter
+          :after org-roam
+          :config
+          (org-noter-enable-org-roam-integration))
+        
 #+end_src
 
 
@@ -165,15 +165,14 @@
 
 #+begin_src emacs-lisp
 
-  ;;(use-package doom-themes
-  ;;  :demand t
-  ;;  :config
-  ;;  (setq doom-themes-enable-bold t
-  ;;	  doom-themes-enable-italic t)
-  ;;  (load-theme 'doom-one t)
-  ;;  (doom-themes-visual-bell-config)
-  ;;  (doom-themes-org-config)
-  ;;  )
+    (use-package doom-themes
+      :init
+      (setq doom-themes-enable-bold t
+    	doom-themes-enable-italic t)
+      :config
+      (load-theme 'doom-one t)
+      (doom-themes-org-config)
+    )
 
 #+end_src
 
@@ -181,11 +180,11 @@
 
 #+begin_src emacs-lisp
 
-      (use-package doom-modeline
-        :demand t
-        :hook after-init
-  :init
-  (setq doom-modeline-height 28))
+  (use-package doom-modeline
+    :demand t
+    :hook after-init
+    :init
+    (setq doom-modeline-height 28))
 
 #+end_src
 
@@ -193,9 +192,9 @@
 
 #+begin_src emacs-lisp
 
- (use-package treesit-auto
-   :demand t
-   :config
-   (global-treesit-auto-mode))
+   (use-package treesit-auto
+     :demand t
+     :config
+     (global-treesit-auto-mode))
 
 #+end_src
