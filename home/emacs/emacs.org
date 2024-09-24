@@ -170,10 +170,10 @@
     :config
     (setq doom-themes-enable-bold t
   	  doom-themes-enable-italic t)
-    (require 'doom-themes)
     (load-theme 'doom-one t)
     ;(doom-themes-visual-bell-config)
-    (doom-themes-org-config))
+    ;(doom-themes-org-config)
+    )
 
 #+end_src
 
