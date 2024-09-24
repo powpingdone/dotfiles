@@ -1,6 +1,6 @@
 #+TITLE: PPD's Emacs
 #+AUTHOR: powpingdone
-#+STARTUP: showeverything
+#+STARTUP: show2levels
 
 * TABLE OF CONTENTS
 :PROPERTIES:
@@ -18,7 +18,6 @@
   - [[#org-modern][Org Modern]]
   - [[#org-modern-indent][Org Modern Indent]]
   - [[#table-of-contents][Table of contents]]
-  - [[#pdf-tools][PDF Tools]]
   - [[#org-roam][Org Roam]]
   - [[#org-noter][Org Noter]]
   - [[#org-appear][Org Appear]]
@@ -28,24 +27,38 @@
   - [[#doom-modeline][Doom Modeline]]
   - [[#tree-sitter][Tree sitter]]
   - [[#beacon][Beacon]]
+  - [[#pdf-tools][PDF Tools]]
 :END:
 
+
 * NOTES
+:PROPERTIES:
+:CUSTOM_ID: notes
+:END:
 + use-package is already loaded in nix, and as such packages come from nix
  
   
 * PRIORITY LOAD
+:PROPERTIES:
+:CUSTOM_ID: priority-load
+:END:
 
 ** Emacs main config
+:PROPERTIES:
+:CUSTOM_ID: emacs-main-config
+:END:
 
 #+begin_src emacs-lisp
 
   (require 'use-package-ensure)
-    (setq use-package-always-ensure t)
+  (setq use-package-always-ensure t)
 
 #+end_src
 
 ** Evil Mode (vim binds)
+:PROPERTIES:
+:CUSTOM_ID: evil-mode-vim-binds
+:END:
 
 #+begin_src emacs-lisp
 
@@ -69,6 +82,9 @@
 #+end_src
 
 ** Which Key
+:PROPERTIES:
+:CUSTOM_ID: which-key
+:END:
 
 #+begin_src emacs-lisp
 
@@ -81,6 +97,9 @@
 #+end_src
 
 ** General.el (binding creation)
+:PROPERTIES:
+:CUSTOM_ID: generalel-binding-creation
+:END:
 
 #+begin_src emacs-lisp
 
@@ -110,8 +129,14 @@
 
 
 * ORG MODE
+:PROPERTIES:
+:CUSTOM_ID: org-mode
+:END:
 
 ** Org config
+:PROPERTIES:
+:CUSTOM_ID: org-config
+:END:
 
 #+begin_src emacs-lisp
 
@@ -121,6 +146,7 @@
 	  org-hide-leading-stars t
       	  org-startup-indented t
     	  org-src-preserve-indentation t)
+    :config
     :hook
     (org-mode . org-indent-mode)
     (org-mode . (lambda () (display-line-numbers-mode -1))))
@@ -128,23 +154,29 @@
 #+end_src
 
 ** Org Modern
+:PROPERTIES:
+:CUSTOM_ID: org-modern
+:END:
 Org mode but more fancy and pretty.
 
 #+begin_src emacs-lisp
 
   (use-package org-modern
     :after org
-    :hook
-    (org-mode . org-modern-mode)
-    (org-agenda-finalize . org-modern-agenda)
+    :config
+    (global-org-modern-mode)
     :init
     (setq org-modern-keyword nil
 	  org-modern-star 'replace
 	  org-modern-hide-stars " "))
 
 #+end_src
+
 ** Org Modern Indent
-Because org-indent is nice but org-modern blocks don't like it.
+:PROPERTIES:
+:CUSTOM_ID: org-modern-indent
+:END:
+Because org-indent is nice but org-modern blocks don't like it. Uses a nixos derivation to fetch.
 
 #+begin_src emacs-lisp
 
@@ -156,28 +188,25 @@ Because org-indent is nice but org-modern blocks don't like it.
 #+end_src
 
 ** Table of contents 
+:PROPERTIES:
+:CUSTOM_ID: table-of-contents
+:END:
 Adds a table of contents to an org mode documents.
 
 #+begin_src emacs-lisp
 
   (use-package org-make-toc
+    :init
+    (setq org-make-toc-insert-custom-ids t)
     :after org
     :hook (org-mode . org-make-toc-mode))
 
 #+end_src
 
-** PDF Tools
-Viewing PDFs in emacs has never been more easy!
-
-#+begin_src emacs-lisp
-
-  (use-package pdf-tools
-    :magic ("%PDF" . pdf-view-mode)
-    :hook (pdf-view-mode . (lambda () (display-line-numbers-mode -1))))
-
-#+end_src
-
 ** Org Roam
+:PROPERTIES:
+:CUSTOM_ID: org-roam
+:END:
 Cross link org mode documents.
 
 #+begin_src emacs-lisp
@@ -188,26 +217,33 @@ Cross link org mode documents.
 #+end_src
 
 ** Org Noter
+:PROPERTIES:
+:CUSTOM_ID: org-noter
+:END:
 Requires pdf-tools to markup documents. Annotate PDF pages with org mode.
 
 #+begin_src emacs-lisp
 
   (use-package org-noter
     :commands org-noter
-    :after org-roam org pdf-tools
+    :after (org-roam org pdf-tools)
     :config
     (org-noter-enable-org-roam-integration))
           
 #+end_src
 
 ** Org Appear
+:PROPERTIES:
+:CUSTOM_ID: org-appear
+:END:
 To quote: Make invisible parts of Org elements appear visible. Stuff like links actually work and can be (un)hidden.
 
 #+begin_src emacs-lisp
 
   (use-package org-appear
     :init
-    (setq org-appear-trigger 'manual)
+    (setq org-appear-trigger 'manual
+	  org-appear-autolinks t)
     :hook
     (org-mode .
       (lambda ()
@@ -217,9 +253,16 @@ To quote: Make invisible parts of Org elements appear visible. Stuff like links 
 
 #+end_src
 
+
 * APPERANCE
+:PROPERTIES:
+:CUSTOM_ID: apperance
+:END:
 
 ** Emacs Config
+:PROPERTIES:
+:CUSTOM_ID: emacs-config
+:END:
 Stock emacs stuff that makes me vomit less.
 
 #+begin_src emacs-lisp
@@ -231,11 +274,16 @@ Stock emacs stuff that makes me vomit less.
   (global-display-line-numbers-mode 1)
   (global-visual-line-mode 1)
   (dolist (mode '(term-mode-hook eshell-mode-hook))
-    (add-hook mode (lambda () (display-line-numbers-mode -1)) ))
+    (add-hook mode (lambda () (display-line-numbers-mode -1))))
+  (set-face-attribute 'variable-pitch nil :family "Liberation Sans" :height 1.1)
+  (set-face-attribute 'fixed-pitch nil :family "DejaVu Sans Mono" :height 1.1)
   
 #+end_src
 
 ** Doom themes
+:PROPERTIES:
+:CUSTOM_ID: doom-themes
+:END:
 I wish I had something similar to sainnhe/edge but doom-one is ok for right now.
 
 #+begin_src emacs-lisp
@@ -251,6 +299,9 @@ I wish I had something similar to sainnhe/edge but doom-one is ok for right now.
 #+end_src
 
 ** Doom Modeline
+:PROPERTIES:
+:CUSTOM_ID: doom-modeline
+:END:
 My modeline looks so nice! 
 
 #+begin_src emacs-lisp
@@ -264,6 +315,9 @@ My modeline looks so nice!
 #+end_src
 
 ** Tree sitter
+:PROPERTIES:
+:CUSTOM_ID: tree-sitter
+:END:
 Fancy syntax highlighting. NixOS provides all the treesit-grammars.
 
 #+begin_src emacs-lisp
@@ -276,6 +330,9 @@ Fancy syntax highlighting. NixOS provides all the treesit-grammars.
 #+end_src
 
 ** Beacon
+:PROPERTIES:
+:CUSTOM_ID: beacon
+:END:
 My cursor is right here!
 
 #+begin_src emacs-lisp
@@ -283,4 +340,18 @@ My cursor is right here!
     :demand t
     :config
     (beacon-mode 1))
+#+end_src
+
+** PDF Tools
+:PROPERTIES:
+:CUSTOM_ID: pdf-tools
+:END:
+Viewing PDFs in emacs has never been more easy!
+
+#+begin_src emacs-lisp
+
+  (use-package pdf-tools
+    :magic ("%PDF" . pdf-view-mode)
+    :hook (pdf-view-mode . (lambda () (display-line-numbers-mode -1))))
+
 #+end_src
