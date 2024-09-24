@@ -17,20 +17,31 @@
     }))
     .emacsWithPackages (epkgs:
       with epkgs; [
+        # PRIORITY LOAD
         evil
         evil-collection
         evil-tutor
         which-key
         general
-        org-bullets
+	# ORG MODE
+	org-modern
+	(trivialBuild {
+	  packageRequires = [ compat org org-modern ];
+          pname = "org-modern-indent";
+          src = inputs.org-modern-indent;
+          version = "0.1.4";
+        })
         org-make-toc
         org-roam
         pdf-tools
         org-noter
+	org-appear
+	# APPEARANCE
         doom-themes
         doom-modeline
         treesit-auto
         treesit-grammars.with-all-grammars
+	beacon
       ]);
 in {
   config = lib.mkIf config.ppd.emacs.enable {

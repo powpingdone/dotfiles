@@ -4,7 +4,7 @@
 
 * TABLE OF CONTENTS
 :PROPERTIES:
-:TOC: :include all :ignore this :ignore NOTES
+:TOC: :include all :ignore this 
 :END:
 :CONTENTS:
 - [[#notes][NOTES]]
@@ -14,14 +14,20 @@
   - [[#which-key][Which Key]]
   - [[#generalel-binding-creation][General.el (binding creation)]]
 - [[#org-mode][ORG MODE]]
-  - [[#general-config-and-appearance][General config and appearance]]
+  - [[#org-config][Org config]]
+  - [[#org-modern][Org Modern]]
+  - [[#org-modern-indent][Org Modern Indent]]
   - [[#table-of-contents][Table of contents]]
-  - [[#note-taking][Note taking]]
+  - [[#pdf-tools][PDF Tools]]
+  - [[#org-roam][Org Roam]]
+  - [[#org-noter][Org Noter]]
+  - [[#org-appear][Org Appear]]
 - [[#apperance][APPERANCE]]
   - [[#emacs-config][Emacs Config]]
   - [[#doom-themes][Doom themes]]
   - [[#doom-modeline][Doom Modeline]]
   - [[#tree-sitter][Tree sitter]]
+  - [[#beacon][Beacon]]
 :END:
 
 * NOTES
@@ -35,7 +41,7 @@
 #+begin_src emacs-lisp
 
   (require 'use-package-ensure)
-  (setq use-package-always-ensure t)
+    (setq use-package-always-ensure t)
 
 #+end_src
 
@@ -105,55 +111,123 @@
 
 * ORG MODE
 
-** General config and appearance
+** Org config
 
 #+begin_src emacs-lisp
 
-      (add-hook 'org-mode-hook 'org-indent-mode)
-      (add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
-      (use-package org-bullets
-        :hook org-mode)
-        
+  (use-package org
+    :init
+    (setq org-enforce-todo-dependencies t
+	  org-hide-leading-stars t
+      	  org-startup-indented t
+    	  org-src-preserve-indentation t)
+    :hook
+    (org-mode . org-indent-mode)
+    (org-mode . (lambda () (display-line-numbers-mode -1))))
+                
+#+end_src
+
+** Org Modern
+Org mode but more fancy and pretty.
+
+#+begin_src emacs-lisp
+
+  (use-package org-modern
+    :after org
+    :hook
+    (org-mode . org-modern-mode)
+    (org-agenda-finalize . org-modern-agenda)
+    :init
+    (setq org-modern-keyword nil
+	  org-modern-star 'replace
+	  org-modern-hide-stars " "))
+
+#+end_src
+** Org Modern Indent
+Because org-indent is nice but org-modern blocks don't like it.
+
+#+begin_src emacs-lisp
+
+  (use-package org-modern-indent
+    :after org-modern
+    :config
+    (add-hook 'org-mode-hook #'org-modern-indent-mode 90))
+
 #+end_src
 
 ** Table of contents 
+Adds a table of contents to an org mode documents.
 
 #+begin_src emacs-lisp
 
   (use-package org-make-toc
+    :after org
     :hook (org-mode . org-make-toc-mode))
 
 #+end_src
 
-** Note taking 
+** PDF Tools
+Viewing PDFs in emacs has never been more easy!
 
 #+begin_src emacs-lisp
 
-    (use-package org-roam)
-    (use-package pdf-tools
-      :magic ("%PDF" . pdf-view-mode)
-      :hook (pdf-view-mode . (lambda () (display-line-numbers-mode -1))) 
-    )  
+  (use-package pdf-tools
+    :magic ("%PDF" . pdf-view-mode)
+    :hook (pdf-view-mode . (lambda () (display-line-numbers-mode -1))))
 
-        (use-package org-noter
-          :commands org-noter
-          :after org-roam
-          :config
-          (org-noter-enable-org-roam-integration))
-        
 #+end_src
 
+** Org Roam
+Cross link org mode documents.
+
+#+begin_src emacs-lisp
+
+  (use-package org-roam
+    :after org)
+
+#+end_src
+
+** Org Noter
+Requires pdf-tools to markup documents. Annotate PDF pages with org mode.
+
+#+begin_src emacs-lisp
+
+  (use-package org-noter
+    :commands org-noter
+    :after org-roam org pdf-tools
+    :config
+    (org-noter-enable-org-roam-integration))
+          
+#+end_src
+
+** Org Appear
+To quote: Make invisible parts of Org elements appear visible. Stuff like links actually work and can be (un)hidden.
+
+#+begin_src emacs-lisp
+
+  (use-package org-appear
+    :init
+    (setq org-appear-trigger 'manual)
+    :hook
+    (org-mode .
+      (lambda ()
+        (add-hook 'evil-insert-state-entry-hook #'org-appear-manual-start nil t)
+        (add-hook 'evil-insert-state-exit-hook #'org-appear-manual-stop nil t))
+      ))
+
+#+end_src
 
 * APPERANCE
 
 ** Emacs Config
+Stock emacs stuff that makes me vomit less.
 
 #+begin_src emacs-lisp
 
   (scroll-bar-mode -1)
   (menu-bar-mode -1)
   (tool-bar-mode -1)
-  (set-fringe-mode 4)
+  (set-fringe-mode 8)
   (global-display-line-numbers-mode 1)
   (global-visual-line-mode 1)
   (dolist (mode '(term-mode-hook eshell-mode-hook))
@@ -162,21 +236,22 @@
 #+end_src
 
 ** Doom themes
+I wish I had something similar to sainnhe/edge but doom-one is ok for right now.
 
 #+begin_src emacs-lisp
 
-    (use-package doom-themes
-      :init
-      (setq doom-themes-enable-bold t
-    	doom-themes-enable-italic t)
-      :config
-      (load-theme 'doom-one t)
-      (doom-themes-org-config)
-    )
+  (use-package doom-themes
+    :init
+    (setq doom-themes-enable-bold t
+          doom-themes-enable-italic t)
+    :config
+    (load-theme 'doom-one t)
+    (doom-themes-org-config))
 
 #+end_src
 
 ** Doom Modeline
+My modeline looks so nice! 
 
 #+begin_src emacs-lisp
 
@@ -189,6 +264,7 @@
 #+end_src
 
 ** Tree sitter
+Fancy syntax highlighting. NixOS provides all the treesit-grammars.
 
 #+begin_src emacs-lisp
 
@@ -197,4 +273,14 @@
      :config
      (global-treesit-auto-mode))
 
+#+end_src
+
+** Beacon
+My cursor is right here!
+
+#+begin_src emacs-lisp
+  (use-package beacon
+    :demand t
+    :config
+    (beacon-mode 1))
 #+end_src

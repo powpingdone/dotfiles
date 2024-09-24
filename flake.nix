@@ -20,6 +20,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "";
     };
+
+    # external deps
+    org-modern-indent = {
+      # make sure to set the version in home/emacs/default.nix
+      url = "github:jdtsmith/org-modern-indent/v0.1.4";
+      flake = false;
+    };
   };
 
   outputs = {
