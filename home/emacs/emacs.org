@@ -9,7 +9,7 @@
 :CONTENTS:
 - [[#notes][NOTES]]
 - [[#priority-load][PRIORITY LOAD]]
-  - [[#emacs-use-pkg-config][Emacs use-pkg config]]
+  - [[#emacs-use-package-config][Emacs use-package config]]
   - [[#evil-mode-vim-binds][Evil Mode (vim binds)]]
   - [[#which-key][Which Key]]
   - [[#generalel-binding-creation][General.el (binding creation)]]
@@ -29,8 +29,8 @@
   - [[#tree-sitter][Tree sitter]]
   - [[#beacon][Beacon]]
 - [[#tools][TOOLS]]
-  - [[#sudo-edit][Sudo Edit]]
   - [[#pdf-tools][PDF Tools]]
+  - [[#sudo-edit][Sudo Edit]]
 :END:
 
 
@@ -46,9 +46,9 @@
 :CUSTOM_ID: priority-load
 :END:
 
-** Emacs use-pkg config
+** Emacs use-package config
 :PROPERTIES:
-:CUSTOM_ID: emacs-use-pkg-config
+:CUSTOM_ID: emacs-use-package-config
 :END:
 Basically, nixos provides the packages (for rollback reasons) and emacs loads them in.
 
@@ -117,7 +117,7 @@ Basically, nixos provides the packages (for rollback reasons) and emacs loads th
       :states '(normal insert visual emacs)
       :keymaps 'override
       :prefix "SPC"
-      :global-prefix "M-SPC") ;; insert mode
+      :global-prefix "C-M-SPC") ;; insert mode
 
     (leader-key
       ;; buffer binds
@@ -170,11 +170,11 @@ Basically, nixos provides the packages (for rollback reasons) and emacs loads th
 	  org-hide-leading-stars t
       	  org-startup-indented t
     	  org-src-preserve-indentation t)
+    (require 'org-tempo)
     :hook
     (org-mode . org-indent-mode)
     (org-mode . (lambda ()
-		  (display-line-numbers-mode -1)
-		  (require 'org-tempo))))
+		  (display-line-numbers-mode -1))))
                 
 #+end_src
 
@@ -234,12 +234,16 @@ Adds a table of contents to an org mode documents.
 :END:
 Cross link org mode documents.
 
-Add which key bindings to this
+Add which key bindings to this.
 
 #+begin_src emacs-lisp
 
   (use-package org-roam
-    :after org)
+    :after org
+    :init
+    (setq org-roam-directory (file-truename "~/org/roam"))   
+    :config
+    (org-roam-db-autosync-mode))
 
 #+end_src
 
@@ -252,8 +256,12 @@ Requires pdf-tools to markup documents. Annotate PDF pages with org mode.
 #+begin_src emacs-lisp
 
   (use-package org-noter
-    :commands org-noter
-    :after (org-roam org pdf-tools)
+;    :commands org-noter
+    :after (org-roam org)
+    :init
+    (leader-key
+      :keymaps 'org-mode-map
+      "lQ" 'org-noter)
     :config
     (org-noter-enable-org-roam-integration)
     (leader-key
@@ -267,18 +275,17 @@ Requires pdf-tools to markup documents. Annotate PDF pages with org mode.
       "l." '(org-noter-sync-current-note :wk "Current Note")
       "lF" '(org-noter-sync-next-page-or-chapter :wk "Next Page/Chapter")
       "lI" '(org-noter-sync-prev-page-or-chapter :wk "Prev Page/Chapter")
-      "l>" '(org-noter-sync-current-page-or-chapter :wk "Current Page/Chapter"))
-    (leader-key
-      :keymaps 'org-mode-map
-      "lQ" 'org-noter))
+      "l>" '(org-noter-sync-current-page-or-chapter :wk "Current Page/Chapter")))
           
 #+end_src
 
-** Org Appear
+** TODO Org Appear
 :PROPERTIES:
 :CUSTOM_ID: org-appear
 :END:
 To quote: Make invisible parts of Org elements appear visible. Stuff like links actually work and can be (un)hidden.
+
+This doesn't seem to be functional right now.
 
 #+begin_src emacs-lisp
 
@@ -334,8 +341,8 @@ Stock emacs stuff that makes me vomit less.
   (global-visual-line-mode 1)
   (dolist (mode '(term-mode-hook eshell-mode-hook))
     (add-hook mode (lambda () (display-line-numbers-mode -1))))
-  (set-face-attribute 'variable-pitch nil :family "Liberation Sans" :height 1.1)
-  (set-face-attribute 'fixed-pitch nil :family "DejaVu Sans Mono" :height 1.1)
+  (set-face-attribute 'variable-pitch nil :family "DejaVu Sans" :height 1.2)
+  (set-face-attribute 'fixed-pitch nil :family "DejaVu Sans Mono" :height 1.2)
   (electric-indent-mode -1)
   
 #+end_src
@@ -354,7 +361,8 @@ I wish I had something similar to sainnhe/edge but doom-one is ok for right now.
           doom-themes-enable-italic t)
     :config
     (load-theme 'doom-one t)
-    (doom-themes-org-config))
+    ;(doom-themes-org-config)
+    )
 
 #+end_src
 
@@ -408,22 +416,6 @@ My cursor is right here!
 :PROPERTIES:
 :CUSTOM_ID: tools
 :END:
-** Sudo Edit
-:PROPERTIES:
-:CUSTOM_ID: sudo-edit
-:END:
-Open a file with root priveleges.
-
-#+begin_src emacs-lisp
-
-  (use-package sudo-edit
-    :config
-    (leader-key
-      ;; sudo file binds
-      "fu" '(sudo-edit-find-file :wk "SUDO find file")
-      "fU" '(sudo-edit :wk "SUDO this file"))
-
-#+end_src
 ** PDF Tools
 :PROPERTIES:
 :CUSTOM_ID: pdf-tools
@@ -437,3 +429,21 @@ Viewing PDFs in emacs has never been more easy!
     :hook (pdf-view-mode . (lambda () (display-line-numbers-mode -1))))
 
 #+end_src
+
+** Sudo Edit
+:PROPERTIES:
+:CUSTOM_ID: sudo-edit
+:END:
+Open a file with root priveleges.
+
+#+begin_src emacs-lisp
+
+  (use-package sudo-edit
+    :config
+    (leader-key
+      ;; sudo file binds
+      "fu" '(sudo-edit-find-file :wk "SUDO find file")
+      "fU" '(sudo-edit :wk "SUDO this file")))
+
+#+end_src
+
