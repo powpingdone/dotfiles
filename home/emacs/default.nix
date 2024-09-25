@@ -33,15 +33,18 @@
         })
         org-make-toc
         org-roam
-        pdf-tools
         org-noter
 	org-appear
+	org-super-agenda
 	# APPEARANCE
         doom-themes
         doom-modeline
         treesit-auto
         treesit-grammars.with-all-grammars
 	beacon
+	# TOOLS
+	sudo-edit
+        pdf-tools
       ]);
 in {
   config = lib.mkIf config.ppd.emacs.enable {

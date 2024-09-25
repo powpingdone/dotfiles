@@ -9,7 +9,7 @@
 :CONTENTS:
 - [[#notes][NOTES]]
 - [[#priority-load][PRIORITY LOAD]]
-  - [[#emacs-main-config][Emacs main config]]
+  - [[#emacs-use-pkg-config][Emacs use-pkg config]]
   - [[#evil-mode-vim-binds][Evil Mode (vim binds)]]
   - [[#which-key][Which Key]]
   - [[#generalel-binding-creation][General.el (binding creation)]]
@@ -21,12 +21,15 @@
   - [[#org-roam][Org Roam]]
   - [[#org-noter][Org Noter]]
   - [[#org-appear][Org Appear]]
+  - [[#org-super-agenda][Org Super Agenda]]
 - [[#apperance][APPERANCE]]
   - [[#emacs-config][Emacs Config]]
   - [[#doom-themes][Doom themes]]
   - [[#doom-modeline][Doom Modeline]]
   - [[#tree-sitter][Tree sitter]]
   - [[#beacon][Beacon]]
+- [[#tools][TOOLS]]
+  - [[#sudo-edit][Sudo Edit]]
   - [[#pdf-tools][PDF Tools]]
 :END:
 
@@ -43,10 +46,11 @@
 :CUSTOM_ID: priority-load
 :END:
 
-** Emacs main config
+** Emacs use-pkg config
 :PROPERTIES:
-:CUSTOM_ID: emacs-main-config
+:CUSTOM_ID: emacs-use-pkg-config
 :END:
+Basically, nixos provides the packages (for rollback reasons) and emacs loads them in.
 
 #+begin_src emacs-lisp
 
@@ -104,6 +108,7 @@
 #+begin_src emacs-lisp
 
   (use-package general
+    :demand t
     :config
     (general-evil-setup)
     
@@ -114,15 +119,34 @@
       :prefix "SPC"
       :global-prefix "M-SPC") ;; insert mode
 
-    ;; buffer binds
     (leader-key
-     "b" '(:ignore t :wk "buffer")
-     "bb" '(switch-to-buffer :wk "switch buffer")
-     "bd" '(kill-this-buffer :wk "kill buffer")
-     "bn" '(next-buffer :wk "next buffer")
-     "bp" '(previous-buffer :wk "previous buffer")
-     "br" '(revert-buffer :wk "reload buffer"))
-
+      ;; buffer binds
+      "b" '(:ignore t :wk "buffer")
+      "bb" '(switch-to-buffer :wk "switch buffer")
+      "bd" '(kill-this-buffer :wk "kill buffer")
+      "bn" '(next-buffer :wk "next buffer")
+      "bp" '(previous-buffer :wk "previous buffer")
+      "br" '(revert-buffer :wk "reload buffer")
+      "bi" '(ibuffer :wk "ibuffer")
+      ;; help binds
+      "h" '(:ignore t :wk "help")
+      "hf" '(describe-function :wk "describe function")
+      "hv" '(describe-variable :wk "describe variable")
+      "hR" '(ppd/reload-emacs :wk "reload emacs")
+      ;; toggles
+      "t" '(:ignore t :wk "toggle")
+      "tl" '(display-line-numbers-mode :wk "Toggle line numbers")
+      "tt" '(visual-line-mode :wk "Toggle truncated lines")
+      ;; find
+      "f" '(:ignore t :wk "find")
+      "fc" '((lambda () (interactive) (find-file "/etc/nixos")) :wk "Edit file in NixOS config")
+      "ff" '(find-file :wk "Find file")
+      ;; language specific
+      "l" '(:ignore t :wk "lang")
+      "l`" '(comment-line :wk "comment line(s)")
+      ;; emacs programs
+      "d" '(:ignore t :wk "programs")
+      "da" 'org-agenda)
     )
 
 #+end_src
@@ -146,10 +170,11 @@
 	  org-hide-leading-stars t
       	  org-startup-indented t
     	  org-src-preserve-indentation t)
-    :config
     :hook
     (org-mode . org-indent-mode)
-    (org-mode . (lambda () (display-line-numbers-mode -1))))
+    (org-mode . (lambda ()
+		  (display-line-numbers-mode -1)
+		  (require 'org-tempo))))
                 
 #+end_src
 
@@ -203,11 +228,13 @@ Adds a table of contents to an org mode documents.
 
 #+end_src
 
-** Org Roam
+** TODO Org Roam
 :PROPERTIES:
 :CUSTOM_ID: org-roam
 :END:
 Cross link org mode documents.
+
+Add which key bindings to this
 
 #+begin_src emacs-lisp
 
@@ -228,7 +255,22 @@ Requires pdf-tools to markup documents. Annotate PDF pages with org mode.
     :commands org-noter
     :after (org-roam org pdf-tools)
     :config
-    (org-noter-enable-org-roam-integration))
+    (org-noter-enable-org-roam-integration)
+    (leader-key
+     :keymaps 'org-noter-doc-mode-map
+     "lr" '(org-noter-insert-note :wk "Insert Note")
+     "lR" '(org-noter-insert-precise-note :wk "Insert Precise Note"))
+    (leader-key
+      :keymaps '(org-noter-doc-mode-map org-noter-notes-mode-map)
+      "lf" '(org-noter-sync-next-note :wk "Next Note")
+      "li" '(org-noter-sync-prev-note :wk "Prev Note")
+      "l." '(org-noter-sync-current-note :wk "Current Note")
+      "lF" '(org-noter-sync-next-page-or-chapter :wk "Next Page/Chapter")
+      "lI" '(org-noter-sync-prev-page-or-chapter :wk "Prev Page/Chapter")
+      "l>" '(org-noter-sync-current-page-or-chapter :wk "Current Page/Chapter"))
+    (leader-key
+      :keymaps 'org-mode-map
+      "lQ" 'org-noter))
           
 #+end_src
 
@@ -250,6 +292,23 @@ To quote: Make invisible parts of Org elements appear visible. Stuff like links 
         (add-hook 'evil-insert-state-entry-hook #'org-appear-manual-start nil t)
         (add-hook 'evil-insert-state-exit-hook #'org-appear-manual-stop nil t))
       ))
+
+#+end_src
+
+** TODO Org Super Agenda
+:PROPERTIES:
+:CUSTOM_ID: org-super-agenda
+:END:
+A "better agenda" that sorts by priority and today.
+
+Make sure to set this up accordingly. 
+
+#+begin_src emacs-lisp
+
+  (use-package org-super-agenda
+    :demand t
+    :config
+    (org-super-agenda-mode))
 
 #+end_src
 
@@ -277,6 +336,7 @@ Stock emacs stuff that makes me vomit less.
     (add-hook mode (lambda () (display-line-numbers-mode -1))))
   (set-face-attribute 'variable-pitch nil :family "Liberation Sans" :height 1.1)
   (set-face-attribute 'fixed-pitch nil :family "DejaVu Sans Mono" :height 1.1)
+  (electric-indent-mode -1)
   
 #+end_src
 
@@ -333,6 +393,7 @@ Fancy syntax highlighting. NixOS provides all the treesit-grammars.
 :PROPERTIES:
 :CUSTOM_ID: beacon
 :END:
+
 My cursor is right here!
 
 #+begin_src emacs-lisp
@@ -342,6 +403,27 @@ My cursor is right here!
     (beacon-mode 1))
 #+end_src
 
+
+* TOOLS
+:PROPERTIES:
+:CUSTOM_ID: tools
+:END:
+** Sudo Edit
+:PROPERTIES:
+:CUSTOM_ID: sudo-edit
+:END:
+Open a file with root priveleges.
+
+#+begin_src emacs-lisp
+
+  (use-package sudo-edit
+    :config
+    (leader-key
+      ;; sudo file binds
+      "fu" '(sudo-edit-find-file :wk "SUDO find file")
+      "fU" '(sudo-edit :wk "SUDO this file"))
+
+#+end_src
 ** PDF Tools
 :PROPERTIES:
 :CUSTOM_ID: pdf-tools
