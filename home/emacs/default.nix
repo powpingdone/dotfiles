@@ -105,11 +105,5 @@ in {
       # :lang nix
       age
     ];
-
-    home.activation = {
-      flatpakSetup = lib.hm.dag.entryAfter ["writeBoundary"] ''
-        run flatpak remote-add $VERBOSE_ARG --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-      '';
-    };
   };
 }

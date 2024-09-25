@@ -35,4 +35,11 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
       };
     };
   };
+
+  # add flathub repo
+  home.activation = {
+    flatpakSetup = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      run ${pkgs.flatpak}/bin/flatpak remote-add $VERBOSE_ARG --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    '';
+  };
 }
