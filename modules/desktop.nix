@@ -52,6 +52,8 @@
       xdgOpenUsePortal = true;
     };
 
+    services.flatpak.enable = true;
+
     # use ozone on desktop
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
   };
