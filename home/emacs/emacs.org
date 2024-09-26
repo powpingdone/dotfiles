@@ -427,7 +427,6 @@ I wish I had something similar to sainnhe/edge but doom-one is ok for right now.
           doom-themes-enable-italic t)
     :config
     (load-theme 'doom-one t)
-    ;(doom-themes-org-config)
     )
 
 #+end_src
