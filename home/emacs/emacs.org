@@ -166,10 +166,76 @@ Basically, nixos provides the packages (for rollback reasons) and emacs loads th
 
   (use-package org
     :init
+    (require 'doom-themes)
     (setq org-enforce-todo-dependencies t
+          org-use-fast-todo-selection t
 	  org-hide-leading-stars t
-      	  org-startup-indented t
-    	  org-src-preserve-indentation t)
+          org-startup-indented t
+          org-src-preserve-indentation t
+          org-default-notes-file "~/org/tasks.org"
+
+          org-todo-keywords '(
+            (sequence "TODO(t!)"       ; newly created / low-priority tasks
+                      "QUEUE(q!)"      ; enqueued, higher priority tasks
+                      "NOW(n!)"        ; what I need to work on now
+                      "WAITING(w@/!)"  ; waiting on other things to happen
+                      "STALLED(s@/!)"  ; long term waiting. usually on orders.
+                      "MONITOR(m!)"    ; continually checkup on this
+                      "|"
+                      "DONE(d@)"       ; no further action needed
+                      "REMOVED(r@)")   ; dead project
+
+            (sequence "EVENT(e@/!)"    ; new/generic event
+                      "PHONE(p@)"      ; phone call to be scheduled
+                      "ONLINE(o@)"    ; online service (teams, zoom) to call
+                      "GOTO(g@)"       ; physical location
+                      "|"
+                      "CANCELLED(c@)"  ; dead event
+                      "VISITED(v!)")   ; event finished
+
+            (sequence "IDEA(I)"        ; new idea
+                      "|"
+                      "QUASH(Q@)"      ; bad idea
+                      "CONSIDER(C@)")) ; good idea
+          
+          org-todo-keyword-faces '((
+            ("TODO" :inherit 'org-todo)
+            ("QUEUE" :foreground (doom-color 'yellow) :weight 'bold)
+            ("NOW" :foreground (doom-color 'red) :weight 'ultra-bold)
+            ("WAITING" :foreground (doom-color 'teal))
+            ("STALLED" :foreground (doom-darken (doom-color 'teal) 0.25))
+            ("MONITOR" :foreground (doom-color 'orange))
+            ("DONE" :foreground (doom-color 'comments))
+            ("REMOVED" :foreground (doom-color 'comments))
+
+            ("EVENT" :foreground (doom-color 'blue))
+            ("PHONE" :foreground (doom-color 'cyan) :underline t)
+            ("ONLINE" :foreground (doom-color 'cyan) :underline t)
+            ("GOTO" :foreground (doom-color 'cyan) :underline t)
+            ("CANCELLED" :foreground (doom-color 'dark-cyan))
+            ("VISITED" :foreground (doom-color 'dark-cyan))
+           
+            ("IDEA" :inherit 'org-todo)
+            ("QUASH" :foreground (doom-color 'comments))
+            ("CONSIDER" :foreground (doom-color 'violet))))
+
+          org-capture-templates '(
+            ("i" "idea" entry (file "ideas.org")
+               "* [#9] %? :IDEA:\n%t\n")
+            ("t" "generic task" entry (file "")
+               "* TODO [#4] %?\n%u\n%a\n")
+            ("w" "work task" entry (file "")
+               "* QUEUE [#3] %?\n%u\n%a")
+            ("s" "school task" entry (file "")
+               "* QUEUE [#2] %?\n%u\n%a")
+            ("p" "PRIORITY TASK" entry (file "")
+               "* NOW [#1] %?\n%u\n%a")
+            ("H" "happening" entry (file "")
+               "* EVENT [#4] %?\nSCHEDULED: %T\n%u\n%a\n")
+            ("M" "meeting" entry (file "")
+               "* EVENT [#3] %? :MEETING:\nSCHEDULED: %T\n%u\n%a")
+            ("A" "APPOINTMENT" entry (file "") 
+               "* EVENT [#1] %? :MEETING:\nSCHEDULED: %T\n%u\n%a")))
     (require 'org-tempo)
     :hook
     (org-mode . org-indent-mode)
@@ -256,7 +322,7 @@ Requires pdf-tools to markup documents. Annotate PDF pages with org mode.
 #+begin_src emacs-lisp
 
   (use-package org-noter
-;    :commands org-noter
+    :commands org-noter
     :after (org-roam org)
     :init
     (leader-key
@@ -276,7 +342,7 @@ Requires pdf-tools to markup documents. Annotate PDF pages with org mode.
       "lF" '(org-noter-sync-next-page-or-chapter :wk "Next Page/Chapter")
       "lI" '(org-noter-sync-prev-page-or-chapter :wk "Prev Page/Chapter")
       "l>" '(org-noter-sync-current-page-or-chapter :wk "Current Page/Chapter")))
-          
+
 #+end_src
 
 ** TODO Org Appear
