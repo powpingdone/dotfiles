@@ -176,34 +176,48 @@ Basically, nixos provides the packages (for rollback reasons) and emacs loads th
 
           org-todo-keywords '(
             (sequence "TODO(t!)"       ; newly created / low-priority tasks
-                      "QUEUE(q!)"      ; enqueued, higher priority tasks
                       "NOW(n!)"        ; what I need to work on now
-                      "WAITING(w@/!)"  ; waiting on other things to happen
-                      "STALLED(s@/!)"  ; long term waiting. usually on orders.
+                      "WAITING(w@)"    ; waiting on other things to happen
                       "MONITOR(m!)"    ; continually checkup on this
                       "|"
                       "DONE(d@)"       ; no further action needed
                       "REMOVED(r@)")   ; dead project
 
-            (sequence "EVENT(e@/!)"    ; new/generic event
+            (sequence "EVENT(e!)"      ; new/generic event
                       "PHONE(p@)"      ; phone call to be scheduled
-                      "ONLINE(o@)"    ; online service (teams, zoom) to call
+                      "ONLINE(o@)"     ; online service (teams, zoom) to call
                       "GOTO(g@)"       ; physical location
                       "|"
                       "CANCELLED(c@)"  ; dead event
                       "VISITED(v!)")   ; event finished
 
-            (sequence "IDEA(I)"        ; new idea
+            (sequence "IDEA"           ; new idea
                       "|"
                       "QUASH(Q@)"      ; bad idea
                       "CONSIDER(C@)")) ; good idea
-          
+      
+          org-todo-state-tags-triggers '(
+            (done ("DEAD" . t) ("WORKABLE" . nil))
+            ("TODO" 
+              ("WORKABLE" . t) ("EVENT" . nil) ("ACTIVE" . nil) ("SLEEP" . nil))
+            ("NOW" 
+              ("ACTIVE" . t) ("SLEEP" . nil))
+            ("WAITING" 
+              ("SLEEP" . t) ("ACTIVE" . nil) ("WORKABLE" . nil))
+            ("MONITOR"
+              ("WORKABLE" . t) ("SLEEP" . nil) ("ACTIVE" . nil))
+;; unfinished, TODO:  DONE, REMOVED, CANCELLED, VISITED, QUASH, CONSIDER
+
+            ("EVENT" 
+              ("EVENT" . t) ("WORKABLE" . nil))
+            
+            ("IDEA" ("WORKABLE" . t))
+          )
+
           org-todo-keyword-faces '((
             ("TODO" :inherit 'org-todo)
-            ("QUEUE" :foreground (doom-color 'yellow) :weight 'bold)
             ("NOW" :foreground (doom-color 'red) :weight 'ultra-bold)
             ("WAITING" :foreground (doom-color 'teal))
-            ("STALLED" :foreground (doom-darken (doom-color 'teal) 0.25))
             ("MONITOR" :foreground (doom-color 'orange))
             ("DONE" :foreground (doom-color 'comments))
             ("REMOVED" :foreground (doom-color 'comments))
@@ -235,7 +249,11 @@ Basically, nixos provides the packages (for rollback reasons) and emacs loads th
             ("M" "meeting" entry (file "")
                "* EVENT [#3] %? :MEETING:\nSCHEDULED: %T\n%u\n%a")
             ("A" "APPOINTMENT" entry (file "") 
-               "* EVENT [#1] %? :MEETING:\nSCHEDULED: %T\n%u\n%a")))
+               "* EVENT [#1] %? :MEETING:\nSCHEDULED: %T\n%u\n%a"))
+            
+          ;org-agenda-custom-commands '((" " "agenda" (
+          ;  (agenda "" nil)
+          ;  (tags-todo "")))))
     (require 'org-tempo)
     :hook
     (org-mode . org-indent-mode)
