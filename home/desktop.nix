@@ -11,6 +11,8 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
 
   home.packages = with pkgs; [
     nextcloud-client
+    gimp
+    libreoffice
   ];
 
   programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
