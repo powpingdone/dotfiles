@@ -23,10 +23,10 @@
         evil-tutor
         which-key
         general
-	# ORG MODE
-	org-modern
-	(trivialBuild {
-	  packageRequires = [ compat org org-modern ];
+        # ORG MODE
+        org-modern
+        (trivialBuild {
+          packageRequires = [compat org org-modern];
           pname = "org-modern-indent";
           src = inputs.org-modern-indent;
           version = "0.1.4";
@@ -34,16 +34,16 @@
         org-make-toc
         org-roam
         org-noter
-	org-appear
-	org-super-agenda
-	# APPEARANCE
+        org-appear
+        org-super-agenda
+        # APPEARANCE
         doom-themes
         doom-modeline
         treesit-auto
         treesit-grammars.with-all-grammars
-	beacon
-	# TOOLS
-	sudo-edit
+        beacon
+        # TOOLS
+        sudo-edit
         pdf-tools
       ]);
 in {

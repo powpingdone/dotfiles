@@ -13,7 +13,10 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
     nextcloud-client
     gimp
     libreoffice
+    vlc
   ];
+
+  programs.gnome-shell.enable = true;
 
   programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
     {package = alphabetical-app-grid;}
