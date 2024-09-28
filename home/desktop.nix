@@ -13,6 +13,8 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
     nextcloud-client
     gimp
     libreoffice
+    hunspell
+    hunspellDicts.en_US
     vlc
   ];
 
