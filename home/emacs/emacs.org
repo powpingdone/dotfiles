@@ -13,15 +13,6 @@
   - [[#evil-mode-vim-binds][Evil Mode (vim binds)]]
   - [[#which-key][Which Key]]
   - [[#generalel-binding-creation][General.el (binding creation)]]
-- [[#org-mode][ORG MODE]]
-  - [[#org-config][Org config]]
-  - [[#org-modern][Org Modern]]
-  - [[#org-modern-indent][Org Modern Indent]]
-  - [[#table-of-contents][Table of contents]]
-  - [[#org-roam][Org Roam]]
-  - [[#org-noter][Org Noter]]
-  - [[#org-appear][Org Appear]]
-  - [[#org-super-agenda][Org Super Agenda]]
 - [[#apperance][APPERANCE]]
   - [[#emacs-config][Emacs Config]]
   - [[#doom-themes][Doom themes]]
@@ -31,6 +22,15 @@
 - [[#tools][TOOLS]]
   - [[#pdf-tools][PDF Tools]]
   - [[#sudo-edit][Sudo Edit]]
+- [[#org-mode][ORG MODE]]
+  - [[#org-config][Org config]]
+  - [[#org-modern][Org Modern]]
+  - [[#org-modern-indent][Org Modern Indent]]
+  - [[#table-of-contents][Table of contents]]
+  - [[#org-roam][Org Roam]]
+  - [[#org-noter][Org Noter]]
+  - [[#org-appear][Org Appear]]
+  - [[#org-super-agenda][Org Super Agenda]]
 :END:
 
 
@@ -148,6 +148,133 @@ Basically, nixos provides the packages (for rollback reasons) and emacs loads th
       "d" '(:ignore t :wk "programs")
       "da" 'org-agenda)
     )
+
+#+end_src
+
+
+* APPERANCE
+:PROPERTIES:
+:CUSTOM_ID: apperance
+:END:
+
+** Emacs Config
+:PROPERTIES:
+:CUSTOM_ID: emacs-config
+:END:
+Stock emacs stuff that makes me vomit less.
+
+#+begin_src emacs-lisp
+
+  (scroll-bar-mode -1)
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (set-fringe-mode 8)
+  (global-display-line-numbers-mode 1)
+  (global-visual-line-mode 1)
+  (dolist (mode '(term-mode-hook eshell-mode-hook))
+    (add-hook mode (lambda () (display-line-numbers-mode -1))))
+  (set-face-attribute 'variable-pitch nil :family "DejaVu Sans" :height 1.2)
+  (set-face-attribute 'fixed-pitch nil :family "DejaVu Sans Mono" :height 1.2)
+  (electric-indent-mode -1)
+  
+#+end_src
+
+** Doom themes
+:PROPERTIES:
+:CUSTOM_ID: doom-themes
+:END:
+I wish I had something similar to sainnhe/edge but doom-one is ok for right now.
+
+#+begin_src emacs-lisp
+
+  (use-package doom-themes
+    :init
+    (setq doom-themes-enable-bold t
+          doom-themes-enable-italic t)
+    :config
+    (load-theme 'doom-one t)
+    )
+
+#+end_src
+
+** Doom Modeline
+:PROPERTIES:
+:CUSTOM_ID: doom-modeline
+:END:
+My modeline looks so nice! 
+
+#+begin_src emacs-lisp
+
+  (use-package doom-modeline
+    :demand t
+    :hook after-init
+    :init
+    (setq doom-modeline-height 28))
+
+#+end_src
+
+** Tree sitter
+:PROPERTIES:
+:CUSTOM_ID: tree-sitter
+:END:
+Fancy syntax highlighting. NixOS provides all the treesit-grammars.
+
+#+begin_src emacs-lisp
+
+   (use-package treesit-auto
+     :demand t
+     :config
+     (global-treesit-auto-mode))
+
+#+end_src
+
+** Beacon
+:PROPERTIES:
+:CUSTOM_ID: beacon
+:END:
+
+My cursor is right here!
+
+#+begin_src emacs-lisp
+  (use-package beacon
+    :demand t
+    :config
+    (beacon-mode 1))
+#+end_src
+
+
+* TOOLS
+:PROPERTIES:
+:CUSTOM_ID: tools
+:END:
+** PDF Tools
+:PROPERTIES:
+:CUSTOM_ID: pdf-tools
+:END:
+Viewing PDFs in emacs has never been more easy!
+
+#+begin_src emacs-lisp
+
+  (use-package pdf-tools
+    :magic ("%PDF" . pdf-view-mode)
+    :hook (pdf-view-mode . (lambda () (display-line-numbers-mode -1))))
+
+#+end_src
+
+** Sudo Edit
+:PROPERTIES:
+:CUSTOM_ID: sudo-edit
+:END:
+Open a file with root priveleges.
+
+#+begin_src emacs-lisp
+
+  (use-package sudo-edit
+    :config
+    (leader-key
+      ;; sudo file binds
+      "fu" '(sudo-edit-find-file :wk "SUDO find file")
+      "fU" '(sudo-edit :wk "SUDO this file")))
 
 #+end_src
 
@@ -322,130 +449,4 @@ Make sure to set this up accordingly.
 
 #+end_src
 
-
-* APPERANCE
-:PROPERTIES:
-:CUSTOM_ID: apperance
-:END:
-
-** Emacs Config
-:PROPERTIES:
-:CUSTOM_ID: emacs-config
-:END:
-Stock emacs stuff that makes me vomit less.
-
-#+begin_src emacs-lisp
-
-  (scroll-bar-mode -1)
-  (menu-bar-mode -1)
-  (tool-bar-mode -1)
-  (set-fringe-mode 8)
-  (global-display-line-numbers-mode 1)
-  (global-visual-line-mode 1)
-  (dolist (mode '(term-mode-hook eshell-mode-hook))
-    (add-hook mode (lambda () (display-line-numbers-mode -1))))
-  (set-face-attribute 'variable-pitch nil :family "DejaVu Sans" :height 1.2)
-  (set-face-attribute 'fixed-pitch nil :family "DejaVu Sans Mono" :height 1.2)
-  (electric-indent-mode -1)
-  
-#+end_src
-
-** Doom themes
-:PROPERTIES:
-:CUSTOM_ID: doom-themes
-:END:
-I wish I had something similar to sainnhe/edge but doom-one is ok for right now.
-
-#+begin_src emacs-lisp
-
-  (use-package doom-themes
-    :init
-    (setq doom-themes-enable-bold t
-          doom-themes-enable-italic t)
-    :config
-    (load-theme 'doom-one t)
-    )
-
-#+end_src
-
-** Doom Modeline
-:PROPERTIES:
-:CUSTOM_ID: doom-modeline
-:END:
-My modeline looks so nice! 
-
-#+begin_src emacs-lisp
-
-  (use-package doom-modeline
-    :demand t
-    :hook after-init
-    :init
-    (setq doom-modeline-height 28))
-
-#+end_src
-
-** Tree sitter
-:PROPERTIES:
-:CUSTOM_ID: tree-sitter
-:END:
-Fancy syntax highlighting. NixOS provides all the treesit-grammars.
-
-#+begin_src emacs-lisp
-
-   (use-package treesit-auto
-     :demand t
-     :config
-     (global-treesit-auto-mode))
-
-#+end_src
-
-** Beacon
-:PROPERTIES:
-:CUSTOM_ID: beacon
-:END:
-
-My cursor is right here!
-
-#+begin_src emacs-lisp
-  (use-package beacon
-    :demand t
-    :config
-    (beacon-mode 1))
-#+end_src
-
-
-* TOOLS
-:PROPERTIES:
-:CUSTOM_ID: tools
-:END:
-** PDF Tools
-:PROPERTIES:
-:CUSTOM_ID: pdf-tools
-:END:
-Viewing PDFs in emacs has never been more easy!
-
-#+begin_src emacs-lisp
-
-  (use-package pdf-tools
-    :magic ("%PDF" . pdf-view-mode)
-    :hook (pdf-view-mode . (lambda () (display-line-numbers-mode -1))))
-
-#+end_src
-
-** Sudo Edit
-:PROPERTIES:
-:CUSTOM_ID: sudo-edit
-:END:
-Open a file with root priveleges.
-
-#+begin_src emacs-lisp
-
-  (use-package sudo-edit
-    :config
-    (leader-key
-      ;; sudo file binds
-      "fu" '(sudo-edit-find-file :wk "SUDO find file")
-      "fU" '(sudo-edit :wk "SUDO this file")))
-
-#+end_src
 
