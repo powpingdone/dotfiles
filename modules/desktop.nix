@@ -10,6 +10,9 @@
       openjdk17
     ];
 
+    # enable debug info stufff
+    environment.enableDebugInfo = true;
+
     # Enable pipewire sound.
     hardware.pulseaudio.enable = false;
     services.pipewire = {

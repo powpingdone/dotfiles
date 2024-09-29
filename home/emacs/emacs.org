@@ -305,7 +305,13 @@ Open a file with root priveleges.
             org-default-notes-file "~/org/tasks.org"
             org-agenda-files '("~/org")
             org-log-done 'time
-            org-return-follows-link t)
+            org-return-follows-link t
+            org-capture-templates '(
+              ("j" "Work Log Entry"
+                entry (file+datetree "~/org/work-log.org")
+                "* %?" :empty-lines 0)
+              ("t" "TODO"
+                entry (file+headline "~/org/todos.org" "General Tasks"))))
       :hook
       (org-mode . org-indent-mode)
       (org-mode . visual-line-mode)
