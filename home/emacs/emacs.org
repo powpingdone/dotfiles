@@ -54,8 +54,8 @@ Basically, nixos provides the packages (for rollback reasons) and emacs loads th
 
 #+begin_src emacs-lisp
 
-  (require 'use-package-ensure)
   (setq use-package-always-ensure t)
+  (eval-when-compile (require 'use-package))
 
 #+end_src
 
@@ -146,7 +146,9 @@ Basically, nixos provides the packages (for rollback reasons) and emacs loads th
       "l`" '(comment-line :wk "comment line(s)")
       ;; emacs programs
       "d" '(:ignore t :wk "programs")
-      "da" 'org-agenda)
+      "da" 'org-agenda
+      "dc" 'org-capture
+      "ds" 'org-store-link)
     )
 
 #+end_src
@@ -294,15 +296,19 @@ Open a file with root priveleges.
     (use-package org
       :init
       (require 'doom-themes)
+      (require 'org-tempo)
       (setq org-enforce-todo-dependencies t
             org-use-fast-todo-selection t
-  	  org-hide-leading-stars t
+            org-hide-leading-stars t
             org-startup-indented t
             org-src-preserve-indentation t
-            org-default-notes-file "~/org/tasks.org")
-      (require 'org-tempo)
+            org-default-notes-file "~/org/tasks.org"
+            org-agenda-files ("~/org")
+            org-log-done 'time
+            org-return-follows-link t)
       :hook
       (org-mode . org-indent-mode)
+      (org-mode . visual-line-mode)
       (org-mode . (lambda ()
   		  (display-line-numbers-mode -1))))
                   
