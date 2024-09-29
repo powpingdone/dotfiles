@@ -303,7 +303,7 @@ Open a file with root priveleges.
             org-startup-indented t
             org-src-preserve-indentation t
             org-default-notes-file "~/org/tasks.org"
-            org-agenda-files ("~/org")
+            org-agenda-files '("~/org")
             org-log-done 'time
             org-return-follows-link t)
       :hook
