@@ -8,10 +8,12 @@
     # base packages that I *always* need.
     environment.systemPackages = with pkgs; [
       openjdk17
+      (lib.getBin (pkgs.elfutils.override { enableDebuginfod = true; }))
     ];
 
-    # enable debug info stufff
+    # enable debug info stuff
     environment.enableDebugInfo = true;
+    services.nixseparatedebuginfod.enable = true;
 
     # Enable pipewire sound.
     hardware.pulseaudio.enable = false;

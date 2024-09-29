@@ -27,8 +27,6 @@
       url = "github:jdtsmith/org-modern-indent/v0.1.4";
       flake = false;
     };
-    
-    dwarffs.url = "github:edolstra/dwarffs";
   };
 
   outputs = {
@@ -71,7 +69,6 @@
             ./modules
             nixpkgs.nixosModules.notDetected
             nix-index-database.nixosModules.nix-index
-            dwarffs.nixosModules.dwarffs
 
             # home-manager
             home-manager.nixosModules.home-manager
