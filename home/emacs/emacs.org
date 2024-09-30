@@ -178,6 +178,7 @@ Stock emacs stuff that makes me vomit less.
   (set-face-attribute 'variable-pitch nil :family "DejaVu Sans" :height 1.2)
   (set-face-attribute 'fixed-pitch nil :family "DejaVu Sans Mono" :height 1.2)
   (electric-indent-mode -1)
+  (auto-save-mode -1)
   
 #+end_src
 
