@@ -3,6 +3,8 @@
   nixpkgs,
   unstable,
   lib,
+  fetchpatch,
+  fetchurl,
   ...
 }: {
   imports = [
@@ -141,37 +143,37 @@
     kernelPatches = [
       {
         name = "arm64: dts: qcom: x1e80100: Add node uart14";
-        patch = pkgs.fetchpatch {
+        patch = fetchpatch {
           url = "https://github.com/hogliux/linux-yoga-7x/commit/a6e6986640bfc1b6a62855848d7e009159e14320.patch";
           hash = "sha256-mCgErAPIp81zxqmrI/h4ZZWVpEOvdlqa/TVdPdCdWMo=";
         };
       }
       {
         name = "Add Bluetooth support for the Lenovo Yoga Slim 7x";
-        patch = pkgs.fetchpatch {
+        patch = fetchpatch {
           url = "https://github.com/hogliux/linux-yoga-7x/commit/9829ac9dd0e827cc62242d8ae8b534e31ffd00bd.patch";
           hash = "sha256-2ZfDkbhriRb+52WNc6wlUKZPp55zKCJgxmkf/3m+m2M=";
         };
       }
       {
         name = "dt-bindings: platform: Add bindings for Lenovo Yoga Slim 7x EC";
-        patch = pkgs.fetchurl {
+        patch = fetchurl {
           url = "https://lore.kernel.org/all/20240927185345.3680-1-maccraft123mc@gmail.com/raw";
-          hash = "sha256-o0MTfoUjJpLcZHir8iE3F+rMnhv0bKtNUh3x9Ngqo6Y=";
+          hash = "sha256-MHbAUR9KMy/DWOfyJBwW7MoM1FK8JmmNEpEvQ6NXJRU=";
         };
       }
       {
         name = "platform: arm64: Add driver for Lenovo Yoga Slim 7x's EC";
-        patch = pkgs.fetchurl {
+        patch = fetchurl {
           url = "https://lore.kernel.org/all/20240927185345.3680-2-maccraft123mc@gmail.com/raw";
-          hash = "sha256-5QHIYAr5yyCcR/wDfEkYRWzMGgYvyE39CmkA8cnygq4=";
+          hash = "sha256-LL88vnk5xvEcC1WVkV+R8aKW9gg43HHC8ZqwaHscfmg=";
         };
       }
       {
         name = "arm64: dts: qcom: Add EC to Lenovo Yoga Slim 7x";
-        patch = pkgs.fetchurl {
+        patch = fetchurl {
           url = "https://lore.kernel.org/all/20240927185345.3680-3-maccraft123mc@gmail.com/raw";
-          hash = "sha256-pDlNTQiKfBOo6EPaIpwejZcd6qt2n6fbCtPKaScgEWc=";
+          hash = "sha256-Z4LGF7rWyKMb7xulFQPerNSRfq48apezRG4AlTc9VIg=";
         };
       }
     ]; 
