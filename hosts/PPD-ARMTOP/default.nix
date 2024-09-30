@@ -157,21 +157,21 @@
         name = "dt-bindings: platform: Add bindings for Lenovo Yoga Slim 7x EC";
         patch = pkgs.fetchurl {
           url = "https://lore.kernel.org/all/20240927185345.3680-1-maccraft123mc@gmail.com/raw";
-          hash = "sha256-MHbAUR9KMy/DWOfyJBwW7MoM1FK8JmmNEpEvQ6NXJRU=";
+          hash = "sha256-o0MTfoUjJpLcZHir8iE3F+rMnhv0bKtNUh3x9Ngqo6Y=";
         };
       }
       {
         name = "platform: arm64: Add driver for Lenovo Yoga Slim 7x's EC";
         patch = pkgs.fetchurl {
           url = "https://lore.kernel.org/all/20240927185345.3680-2-maccraft123mc@gmail.com/raw";
-          hash = "sha256-LL88vnk5xvEcC1WVkV+R8aKW9gg43HHC8ZqwaHscfmg=";
+          hash = "sha256-5QHIYAr5yyCcR/wDfEkYRWzMGgYvyE39CmkA8cnygq4=";
         };
       }
       {
         name = "arm64: dts: qcom: Add EC to Lenovo Yoga Slim 7x";
         patch = pkgs.fetchurl {
           url = "https://lore.kernel.org/all/20240927185345.3680-3-maccraft123mc@gmail.com/raw";
-          hash = "sha256-tnpo07ZPi/3cdiY9h90rf2UgTjr9ZfR1PYRVVQJ2pUQ=";
+          hash = "sha256-pDlNTQiKfBOo6EPaIpwejZcd6qt2n6fbCtPKaScgEWc=";
         };
       }
     ]; 
