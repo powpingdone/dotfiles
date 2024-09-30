@@ -24,7 +24,8 @@
   # any extra packages I feel like I need
   home.packages = with pkgs; [
     alejandra
-  ];
+  ]
+  ++ lib.optionals ppd.devenv.enable ( [ pkgs.devenv ]);
   # shell related things
   home.shellAliases = {
     "grep" = "rg";
