@@ -4,6 +4,7 @@
   pkgs,
   lib,
   hostName,
+  nixosConfig,
   ...
 }: {
   imports = [
@@ -22,10 +23,11 @@
   systemd.user.startServices = true;
 
   # any extra packages I feel like I need
-  home.packages = with pkgs; [
-    alejandra
-  ]
-  ++ lib.optionals ppd.devenv.enable ( [ pkgs.devenv ]);
+  home.packages = with pkgs;
+    [
+      alejandra
+    ]
+    ++ lib.optionals nixosConfig.ppd.devenv.enable [pkgs.devenv];
   # shell related things
   home.shellAliases = {
     "grep" = "rg";

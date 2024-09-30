@@ -8,7 +8,7 @@
     # base packages that I *always* need.
     environment.systemPackages = with pkgs; [
       openjdk17
-      (lib.getBin (pkgs.elfutils.override { enableDebuginfod = true; }))
+      (lib.getBin (pkgs.elfutils.override {enableDebuginfod = true;}))
     ];
 
     # enable debug info stuff
