@@ -132,7 +132,9 @@ Basically, nixos provides the packages (for rollback reasons) and emacs loads th
       "h" '(:ignore t :wk "help")
       "hf" '(describe-function :wk "describe function")
       "hv" '(describe-variable :wk "describe variable")
+      "hm" '(describe-mode :wk "describe mode")
       "hR" '(ppd/reload-emacs :wk "reload emacs")
+      "h!" '(restart-emacs :wk "restart emacs")
       ;; toggles
       "t" '(:ignore t :wk "toggle")
       "tl" '(display-line-numbers-mode :wk "Toggle line numbers")
