@@ -2,7 +2,9 @@
 
 (defun ppd/reload-emacs ()
   (interactive)
-  (delete-file (expand-file-name "emacs.el" user-emacs-directory))
+  (condition-case nil 
+    (delete-file (expand-file-name "emacs.el" user-emacs-directory))
+    (error nil))
   (org-babel-load-file (expand-file-name "emacs.org" user-emacs-directory))
   (delete-file (expand-file-name "emacs.el" user-emacs-directory))
   )
