@@ -23,6 +23,16 @@
         evil-tutor
         which-key
         general
+        # APPEARANCE
+        doom-themes
+        doom-modeline
+        treesit-auto
+        treesit-grammars.with-all-grammars
+        beacon
+        # TOOLS
+        pdf-tools
+        sudo-edit
+        undo-tree
         # ORG MODE
         org-modern
         (trivialBuild {
@@ -36,15 +46,6 @@
         org-noter
         org-appear
         org-super-agenda
-        # APPEARANCE
-        doom-themes
-        doom-modeline
-        treesit-auto
-        treesit-grammars.with-all-grammars
-        beacon
-        # TOOLS
-        sudo-edit
-        pdf-tools
       ]);
 in {
   config = lib.mkIf config.ppd.emacs.enable {

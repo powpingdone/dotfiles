@@ -22,6 +22,7 @@
 - [[#tools][TOOLS]]
   - [[#pdf-tools][PDF Tools]]
   - [[#sudo-edit][Sudo Edit]]
+  - [[#undo-tree][Undo Tree]]
 - [[#org-mode][ORG MODE]]
   - [[#org-config][Org config]]
   - [[#org-modern][Org Modern]]
@@ -280,6 +281,23 @@ Open a file with root priveleges.
       ;; sudo file binds
       "fu" '(sudo-edit-find-file :wk "SUDO find file")
       "fU" '(sudo-edit :wk "SUDO this file")))
+
+#+end_src
+
+** Undo Tree
+:PROPERTIES:
+:CUSTOM_ID: undo-tree
+:END:
+Version controlled undo! 
+... wait that's incorrect. A tree of all changes.
+
+#+BEGIN_src emacs-lisp
+
+  (use-package undo-tree
+    :config
+    (global-undo-tree-mode)
+    (leader-key
+      "dU" '(undo-tree-visualize :wk "Visualize undos and redos")))
 
 #+end_src
 
