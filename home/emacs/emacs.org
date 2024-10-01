@@ -410,11 +410,9 @@ Requires pdf-tools to markup documents. Annotate PDF pages with org mode.
     :config
     (org-noter-enable-org-roam-integration)
     (leader-key
-     :keymaps 'org-noter-doc-mode-map
-     "lr" '(org-noter-insert-note :wk "Insert Note")
-     "lR" '(org-noter-insert-precise-note :wk "Insert Precise Note"))
-    (leader-key
       :keymaps '(org-noter-doc-mode-map org-noter-notes-mode-map)
+      "lr" '(org-noter-insert-note :wk "Insert Note")
+      "lR" '(org-noter-insert-precise-note :wk "Insert Precise Note"))
       "lf" '(org-noter-sync-next-note :wk "Next Note")
       "li" '(org-noter-sync-prev-note :wk "Prev Note")
       "l." '(org-noter-sync-current-note :wk "Current Note")
