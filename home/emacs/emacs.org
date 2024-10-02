@@ -75,7 +75,7 @@ Basically, nixos provides the packages (for rollback reasons) and emacs loads th
       evil-split-window-below t
       evil-toggle-key "C-~"
       evil-want-keybinding nil
-      evil-undo-sysem 'undo-tree)
+      evil-undo-system 'undo-tree)
     :config
     (evil-mode 1))
 
