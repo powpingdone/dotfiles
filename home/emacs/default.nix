@@ -23,7 +23,6 @@
         evil-tutor
         which-key
         general
-        magit
         # APPEARANCE
         doom-themes
         doom-modeline
@@ -34,6 +33,7 @@
         pdf-tools
         sudo-edit
         undo-tree
+        magit
         # ORG MODE
         org-modern
         (trivialBuild {
