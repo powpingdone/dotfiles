@@ -23,6 +23,7 @@
         evil-tutor
         which-key
         general
+        magit
         # APPEARANCE
         doom-themes
         doom-modeline

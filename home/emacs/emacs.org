@@ -12,6 +12,7 @@
   - [[#emacs-use-package-config][Emacs use-package config]]
   - [[#evil-mode-vim-binds][Evil Mode (vim binds)]]
   - [[#which-key][Which Key]]
+  - [[#magit][Magit]]
   - [[#generalel-binding-creation][General.el (binding creation)]]
 - [[#apperance][APPERANCE]]
   - [[#emacs-config][Emacs Config]]
@@ -103,6 +104,18 @@ Basically, nixos provides the packages (for rollback reasons) and emacs loads th
 
 #+end_src
 
+** Magit
+:PROPERTIES:
+:CUSTOM_ID: magit
+:END:
+The git client that everybody goes nuts over.
+
+#+begin_src emacs-lisp
+
+  (use-package magit)
+
+#+end_src
+
 ** General.el (binding creation)
 :PROPERTIES:
 :CUSTOM_ID: generalel-binding-creation
@@ -157,7 +170,6 @@ Basically, nixos provides the packages (for rollback reasons) and emacs loads th
     )
 
 #+end_src
-
 
 * APPERANCE
 :PROPERTIES:
