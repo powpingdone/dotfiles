@@ -22,6 +22,7 @@
     nixIndex.enable = lib.mkEnableOption "Enable nix-index (aka command-not-found for flakes)";
     steam.enable = lib.mkEnableOption "Install steam";
     devenv.enable = lib.mkEnableOption "Install devenv related stuff";
+    isHIDPI = lib.mkEnableOption "The default display has a DPI/PPI greater than 200";
   };
 
   # option defaults
@@ -30,4 +31,5 @@
   config.ppd.nixIndex.enable = lib.mkDefault true;
   config.ppd.steam.enable = lib.mkDefault config.ppd.desktop.enable;
   config.ppd.devenv.enable = lib.mkDefault config.ppd.desktop.enable;
+  config.ppd.isHIDPI = lib.mkDefault false;
 }

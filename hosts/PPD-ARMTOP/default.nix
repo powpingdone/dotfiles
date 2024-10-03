@@ -16,10 +16,11 @@
   # This is not secure, but it makes diagnosing errors easier.
   boot.initrd.systemd.emergencyAccess = true;
 
+  # specific quirks regarding this laptop
+
   # this saves battery
   powerManagement.cpuFreqGovernor = "conservative";
 
-  # specific quirks regarding this laptop
   # part of firmware
   systemd.services.pd-mapper = {
     enable = true;

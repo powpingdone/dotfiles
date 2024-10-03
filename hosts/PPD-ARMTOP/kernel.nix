@@ -2,7 +2,7 @@
   pkgs,
   fetchpatch,
   fetchurl,
-  lib
+  lib,
 }:
 pkgs.linuxPackagesFor (pkgs.buildLinux {
   src = pkgs.fetchFromGitHub {
@@ -18,7 +18,7 @@ pkgs.linuxPackagesFor (pkgs.buildLinux {
     MAGIC_SYSRQ = yes;
     EC_LENOVO_YOGA_SLIM7X = module;
   };
- 
+
   kernelPatches = [
     {
       name = "arm64: dts: qcom: x1e80100: Add node uart14";
@@ -55,5 +55,5 @@ pkgs.linuxPackagesFor (pkgs.buildLinux {
         hash = "sha256-tnpo07ZPi/3cdiY9h90rf2UgTjr9ZfR1PYRVVQJ2pUQ=";
       };
     }
-  ]; 
+  ];
 })

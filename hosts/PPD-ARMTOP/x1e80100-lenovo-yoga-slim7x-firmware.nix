@@ -14,7 +14,7 @@
     repo = "linux-firmware-x1e80100-lenovo-yoga-slim7x";
     rev = "2719d51f904b7312f61115c0461e59b4bbe9909d";
     hash = "sha256-dhfplH0MdKupdgaxM0GOecNzw9Vp0PE+8b/KaQUP+/I=";
-  };  
+  };
   hmtbtfw20 = fetchurl {
     url = "https://github.com/hogliux/yoga7x-firmware/raw/f2ce80c668f91938c67e8e5196a777fcc905d9d3/firmware/qca/hmtbtfw20.tlv";
     hash = "sha256-RgVJqAGhUy1XhIQiosmDPZtjjsq1JjNnkIrDzentZHo=";

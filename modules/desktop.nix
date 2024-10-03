@@ -7,7 +7,10 @@
   config = lib.mkIf config.ppd.desktop.enable {
     # base packages that I *always* need.
     environment.systemPackages = with pkgs; [
+      # connectwise. make sure to nix-shell rpm and desktop-file-utils
+      # to init it's stuff
       openjdk17
+      # debuginfod
       (lib.getBin (pkgs.elfutils.override {enableDebuginfod = true;}))
     ];
 
@@ -62,5 +65,28 @@
 
     # use ozone on desktop
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+    # have reasonable font coverage
+    fonts = {
+      enableDefaultPackages = true;
+      fontconfig =
+        {
+          enable = true;
+          allowBitmaps = false;
+        }
+        //
+        # fontconfig DPI settings
+        lib.mkIf config.ppd.isHIDPI {
+          antialias = false;
+          hinting.enable = false;
+          subpixel.lcdfilter = "none";
+        }
+        // lib.mkIf (!config.ppd.isHIDPI) {
+          # I know this is redundant, but it's fine
+          antialias = true;
+          hinting.enable = true;
+          subpixel.lcdfilter = "default";
+        };
+    };
   };
 }
