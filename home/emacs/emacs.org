@@ -58,10 +58,8 @@
 Basically, nixos provides the packages (for rollback reasons) and emacs loads them in.
 
 #+begin_src emacs-lisp
-
-  (setq use-package-always-ensure t)
-  (eval-when-compile (require 'use-package))
-
+    (setq use-package-always-ensure t)
+    (eval-when-compile (require 'use-package))
 #+end_src
 
 ** Evil Mode (vim binds)
@@ -333,7 +331,6 @@ The git client that everybody goes nuts over.
 :END:
 
 #+begin_src emacs-lisp
-
     (use-package org
     :init
     (require 'doom-themes)
@@ -360,9 +357,8 @@ The git client that everybody goes nuts over.
     (org-mode . (lambda ()
     ; no need for linenums
     (display-line-numbers-mode -1)
-    ; use 4 space indent using spaces
-    (setq-local indent-tabs-mode 'nil
-                tab-width 4)))
+    ; use spaces, not tabs
+    (indent-tabs-mode -1)))
     :config
     (require 'org-tempo)
     (require 'org-agenda)
@@ -375,7 +371,6 @@ The git client that everybody goes nuts over.
        (latex . t)
        (gnuplot . t)
        (python . t))))
-                          
 #+end_src
 
 ** Org babel async
