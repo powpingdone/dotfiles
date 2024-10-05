@@ -335,16 +335,17 @@ The git client that everybody goes nuts over.
     (use-package org
       :init
       (require 'doom-themes)
-      (require 'org-tempo)
       (setq org-enforce-todo-dependencies t
             org-use-fast-todo-selection t
             org-hide-leading-stars t
             org-startup-indented t
-            org-src-preserve-indentation t
+            org-src-preserve-indentation 'nil 
             org-default-notes-file "~/org/tasks.org"
             org-agenda-files '("~/org")
             org-log-done 'time
             org-return-follows-link t
+            org-indent-indentation-per-level 4
+            org-edit-src-content-indentation 4
             org-capture-templates '(
               ("j" "Work Log Entry"
                 entry (file+datetree "~/org/work-log.org")
@@ -355,7 +356,20 @@ The git client that everybody goes nuts over.
       (org-mode . org-indent-mode)
       (org-mode . visual-line-mode)
       (org-mode . (lambda ()
-  		  (display-line-numbers-mode -1))))
+  		  (display-line-numbers-mode -1)))
+      :config
+      (require 'org-tempo)
+      (require 'org-agenda)
+      (require 'ob)
+      (require 'ob-async)
+      (org-babel-do-load-languages
+       'org-babel-load-languages
+       '((emacs-lisp . t)
+         (org . t)
+         (latex . t)
+         (gnuplot . t)
+         (python . t)))
+      (org-reload 't))
                   
 #+end_src
 
