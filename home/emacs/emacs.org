@@ -107,6 +107,8 @@ Basically, nixos provides the packages (for rollback reasons) and emacs loads th
 :CUSTOM_ID: generalel-binding-creation
 :END:
 
+I dunno why i'm using this but it's probably good.
+
 #+begin_src emacs-lisp
     (use-package general
       :demand t
@@ -138,8 +140,9 @@ Basically, nixos provides the packages (for rollback reasons) and emacs loads th
         "h!" '(restart-emacs :wk "restart emacs")
         ;; toggles
         "t" '(:ignore t :wk "toggle")
-        "tl" '(display-line-numbers-mode :wk "Toggle line numbers")
-        "tt" '(visual-line-mode :wk "Toggle truncated lines")
+        "tl" '(display-line-numbers-mode :wk "Line numbers")
+        "tt" '(visual-line-mode :wk "Truncated lines")
+        "tm" '(indent-tabs-mode :wk "Tabs or Spaces indent")
         ;; find
         "f" '(:ignore t :wk "find")
         "fc" '((lambda () (interactive) (find-file "/etc/nixos")) :wk "Edit file in NixOS config")
@@ -245,10 +248,17 @@ Zen mode but nicer.
 
 #+begin_src emacs-lisp
     (use-package olivetti
+      :commands olivetti-mode
       :init
       (leader-key
-        "tz" '(olivetti-mode :wk "Zen Mode/Olivetti Mode")))
+        "tz" '(olivetti-mode :wk "Zen Mode/Olivetti Mode"))
+      (set-face-attribute 'olivetti-fringe nil
+                              :background (doom-color 'base3)
+                              :foreground (doom-color 'base3))
+      (setq olivetti-style 'fancy
+            olivetti-body-width 104))
 #+end_src
+
 
 * TOOLS
 :PROPERTIES:
@@ -320,6 +330,8 @@ The git client that everybody goes nuts over.
 :CUSTOM_ID: org-config
 :END:
 
+Do you think god stays in heaven because he fears org mode?
+
 #+begin_src emacs-lisp
     (use-package org
       :init
@@ -328,28 +340,29 @@ The git client that everybody goes nuts over.
         :keymaps 'org-mode-map
         "ls" '(org-edit-special :wk "Edit block"))
       (setq org-enforce-todo-dependencies t
-    	org-use-fast-todo-selection t
-    	org-hide-leading-stars t
-    	org-startup-indented t
-    	org-src-preserve-indentation 'nil
-    	org-default-notes-file "~/org/tasks.org"
-    	org-agenda-files '("~/org")
-    	org-log-done 'time
-    	org-return-follows-link t
-    	org-indent-indentation-per-level 4
-    	org-edit-src-content-indentation 4
-    	org-capture-templates '(
-    				("j" "Work Log Entry"
-    				 entry (file+datetree "~/org/work-log.org")
-    				 "* %?" :empty-lines 0)
-    				("t" "TODO"
-    				 entry (file+headline "~/org/todos.org" "General Tasks"))))
+            org-use-fast-todo-selection t
+            org-hide-leading-stars t
+            org-startup-indented t
+            org-src-preserve-indentation 'nil
+            org-default-notes-file "~/org/tasks.org"
+            org-agenda-files '("~/org")
+            org-log-done 'time
+            org-return-follows-link t
+            org-indent-indentation-per-level 4
+            org-edit-src-content-indentation 4
+            org-capture-templates '(
+                                    ("j" "Work Log Entry"
+                                     entry (file+datetree "~/org/work-log.org")
+                                     "* %?" :empty-lines 0)
+                                    ("t" "TODO"
+                                     entry (file+headline "~/org/tasks.org" "General Tasks"))))
       :hook
+      (org-mode . olivetti-mode)
       (org-mode . org-indent-mode)
       (org-mode . visual-line-mode)
       (org-mode . (lambda ()
-    		(display-line-numbers-mode -1)
-    		(indent-tabs-mode -1)))
+                    (display-line-numbers-mode 0)
+                    (indent-tabs-mode 0)))
       :config
       (require 'org-tempo)
       (require 'org-agenda)
@@ -387,8 +400,8 @@ Org mode but more fancy and pretty.
       (global-org-modern-mode)
       :init
       (setq org-modern-keyword nil
-    	org-modern-star 'replace
-    	org-modern-hide-stars " "))
+            org-modern-star 'replace
+            org-modern-hide-stars " "))
 #+end_src
 
 ** Org Modern Indent
@@ -475,13 +488,13 @@ TODO: This doesn't seem to be functional right now.
     (use-package org-appear
       :init
       (setq org-appear-trigger 'manual
-    	org-appear-autolinks t)
+            org-appear-autolinks t)
       :hook
       (org-mode .
-    	    (lambda ()
-    	      (add-hook 'evil-insert-state-entry-hook #'org-appear-manual-start nil t)
-    	      (add-hook 'evil-insert-state-exit-hook #'org-appear-manual-stop nil t))
-    	    ))
+                (lambda ()
+                  (add-hook 'evil-insert-state-entry-hook #'org-appear-manual-start nil t)
+                  (add-hook 'evil-insert-state-exit-hook #'org-appear-manual-stop nil t))
+                ))
 #+end_src
 
 ** TODO Org Super Agenda
