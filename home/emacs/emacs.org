@@ -26,6 +26,7 @@
   - [[#magit][Magit]]
 - [[#org-mode][ORG MODE]]
   - [[#org-config][Org config]]
+  - [[#org-babel-async][Org babel async]]
   - [[#org-modern][Org Modern]]
   - [[#org-modern-indent][Org Modern Indent]]
   - [[#table-of-contents][Table of contents]]
@@ -41,7 +42,7 @@
 :CUSTOM_ID: notes
 :END:
 + use-package is already loaded in nix, and as such packages come from nix
- 
+  
   
 * PRIORITY LOAD
 :PROPERTIES:
@@ -373,6 +374,18 @@ The git client that everybody goes nuts over.
                   
 #+end_src
 
+** Org babel async
+:PROPERTIES:
+:CUSTOM_ID: org-babel-async
+:END:
+Execute code asyncronously!
+
+#+begin_src emacs-lisp
+
+    (use-package ob-async)
+
+#+end_src
+
 ** Org Modern
 :PROPERTIES:
 :CUSTOM_ID: org-modern
@@ -407,7 +420,7 @@ Because org-indent is nice but org-modern blocks don't like it. Uses a nixos der
 
 #+end_src
 
-** Table of contents 
+** Table of contents
 :PROPERTIES:
 :CUSTOM_ID: table-of-contents
 :END:

@@ -35,6 +35,7 @@
         undo-tree
         magit
         # ORG MODE
+        ob-async
         org-modern
         (trivialBuild {
           packageRequires = [compat org org-modern];
