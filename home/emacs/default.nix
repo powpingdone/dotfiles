@@ -48,6 +48,8 @@
         org-noter
         org-appear
         org-super-agenda
+        # PROGRAMMING
+        format-all
       ]);
 in {
   config = lib.mkIf config.ppd.emacs.enable {

@@ -34,6 +34,8 @@
   - [[#org-noter][Org Noter]]
   - [[#org-appear][Org Appear]]
   - [[#org-super-agenda][Org Super Agenda]]
+- [[#programming][PROGRAMMING]]
+  - [[#format-all][Format all]]
 :END:
 
 
@@ -523,6 +525,26 @@ Make sure to set this up accordingly.
     :config
     (org-super-agenda-mode))
 
+#+end_src
+
+
+* PROGRAMMING
+:PROPERTIES:
+:CUSTOM_ID: programming
+:END:
+** Format all
+:PROPERTIES:
+:CUSTOM_ID: format-all
+:END:
+Auto format text/code.
+
+#+begin_src emacs-lisp
+
+    (use-package format-all
+      :commands format-all-mode
+      :hook 
+      (prog-mode . format-all-mode))
+      
 #+end_src
 
 
