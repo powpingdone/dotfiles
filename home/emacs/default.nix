@@ -29,6 +29,7 @@
         treesit-auto
         treesit-grammars.with-all-grammars
         beacon
+        olivetti
         # TOOLS
         pdf-tools
         sudo-edit

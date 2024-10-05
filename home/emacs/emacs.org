@@ -19,6 +19,7 @@
   - [[#doom-modeline][Doom Modeline]]
   - [[#tree-sitter][Tree sitter]]
   - [[#beacon][Beacon]]
+  - [[#olivetti][Olivetti]]
 - [[#tools][TOOLS]]
   - [[#pdf-tools][PDF Tools]]
   - [[#sudo-edit][Sudo Edit]]
@@ -236,6 +237,18 @@ My cursor is right here!
       (beacon-mode 1))
 #+end_src
 
+** Olivetti
+:PROPERTIES:
+:CUSTOM_ID: olivetti
+:END:
+Zen mode but nicer.
+
+#+begin_src emacs-lisp
+    (use-package olivetti
+      :init
+      (leader-key
+        "tz" '(olivetti-mode :wk "Zen Mode/Olivetti Mode")))
+#+end_src
 
 * TOOLS
 :PROPERTIES:
