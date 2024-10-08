@@ -75,7 +75,10 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    autosuggestions.enable = true;
+    autosuggestions = {
+      enable = true;
+      strategy = [ "match_prev_cmd" "history" ];
+    };
     syntaxHighlighting.enable = true;
     interactiveShellInit = ''
       bindkey "^[[1;5C" forward-word
