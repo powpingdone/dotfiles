@@ -100,4 +100,7 @@
     home = "/home/powpingdone";
     extraGroups = ["wheel" "networkmanager"];
   };
+  
+  # being able to use security keys is a big thing
+  services.pcscd.enable = true;
 }
