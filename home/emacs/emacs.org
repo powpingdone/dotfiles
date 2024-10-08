@@ -252,11 +252,12 @@ Zen mode but nicer.
       :init
       (leader-key
         "tz" '(olivetti-mode :wk "Zen Mode/Olivetti Mode"))
+      (setq olivetti-style 'fancy
+            olivetti-body-width 104)
+      :config
       (set-face-attribute 'olivetti-fringe nil
                               :background (doom-color 'base3)
-                              :foreground (doom-color 'base3))
-      (setq olivetti-style 'fancy
-            olivetti-body-width 104))
+                              :foreground (doom-color 'base3)))
 #+end_src
 
 
