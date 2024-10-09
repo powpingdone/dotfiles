@@ -62,7 +62,7 @@
   ];
 
   # base overrides
-  nixpkgs.overlays = [
+  ppd.overlays = [
     (final: prev: {
       # use clang, because it uses less ram during compiles
       webkitgtk = prev.webkitgtk.override {stdenv = pkgs.llvmPackages.stdenv;};
@@ -77,7 +77,7 @@
     enableCompletion = true;
     autosuggestions = {
       enable = true;
-      strategy = [ "match_prev_cmd" "history" ];
+      strategy = ["match_prev_cmd" "history"];
     };
     syntaxHighlighting.enable = true;
     interactiveShellInit = ''

@@ -9,5 +9,6 @@
     ./nixindex.nix
     ./emacs.nix
     ./steam.nix
+    ./peekpoke.nix
   ];
 }

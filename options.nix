@@ -23,9 +23,11 @@
     steam.enable = lib.mkEnableOption "Install steam";
     devenv.enable = lib.mkEnableOption "Install devenv related stuff";
     isHIDPI = lib.mkEnableOption "The default display has a DPI/PPI greater than 200";
+    peekPoke.enable = lib.mkEnableOption "Install peekpoke, which toggles kernel options related to /dev/mem";
   };
 
   # option defaults
+  config.ppd.peekPoke.enable = lib.mkDefault false;
   config.ppd.desktop.enable = lib.mkDefault false;
   config.ppd.emacs.enable = lib.mkDefault false;
   config.ppd.nixIndex.enable = lib.mkDefault true;
