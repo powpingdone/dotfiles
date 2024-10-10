@@ -15,7 +15,7 @@
         owner = "apritzel";
         repo = "peekpoke";
         rev = "913be80cee5ec44d01a1bf357250af4146a01d07";
-        hash = "";
+        hash = "sha256-KW7Z5QrIgrz9JS5gETybtQACeiXHjIHczpUiPaN+xsQ=";
       };
       buildPhase = ''
         make
@@ -30,13 +30,7 @@ in {
     specialisation.kernelDebug = {
       configuration = {
         environment.systemPackages = with pkgs; [
-          peekpoke
-        ];
-
-        ppd.overlays = [
-          (final: prev: {
-            peekpoke = final.callPackage ppPkg {};
-          })
+          (pkgs.callPackage ppPkg {})
         ];
 
         boot.kernelPatches = [
