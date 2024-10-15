@@ -14,7 +14,7 @@
 
   boot.loader.systemd-boot = {
     enable = true;
-    configurationLimit = 3;
+    configurationLimit = 2;
   };
 
   boot.tmp.cleanOnBoot = true;
