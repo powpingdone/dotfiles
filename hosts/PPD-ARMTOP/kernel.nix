@@ -9,10 +9,10 @@ pkgs.linuxPackagesFor (pkgs.buildLinux {
   src = fetchFromGitHub {
     owner = "jhovold";
     repo = "linux";
-    rev = "wip/x1e80100-6.12-rc1";
-    hash = "sha256-PzE3Ittt787Lxl84Btz83AcE/LCN3IONhZKGZG34Qm8=";
+    rev = "wip/x1e80100-6.12-rc3";
+    hash = "sha256-kpuzjqcI4YGS+S9OvIUhm6z8xCGMA5h5+JlcHhoEETM=";
   };
-  version = "6.12.0-rc1";
+  version = "6.12.0-rc3";
   defconfig = "johan_defconfig";
 
   structuredExtraConfig = with lib.kernel; {
