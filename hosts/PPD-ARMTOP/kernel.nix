@@ -19,6 +19,9 @@ pkgs.linuxPackagesFor (pkgs.buildLinux {
     MAGIC_SYSRQ = yes;
     EC_LENOVO_YOGA_SLIM7X = module;
   };
+  extraConfig = ''
+    DRM_PANIC_SCREEN_QR_CODE_URL ""
+  '';
 
   kernelPatches = [
     {
