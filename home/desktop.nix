@@ -23,7 +23,6 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
   programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
     {package = alphabetical-app-grid;}
     {package = blur-my-shell;}
-    {package = arcmenu;}
   ];
 
   # enable dark mode for gtk4
