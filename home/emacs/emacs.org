@@ -36,7 +36,9 @@
   - [[#org-appear][Org Appear]]
   - [[#org-super-agenda][Org Super Agenda]]
 - [[#programming][PROGRAMMING]]
+  - [[#eglot][EGLOT]]
   - [[#format-all][Format all]]
+  - [[#nix-mode][Nix Mode]]
 :END:
 
 
@@ -518,6 +520,26 @@ TODO: Make sure to set this up accordingly.
 :PROPERTIES:
 :CUSTOM_ID: programming
 :END:
+** TODO EGLOT
+:PROPERTIES:
+:CUSTOM_ID: eglot
+:END:
+LSP. Nuff said.
+
+Probably needs to have other langs configured.
+
+#+begin_src emacs-lisp
+    (use-package eglot
+      :init
+      (setq eglot-workspace-configuration '(:nil
+    					(:formatting (:command "alejandra"))))
+      :config
+      ;; Ensure `nil` is in your PATH.
+      (add-to-list 'eglot-server-programs '(nix-mode . ("nil")))
+      :hook
+      (nix-mode . eglot-ensure))
+#+end_src
+
 ** Format all
 :PROPERTIES:
 :CUSTOM_ID: format-all
@@ -535,4 +557,12 @@ Auto format text/code.
         "lO" '(format-all-buffer :wk "Format")))
 #+end_src
 
+** Nix Mode
+:PROPERTIES:
+:CUSTOM_ID: nix-mode
+:END:
+Syntax highlighting for nix.
 
+#+begin_src emacs-lisp
+    (use-package nix-mode)
+#+end_src

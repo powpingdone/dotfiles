@@ -50,7 +50,9 @@
         org-appear
         org-super-agenda
         # PROGRAMMING
+        eglot
         format-all
+        nix-mode
       ]);
 in {
   config = lib.mkIf config.ppd.emacs.enable {
@@ -110,6 +112,8 @@ in {
       texlive.combined.scheme-medium
       # :lang nix
       age
+      nil
+      alejandra
     ];
   };
 }
