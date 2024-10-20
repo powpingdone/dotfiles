@@ -7,6 +7,7 @@
   config = lib.mkIf config.ppd.steam.enable {
     environment.systemPackages = with pkgs; [
       steam-run
+      gamescope
     ];
 
     programs.steam = {
