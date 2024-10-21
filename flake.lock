@@ -322,7 +322,8 @@
         "home-manager": "home-manager",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_2",
-        "org-modern-indent": "org-modern-indent"
+        "org-modern-indent": "org-modern-indent",
+        "x1e-nixos-config": "x1e-nixos-config"
       }
     },
     "systems": {
@@ -352,6 +353,26 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "x1e-nixos-config": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1728556778,
+        "narHash": "sha256-RZFrdysp0MtbSXTiqSFgoOuU5QOX7rvFTQK+MkfFEQU=",
+        "owner": "kuruczgy",
+        "repo": "x1e-nixos-config",
+        "rev": "f69038316615ff59f1c5c9fd921e93680fd90ecc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kuruczgy",
+        "repo": "x1e-nixos-config",
         "type": "github"
       }
     }

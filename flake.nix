@@ -22,6 +22,10 @@
     };
 
     # external deps
+    x1e-nixos-config = { 
+      url = "github:kuruczgy/x1e-nixos-config";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     org-modern-indent = {
       # make sure to set the version in home/emacs/default.nix
       url = "github:jdtsmith/org-modern-indent/v0.1.4";
@@ -37,6 +41,7 @@
     emacs-overlay,
     nix-index-database,
     dwarffs,
+    x1e-nixos-config,
     ...
   } @ inputs: {
     nixosConfigurations = nixpkgs.lib.genAttrs ["PPD-ARMTOP" "PPD-TOWER"] (hostName: (
@@ -80,7 +85,10 @@
               home-manager.useUserPackages = true;
               home-manager.users.powpingdone = import ./home/ppd.nix;
             }
-          ];
+          ] ++
+          (if (hostName == "PPD-ARMTOP") then [
+	    x1e-nixos-config.nixosModules.x1e
+          ] else []);
         }
     ));
   };
