@@ -44,7 +44,7 @@
     x1e-nixos-config,
     ...
   } @ inputs: {
-    nixosConfigurations = nixpkgs.lib.genAttrs ["PPD-ARMTOP" "PPD-TOWER"] (hostName: (
+    nixosConfigurations = nixpkgs.lib.genAttrs ["PPD-POWERTOP" "PPD-ARMTOP" "PPD-TOWER"] (hostName: (
       let
         ppdOpts = (import ./hosts/${hostName}/options.nix {}).ppd;
         system = ppdOpts.system;
