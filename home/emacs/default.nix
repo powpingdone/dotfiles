@@ -23,6 +23,7 @@
         evil-tutor
         which-key
         general
+        vertico
         # APPEARANCE
         doom-themes
         doom-modeline

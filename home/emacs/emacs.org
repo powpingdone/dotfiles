@@ -13,6 +13,7 @@
   - [[#evil-mode-vim-binds][Evil Mode (vim binds)]]
   - [[#which-key][Which Key]]
   - [[#generalel-binding-creation][General.el (binding creation)]]
+  - [[#vertico-completion][Vertico (completion)]]
 - [[#apperance][APPERANCE]]
   - [[#emacs-config][Emacs Config]]
   - [[#doom-themes][Doom themes]]
@@ -97,6 +98,8 @@ Basically, nixos provides the packages (for rollback reasons) and emacs loads th
 :CUSTOM_ID: which-key
 :END:
 
+You know what which key is.
+
 #+begin_src emacs-lisp
     (use-package which-key
       :demand t
@@ -160,6 +163,34 @@ I dunno why i'm using this but it's probably good.
         "dc" 'org-capture
         "ds" 'org-store-link)
       )
+#+end_src
+
+** Vertico (completion)
+:PROPERTIES:
+:CUSTOM_ID: vertico-completion
+:END:
+
+Completion framework for various commands.
+
+#+begin_src emacs-lisp
+    (use-package vertico
+      :demand t
+      :config
+      (vertico-mode))
+
+    (use-package savehist
+      :demand t
+      :config
+      (savehist-mode))
+
+    (use-package emacs
+      :init
+      (setq enable-recursive-minibuffers t
+            read-extended-command-predicate #'command-completion-default-include-p
+            minibuffer-prompt-properties
+            '(read-only t cursor-intangible t face minibuffer-prompt))
+      :hook
+      (minibuffer-setup . cursor-intangible-mode))
 #+end_src
 
 
@@ -275,6 +306,7 @@ Figure out what delimits what with color changing parens!
       :hook
       prog-mode)
 #+end_src
+
 
 * TOOLS
 :PROPERTIES:
