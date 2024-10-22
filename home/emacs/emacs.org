@@ -39,6 +39,7 @@
   - [[#org-super-agenda][Org Super Agenda]]
 - [[#programming][PROGRAMMING]]
   - [[#eglot][EGLOT]]
+  - [[#flycheck][Flycheck]]
   - [[#format-all][Format all]]
   - [[#nix-mode][Nix Mode]]
 :END:
@@ -583,6 +584,33 @@ Probably needs to have other langs configured.
       (add-to-list 'eglot-server-programs '(nix-mode . ("nil")))
       :hook
       (nix-mode . eglot-ensure))
+#+end_src
+
+** Flycheck
+:PROPERTIES:
+:CUSTOM_ID: flycheck
+:END:
+
+Inline syntax notes. 
+
+#+begin_src emacs-lisp
+    (flymake-mode -1)
+
+    (use-package flycheck
+      :hook
+      (after-init . global-flycheck-mode)
+      :init
+      (setq flycheck-check-syntax-automatically
+            '(mode-enabled save new-line idle-change idle-buffer-switch)
+            flycheck-idle-change-delay 0.375
+            flycheck-idle-buffer-switch-delay 0.650
+            flycheck-buffer-switch-check-intermediate-buffers 'nil))
+
+    (use-package flycheck-eglot
+      :ensure t
+      :after (flycheck eglot)
+      :config
+      (global-flycheck-eglot-mode 1))
 #+end_src
 
 ** Format all

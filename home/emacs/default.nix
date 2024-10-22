@@ -53,6 +53,8 @@
         org-super-agenda
         # PROGRAMMING
         eglot
+        flycheck
+        flycheck-eglot
         format-all
         nix-mode
       ]);
