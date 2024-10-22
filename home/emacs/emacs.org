@@ -108,7 +108,6 @@ Basically, nixos provides the packages (for rollback reasons) and emacs loads th
 :PROPERTIES:
 :CUSTOM_ID: generalel-binding-creation
 :END:
-
 I dunno why i'm using this but it's probably good.
 
 #+begin_src emacs-lisp
@@ -149,6 +148,8 @@ I dunno why i'm using this but it's probably good.
         "f" '(:ignore t :wk "find")
         "fc" '((lambda () (interactive) (find-file "/etc/nixos")) :wk "Edit file in NixOS config")
         "ff" '(find-file :wk "Find file")
+        "fo" '((lambda () (interactive) (find-file "~/org")) :wk "Open org dir")
+        "fq" '((lambda () (interactive) (find-file "~/extern")) :wk "Open extern")
         ;; language specific
         "l" '(:ignore t :wk "lang")
         "l`" '(comment-line :wk "comment line(s)")
