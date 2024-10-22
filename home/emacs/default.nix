@@ -30,6 +30,7 @@
         treesit-grammars.with-all-grammars
         beacon
         olivetti
+        rainbow-delimiters
         # TOOLS
         pdf-tools
         sudo-edit

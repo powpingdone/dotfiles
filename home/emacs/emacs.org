@@ -20,6 +20,7 @@
   - [[#tree-sitter][Tree sitter]]
   - [[#beacon][Beacon]]
   - [[#olivetti][Olivetti]]
+  - [[#rainbow-delimeters][Rainbow Delimeters]]
 - [[#tools][TOOLS]]
   - [[#pdf-tools][PDF Tools]]
   - [[#sudo-edit][Sudo Edit]]
@@ -263,6 +264,17 @@ Zen mode but nicer.
                               :foreground (doom-color 'base3)))
 #+end_src
 
+** Rainbow Delimeters
+:PROPERTIES:
+:CUSTOM_ID: rainbow-delimeters
+:END:
+Figure out what delimits what with color changing parens!
+
+#+begin_src emacs-lisp
+    (use-package rainbow-delimiters
+      :hook
+      prog-mode)
+#+end_src
 
 * TOOLS
 :PROPERTIES:
@@ -533,7 +545,7 @@ Probably needs to have other langs configured.
     (use-package eglot
       :init
       (setq eglot-workspace-configuration '(:nil
-    					(:formatting (:command "alejandra"))))
+    					(:formatting (:command ("alejandra")))))
       :config
       ;; Ensure `nil` is in your PATH.
       (add-to-list 'eglot-server-programs '(nix-mode . ("nil")))
