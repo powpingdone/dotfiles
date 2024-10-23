@@ -84,8 +84,9 @@ in {
           (hashFile "sha256" ./early-init.el)
           (hashFile "sha256" ./init.el)
           (hashFile "sha256" ./emacs.org)
+          (hashFile "sha256" ./default.nix)
         ];
-        X-SwitchMethod = "reload";
+        X-SwitchMethod = "restart";
       };
     };
 
