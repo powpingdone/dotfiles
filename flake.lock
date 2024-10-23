@@ -363,15 +363,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1728556778,
-        "narHash": "sha256-RZFrdysp0MtbSXTiqSFgoOuU5QOX7rvFTQK+MkfFEQU=",
-        "owner": "kuruczgy",
+        "lastModified": 1729712176,
+        "narHash": "sha256-EH0zm0iG57iJ2BrLywPNic9emJc+VQXWw3PwJca2fjc=",
+        "owner": "powpingdone",
         "repo": "x1e-nixos-config",
-        "rev": "f69038316615ff59f1c5c9fd921e93680fd90ecc",
+        "rev": "2fce328b306e1a0c2f2d624ba16d447f2ad3df00",
         "type": "github"
       },
       "original": {
-        "owner": "kuruczgy",
+        "owner": "powpingdone",
+        "ref": "zlib-fix",
         "repo": "x1e-nixos-config",
         "type": "github"
       }
