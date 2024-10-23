@@ -589,16 +589,14 @@ TODO: Make sure to set this up accordingly.
 :END:
 LSP. Nuff said.
 
-Probably needs to have other langs configured.
+Will need to have other langs configured.
 
 #+begin_src emacs-lisp
     (use-package eglot
-      :init
-      (setq eglot-workspace-configuration '(:nil
-    					(:formatting (:command ("alejandra")))))
       :config
-      ;; Ensure `nil` is in your PATH.
-      (add-to-list 'eglot-server-programs '(nix-mode . ("nil")))
+      (dolist (mode_server '(
+    			 (nix-mode . ("nixd"))))
+        (add-to-list 'eglot-server-programs mode_server))
       :hook
       (nix-mode . eglot-ensure))
 #+end_src
@@ -659,5 +657,9 @@ Auto format text/code.
 Syntax highlighting for nix.
 
 #+begin_src emacs-lisp
-    (use-package nix-mode)
+    (use-package nix-mode
+      :hook
+      (nix-mode . (lambda ()
+    		(setq-local eglot-workspace-configuration
+    			    '(:nixd (:formatting (:command [ "alejandra" ]))))))
 #+end_src

@@ -22,7 +22,7 @@
     };
 
     # external deps
-    x1e-nixos-config = { 
+    x1e-nixos-config = {
       url = "github:kuruczgy/x1e-nixos-config";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -55,7 +55,11 @@
             [
               emacs-overlay.overlays.default
             ]
-            ++ ppdOpts.overlays;
+            ++ (
+              if ppdOpts ? overlays
+              then ppdOpts.overlays
+              else []
+            );
         };
       in
         nixpkgs.lib.nixosSystem {
@@ -63,32 +67,38 @@
 
           specialArgs = {inherit inputs hostName ppdOpts;};
 
-          modules = [
-            # host specific
-            {networking.hostName = hostName;}
-            ./hosts/${hostName}
-            ./hosts/${hostName}/options.nix
+          modules =
+            [
+              # host specific
+              {networking.hostName = hostName;}
+              ./hosts/${hostName}
+              ./hosts/${hostName}/options.nix
 
-            # general
-            ./options.nix
-            ./modules
-            nixpkgs.nixosModules.notDetected
-            nix-index-database.nixosModules.nix-index
+              # general
+              {nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];}
+              ./options.nix
+              ./modules
+              nixpkgs.nixosModules.notDetected
+              nix-index-database.nixosModules.nix-index
 
-            # home-manager
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.extraSpecialArgs = {
-                inherit inputs hostName ppdOpts;
-              };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.powpingdone = import ./home/ppd.nix;
-            }
-          ] ++
-          (if (hostName == "PPD-ARMTOP") then [
-	    x1e-nixos-config.nixosModules.x1e
-          ] else []);
+              # home-manager
+              home-manager.nixosModules.home-manager
+              {
+                home-manager.extraSpecialArgs = {
+                  inherit inputs hostName ppdOpts;
+                };
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.users.powpingdone = import ./home/ppd.nix;
+              }
+            ]
+            ++ (
+              if (hostName == "PPD-ARMTOP")
+              then [
+                x1e-nixos-config.nixosModules.x1e
+              ]
+              else []
+            );
         }
     ));
   };

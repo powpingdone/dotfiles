@@ -118,7 +118,7 @@ in {
       texlive.combined.scheme-medium
       # :lang nix
       age
-      nil
+      nixd
       alejandra
     ];
   };
