@@ -24,6 +24,7 @@
         which-key
         general
         vertico
+        consult
         # APPEARANCE
         doom-themes
         doom-modeline
@@ -55,6 +56,7 @@
         eglot
         flycheck
         flycheck-eglot
+        consult-flycheck
         format-all
         nix-mode
       ]);

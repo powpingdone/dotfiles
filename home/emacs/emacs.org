@@ -14,6 +14,7 @@
   - [[#which-key][Which Key]]
   - [[#generalel-binding-creation][General.el (binding creation)]]
   - [[#vertico-completion][Vertico (completion)]]
+  - [[#consult-vertico-commands][Consult (vertico commands)]]
 - [[#apperance][APPERANCE]]
   - [[#emacs-config][Emacs Config]]
   - [[#doom-themes][Doom themes]]
@@ -131,7 +132,6 @@ I dunno why i'm using this but it's probably good.
       (leader-key
         ;; buffer binds
         "b" '(:ignore t :wk "buffer")
-        "bb" '(switch-to-buffer :wk "switch buffer")
         "bd" '(kill-this-buffer :wk "kill buffer")
         "bn" '(next-buffer :wk "next buffer")
         "bp" '(previous-buffer :wk "previous buffer")
@@ -151,10 +151,6 @@ I dunno why i'm using this but it's probably good.
         "tm" '(indent-tabs-mode :wk "Tabs or Spaces indent")
         ;; find
         "f" '(:ignore t :wk "find")
-        "fc" '((lambda () (find-file "/etc/nixos")) :wk "Edit file in NixOS config")
-        "ff" '(find-file :wk "Find file")
-        "fo" '((lambda () (find-file "~/org")) :wk "Open org dir")
-        "fq" '((lambda () (find-file "~/extern")) :wk "Open extern")
         ;; language specific
         "l" '(:ignore t :wk "lang")
         "l`" '(comment-line :wk "comment line(s)")
@@ -194,6 +190,26 @@ Completion framework for various commands.
       (minibuffer-setup . cursor-intangible-mode))
 #+end_src
 
+** Consult (vertico commands)
+:PROPERTIES:
+:CUSTOM_ID: consult-vertico-commands
+:END:
+Some useful functions that use vertico. 
+
+#+begin_src emacs-lisp
+    (use-package consult
+      :init
+      (leader-key
+        "bb" '(consult-buffer : "find buffer")
+        "fc" '((lambda () (interactive) (consult-find "/etc/nixos")) :wk "Edit file in NixOS config")
+        "ff" '(consult-find :wk "Find file")
+        "fo" '((lambda () (interactive) (consult-find "~/org")) :wk "Open org dir")
+        "fq" '((lambda () (interactive) (consult-find "~/extern")) :wk "Open extern")
+        "fg" '(consult-ripgrep :wk "Grep files"))
+      :config
+      (consult-customize :preview-key (list :debounce 0.05 'any)))
+#+end_src
+
 
 * APPERANCE
 :PROPERTIES:
@@ -219,6 +235,7 @@ Stock emacs stuff that makes me vomit less.
     (set-face-attribute 'fixed-pitch nil :family "DejaVu Sans Mono" :height 1.2)
     (electric-indent-mode -1)
     (auto-save-mode -1)
+    (setenv "TERM" "xterm-256color")
 #+end_src
 
 ** Doom themes
@@ -611,6 +628,11 @@ Inline syntax notes.
       :after (flycheck eglot)
       :config
       (global-flycheck-eglot-mode 1))
+
+    (use-package consult-flycheck
+      :after (flycheck consult)
+      :config
+      (leader-key "l-" '(consult-flycheck :wk "Messages")))
 #+end_src
 
 ** Format all
