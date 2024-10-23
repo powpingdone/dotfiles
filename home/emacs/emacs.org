@@ -151,10 +151,10 @@ I dunno why i'm using this but it's probably good.
         "tm" '(indent-tabs-mode :wk "Tabs or Spaces indent")
         ;; find
         "f" '(:ignore t :wk "find")
-        "fc" '((lambda () (interactive) (find-file "/etc/nixos")) :wk "Edit file in NixOS config")
+        "fc" '((lambda () (find-file "/etc/nixos")) :wk "Edit file in NixOS config")
         "ff" '(find-file :wk "Find file")
-        "fo" '((lambda () (interactive) (find-file "~/org")) :wk "Open org dir")
-        "fq" '((lambda () (interactive) (find-file "~/extern")) :wk "Open extern")
+        "fo" '((lambda () (find-file "~/org")) :wk "Open org dir")
+        "fq" '((lambda () (find-file "~/extern")) :wk "Open extern")
         ;; language specific
         "l" '(:ignore t :wk "lang")
         "l`" '(comment-line :wk "comment line(s)")
