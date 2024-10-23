@@ -661,5 +661,5 @@ Syntax highlighting for nix.
       :hook
       (nix-mode . (lambda ()
     		(setq-local eglot-workspace-configuration
-    			    '(:nixd (:formatting (:command [ "alejandra" ]))))))
+    			    '(:nixd (:formatting (:command [ "alejandra" ])))))))
 #+end_src
