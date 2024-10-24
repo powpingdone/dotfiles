@@ -40,7 +40,7 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
         command = "kgx";
         name = "Open Terminal";
       };
-      "/org/gnome/shell/extensions/blur-my-shell/panel/".blur = false;
+      "/org/gnome/shell/extensions/blur-my-shell/panel".blur = false;
     };
   };
 
