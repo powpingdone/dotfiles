@@ -1,7 +1,6 @@
 {
   nixosConfig,
   lib,
-  ppd,
   pkgs,
   ...
 }:
@@ -33,6 +32,7 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
       "org/gnome/mutter" = {
         dynamic-workspaces = true;
         edge-tiling = true;
+        experimental-features = ["scale-monitor-framebuffer"];
       };
       "org/gnome/settings-daemon/plugins/media-keys".custom-keybindings = ["/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"];
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
@@ -40,6 +40,7 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
         command = "kgx";
         name = "Open Terminal";
       };
+      "/org/gnome/shell/extensions/blur-my-shell/panel/".blur = false;
     };
   };
 
