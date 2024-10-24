@@ -156,10 +156,7 @@ I dunno why i'm using this but it's probably good.
         "l" '(:ignore t :wk "lang")
         "l`" '(comment-line :wk "comment line(s)")
         ;; emacs programs
-        "d" '(:ignore t :wk "programs")
-        "da" 'org-agenda
-        "dc" 'org-capture
-        "ds" 'org-store-link)
+        "d" '(:ignore t :wk "programs"))
       )
 #+end_src
 
@@ -252,8 +249,6 @@ Stock emacs stuff that makes me vomit less.
     (global-visual-line-mode 1)
     (dolist (mode '(term-mode-hook eshell-mode-hook))
       (add-hook mode (lambda () (display-line-numbers-mode -1))))
-    (set-face-attribute 'variable-pitch nil :family "DejaVu Sans" :height 1.2)
-    (set-face-attribute 'fixed-pitch nil :family "DejaVu Sans Mono" :height 1.2)
     (electric-indent-mode -1)
     (auto-save-mode -1)
     (setenv "TERM" "xterm-256color")
@@ -271,7 +266,10 @@ I wish I had something similar to sainnhe/edge but doom-one is ok for right now.
       (setq doom-themes-enable-bold t
             doom-themes-enable-italic t)
       :config
-      (load-theme 'doom-one t))
+      (load-theme 'doom-one t)
+      (custom-set-faces
+       `(variable-pitch ((t (:font "DejaVu Serif" :height 1.05))))
+       `(fixed-pitch ((t (:font "DejaVu Sans Mono" :height 1.05))))))
 #+end_src
 
 ** Doom Modeline
@@ -424,29 +422,54 @@ Do you think god stays in heaven because he fears org mode?
       :init
       (require 'doom-themes)
       (leader-key
+        "da" 'org-agenda
+        "dc" 'org-capture
+        "ds" 'org-store-link)
+      (leader-key
         :keymaps 'org-mode-map
+        "lh" '(org-shiftmetaleft :wk "Promote headline")
+        "ll" '(org-shiftmetaright :wk "Demote headline")
+        "lj" '(org-shiftmetadown :wk "Move headline down")
+        "lk" '(org-shiftmetaup :wk "Move headline up")
         "ls" '(org-edit-special :wk "Edit block"))
-      (setq org-enforce-todo-dependencies t
-            org-use-fast-todo-selection t
-            org-hide-leading-stars t
-            org-startup-indented t
-            org-src-preserve-indentation 'nil
-            org-default-notes-file "~/org/tasks.org"
-            org-agenda-files '("~/org")
-            org-log-done 'time
-            org-return-follows-link t
-            org-indent-indentation-per-level 4
-            org-edit-src-content-indentation 4
-            org-capture-templates '(
-                                    ("j" "Work Log Entry"
-                                     entry (file+datetree "~/org/work-log.org")
-                                     "* %?" :empty-lines 0)
-                                    ("t" "TODO"
-                                     entry (file+headline "~/org/tasks.org" "General Tasks"))))
+      (setq
+       org-capture-templates
+       '(("j" "Work Log Entry"
+          entry (file+olp+datetree "~/org/work-log.org")
+          "* %?" :empty-lines 0)
+         ("t" "TODO"
+          entry (file+headline "~/org/tasks.org" "General Tasks")))
+       org-enforce-todo-dependencies t
+       org-use-fast-todo-selection t
+       org-hide-leading-stars t
+       org-startup-indented t
+       org-src-preserve-indentation 'nil
+       org-default-notes-file "~/org/tasks.org"
+       org-agenda-files '("~/org")
+       org-log-done 'time
+       org-return-follows-link t
+       org-indent-indentation-per-level 4
+       org-edit-src-content-indentation 4)
+      (custom-set-faces
+       `(org-level-8 ((t (:font "DejaVu Serif" :height 1.00 :inherit 'outline-8))))
+       `(org-level-7 ((t (:font "DejaVu Serif" :height 1.00 :inherit 'outline-7))))
+       `(org-level-6 ((t (:font "DejaVu Serif" :height 1.00 :inherit 'outline-6))))
+       `(org-level-5 ((t (:font "DejaVu Serif" :height 1.00 :inherit 'outline-5))))
+       `(org-level-4 ((t (:font "DejaVu Serif" :height 1.05 :inherit 'outline-4))))
+       `(org-level-3 ((t (:font "DejaVu Serif" :height 1.10 :inherit 'outline-3))))
+       `(org-level-2 ((t (:font "DejaVu Serif" :height 1.15 :inherit 'outline-2))))
+       `(org-level-1 ((t (:font "DejaVu Serif" :height 1.20 :inherit 'outline-1))))
+       `(org-tag ((t (:foreground ,(doom-color 'doc-comments) :inherit 'fixed-pitch))))
+       `(org-document-title ((t (:font "DejaVu Serif" :height 1.6))))
+       `(org-hide ((t :inherit 'fixed-pitch :foreground ,(doom-color 'bg))))
+       `(org-block ((t (:inherit 'fixed-pitch :extend t))))
+       `(org-table ((t (:inherit 'fixed-pitch :foreground ,(doom-color 'violet)))))
+       `(org-property-value ((t (:foreground ,(doom-color 'doc-comments) :inherit 'fixed-pitch :extend t)))))
       :hook
       (org-mode . olivetti-mode)
       (org-mode . org-indent-mode)
       (org-mode . visual-line-mode)
+      (org-mode . variable-pitch-mode)
       (org-mode . (lambda ()
                     (display-line-numbers-mode 0)
                     (indent-tabs-mode 0)))
