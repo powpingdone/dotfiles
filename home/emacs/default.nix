@@ -28,6 +28,8 @@
         # APPEARANCE
         doom-themes
         doom-modeline
+        tree-sitter
+        tree-sitter-langs
         treesit-auto
         treesit-grammars.with-all-grammars
         beacon
