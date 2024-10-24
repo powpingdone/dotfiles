@@ -25,6 +25,7 @@
         general
         vertico
         consult
+        orderless
         # APPEARANCE
         doom-themes
         doom-modeline

@@ -15,6 +15,7 @@
   - [[#generalel-binding-creation][General.el (binding creation)]]
   - [[#vertico-completion][Vertico (completion)]]
   - [[#consult-vertico-commands][Consult (vertico commands)]]
+  - [[#orderless-completion-style][Orderless (completion style)]]
 - [[#apperance][APPERANCE]]
   - [[#emacs-config][Emacs Config]]
   - [[#doom-themes][Doom themes]]
@@ -207,7 +208,27 @@ Some useful functions that use vertico.
         "fq" '((lambda () (interactive) (consult-find "~/extern")) :wk "Open extern")
         "fg" '(consult-ripgrep :wk "Grep files"))
       :config
-      (consult-customize :preview-key (list :debounce 0.05 'any)))
+      (consult-customize :preview-key 'any
+    		     consult-ripgrep consult-git-grep consult-grep
+    		     consult-bookmark consult-recent-file
+    		     consult--source-bookmark consult--source-file-register
+    		     consult--source-recent-file consult--source-project-recent-file
+    		     :preview-key '(:debounce 0.625 any)))
+#+end_src
+
+** Orderless (completion style)
+:PROPERTIES:
+:CUSTOM_ID: orderless-completion-style
+:END:
+
+No grep needed. Just type in letters that exist.
+
+#+begin_src emacs-lisp
+    (use-package orderless
+      :ensure t
+      :custom
+      (completion-styles '(orderless basic))
+      (completion-category-overrides '((file (styles basic partial-completion)))))
 #+end_src
 
 
@@ -306,7 +327,7 @@ Zen mode but nicer.
       (leader-key
         "tz" '(olivetti-mode :wk "Zen Mode/Olivetti Mode"))
       (setq olivetti-style 'fancy
-            olivetti-body-width 104)
+            olivetti-body-width 96)
       :config
       (set-face-attribute 'olivetti-fringe nil
                               :background (doom-color 'base3)
