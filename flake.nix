@@ -23,7 +23,7 @@
 
     # external deps
     x1e-nixos-config = {
-      url = "github:powpingdone/x1e-nixos-config/zlib-fix";
+      url = "github:kuruczgy/x1e-nixos-config";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     org-modern-indent = {

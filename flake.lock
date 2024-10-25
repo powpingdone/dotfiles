@@ -31,11 +31,11 @@
         "nixpkgs-stable": []
       },
       "locked": {
-        "lastModified": 1729502003,
-        "narHash": "sha256-Z3CZ7cuub0VkT4GX02P4B9lUqxPwErPuPSYOJN385jM=",
+        "lastModified": 1729876525,
+        "narHash": "sha256-ufgsc4MzPk+EuWE8Z9wtcvwdaLc4RcgN/peMhrjMF+g=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "6304f986376e810d64c0939807a996a956e34d70",
+        "rev": "921c961c4b0754122a3897bb1d68a40f3f925ef0",
         "type": "github"
       },
       "original": {
@@ -160,11 +160,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1729459288,
-        "narHash": "sha256-gBOVJv+q6Mx8jGvwX7cE6J8+sZmi1uxpRVsO7WxvVuQ=",
+        "lastModified": 1729864948,
+        "narHash": "sha256-CeGSqbN6S8JmzYJX/HqZjr7dMGlvHLLnJJarwB45lPs=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "1e27f213d77fc842603628bcf2df6681d7d08f7e",
+        "rev": "0c0268a3c80d30b989d0aadbd65f38d4fa27a9a0",
         "type": "github"
       },
       "original": {
@@ -283,11 +283,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1729256560,
-        "narHash": "sha256-/uilDXvCIEs3C9l73JTACm4quuHUsIHcns1c+cHUJwA=",
+        "lastModified": 1729665710,
+        "narHash": "sha256-AlcmCXJZPIlO5dmFzV3V2XF6x/OpNWUV8Y/FMPGd8Z4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "4c2fcb090b1f3e5b47eaa7bd33913b574a11e0a0",
+        "rev": "2768c7d042a37de65bb1b5b3268fc987e534c49d",
         "type": "github"
       },
       "original": {
@@ -363,16 +363,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1729712176,
-        "narHash": "sha256-EH0zm0iG57iJ2BrLywPNic9emJc+VQXWw3PwJca2fjc=",
-        "owner": "powpingdone",
+        "lastModified": 1729857611,
+        "narHash": "sha256-PhASvgLAEz3WHcD7zhU/BO06nD+/xhv+qlA3H8+9gjE=",
+        "owner": "kuruczgy",
         "repo": "x1e-nixos-config",
-        "rev": "2fce328b306e1a0c2f2d624ba16d447f2ad3df00",
+        "rev": "66b5841130fc9c39d193a33883388e526c4cfd87",
         "type": "github"
       },
       "original": {
-        "owner": "powpingdone",
-        "ref": "zlib-fix",
+        "owner": "kuruczgy",
         "repo": "x1e-nixos-config",
         "type": "github"
       }

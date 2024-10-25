@@ -52,7 +52,7 @@
 :CUSTOM_ID: notes
 :END:
 + use-package is already loaded in nix, and as such packages come from nix
-  
+ 
   
 * PRIORITY LOAD
 :PROPERTIES:
