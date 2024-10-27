@@ -484,7 +484,8 @@ Do you think god stays in heaven because he fears org mode?
          (org . t)
          (latex . t)
          (gnuplot . t)
-         (python . t))))
+         (python . t)
+         (sql . t))))
 #+end_src
 
 ** Org babel async
