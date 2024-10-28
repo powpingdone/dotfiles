@@ -436,7 +436,7 @@ Do you think god stays in heaven because he fears org mode?
        org-capture-templates
        '(("j" "Work Log Entry"
           entry (file+olp+datetree "~/org/work-log.org")
-          "* %?" :empty-lines 0)
+          "* %<%R> %?" :empty-lines 0)
          ("t" "TODO"
           entry (file+headline "~/org/tasks.org" "General Tasks")))
        org-enforce-todo-dependencies t
