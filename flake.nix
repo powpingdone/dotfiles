@@ -23,7 +23,8 @@
 
     # external deps
     x1e-nixos-config = {
-      url = "github:kuruczgy/x1e-nixos-config";
+      #url = "github:kuruczgy/x1e-nixos-config";
+      url = "github:powpingdone/x1e-nixos-config/upd-6.12-rc5";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     org-modern-indent = {
