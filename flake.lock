@@ -31,11 +31,11 @@
         "nixpkgs-stable": []
       },
       "locked": {
-        "lastModified": 1730193338,
-        "narHash": "sha256-DcZMhdIsi2FbHSUy5w1NpcYlOmLo2i8t2WvjboFfe7s=",
+        "lastModified": 1730219031,
+        "narHash": "sha256-WhzEm1a/kZw9jUrXzlAWnDI6PlwjdJYv+O4+e0cI4wI=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "ccdc04185c596b78387aeabee053aad7e62060c4",
+        "rev": "ab38e5767457fd7bc0ef00962feeb4c4e5ddfeb8",
         "type": "github"
       },
       "original": {
@@ -363,15 +363,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1729857611,
-        "narHash": "sha256-PhASvgLAEz3WHcD7zhU/BO06nD+/xhv+qlA3H8+9gjE=",
-        "owner": "kuruczgy",
+        "lastModified": 1730217567,
+        "narHash": "sha256-G8oaeM9sgzuD2+AB/KKjkCaWG7Zpqob+wj3btyxb23Q=",
+        "owner": "powpingdone",
         "repo": "x1e-nixos-config",
-        "rev": "66b5841130fc9c39d193a33883388e526c4cfd87",
+        "rev": "35470c6f663ac295d9c456c0330c3604d0a010b9",
         "type": "github"
       },
       "original": {
-        "owner": "kuruczgy",
+        "owner": "powpingdone",
+        "ref": "upd-6.12-rc5",
         "repo": "x1e-nixos-config",
         "type": "github"
       }
