@@ -363,15 +363,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1730315689,
-        "narHash": "sha256-RTGh0T6z6VcO/JKIKsf41KA+Sjw/rjEvnr9ZuituoMA=",
-        "owner": "kuruczgy",
+        "lastModified": 1730406030,
+        "narHash": "sha256-EQp7K2Zt4javwEIJgI5snUhhLdQcy8ydxt5+stPY3Y8=",
+        "owner": "powpingdone",
         "repo": "x1e-nixos-config",
-        "rev": "0091d8be41706b1d9c759222e860b019d271b23d",
+        "rev": "75daa95d8e2e39628443414a5a0b0f60761021a3",
         "type": "github"
       },
       "original": {
-        "owner": "kuruczgy",
+        "owner": "powpingdone",
+        "ref": "try-audio",
         "repo": "x1e-nixos-config",
         "type": "github"
       }
