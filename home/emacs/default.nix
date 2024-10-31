@@ -65,38 +65,43 @@
       ]);
 in {
   config = lib.mkIf config.ppd.emacs.enable {
-    services.emacs = {
-      enable = true;
-      package = emacs-pkg;
-      socketActivation.enable = true;
-    };
+    # TODO disable this client
+    ##services.emacs = {
+    ##  enable = true;
+    ##  package = emacs-pkg;
+    ##  socketActivation.enable = true;
+    ##};
 
+    ### restart emacs service if these files change
+    ##systemd.user.services.emacs = {
+    ##  Service = {
+    ##    ExecReload = "${emacs-pkg}/bin/emacsclient -e '(ppd/reload-emacs)'";
+    ##  };
+    ##  Unit = {
+    ##    X-Restart-Triggers = with builtins; [
+    ##      (hashFile "sha256" ./early-init.el)
+    ##      (hashFile "sha256" ./init.el)
+    ##      (hashFile "sha256" ./emacs.org)
+    ##      (hashFile "sha256" ./default.nix)
+    ##    ];
+    ##    X-SwitchMethod = "restart";
+    ##  };
+    ##};
+
+    programs.emacs = {
+       enable = true;
+       package = emacs-pkg;
+    };
+    
     xdg.configFile = {
       "emacs/early-init.el".source = ./early-init.el;
       "emacs/init.el".source = ./init.el;
       "emacs/emacs.org".source = ./emacs.org;
     };
 
-    # restart emacs service if these files change
-    systemd.user.services.emacs = {
-      Service = {
-        ExecReload = "${emacs-pkg}/bin/emacsclient -e '(ppd/reload-emacs)'";
-      };
-      Unit = {
-        X-Restart-Triggers = with builtins; [
-          (hashFile "sha256" ./early-init.el)
-          (hashFile "sha256" ./init.el)
-          (hashFile "sha256" ./emacs.org)
-          (hashFile "sha256" ./default.nix)
-        ];
-        X-SwitchMethod = "restart";
-      };
-    };
-
     # emacs packages
     home.packages = with pkgs; [
       ## Emacs itself
-      emacs-pkg
       binutils # native-comp needs 'as', provided by this
 
       ## Doom dependencies
