@@ -21,12 +21,12 @@
   hardware.nvidia = {
     powerManagement.enable = true;
     powerManagement.finegrained = true;
-    open = true;
     prime.offload.enable = true;
     prime.offload.enableOffloadCmd = true;
     prime.nvidiaBusId = "PCI:1:0:0";
     prime.amdgpuBusId = "PCI:4:0:0";
     modesetting.enable = true;
+    package = pkgs.linuxPackages_latest.nvidia_x11_beta_open;
   };
 
   services.xserver.videoDrivers = ["amdgpu" "nvidia"];
