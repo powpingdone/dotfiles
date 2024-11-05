@@ -26,7 +26,8 @@
     prime.nvidiaBusId = "PCI:1:0:0";
     prime.amdgpuBusId = "PCI:4:0:0";
     modesetting.enable = true;
-    package = config.boot.kernelPackages.nvidia_x11_production_open;
+    package = config.boot.kernelPackages.nvidia_x11_production;
+    open = true;
   };
 
   services.xserver.videoDrivers = ["amdgpu" "nvidia"];

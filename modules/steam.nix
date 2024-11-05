@@ -12,6 +12,9 @@
 
     programs.steam = {
       enable = true;
+      package = pkgs.steam.override {
+        extraLibraries = pkgs: [ pkgs.xorg.libxcb ];
+      };
       gamescopeSession.enable = true;
       extest.enable = true;
       protontricks.enable = true;
