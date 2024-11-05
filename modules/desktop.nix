@@ -31,6 +31,17 @@
     services.pipewire = {
       enable = true;
       pulse.enable = true;
+      wireplumber = {
+        enable = true;
+        extraconfig = {
+          "log-level-debug" = {
+            "context.properties" = {
+              # Output Debug log messages as opposed to only the default level (Notice)
+              "log.level" = "D";
+            };
+          };
+        };
+      };
     };
 
     # Enable Bluetooth
