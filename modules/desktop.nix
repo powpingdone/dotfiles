@@ -33,7 +33,7 @@
       pulse.enable = true;
       wireplumber = {
         enable = true;
-        extraconfig = {
+        extraConfig = {
           "log-level-debug" = {
             "context.properties" = {
               # Output Debug log messages as opposed to only the default level (Notice)
