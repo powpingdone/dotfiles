@@ -103,4 +103,12 @@
   
   # being able to use security keys is a big thing
   services.pcscd.enable = true;
+
+  # nh is a nice frontend
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "-k 3 -a -v ";
+    flake = "/etc/nixos"; # typically, flake is here
+  };
 }
