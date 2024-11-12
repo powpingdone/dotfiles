@@ -107,8 +107,6 @@
   # nh is a nice frontend
   programs.nh = {
     enable = true;
-    clean.enable = true;
-    clean.extraArgs = "-k 3 -a -v ";
     flake = "/etc/nixos"; # typically, flake is here
   };
 }
