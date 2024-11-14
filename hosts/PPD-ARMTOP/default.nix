@@ -30,6 +30,8 @@
     enable = true;
     name = "qcom/x1e80100-lenovo-yoga-slim7x.dtb";
   };
+
+  x1e.audio.enable = true;
   
   boot.kernelPatches = [ ];
 }
