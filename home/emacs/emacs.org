@@ -35,7 +35,6 @@
   - [[#org-modern][Org Modern]]
   - [[#org-modern-indent][Org Modern Indent]]
   - [[#table-of-contents][Table of contents]]
-  - [[#org-roam][Org Roam]]
   - [[#org-noter][Org Noter]]
   - [[#org-appear][Org Appear]]
   - [[#org-super-agenda][Org Super Agenda]]
@@ -540,23 +539,6 @@ Adds a table of contents to an org mode documents.
       (setq org-make-toc-insert-custom-ids t)
       :after org
       :hook (org-mode . org-make-toc-mode))
-#+end_src
-
-** TODO Org Roam
-:PROPERTIES:
-:CUSTOM_ID: org-roam
-:END:
-Cross link org mode documents.
-
-TODO: Add which key bindings to this.
-
-#+begin_src emacs-lisp
-    (use-package org-roam
-      :after org
-      :init
-      (setq org-roam-directory (file-truename "~/org/roam"))
-      :config
-      (org-roam-db-autosync-mode))
 #+end_src
 
 ** Org Noter

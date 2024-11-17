@@ -51,7 +51,6 @@
           version = "0.1.4";
         })
         org-make-toc
-        org-roam
         org-noter
         org-appear
         org-super-agenda
@@ -126,7 +125,6 @@ in {
       # :lang latex & :lang org (latex previews)
       texlive.combined.scheme-medium
       # :lang nix
-      age
       nixd
       alejandra
     ];
