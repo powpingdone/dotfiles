@@ -26,6 +26,7 @@
     prime.nvidiaBusId = "PCI:1:0:0";
     prime.amdgpuBusId = "PCI:4:0:0";
     modesetting.enable = true;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
     open = true;
   };
 
