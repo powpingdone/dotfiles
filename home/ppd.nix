@@ -13,7 +13,7 @@
     ./emacs
   ];
 
-  home.stateVersion = "24.11";
+  home.stateVersion = "25.05";
   # regular config
   home.username = "powpingdone";
   home.homeDirectory = "/home/powpingdone";

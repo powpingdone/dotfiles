@@ -26,7 +26,6 @@
     prime.nvidiaBusId = "PCI:1:0:0";
     prime.amdgpuBusId = "PCI:4:0:0";
     modesetting.enable = true;
-    package = config.boot.kernelPackages.nvidia_x11_production;
     open = true;
   };
 
@@ -74,5 +73,5 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 }

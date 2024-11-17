@@ -56,5 +56,5 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlP4p1s0.useDHCP = lib.mkDefault true;
 
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 }
