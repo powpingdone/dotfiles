@@ -329,11 +329,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1731958305,
-        "narHash": "sha256-QdR0QHc4hDLs0T1AOAl2NZkgF5R3giCKSQdYYMHv5BI=",
+        "lastModified": 1731958884,
+        "narHash": "sha256-DK1Y2ydMbsPc8b72voCMWjGQcSeFVYr1sgCxUds1Jy4=",
         "owner": "powpingdone",
         "repo": "x1e-nixos-config",
-        "rev": "f34a295e8b271b8593d4a40f306090ce8545b1dc",
+        "rev": "1af0981a0d17b69f9f772a112145b3ec94b6766c",
         "type": "github"
       },
       "original": {
