@@ -10,10 +10,12 @@
       gamescope
     ];
 
+    hardware.steam-hardware.enable = true;
+
     programs.steam = {
       enable = true;
       package = pkgs.steam.override {
-        extraLibraries = pkgs: [ pkgs.xorg.libxcb ];
+        extraLibraries = pkgs: [pkgs.xorg.libxcb];
       };
       gamescopeSession.enable = true;
       extest.enable = true;
