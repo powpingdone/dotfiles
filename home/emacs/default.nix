@@ -124,6 +124,7 @@ in {
       sqlite
       # :lang latex & :lang org (latex previews)
       texlive.combined.scheme-medium
+      texliveSmall
       # :lang nix
       nixd
       alejandra
