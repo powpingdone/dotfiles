@@ -88,10 +88,10 @@ in {
     ##};
 
     programs.emacs = {
-       enable = true;
-       package = emacs-pkg;
+      enable = true;
+      package = emacs-pkg;
     };
-    
+
     xdg.configFile = {
       "emacs/early-init.el".source = ./early-init.el;
       "emacs/init.el".source = ./init.el;
@@ -123,7 +123,22 @@ in {
       # :tools lookup & :lang org +roam
       sqlite
       # :lang latex & :lang org (latex previews)
-      texliveMedium
+      (texlive.combine {
+        inherit
+          (texlive)
+          scheme-medium
+          dvisvgm
+          dvipng # for preview and export as html
+          wrapfig
+          amsmath
+          ulem
+          hyperref
+          capt-of
+          etoolbox
+          ;
+        #(setq org-latex-compiler "lualatex")
+        #(setq org-preview-latex-default-process 'dvisvgm)
+      })
       # :lang nix
       nixd
       alejandra
