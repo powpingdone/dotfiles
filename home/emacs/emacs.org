@@ -32,8 +32,6 @@
 - [[#org-mode][ORG MODE]]
   - [[#org-config][Org config]]
   - [[#org-babel-async][Org babel async]]
-  - [[#org-modern][Org Modern]]
-  - [[#org-modern-indent][Org Modern Indent]]
   - [[#table-of-contents][Table of contents]]
   - [[#org-noter][Org Noter]]
   - [[#org-appear][Org Appear]]
@@ -438,6 +436,7 @@ Do you think god stays in heaven because he fears org mode?
           "* %<%R> %?" :empty-lines 0)
          ("t" "TODO"
           entry (file+headline "~/org/tasks.org" "General Tasks")))
+       org-latex-create-formula-image-program 'dvi tgm
        org-enforce-todo-dependencies t
        org-use-fast-todo-selection t
        org-hide-leading-stars t
@@ -449,6 +448,7 @@ Do you think god stays in heaven because he fears org mode?
        org-return-follows-link t
        org-indent-indentation-per-level 4
        org-edit-src-content-indentation 4)
+      (plist-put org-format-latex-options :scale 0.5)
       (custom-set-faces
        `(org-level-8 ((t (:font "DejaVu Serif" :height 1.00 :inherit 'outline-8))))
        `(org-level-7 ((t (:font "DejaVu Serif" :height 1.00 :inherit 'outline-7))))
@@ -495,36 +495,6 @@ Execute code asyncronously!
 
 #+begin_src emacs-lisp
     (use-package ob-async)
-#+end_src
-
-** Org Modern
-:PROPERTIES:
-:CUSTOM_ID: org-modern
-:END:
-Org mode but more fancy and pretty.
-
-#+begin_src emacs-lisp
-    (use-package org-modern
-      :after org
-      :config
-      (global-org-modern-mode)
-      :init
-      (setq org-modern-keyword nil
-            org-modern-star 'replace
-            org-modern-hide-stars " "))
-#+end_src
-
-** Org Modern Indent
-:PROPERTIES:
-:CUSTOM_ID: org-modern-indent
-:END:
-Because org-indent is nice but org-modern blocks don't like it. Uses a nixos derivation to fetch.
-
-#+begin_src emacs-lisp
-    (use-package org-modern-indent
-      :after org-modern
-      :config
-      (add-hook 'org-mode-hook #'org-modern-indent-mode 90))
 #+end_src
 
 ** Table of contents

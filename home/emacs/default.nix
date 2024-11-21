@@ -43,13 +43,6 @@
         magit
         # ORG MODE
         ob-async
-        org-modern
-        (trivialBuild {
-          packageRequires = [compat org org-modern];
-          pname = "org-modern-indent";
-          src = inputs.org-modern-indent;
-          version = "0.1.4";
-        })
         org-make-toc
         org-noter
         org-appear

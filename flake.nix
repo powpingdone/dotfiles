@@ -27,11 +27,6 @@
       url = "github:powpingdone/x1e-nixos-config/try-audio";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    org-modern-indent = {
-      # make sure to set the version in home/emacs/default.nix
-      url = "github:jdtsmith/org-modern-indent/v0.1.4";
-      flake = false;
-    };
   };
 
   outputs = {
