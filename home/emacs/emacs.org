@@ -597,7 +597,7 @@ Add modes that override
       (dolist (hook
     	   '(python-ts-mode python-mode nix-mode))
         (add-hook (quote ,(intern
-    		       (concat (symbol-name hook) "-hook"))) lsp))
+    		       (concat (symbol-name hook) "-hook"))) lsp-mode))
       :hook
       (lsp-mode . lsp-enable-which-key-integration)
       :commands lsp)
