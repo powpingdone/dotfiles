@@ -11,6 +11,7 @@
     ./desktop.nix
     ../options.nix
     ./emacs
+    ./devel.nix
   ];
 
   home.stateVersion = "25.05";
@@ -26,8 +27,7 @@
   home.packages = with pkgs;
     [
       alejandra
-    ]
-    ++ lib.optionals nixosConfig.ppd.devenv.enable [pkgs.devenv];
+    ];
   # shell related things
   home.shellAliases = {
     "grep" = "rg";
