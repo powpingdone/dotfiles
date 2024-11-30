@@ -600,6 +600,7 @@ Add modes that override
       	       (concat (symbol-name hook) "-hook")) 'lsp))
       :hook
       (lsp-mode . lsp-enable-which-key-integration)
+      (lsp-before-initialize-hook . direnv-update-environment)
       :commands lsp)
 
     (use-package lsp-ui :commands lsp-ui-mode)
