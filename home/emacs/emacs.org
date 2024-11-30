@@ -37,7 +37,7 @@
   - [[#org-appear][Org Appear]]
   - [[#org-super-agenda][Org Super Agenda]]
 - [[#programming][PROGRAMMING]]
-  - [[#eglot][EGLOT]]
+  - [[#lsp-mode][LSP-Mode]]
   - [[#flycheck][Flycheck]]
   - [[#format-all][Format all]]
   - [[#nix-mode][Nix Mode]]
@@ -580,22 +580,30 @@ TODO: Make sure to set this up accordingly.
 :PROPERTIES:
 :CUSTOM_ID: programming
 :END:
-** TODO EGLOT
+** TODO LSP-Mode 
 :PROPERTIES:
-:CUSTOM_ID: eglot
+:CUSTOM_ID: lsp-mode
 :END:
 LSP. Nuff said.
 
-Will need to have other langs configured.
+Add modes that override
 
 #+begin_src emacs-lisp
-    (use-package eglot
-      :config
-      (dolist (mode_server '(
-    			 (nix-mode . ("nixd"))))
-        (add-to-list 'eglot-server-programs mode_server))
-      :hook
-      (nix-mode . eglot-ensure))
+    (use-package lsp-mode
+      :init
+      ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+      (setq lsp-keymap-prefix "SPC l")
+      ;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+      (dolist (hook
+    	   '(python-ts-mode python-mode nix-mode))
+        (add-hook (quote ,(intern
+    		       (concat (symbol-name hook) "-hook"))) lsp))
+      :hook 
+             (lsp-mode . lsp-enable-which-key-integration)
+      (append mapcar  ((lsp-mode . lsp-enable-which-key-integration)))
+      :commands lsp)
+
+    (use-package lsp-ui :commands lsp-ui-mode)
 #+end_src
 
 ** Flycheck
@@ -617,12 +625,6 @@ Inline syntax notes.
             flycheck-idle-change-delay 0.375
             flycheck-idle-buffer-switch-delay 0.650
             flycheck-buffer-switch-check-intermediate-buffers 'nil))
-
-    (use-package flycheck-eglot
-      :ensure t
-      :after (flycheck eglot)
-      :config
-      (global-flycheck-eglot-mode 1))
 
     (use-package consult-flycheck
       :after (flycheck consult)

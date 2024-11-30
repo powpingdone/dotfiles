@@ -47,9 +47,9 @@
         org-appear
         org-super-agenda
         # PROGRAMMING
-        eglot
+        lsp-mode
+        lsp-ui
         flycheck
-        flycheck-eglot
         consult-flycheck
         format-all
         nix-mode
