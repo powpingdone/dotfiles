@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  inputs,
   pkgs,
   ...
 }: let
@@ -54,32 +53,10 @@
         consult-flycheck
         format-all
         nix-mode
+        direnv
       ]);
 in {
   config = lib.mkIf config.ppd.emacs.enable {
-    # TODO disable this client
-    ##services.emacs = {
-    ##  enable = true;
-    ##  package = emacs-pkg;
-    ##  socketActivation.enable = true;
-    ##};
-
-    ### restart emacs service if these files change
-    ##systemd.user.services.emacs = {
-    ##  Service = {
-    ##    ExecReload = "${emacs-pkg}/bin/emacsclient -e '(ppd/reload-emacs)'";
-    ##  };
-    ##  Unit = {
-    ##    X-Restart-Triggers = with builtins; [
-    ##      (hashFile "sha256" ./early-init.el)
-    ##      (hashFile "sha256" ./init.el)
-    ##      (hashFile "sha256" ./emacs.org)
-    ##      (hashFile "sha256" ./default.nix)
-    ##    ];
-    ##    X-SwitchMethod = "restart";
-    ##  };
-    ##};
-
     programs.emacs = {
       enable = true;
       package = emacs-pkg;
@@ -129,8 +106,6 @@ in {
           capt-of
           etoolbox
           ;
-        #(setq org-latex-compiler "lualatex")
-        #(setq org-preview-latex-default-process 'dvisvgm)
       })
       # :lang nix
       nixd
