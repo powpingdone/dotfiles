@@ -249,6 +249,7 @@ Stock emacs stuff that makes me vomit less.
     (electric-indent-mode -1)
     (auto-save-mode -1)
     (setenv "TERM" "xterm-256color")
+    (setq read-process-output-max (* 1024 1024))
 #+end_src
 
 ** Doom themes
@@ -593,16 +594,30 @@ Add modes that override
       :init
       ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
       (setq lsp-keymap-prefix "SPC l")
-      ;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+      ;; init on modes
       (dolist (hook
-      	   '(python-ts-mode python-mode nix-mode))
+          	   '(python-ts-mode python-mode nix-mode))
         (add-hook (intern
-      	       (concat (symbol-name hook) "-hook")) 'lsp))
+          	       (concat (symbol-name hook) "-hook")) 'lsp-deferred))
       :hook
+      (lsp-before-initialize . direnv-update-environment)
       (lsp-mode . lsp-enable-which-key-integration)
-      (lsp-before-initialize-hook . direnv-update-environment)
-      :commands lsp)
-
+      :commands (lsp lsp-deferred)
+      :config
+      (dolist (name
+    	   '(completion
+    	     diagnostics
+    	     dired
+    	     headerline
+    	     icons
+    	     ido
+    	     iedit
+    	     lens
+    	     mode
+    	     modeline
+    	     protocol
+    	     semantic-tokens))
+        (require (intern (concat "lsp-" (symbol-name name))))))
     (use-package lsp-ui :commands lsp-ui-mode)
 #+end_src
 
@@ -671,6 +686,7 @@ Auto setup special environments with an .envrc.
 
 #+begin_src emacs-lisp
     (use-package direnv
+      :demand t
       :config
       (direnv-mode))
 #+end_src
