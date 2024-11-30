@@ -47,7 +47,7 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
   # add flathub repo
   home.activation = {
     flatpakSetup = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      if ${pkgs.flatpak}/bin/flatpak remotes --columns title | grep "Flathub" && ${lib.getExe pkgs.nc} -zw20 google.com 443; then
+      if ${pkgs.flatpak}/bin/flatpak remotes --columns title | grep "Flathub" && ${pkgs.libressl}/bin/nc -zw20 google.com 443; then
         run ${pkgs.flatpak}/bin/flatpak remote-add $VERBOSE_ARG --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
       fi
     '';
