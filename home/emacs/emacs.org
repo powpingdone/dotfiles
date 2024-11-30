@@ -595,9 +595,9 @@ Add modes that override
       (setq lsp-keymap-prefix "SPC l")
       ;; replace XXX-mode with concrete major-mode(e. g. python-mode)
       (dolist (hook
-    	   '(python-ts-mode python-mode nix-mode))
-        (add-hook (quote ,(intern
-    		       (concat (symbol-name hook) "-hook"))) lsp-mode))
+      	   '(python-ts-mode python-mode nix-mode))
+        (add-hook (intern
+      	       (concat (symbol-name hook) "-hook")) 'lsp))
       :hook
       (lsp-mode . lsp-enable-which-key-integration)
       :commands lsp)
