@@ -598,9 +598,8 @@ Add modes that override
     	   '(python-ts-mode python-mode nix-mode))
         (add-hook (quote ,(intern
     		       (concat (symbol-name hook) "-hook"))) lsp))
-      :hook 
-             (lsp-mode . lsp-enable-which-key-integration)
-      (append mapcar  ((lsp-mode . lsp-enable-which-key-integration)))
+      :hook
+      (lsp-mode . lsp-enable-which-key-integration)
       :commands lsp)
 
     (use-package lsp-ui :commands lsp-ui-mode)
