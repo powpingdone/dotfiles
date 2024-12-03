@@ -77,7 +77,7 @@ in {
       git
       ripgrep
       gnutls # for TLS connectivity
-      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
+      nerd-fonts.symbols-only
 
       ## Optional dependencies
       fd # faster projectile indexing
