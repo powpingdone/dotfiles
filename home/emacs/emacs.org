@@ -587,13 +587,13 @@ TODO: Make sure to set this up accordingly.
 :END:
 LSP. Nuff said.
 
-Add modes that override
+Add modes that override. Report bug that forces ~require~ ing the lsp-mode modules.
 
 #+begin_src emacs-lisp
     (use-package lsp-mode
       :init
       ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-      (setq lsp-keymap-prefix "SPC l")
+      (setq lsp-keymap-prefix "C-c l")
       ;; init on modes
       (dolist (hook
           	   '(python-ts-mode python-mode nix-mode))
@@ -604,6 +604,7 @@ Add modes that override
       (lsp-mode . lsp-enable-which-key-integration)
       :commands (lsp lsp-deferred)
       :config
+      ;; Show that this is apparently required to get this working...
       (dolist (name
     	   '(completion
     	     diagnostics
