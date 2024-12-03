@@ -592,8 +592,6 @@ Add modes that override. Report bug that forces ~require~ ing the lsp-mode modul
 #+begin_src emacs-lisp
     (use-package lsp-mode
       :init
-      ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-      (setq lsp-keymap-prefix "C-c l")
       ;; init on modes
       (dolist (hook
           	   '(python-ts-mode python-mode nix-mode))
@@ -602,6 +600,7 @@ Add modes that override. Report bug that forces ~require~ ing the lsp-mode modul
       :hook
       (lsp-before-initialize . direnv-update-environment)
       (lsp-mode . lsp-enable-which-key-integration)
+      (lsp-mode . (lambda () (leader-key "lv" '(lsp-command-map :wk "lsp-mode"))))
       :commands (lsp lsp-deferred)
       :config
       ;; Show that this is apparently required to get this working...
@@ -619,6 +618,7 @@ Add modes that override. Report bug that forces ~require~ ing the lsp-mode modul
     	     protocol
     	     semantic-tokens))
         (require (intern (concat "lsp-" (symbol-name name))))))
+
     (use-package lsp-ui :commands lsp-ui-mode)
 #+end_src
 
