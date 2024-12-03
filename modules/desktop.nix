@@ -92,6 +92,7 @@
         noto-fonts-emoji
         noto-fonts-cjk-sans
         noto-fonts-cjk-serif
+      	nerd-fonts.symbols-only
       ];
       enableDefaultPackages = true;
       fontconfig =
