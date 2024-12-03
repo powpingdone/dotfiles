@@ -600,7 +600,8 @@ Add modes that override. Report bug that forces ~require~ ing the lsp-mode modul
       :hook
       (lsp-before-initialize . direnv-update-environment)
       (lsp-mode . lsp-enable-which-key-integration)
-      (lsp-mode . (lambda () (leader-key "lv" '(lsp-command-map :wk "lsp-mode"))))
+      (lsp-mode . (lambda () 
+    		(leader-key "lv" '(:keymap lsp-command-map :wk "lsp-mode")))) 
       :commands (lsp lsp-deferred)
       :config
       ;; Show that this is apparently required to get this working...
