@@ -614,7 +614,7 @@ LSP. Nuff said. Configure langs as needed.
             eglot-auto-display-help-buffer nil
     	eglot-stay-out-of '(flymake))
       (leader-key
-        :keymap eglot-mode-map
+        :keymap 'eglot-mode-map
         "lk" '(xref-find-definitions :wk "Definition")
         "le" '(xref-find-references :wk "References")
         "lp" '(eglot-find-implementation :wk "Implementation")
