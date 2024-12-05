@@ -37,10 +37,11 @@
   - [[#org-appear][Org Appear]]
   - [[#org-super-agenda][Org Super Agenda]]
 - [[#programming][PROGRAMMING]]
-  - [[#lsp-mode][LSP-Mode]]
+  - [[#eglot][EGlot]]
   - [[#flycheck][Flycheck]]
   - [[#format-all][Format all]]
   - [[#nix-mode][Nix Mode]]
+  - [[#rust-mode][Rust Mode]]
   - [[#direnv][Direnv]]
 :END:
 
@@ -208,6 +209,18 @@ Some useful functions that use vertico.
     		     consult--source-bookmark consult--source-file-register
     		     consult--source-recent-file consult--source-project-recent-file
     		     :preview-key '(:debounce 0.625 any)))
+
+    (use-package consult-flycheck
+      :after (flycheck consult)
+      :config
+      (leader-key "l-" '(consult-flycheck :wk "Messages")))
+
+    (use-package consult-eglot
+      :after (eglot consult)
+      :init
+      (leader-key
+        :map eglot-mode-map
+        "lR" '(consult-eglot-symbols :wk "Symbols")))
 #+end_src
 
 ** Orderless (completion style)
@@ -235,7 +248,7 @@ No grep needed. Just type in letters that exist.
 :PROPERTIES:
 :CUSTOM_ID: emacs-config
 :END:
-Stock emacs stuff that makes me vomit less.
+Stock emacs stuff that makes me vomit less or make emacs work faster.
 
 #+begin_src emacs-lisp
     (scroll-bar-mode -1)
@@ -305,9 +318,9 @@ My cursor is right here!
 
 #+begin_src emacs-lisp
     (use-package beacon
-      :demand t
-      :config
-      (beacon-mode 1))
+      :defer t
+      :hook
+      (after-init . beacon-mode))
 #+end_src
 
 ** Olivetti
@@ -581,46 +594,36 @@ TODO: Make sure to set this up accordingly.
 :PROPERTIES:
 :CUSTOM_ID: programming
 :END:
-** TODO LSP-Mode 
+** EGlot 
 :PROPERTIES:
-:CUSTOM_ID: lsp-mode
+:CUSTOM_ID: eglot
 :END:
-LSP. Nuff said.
-
-Add modes that override. Report bug that forces ~require~ ing the lsp-mode modules.
+LSP. Nuff said. Configure langs as needed.
 
 #+begin_src emacs-lisp
-    (use-package lsp-mode
+    (use-package eglot
+      :commands (eglot eglot-ensure)
       :init
       ;; init on modes
       (dolist (hook
-          	   '(python-ts-mode python-mode nix-mode))
+    	   '(python-mode nix-mode rust-mode))
         (add-hook (intern
-          	       (concat (symbol-name hook) "-hook")) 'lsp-deferred))
-      :hook
-      (lsp-before-initialize . direnv-update-environment)
-      (lsp-mode . lsp-enable-which-key-integration)
-      (lsp-mode . (lambda () 
-    		(leader-key "lv" '(:keymap lsp-command-map :wk "lsp-mode")))) 
-      :commands (lsp lsp-deferred)
+    	       (concat (symbol-name hook) "-hook")) 'eglot))
+      (setq eglot-sync-connect 1
+            eglot-autoshutdown t
+            eglot-auto-display-help-buffer nil
+    	eglot-stay-out-of '(flymake))
+      (leader-key
+        :keymap eglot-mode-map
+        "lk" '(xref-find-definitions :wk "Definition")
+        "le" '(xref-find-references :wk "References")
+        "lp" '(eglot-find-implementation :wk "Implementation")
+        "lt" '(eglot-find-typeDefinition :wk "Type Definition")
+        "l?" '(eldoc :wk "Documentation"))  
       :config
-      ;; Show that this is apparently required to get this working...
-      (dolist (name
-    	   '(completion
-    	     diagnostics
-    	     dired
-    	     headerline
-    	     icons
-    	     ido
-    	     iedit
-    	     lens
-    	     mode
-    	     modeline
-    	     protocol
-    	     semantic-tokens))
-        (require (intern (concat "lsp-" (symbol-name name))))))
-
-    (use-package lsp-ui :commands lsp-ui-mode)
+      (dolist (mode-server '(
+        			 (nix-mode . ("nixd"))))
+        (add-to-list 'eglot-server-programs mode-server)))
 #+end_src
 
 ** Flycheck
@@ -643,10 +646,8 @@ Inline syntax notes.
             flycheck-idle-buffer-switch-delay 0.650
             flycheck-buffer-switch-check-intermediate-buffers 'nil))
 
-    (use-package consult-flycheck
-      :after (flycheck consult)
-      :config
-      (leader-key "l-" '(consult-flycheck :wk "Messages")))
+    (use-package flycheck-eglot
+      :hook (eglot-managed-mode . flycheck-eglot-mode))
 #+end_src
 
 ** Format all
@@ -678,6 +679,18 @@ Syntax highlighting for nix.
       (nix-mode . (lambda ()
     		(setq-local eglot-workspace-configuration
     			    '(:nixd (:formatting (:command [ "alejandra" ])))))))
+#+end_src
+
+** Rust Mode
+:PROPERTIES:
+:CUSTOM_ID: rust-mode
+:END:
+Rust mode.
+
+#+begin_src emacs-lisp
+    (use-package rust-mode
+      :init
+      (setq rust-mode-treesitter-derive t))
 #+end_src
 
 ** Direnv

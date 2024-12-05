@@ -24,6 +24,8 @@
         general
         vertico
         consult
+        consult-eglot
+        consult-flycheck
         orderless
         # APPEARANCE
         doom-themes
@@ -47,12 +49,12 @@
         org-appear
         org-super-agenda
         # PROGRAMMING
-        lsp-mode
-        lsp-ui
+        eglot
         flycheck
-        consult-flycheck
+        flycheck-eglot
         format-all
         nix-mode
+        rust-mode
         direnv
       ]);
 in {
