@@ -37,6 +37,7 @@
   - [[#org-appear][Org Appear]]
   - [[#org-super-agenda][Org Super Agenda]]
 - [[#programming][PROGRAMMING]]
+  - [[#corfu][Corfu]]
   - [[#eglot][EGlot]]
   - [[#flycheck][Flycheck]]
   - [[#format-all][Format all]]
@@ -262,7 +263,10 @@ Stock emacs stuff that makes me vomit less or make emacs work faster.
     (electric-indent-mode -1)
     (auto-save-mode -1)
     (setenv "TERM" "xterm-256color")
-    (setq read-process-output-max (* 1024 1024))
+    (setq read-process-output-max (* 1024 1024)
+          tab-always-indent 'complete
+          completion-cycle-threshold 2)
+
 #+end_src
 
 ** Doom themes
@@ -594,6 +598,25 @@ TODO: Make sure to set this up accordingly.
 :PROPERTIES:
 :CUSTOM_ID: programming
 :END:
+** Corfu 
+:PROPERTIES:
+:CUSTOM_ID: corfu
+:END:
+That popup thing for mini completion.
+
+#+begin_src emacs-lisp
+    (use-package corfu
+      :init
+      (setq corfu-auto t
+    	corfu-auto-delay 0.375
+            corfu-cycle t
+    	corfu-quit-at-boundary nil
+    	corfu-preselect 'prompt
+    	corfu-on-exact-match nil)
+      :hook
+      (prog-mode . corfu-mode))
+#+end_src
+
 ** EGlot 
 :PROPERTIES:
 :CUSTOM_ID: eglot
@@ -602,6 +625,7 @@ LSP. Nuff said. Configure langs as needed.
 
 #+begin_src emacs-lisp
     (use-package eglot
+      :after (company-mode)
       :commands (eglot eglot-ensure)
       :init
       ;; init on modes

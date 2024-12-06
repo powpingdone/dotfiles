@@ -49,6 +49,7 @@
         org-appear
         org-super-agenda
         # PROGRAMMING
+        corfu
         eglot
         flycheck
         flycheck-eglot
