@@ -15,6 +15,8 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
     hunspell
     hunspellDicts.en_US
     vlc
+    yubioath-flutter
+    bitwarden-desktop
   ];
 
   programs.gnome-shell.enable = true;
