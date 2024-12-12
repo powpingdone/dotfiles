@@ -29,6 +29,7 @@
   - [[#sudo-edit][Sudo Edit]]
   - [[#undo-tree][Undo Tree]]
   - [[#magit][Magit]]
+  - [[#xml][XML]]
 - [[#org-mode][ORG MODE]]
   - [[#org-config][Org config]]
   - [[#org-babel-async][Org babel async]]
@@ -252,21 +253,23 @@ No grep needed. Just type in letters that exist.
 Stock emacs stuff that makes me vomit less or make emacs work faster.
 
 #+begin_src emacs-lisp
+    ; disable/enable obvious things
     (scroll-bar-mode -1)
     (menu-bar-mode -1)
     (tool-bar-mode -1)
-    (set-fringe-mode 8)
     (global-display-line-numbers-mode 1)
     (global-visual-line-mode 1)
     (dolist (mode '(term-mode-hook eshell-mode-hook))
       (add-hook mode (lambda () (display-line-numbers-mode -1))))
     (electric-indent-mode -1)
     (auto-save-mode -1)
+    ; little bit of fringe
+    (set-fringe-mode 8)
+    ; terminal fun stuff
     (setenv "TERM" "xterm-256color")
     (setq read-process-output-max (* 1024 1024)
           tab-always-indent 'complete
           completion-cycle-threshold 2)
-
 #+end_src
 
 ** Doom themes
@@ -419,6 +422,28 @@ The git client that everybody goes nuts over.
         "G" '(magit-dispatch :wk "Git menu (magit-dispatch)")))
 #+end_src
 
+** XML
+:PROPERTIES:
+:CUSTOM_ID: xml
+:END:
+Really, this is just adding hideshow support for XML docs.
+
+#+begin_src emacs-lisp
+    (use-package hideshow
+      :after (sgml-mode)
+      :config
+      (add-to-list 'hs-special-modes-alist
+                   '(nxml-mode
+    		 "<!--\\|<[^/>]*[^/]>"
+    		 "-->\\|</[^/>]*[^/]>"
+    		 "<!--"
+    		 sgml-skip-tag-forward
+    		 nil)))
+
+    (use-package nxml-mode
+      :hook
+      (nxml-mode . hs-minor-mode))
+#+end_src
 
 * ORG MODE
 :PROPERTIES:
