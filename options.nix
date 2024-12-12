@@ -24,6 +24,7 @@
     devenv.enable = lib.mkEnableOption "Install devenv related stuff";
     isHIDPI = lib.mkEnableOption "The default display has a DPI/PPI greater than 200";
     peekPoke.enable = lib.mkEnableOption "Install peekpoke, which toggles kernel options related to /dev/mem";
+    idevice.enable = lib.mkEnableOption "Install git versions of software for recovering idevices.";
   };
 
   # option defaults
@@ -34,4 +35,5 @@
   config.ppd.steam.enable = lib.mkDefault config.ppd.desktop.enable;
   config.ppd.devenv.enable = lib.mkDefault config.ppd.desktop.enable;
   config.ppd.isHIDPI = lib.mkDefault false;
+  config.ppd.idevice.enable = lib.mkDefault false;
 }

@@ -4,4 +4,6 @@
   #ppd.peekPoke.enable = true;
   ppd.isHIDPI = true;
   ppd.system = "aarch64-linux";
+  ppd.idevice.enable = true;
+
 }

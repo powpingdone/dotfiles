@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./base.nix
+    ./idevice.nix
     ./desktop.nix
     ./nixindex.nix
     ./emacs.nix

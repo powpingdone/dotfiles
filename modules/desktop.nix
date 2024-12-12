@@ -12,8 +12,6 @@
       openjdk17
       # debuginfod
       (lib.getBin (pkgs.elfutils.override {enableDebuginfod = true;}))
-      # idevicerestore
-      idevicerestore
     ];
 
     # nautilus a/v
@@ -86,11 +84,6 @@
 
     # use ozone on desktop
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-    # ios device restore
-    services.usbmuxd = {
-      enable = true;
-    };
 
     # have reasonable font coverage
     fonts = {
