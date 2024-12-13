@@ -57,7 +57,7 @@
               else []
             )
             ++ (
-              if ppdOpts.idevice.enable
+              if ppdOpts ? idevice.enable && ppdOpts.idevice.enable
               then [
                 (
                   final: prev: {

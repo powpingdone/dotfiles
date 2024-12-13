@@ -12,7 +12,12 @@
       openjdk17
       # debuginfod
       (lib.getBin (pkgs.elfutils.override {enableDebuginfod = true;}))
+      # for fun things
+      idevicerestore
     ];
+
+    # enable usbmuxd for idevicerestore
+    services.usbmuxd.enable = true;
 
     # nautilus a/v
     environment.sessionVariables.GST_PLUGIN_SYSTEM_PATH_1_0 = lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0" [
