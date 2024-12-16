@@ -32,6 +32,6 @@
   };
 
   x1e.audio.enable = false;
-  
-  boot.kernelPatches = [ ];
+
+  boot.kernelPatches = [];
 }

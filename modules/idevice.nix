@@ -6,6 +6,7 @@
   ppdOpts,
   ...
 }: {
-  config = lib.mkIf config.ppd.idevice.enable {
-  };
+  config =
+    lib.mkIf config.ppd.idevice.enable {
+    };
 }

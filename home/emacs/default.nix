@@ -76,7 +76,7 @@ in {
     home.packages = with pkgs; [
       ## Emacs itself
       binutils # native-comp needs 'as', provided by this
-      ## magit 
+      ## magit
       git
       # consult
       ripgrep

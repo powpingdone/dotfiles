@@ -24,10 +24,9 @@
   systemd.user.startServices = true;
 
   # any extra packages I feel like I need
-  home.packages = with pkgs;
-    [
-      alejandra
-    ];
+  home.packages = with pkgs; [
+    alejandra
+  ];
   # shell related things
   home.shellAliases = {
     "grep" = "rg";
