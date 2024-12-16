@@ -25,6 +25,7 @@
   - [[#olivetti][Olivetti]]
   - [[#rainbow-delimeters][Rainbow Delimeters]]
 - [[#tools][TOOLS]]
+  - [[#novel-epub-support][Nov.el (epub support)]]
   - [[#pdf-tools][PDF Tools]]
   - [[#sudo-edit][Sudo Edit]]
   - [[#undo-tree][Undo Tree]]
@@ -367,6 +368,20 @@ Figure out what delimits what with color changing parens!
 :PROPERTIES:
 :CUSTOM_ID: tools
 :END:
+** Nov.el (epub support) 
+:PROPERTIES:
+:CUSTOM_ID: novel-epub-support
+:END:
+Support for .epub files.
+
+#+begin_src emacs-lisp
+    (use-package nov
+      :defer t
+      :commands (nov-mode)
+      :mode ; case insenitive
+      ("\\.[Ee][Pp][Uu][Bb]\\'" . nov-mode))
+#+end_src
+
 ** PDF Tools
 :PROPERTIES:
 :CUSTOM_ID: pdf-tools
@@ -444,6 +459,7 @@ Really, this is just adding hideshow support for XML docs.
       :hook
       (nxml-mode . hs-minor-mode))
 #+end_src
+
 
 * ORG MODE
 :PROPERTIES:

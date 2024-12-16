@@ -38,6 +38,7 @@
         olivetti
         rainbow-delimiters
         # TOOLS
+        nov
         pdf-tools
         sudo-edit
         undo-tree
@@ -75,11 +76,12 @@ in {
     home.packages = with pkgs; [
       ## Emacs itself
       binutils # native-comp needs 'as', provided by this
-
-      ## Doom dependencies
+      ## magit 
       git
+      # consult
       ripgrep
-      gnutls # for TLS connectivity
+      # tls
+      gnutls
 
       ## Optional dependencies
       fd # faster projectile indexing
@@ -87,6 +89,7 @@ in {
       (lib.mkIf (config.services.gpg-agent.enable)
         pinentry_emacs) # in-emacs gnupg prompts
       zstd # for undo-fu-session/undo-tree compression
+      unzip # nov.el
 
       ## Module dependencies
       # :checkers spell
