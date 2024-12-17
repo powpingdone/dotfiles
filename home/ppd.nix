@@ -9,7 +9,7 @@
 }: {
   imports = [
     ./desktop.nix
-    ../options.nix
+    ../options
     ./emacs
     ./devel.nix
   ];
