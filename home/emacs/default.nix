@@ -58,6 +58,7 @@
         format-all
         nix-mode
         rust-mode
+        cargo-mode
         direnv
       ]);
 in {

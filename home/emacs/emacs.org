@@ -45,7 +45,7 @@
   - [[#flycheck][Flycheck]]
   - [[#format-all][Format all]]
   - [[#nix-mode][Nix Mode]]
-  - [[#rust-mode][Rust Mode]]
+  - [[#rust][Rust]]
   - [[#direnv][Direnv]]
 :END:
 
@@ -759,9 +759,9 @@ Syntax highlighting for nix.
       ("\\.[Nn][Ii][Xx]\\'" . nix-mode))
 #+end_src
 
-** Rust Mode
+** Rust
 :PROPERTIES:
-:CUSTOM_ID: rust-mode
+:CUSTOM_ID: rust
 :END:
 Rust mode.
 
@@ -773,6 +773,12 @@ Rust mode.
       ("\\.[Rr][Ss]\\'" . rust-mode)
       :init
       (setq rust-mode-treesitter-derive t))
+
+    (use-package cargo-mode
+      :hook
+      (rust-mode . cargo-minor-mode)
+      :config
+      (setq compilation-scroll-output t))
 #+end_src
 
 ** Direnv
