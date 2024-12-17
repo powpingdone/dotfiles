@@ -745,7 +745,7 @@ Syntax highlighting for nix.
       :defer t
       :commands (nix-mode)
       :mode ; case insenitive
-      ("\\.[Rr][Ss]\\'" . nix-mode))
+      ("\\.[Nn][Ii][Xx]\\'" . nix-mode))
 #+end_src
 
 ** Rust Mode
