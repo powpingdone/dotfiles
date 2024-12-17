@@ -544,7 +544,6 @@ Do you think god stays in heaven because he fears org mode?
        `(org-table ((t (:inherit 'fixed-pitch :foreground ,(doom-color 'violet)))))
        `(org-property-value ((t (:foreground ,(doom-color 'doc-comments) :inherit 'fixed-pitch :extend t)))))
       :hook
-      (org-mode . olivetti-mode)
       (org-mode . org-indent-mode)
       (org-mode . visual-line-mode)
       (org-mode . variable-pitch-mode)
