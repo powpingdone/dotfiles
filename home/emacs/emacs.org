@@ -31,6 +31,7 @@
   - [[#undo-tree][Undo Tree]]
   - [[#magit][Magit]]
   - [[#xml][XML]]
+  - [[#vterm][VTerm]]
 - [[#org-mode][ORG MODE]]
   - [[#org-config][Org config]]
   - [[#org-babel-async][Org babel async]]
@@ -173,7 +174,8 @@ I dunno why i'm using this but it's probably good.
         "dU" '(undo-tree-visualize :wk "Visualize undos and redos")
         "da" 'org-agenda
         "dc" 'org-capture
-        "ds" 'org-store-link)
+        "ds" 'org-store-link
+        "dt" '(vterm :wk "Terminal"))
 
       ;; eglot
       (leader-key
@@ -181,7 +183,7 @@ I dunno why i'm using this but it's probably good.
         "fR" '(consult-eglot-symbols :wk "Symbols")
         "fk" '(xref-find-definitions :wk "Definition")
         "fe" '(xref-find-references :wk "References")
-        
+
         "lp" '(eglot-find-implementation :wk "Implementation")
         "lt" '(eglot-find-typeDefinition :wk "Type Definition")
         "l?" '(eldoc :wk "Documentation"))
@@ -211,8 +213,8 @@ I dunno why i'm using this but it's probably good.
         "l." '(org-noter-sync-current-note :wk "Current Note")
         "lF" '(org-noter-sync-next-page-or-chapter :wk "Next Page/Chapter")
         "lI" '(org-noter-sync-prev-page-or-chapter :wk "Prev Page/Chapter")
-        "l>" '(org-noter-sync-current-page-or-chapter :wk "Current Page/Chapter")
-        ))
+        "l>" '(org-noter-sync-current-page-or-chapter :wk "Current Page/Chapter"))
+      )
     ;; order of binds: Buffers Help Toggle Find Language D(programs)
 #+end_src
 
@@ -491,6 +493,19 @@ Really, this is just adding hideshow support for XML docs.
       (nxml-mode . hs-minor-mode))
 #+end_src
 
+** VTerm
+:PROPERTIES:
+:CUSTOM_ID: vterm
+:END:
+"More compatible" terminal.
+
+#+begin_src emacs-lisp
+    (use-package vterm
+      :defer t
+      :commands (vterm vterm-other-window))
+#+end_src
+
+
 
 * ORG MODE
 :PROPERTIES:
@@ -572,7 +587,8 @@ Do you think god stays in heaven because he fears org mode?
 Execute code asyncronously!
 
 #+begin_src emacs-lisp
-    (use-package ob-async)
+    (use-package ob-async
+      :after (ob))
 #+end_src
 
 ** Table of contents

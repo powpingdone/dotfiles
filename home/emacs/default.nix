@@ -43,6 +43,7 @@
         sudo-edit
         undo-tree
         magit
+        vterm
         # ORG MODE
         ob-async
         org-make-toc
