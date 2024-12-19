@@ -59,6 +59,7 @@
     wget
     htop
     git
+    killall
   ];
 
   # base overrides
