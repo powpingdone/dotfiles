@@ -60,6 +60,7 @@
     htop
     git
     killall
+    git-crypt
   ];
 
   # base overrides
