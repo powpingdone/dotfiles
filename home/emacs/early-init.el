@@ -8,6 +8,7 @@
 
 (when (native-comp-available-p)
 (require 'xdg)
+(require 's)
 (setq native-comp-jit-compilation t)
 (startup-redirect-eln-cache
  (expand-file-name
