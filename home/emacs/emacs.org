@@ -32,7 +32,6 @@
   - [[#magit][Magit]]
   - [[#xml][XML]]
   - [[#vterm][VTerm]]
-  - [[#esup][Esup]]
 - [[#org-mode][ORG MODE]]
   - [[#org-config][Org config]]
   - [[#org-babel-async][Org babel async]]
@@ -514,18 +513,6 @@ Really, this is just adding hideshow support for XML docs.
     		  (beacon-mode -1))))
 #+end_src
 
-
-** Esup
-:PROPERTIES:
-:CUSTOM_ID: esup
-:END:
-Emacs startup profiler.
-
-#+begin_src emacs-lisp
-    (use-package esup
-      :defer t
-      :commands (esup))
-#+end_src 
 
 * ORG MODE
 :PROPERTIES:
