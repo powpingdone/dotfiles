@@ -160,9 +160,13 @@ I dunno why i'm using this but it's probably good.
         ;; find
         "f" '(:ignore t :wk "find")
         "fc" '((lambda () (interactive) (consult-fd "/etc/nixos")) :wk "Edit file in NixOS config")
+        "fC" '((lambda () (interactive) (dired "/etc/nixos")) :wk "Open NixOS config dir")
         "ff" '(consult-fd :wk "Find file")
-        "fo" '((lambda () (interactive) (consult-fd "~/org")) :wk "Open org dir")
-        "fq" '((lambda () (interactive) (consult-fd "~/extern")) :wk "Open extern")
+        "fd" '(dired :wk "Open dir (dired)")
+        "fo" '((lambda () (interactive) (consult-fd "~/org")) :wk "Find file in org dir")
+        "fO" '((lambda () (interactive) (dired "~/org")) :wk "Open org dir")
+        "fq" '((lambda () (interactive) (consult-fd "~/extern")) :wk "Find in extern")
+        "fQ" '((lambda () (interactive) (dired "~/extern")) :wk "Open extern dir")
         "fg" '(consult-ripgrep :wk "Grep files")
         "fu" '(sudo-edit-find-file :wk "SUDO find file")
         "fU" '(sudo-edit :wk "SUDO this file")
@@ -172,9 +176,9 @@ I dunno why i'm using this but it's probably good.
         ;; emacs programs
         "d" '(:ignore t :wk "programs")
         "dU" '(undo-tree-visualize :wk "Visualize undos and redos")
-        "da" 'org-agenda
+        "dA" 'org-agenda
         "dc" 'org-capture
-        "ds" 'org-store-link
+        "dS" 'org-store-link
         "dt" '(vterm :wk "Terminal"))
 
       ;; eglot
@@ -504,7 +508,9 @@ Really, this is just adding hideshow support for XML docs.
       :defer t
       :commands (vterm vterm-other-window)
       :hook
-      (vterm-mode . (lambda () (display-line-numbers-mode -1))))
+      (vterm-mode . (lambda ()
+    		  (display-line-numbers-mode -1)
+    		  (beacon-mode -1))))
 #+end_src
 
 
