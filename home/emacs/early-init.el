@@ -12,6 +12,6 @@
 (startup-redirect-eln-cache
  (expand-file-name
   (string-trim
-   (concat "emacs/eln-cache" (shell-command-to-string "emacs -Q --fingerprint") "/"))
+   (concat "emacs/eln-cache" (s-trim (shell-command-to-string "emacs -Q --fingerprint")) "/"))
   (xdg-cache-home)))
 )

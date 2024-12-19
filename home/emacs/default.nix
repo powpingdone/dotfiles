@@ -44,6 +44,7 @@
         undo-tree
         magit
         vterm
+        esup
         # ORG MODE
         ob-async
         org-make-toc
