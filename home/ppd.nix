@@ -30,6 +30,7 @@
   # shell related things
   home.shellAliases = {
     "grep" = "rg";
+    "rescan-yubikey" = ''gpg-connect-agent "scd serialno" "learn --force" /bye'';
   };
 
   # programs by default in a cli
