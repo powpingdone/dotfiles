@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  nixosConfig,
   ...
 }: let
   emacs-pkg =
@@ -88,8 +89,8 @@ in {
       ## Optional dependencies
       fd # faster projectile indexing
       imagemagick # for image-dired
-      (lib.mkIf (config.services.gpg-agent.enable)
-        pinentry_emacs) # in-emacs gnupg prompts
+      (lib.mkIf (nixosConfig.programs.gnupg.agent.enable)
+        pinentry-emacs) # in-emacs gnupg prompts
       zstd # for undo-fu-session/undo-tree compression
       unzip # nov.el
 

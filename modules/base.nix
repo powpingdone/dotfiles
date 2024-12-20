@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: {
   nix = {
@@ -60,6 +61,7 @@
     htop
     git
     killall
+    # used encryption stuff (secrets in this repo)
     git-crypt
   ];
 
@@ -109,10 +111,19 @@
   # enable gnupg
   programs.gnupg = {
     dirmngr.enable = true;
-    agent = {
+    agent = with pkgs; {
       enable = true;
       enableSSHSupport = true;
       enableBrowserSocket = true;
+      pinentryPackage =
+        if config.ppd.emacs.enable
+        then pinentry-emacs
+        else
+          (
+            if config.ppd.desktop.enable
+            then pinentry-gnome3
+            else pinentry-curses
+          );
     };
   };
 
