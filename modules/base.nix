@@ -112,7 +112,7 @@
     agent = {
       enable = true;
       enableSSHSupport = true;
-      enableBrowserSocker = true;
+      enableBrowserSocket = true;
     };
   };
 
