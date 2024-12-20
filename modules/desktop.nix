@@ -19,7 +19,6 @@
     # enable usbmuxd for idevicerestore
     services.usbmuxd.enable = true;
 
-
     # nautilus a/v
     environment.sessionVariables.GST_PLUGIN_SYSTEM_PATH_1_0 = lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0" [
       pkgs.gst_all_1.gst-plugins-good
@@ -57,7 +56,25 @@
     services.libinput.enable = true;
 
     # Enable CUPS to print documents.
-    services.printing.enable = true;
+    services.printing = {
+      enable = true;
+      drivers = let
+        addIfSupported = pkg:
+          if
+            builtins.any
+            (support: config.ppd.system == support)
+            pkg.meta.platforms
+          then pkg
+          else null;
+      in
+        map addIfSupported (with pkgs; [
+          gutenprint
+          gutenprintBin
+          epson-escpr
+          epson-escpr2
+        ]);
+    };
+    # generic drivers
     # enable autodiscovery of network printers
     services.avahi = {
       enable = true;
