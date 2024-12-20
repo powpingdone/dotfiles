@@ -19,6 +19,7 @@
     # enable usbmuxd for idevicerestore
     services.usbmuxd.enable = true;
 
+
     # nautilus a/v
     environment.sessionVariables.GST_PLUGIN_SYSTEM_PATH_1_0 = lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0" [
       pkgs.gst_all_1.gst-plugins-good
@@ -57,6 +58,12 @@
 
     # Enable CUPS to print documents.
     services.printing.enable = true;
+    # enable autodiscovery of network printers
+    services.avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
 
     # Enable the X11 windowing system.
     services.xserver = {
