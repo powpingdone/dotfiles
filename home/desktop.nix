@@ -15,8 +15,15 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
     hunspell
     hunspellDicts.en_US
     vlc
-    yubioath-flutter
     bitwarden-desktop
+
+    # yubi stuff
+    yubikey-manager
+    yubikey-manager-qt
+    yubikey-personalization
+    yubikey-personalization-gui
+    yubico-piv-tool
+    yubioath-flutter
   ];
 
   programs.gnome-shell.enable = true;
@@ -26,22 +33,27 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
     {package = blur-my-shell;}
   ];
 
-  # enable dark mode for gtk4
   dconf = {
     enable = true;
     settings = {
+      # enable dark mode for gtk4
       "org/gnome/desktop/interface".color-scheme = "prefer-dark";
+
       "org/gnome/mutter" = {
+        # regular things for me
         dynamic-workspaces = true;
         edge-tiling = true;
+        # turn on fractional scaling
         experimental-features = ["scale-monitor-framebuffer"];
       };
+      # win+enter for open terminal
       "org/gnome/settings-daemon/plugins/media-keys".custom-keybindings = ["/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"];
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
         binding = "<Super>Return";
         command = "kgx";
         name = "Open Terminal";
       };
+      # turn off panel blur-my-shell
       "org/gnome/shell/extensions/blur-my-shell/panel".blur = false;
     };
   };

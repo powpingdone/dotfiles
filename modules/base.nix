@@ -106,6 +106,22 @@
   # being able to use security keys is a big thing
   services.pcscd.enable = true;
 
+  # enable gnupg
+  programs.gnupg = {
+    dirmngr.enable = true;
+    agent = {
+      enable = true;
+      enableSSHSupport = true;
+      enableBrowserSocker = true;
+    };
+  };
+
+  # disable ssh agent because gnupg is taken over
+  programs.ssh.startAgent = false;
+
+  # add some yubikey udev rules
+  services.udev.packages = [pkgs.yubikey-personalization];
+
   # nh is a nice frontend
   programs.nh = {
     enable = true;
