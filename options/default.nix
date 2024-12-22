@@ -13,7 +13,7 @@
       default = [];
     };
     system = lib.mkOption {
-      type = lib.types.string;
+      type = lib.types.str;
       description = "System to be passed to nixosConfiguration";
       default = "";
     };
