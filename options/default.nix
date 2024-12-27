@@ -5,6 +5,7 @@
   ...
 }: {
   options.ppd = {
+    # regular options
     overlays = lib.mkOption {
       type = (
         with lib.types;
@@ -17,6 +18,18 @@
       description = "System to be passed to nixosConfiguration";
       default = "";
     };
+    cores = lib.mkOption {
+      type = lib.types.int;
+      description = "Cores used per building of derivation";
+      default = 1;
+    };
+    jobs = lib.mkOption {
+      type = lib.types.int;
+      description = "Derivations built concurrently with other derivations";
+      default = 1;
+    };
+   
+    # enable options
     desktop.enable = lib.mkEnableOption "Enable Desktop";
     emacs.enable = lib.mkEnableOption "Enable Emacs";
     nixIndex.enable = lib.mkEnableOption "Enable nix-index (aka command-not-found for flakes)";

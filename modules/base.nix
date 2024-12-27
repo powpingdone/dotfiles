@@ -9,6 +9,8 @@
       auto-optimise-store = true;
       experimental-features = ["nix-command" "flakes"];
       trusted-users = ["root" "powpingdone"];
+      max-jobs = config.ppd.jobs;
+      cores = config.ppd.cores;
     };
     channel.enable = false;
   };
@@ -65,15 +67,8 @@
     git-crypt
   ];
 
-  # base overrides
-  ppd.overlays = [
-    (final: prev: {
-      # use clang, because it uses less ram during compiles
-      webkitgtk = prev.webkitgtk.override {stdenv = pkgs.llvmPackages.stdenv;};
-      webkitgtk_4_1 = prev.webkitgtk_4_1.override {stdenv = pkgs.llvmPackages.stdenv;};
-      webkitgtk_6_0 = prev.webkitgtk_6_0.override {stdenv = pkgs.llvmPackages.stdenv;};
-    })
-  ];
+  # nix-ld for stuffs that is not nix
+  programs.nix-ld.enable = true;
 
   # the funny shell
   programs.zsh = {

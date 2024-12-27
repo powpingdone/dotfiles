@@ -1,8 +1,12 @@
 {...}: {
-  ppd.desktop.enable = true;
-  ppd.steam.enable = false;
-  #ppd.peekPoke.enable = true;
-  ppd.isHIDPI = true;
-  ppd.system = "aarch64-linux";
-  ppd.idevice.enable = true;
+  ppd = {
+    system = "aarch64-linux";
+    cores = 4;
+    jobs = 3;
+
+    desktop.enable = true;
+    steam.enable = false;
+    isHIDPI = true;
+    idevice.enable = true;
+  };
 }
