@@ -184,10 +184,9 @@ I dunno why i'm using this but it's probably good.
       ;; eglot
       (leader-key
         :keymaps 'eglot-mode-map
-        "fR" '(consult-eglot-symbols :wk "Symbols")
-        "fk" '(xref-find-definitions :wk "Definition")
-        "fe" '(xref-find-references :wk "References")
-
+        "lR" '(consult-eglot-symbols :wk "Symbols")
+        "lk" '(xref-find-definitions :wk "Definition")
+        "le" '(xref-find-references :wk "References")
         "lp" '(eglot-find-implementation :wk "Implementation")
         "lt" '(eglot-find-typeDefinition :wk "Type Definition")
         "l?" '(eldoc :wk "Documentation"))
@@ -196,6 +195,17 @@ I dunno why i'm using this but it's probably good.
       (leader-key
         :keymaps 'prog-mode-map
         "lO" '(format-all-buffer :wk "Format"))
+
+      ;; hide-show bindings
+      (leader-key
+        :keymap 'hs-minor-mode-map
+        "lh" '(:ignore t :wk "hide-show")
+        "lha" 'hs-show-all
+        "lhc" 'hs-toggle-hiding
+        "lhd" 'hs-hide-block
+        "lhl" 'hs-hide-level-recursive
+        "lhs" 'hs-show-block
+        "lht" 'hs-hide-all)
 
       ;; org mode
       (leader-key
@@ -309,24 +319,27 @@ Stock emacs stuff that makes me vomit less or make emacs work faster.
     (tool-bar-mode -1)
     (global-display-line-numbers-mode 1)
     (global-visual-line-mode 1)
-    (dolist (mode '(term-mode-hook eshell-mode-hook))
-      (add-hook mode (lambda () (display-line-numbers-mode -1))))
     (electric-indent-mode -1)
     (auto-save-mode -1)
+    ; setq
+    (setq read-process-output-max (* 1024 1024)
+          tab-always-indent 'complete
+          completion-cycle-threshold 2)
+    ; hook some stuff
+    (dolist (mode '(term-mode-hook eshell-mode-hook))
+      (add-hook mode (lambda () (display-line-numbers-mode -1))))
+    (add-hook prog-mode-hook hs-minor-mode)
     ; little bit of fringe
     (set-fringe-mode 8)
     ; terminal fun stuff
     (setenv "TERM" "xterm-256color")
-    (setq read-process-output-max (* 1024 1024)
-          tab-always-indent 'complete
-          completion-cycle-threshold 2)
 #+end_src
 
 ** Doom themes
 :PROPERTIES:
 :CUSTOM_ID: doom-themes
 :END:
-I wish I had something similar to sainnhe/edge but doom-one is ok for right now.
+I wish I had something similar to sainnhe/edge but doom-one/doom-peacock is ok for right now.
 
 #+begin_src emacs-lisp
     (use-package doom-themes
@@ -334,7 +347,7 @@ I wish I had something similar to sainnhe/edge but doom-one is ok for right now.
       (setq doom-themes-enable-bold t
             doom-themes-enable-italic t)
       :config
-      (load-theme 'doom-one t)
+      (load-theme 'doom-peacock t)
       (custom-set-faces
        `(variable-pitch ((t (:font "DejaVu Serif" :height 1.05))))
        `(fixed-pitch ((t (:font "DejaVu Sans Mono" :height 1.05))))))
