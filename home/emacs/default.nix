@@ -61,6 +61,7 @@
         rust-mode
         cargo-mode
         direnv
+        web-mode
       ]);
 in {
   config = lib.mkIf config.ppd.emacs.enable {

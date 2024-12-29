@@ -47,6 +47,7 @@
   - [[#nix-mode][Nix Mode]]
   - [[#rust][Rust]]
   - [[#direnv][Direnv]]
+  - [[#web-mode][Web Mode]]
 :END:
 
 
@@ -328,7 +329,7 @@ Stock emacs stuff that makes me vomit less or make emacs work faster.
     ; hook some stuff
     (dolist (mode '(term-mode-hook eshell-mode-hook))
       (add-hook mode (lambda () (display-line-numbers-mode -1))))
-    (add-hook prog-mode-hook hs-minor-mode)
+    (add-hook 'prog-mode-hook 'hs-minor-mode)
     ; little bit of fringe
     (set-fringe-mode 8)
     ; terminal fun stuff
@@ -339,15 +340,16 @@ Stock emacs stuff that makes me vomit less or make emacs work faster.
 :PROPERTIES:
 :CUSTOM_ID: doom-themes
 :END:
-I wish I had something similar to sainnhe/edge but doom-one/doom-peacock is ok for right now.
+I wish I had something similar to sainnhe/edge.
 
 #+begin_src emacs-lisp
     (use-package doom-themes
+      :demand t
       :init
       (setq doom-themes-enable-bold t
             doom-themes-enable-italic t)
       :config
-      (load-theme 'doom-peacock t)
+      (load-theme 'doom-city-lights t)
       (custom-set-faces
        `(variable-pitch ((t (:font "DejaVu Serif" :height 1.05))))
        `(fixed-pitch ((t (:font "DejaVu Sans Mono" :height 1.05))))))
@@ -810,4 +812,26 @@ Auto setup special environments with an .envrc.
       :demand t
       :config
       (direnv-mode))
+#+end_src
+
+** Web Mode
+:PROPERTIES:
+:CUSTOM_ID: web-mode
+:END:
+
+Editing webstuff via emacs. What a novel concept!
+
+#+begin_src emacs-lisp
+    (use-package web-mode
+      :defer t
+      :commands (web-mode)
+      :mode
+      (("\\.phtml\\'" . web-mode)
+       ("\\.php\\'" . web-mode)
+       ("\\.tpl\\'" . web-mode)
+       ("\\.[agj]sp\\'" . web-mode)
+       ("\\.as[cp]x\\'" . web-mode)
+       ("\\.erb\\'" . web-mode)
+       ("\\.mustache\\'" . web-mode)
+       ("\\.djhtml\\'" . web-mode)))
 #+end_src
