@@ -44,34 +44,43 @@
       let
         ppdOpts = (import ./hosts/${hostName}/options.nix {}).ppd;
         system = ppdOpts.system;
-        pkgs =
-          (import inputs.nixpkgs).applyPatches {
-            name = "epson-gcc14-fix";
+        pkgs_patched =
+          (import inputs.nixpkgs {
+            inherit system;
+          })
+          .applyPatches {
+            name = "ppd-patches";
             src = inputs.nixpkgs;
             patches = [
-              # https://github.com/NixOS/nixpkgs/issues/368161
-              ./epson-gcc14.patch
               # https://github.com/NixOS/nixpkgs/pull/366901
               ./firefox-use-full-lto.patch
             ];
-          } {
-            inherit system;
-            config.allowUnfree = true;
-            overlays =
-              [
-                emacs-overlay.overlays.default
-              ]
-              ++ (
-                if ppdOpts ? overlays
-                then ppdOpts.overlays
-                else []
-              )
-              ++ (
-                if ppdOpts ? idevice.enable && ppdOpts.idevice.enable
-                then [(import options/idevice.nix)]
-                else []
-              );
           };
+        pkgs = import pkgs_patched {
+          inherit system;
+          config.allowUnfree = true;
+          overlays =
+            [
+              emacs-overlay.overlays.default
+              (final: prev: {
+                epson-escpr = prev.epson-escpr.overrideAttrs (finalA: prevA: {
+                  # https://github.com/NixOS/nixpkgs/issues/368161
+                  patches = [./epson-gcc14-p1.patch ./epson-gcc14-p2.patch] ++ prevA.patches;
+                  patchFlags = "-p1 --binary";
+                });
+              })
+            ]
+            ++ (
+              if ppdOpts ? overlays
+              then ppdOpts.overlays
+              else []
+            )
+            ++ (
+              if ppdOpts ? idevice.enable && ppdOpts.idevice.enable
+              then [(import options/idevice.nix)]
+              else []
+            );
+        };
       in
         nixpkgs.lib.nixosSystem {
           inherit system pkgs;

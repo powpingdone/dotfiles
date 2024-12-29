@@ -1,0 +1,25 @@
+diff --git a/lib/epson-escpr-api.h b/lib/epson-escpr-api.h
+index 3fc77af..9913f4a 100644
+--- a/lib/epson-escpr-api.h
++++ b/lib/epson-escpr-api.h
+@@ -111,4 +111,7 @@
+     /*** -------------------------------------------------------------------------------*/
+ extern EPS_ERR_CODE epsMakeMainteCmd     (EPS_INT32, EPS_UINT8*, EPS_UINT32*            );
+ 
++EPS_ERR_CODE SendStartJob (EPS_BOOL);
++EPS_ERR_CODE SetupJobAttrib (const EPS_JOB_ATTRIB*);
++EPS_ERR_CODE PrintBand (const EPS_UINT8*, EPS_UINT32, EPS_UINT32*);
+ #ifdef __cplusplus
+diff --git a/lib/epson-escpr-mem.h b/lib/epson-escpr-mem.h
+index 1141ad6..6ac8454 100644
+--- a/lib/epson-escpr-mem.h
++++ b/lib/epson-escpr-mem.h
+@@ -125,7 +125,8 @@
+ 		}
+ 		
++EPS_ERR_CODE pageAllocBuffer(void);
+ #ifdef    __cplusplus
+ }
+ #endif    /* def __cplusplus    */
+ 
+ #endif    /* def _EPSON_ESPCR_MEM_H_ */

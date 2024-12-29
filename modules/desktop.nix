@@ -71,7 +71,7 @@
           gutenprint
           gutenprintBin
           epson-escpr
-          epson-escpr2
+          #epson-escpr2
         ]);
     };
     # generic drivers
