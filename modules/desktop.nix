@@ -67,12 +67,12 @@
           then pkg
           else null;
       in
-        map addIfSupported (with pkgs; [
+        builtins.filter (x: x != null) (map addIfSupported (with pkgs; [
           gutenprint
           gutenprintBin
           epson-escpr
           #epson-escpr2
-        ]);
+        ]));
     };
     # generic drivers
     # enable autodiscovery of network printers
