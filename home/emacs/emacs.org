@@ -716,7 +716,7 @@ LSP. Nuff said. Configure langs as needed.
         (add-hook (intern
     	       (concat (symbol-name hook) "-hook")) 'eglot))
       (setq eglot-sync-connect 1
-            eglot-autoshutdown t
+            eglot-autoshutdown 't
             eglot-auto-display-help-buffer nil
     	eglot-stay-out-of '(flymake)
     	eglot-workspace-configuration
