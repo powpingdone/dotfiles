@@ -194,8 +194,18 @@ I dunno why i'm using this but it's probably good.
 
       ;; generic prog mode stuff
       (leader-key
-        :keymaps 'prog-mode-map
-        "lO" '(format-all-buffer :wk "Format"))
+        :keymaps 'prog-mode-map)
+
+      ;; format-all and eglot mixer
+      (leader-key
+        :keymaps '(prog-mode-map eglot-mode-map)
+        "lO" '(
+    	   (lambda ()
+    	     (interactive)
+    	     (with-current-buffer (current-buffer)
+    	       (if eglot--managed-mode
+    		   (eglot-format-buffer)
+    		 (format-all-buffer)))) :wk "Format Buffer"))
 
       ;; hide-show bindings
       (leader-key
@@ -788,9 +798,9 @@ Rust mode.
 #+begin_src emacs-lisp
     (use-package rust-mode
       :defer t
-      :commands (rust-mode)
+      :commands (rust-mode rust-ts-mode)
       :mode ; case insenitive
-      ("\\.[Rr][Ss]\\'" . rust-mode)
+      ("\\.[Rr][Ss]\\'" . rust-ts-mode)
       :init
       (setq rust-mode-treesitter-derive t))
 
