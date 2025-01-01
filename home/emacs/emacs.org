@@ -46,6 +46,7 @@
   - [[#format-all][Format all]]
   - [[#nix-mode][Nix Mode]]
   - [[#rust][Rust]]
+  - [[#python][Python]]
   - [[#direnv][Direnv]]
   - [[#web-mode][Web Mode]]
 :END:
@@ -203,7 +204,7 @@ I dunno why i'm using this but it's probably good.
     	   (lambda ()
     	     (interactive)
     	     (with-current-buffer (current-buffer)
-    	       (if eglot--managed-mode
+    	       (if (bound-and-true-p eglot--managed-mode)
     		   (eglot-format-buffer)
     		 (format-all-buffer)))) :wk "Format Buffer"))
 
@@ -719,11 +720,6 @@ LSP. Nuff said. Configure langs as needed.
     (use-package eglot
       :commands (eglot eglot-ensure)
       :init
-      ;; init on modes
-      (dolist (hook
-    	   '(python-mode nix-mode rust-mode))
-        (add-hook (intern
-    	       (concat (symbol-name hook) "-hook")) 'eglot))
       (setq eglot-sync-connect 1
             eglot-autoshutdown 't
             eglot-auto-display-help-buffer nil
@@ -784,6 +780,8 @@ Syntax highlighting for nix.
     (use-package nix-mode
       :defer t
       :commands (nix-mode)
+      :hook
+      (nix-mode . eglot)
       :mode ; case insenitive
       ("\\.[Nn][Ii][Xx]\\'" . nix-mode))
 #+end_src
@@ -800,6 +798,8 @@ Rust mode.
       :commands (rust-mode rust-ts-mode)
       :mode ; case insenitive
       ("\\.[Rr][Ss]\\'" . rust-ts-mode)
+      :hook
+      (rust-mode . eglot)
       :init
       (setq rust-mode-treesitter-derive t))
 
@@ -808,6 +808,18 @@ Rust mode.
       (rust-mode . cargo-minor-mode)
       :config
       (setq compilation-scroll-output t))
+#+end_src
+
+** Python
+:PROPERTIES:
+:CUSTOM_ID: python
+:END:
+Python mode.
+
+#+begin_src emacs-lisp
+    (use-package python-mode
+      :hook
+      (python-mode . eglot))
 #+end_src
 
 ** Direnv
