@@ -717,7 +717,6 @@ LSP. Nuff said. Configure langs as needed.
 
 #+begin_src emacs-lisp
     (use-package eglot
-      :after (company-mode)
       :commands (eglot eglot-ensure)
       :init
       ;; init on modes
