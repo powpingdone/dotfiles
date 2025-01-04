@@ -794,7 +794,6 @@ Rust mode.
 
 #+begin_src emacs-lisp
     (use-package rust-mode
-      :defer t
       :commands (rust-mode rust-ts-mode)
       :mode ; case insenitive
       ("\\.[Rr][Ss]\\'" . rust-ts-mode)
@@ -844,7 +843,6 @@ Editing webstuff via emacs. What a novel concept!
 
 #+begin_src emacs-lisp
     (use-package web-mode
-      :defer t
       :commands (web-mode)
       :mode
       (("\\.phtml\\'" . web-mode)
@@ -855,5 +853,6 @@ Editing webstuff via emacs. What a novel concept!
        ("\\.erb\\'" . web-mode)
        ("\\.mustache\\'" . web-mode)
        ("\\.djhtml\\'" . web-mode)
-       ("\\.html\\'" . web-mode)))
+       ("\\.html\\'" . web-mode)
+       ("\\.jinja\\'" . web-mode)))
 #+end_src
