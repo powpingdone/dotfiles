@@ -186,12 +186,16 @@ I dunno why i'm using this but it's probably good.
       ;; eglot
       (leader-key
         :keymaps 'eglot-mode-map
-        "lR" '(consult-eglot-symbols :wk "Symbols")
+        "ls" '(consult-eglot-symbols :wk "Symbols")
         "lk" '(xref-find-definitions :wk "Definition")
         "le" '(xref-find-references :wk "References")
         "lp" '(eglot-find-implementation :wk "Implementation")
         "lt" '(eglot-find-typeDefinition :wk "Type Definition")
-        "l?" '(eldoc :wk "Documentation"))
+        "l?" '(eldoc :wk "Documentation")
+        "la" '(eglot-code-action-quickfix :wk "Quickfix")
+        "lr" '(eglot-rename :wk "Rename")
+        "l^" '(eglot-code-action-extract :wk "Extract")
+        "l6" '(eglot-code-action-inline :wk "Inline"))
 
       ;; generic prog mode stuff
       (leader-key
