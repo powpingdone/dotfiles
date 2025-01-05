@@ -17,7 +17,21 @@
       package = pkgs.steam.override {
         extraLibraries = pkgs: [pkgs.xorg.libxcb];
       };
-      gamescopeSession.enable = true;
+      gamescopeSession = {
+        enable = true;
+        args = [
+          "--hdr-enabled"
+          "--hdr-itm-enable"
+          "--hide-cursor-delay"
+          "3000"
+          "--fade-out-duration"
+          "200"
+          "--xwayland-count"
+          "2"
+          "-O"
+          "*,eDP-1"
+        ];
+      };
       extest.enable = true;
       protontricks.enable = true;
       extraCompatPackages = with pkgs; [
