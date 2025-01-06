@@ -52,8 +52,6 @@
             name = "ppd-patches";
             src = inputs.nixpkgs;
             patches = [
-              # https://github.com/NixOS/nixpkgs/pull/366901
-              ./firefox-use-full-lto.patch
             ];
           };
         pkgs = import pkgs_patched {
@@ -62,13 +60,6 @@
           overlays =
             [
               emacs-overlay.overlays.default
-              (final: prev: {
-                epson-escpr = prev.epson-escpr.overrideAttrs (finalA: prevA: {
-                  # https://github.com/NixOS/nixpkgs/issues/368161
-                  patches = [./epson-gcc14-p1.patch ./epson-gcc14-p2.patch] ++ prevA.patches;
-                  patchFlags = "-p1 --binary";
-                });
-              })
             ]
             ++ (
               if ppdOpts ? overlays
