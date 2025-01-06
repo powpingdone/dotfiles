@@ -1,4 +1,4 @@
-# overlay for
+# overlay for mobile devices
 final: prev: {
   libplist = prev.libplist.overrideAttrs (finalAttrs: prevAttrs: {
     version = "2.7.0-git";
