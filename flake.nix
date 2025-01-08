@@ -34,6 +34,7 @@
     nixpkgs,
     home-manager,
     flake-utils,
+
     emacs-overlay,
     nix-index-database,
     dwarffs,
