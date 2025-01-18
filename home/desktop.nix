@@ -31,6 +31,7 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
   programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
     {package = alphabetical-app-grid;}
     {package = blur-my-shell;}
+    {package = gamemode-shell-extension;}
   ];
 
   dconf = {
@@ -55,6 +56,8 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
       };
       # turn off panel blur-my-shell
       "org/gnome/shell/extensions/blur-my-shell/panel".blur = false;
+      # only show gamemoderun when it's actually active
+      "org/gnome/shell/extensions/gamemodeshellextension".show-icon-only-when-active = true;
     };
   };
 

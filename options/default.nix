@@ -2,6 +2,7 @@
   lib,
   options,
   config,
+  pkgs,
   ...
 }: {
   options.ppd = {
@@ -16,7 +17,6 @@
     system = lib.mkOption {
       type = lib.types.str;
       description = "System to be passed to nixosConfiguration";
-      default = "";
     };
     cores = lib.mkOption {
       type = lib.types.int;
@@ -28,12 +28,19 @@
       description = "Derivations built concurrently with other derivations";
       default = 1;
     };
-   
+    steam = {
+      enable = lib.mkEnableOption "Install steam";
+      gamemodeConfig = lib.mkOption {
+        type = (pkgs.formats.ini {listsAsDuplicateKeys = true;}).type;
+        description = "Settings for gamemode";
+        default = {};
+      };
+    };
+
     # enable options
     desktop.enable = lib.mkEnableOption "Enable Desktop";
     emacs.enable = lib.mkEnableOption "Enable Emacs";
     nixIndex.enable = lib.mkEnableOption "Enable nix-index (aka command-not-found for flakes)";
-    steam.enable = lib.mkEnableOption "Install steam";
     devenv.enable = lib.mkEnableOption "Install devenv related stuff";
     isHIDPI = lib.mkEnableOption "The default display has a DPI/PPI greater than 200";
     peekPoke.enable = lib.mkEnableOption "Install peekpoke, which toggles kernel options related to /dev/mem";
