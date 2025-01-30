@@ -333,11 +333,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1738184027,
-        "narHash": "sha256-YmDquVaUHk6K39VKJNzQFZyWSuc1QgHxMSsCRC+LaHM=",
+        "lastModified": 1738267675,
+        "narHash": "sha256-ElGlm8nt1pXAkTS3McyzO5Eq08ttaxKaQDAnfBNNokI=",
         "owner": "powpingdone",
         "repo": "x1e-nixos-config",
-        "rev": "1e7f63fe4a271be10ee10e12a211e561b6ff085a",
+        "rev": "8f1ddfd3f823fbf63837e120967ba35017544166",
         "type": "github"
       },
       "original": {
