@@ -599,6 +599,7 @@ Do you think god stays in heaven because he fears org mode?
       (org-mode . org-indent-mode)
       (org-mode . visual-line-mode)
       (org-mode . variable-pitch-mode)
+      (org-mode . flyspell-mode)
       (org-mode . (lambda ()
                     (display-line-numbers-mode 0)
                     (indent-tabs-mode 0)))
