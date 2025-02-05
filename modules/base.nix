@@ -133,4 +133,7 @@
     enable = true;
     flake = "/etc/nixos"; # typically, flake is here
   };
+
+  # rasdaemon is for hardware monitoring 
+  hardware.rasdaemon.enable = true;
 }
