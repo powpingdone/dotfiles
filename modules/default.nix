@@ -11,5 +11,6 @@
     ./emacs.nix
     ./steam.nix
     ./peekpoke.nix
+    ./iso.nix
   ];
 }
