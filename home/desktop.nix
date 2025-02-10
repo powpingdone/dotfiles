@@ -46,6 +46,8 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
         edge-tiling = true;
         # turn on fractional scaling
         experimental-features = ["scale-monitor-framebuffer"];
+        # on multi monitors, I only want one with workspaces
+        workspaces-only-on-primary = true;
       };
       # win+enter for open terminal
       "org/gnome/settings-daemon/plugins/media-keys".custom-keybindings = ["/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"];
