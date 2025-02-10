@@ -16,51 +16,31 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
+  
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/75cbb1f6-3b74-4420-a586-fba9d0774d8c";
+      fsType = "btrfs";
+      options = [ "subvol=root" "compress-force=zstd:15" ];
+    };
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/f0a2c768-aa61-44f2-b1b2-3ee2f48e1c58";
-    fsType = "btrfs";
-    options = ["subvol=root" "compress-force=zstd:15"];
-  };
+  fileSystems."/nix" =
+    { device = "/dev/disk/by-uuid/75cbb1f6-3b74-4420-a586-fba9d0774d8c";
+      fsType = "btrfs";
+      options = [ "subvol=nix" "compress-force=zstd:15" "noatime"];
+    };
 
-  fileSystems."/boot/efi" = {
-    device = "/dev/disk/by-uuid/4C04-9A9D";
-    fsType = "vfat";
-    options = ["fmask=0022" "dmask=0022"];
-  };
+  fileSystems."/boot/efi" =
+    { device = "/dev/disk/by-uuid/4C04-9A9D";
+      fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
+    };
 
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/f0a2c768-aa61-44f2-b1b2-3ee2f48e1c58";
-    fsType = "btrfs";
-    options = ["subvol=nix" "noatime" "compress-force=zstd:15"];
-  };
-
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/cdcbc2c9-fd67-40f4-b1ae-d83866e8b32a";
-    fsType = "btrfs";
-    options = ["subvol=home" "compress=zstd"];
-  };
-
-  fileSystems."/root" = {
-    device = "/dev/disk/by-uuid/cdcbc2c9-fd67-40f4-b1ae-d83866e8b32a";
-    fsType = "btrfs";
-    options = ["subvol=root" "compress=zstd"];
-  };
-
-  fileSystems."/swap" = {
-    device = "/dev/disk/by-uuid/cdcbc2c9-fd67-40f4-b1ae-d83866e8b32a";
-    fsType = "btrfs";
-    options = ["subvol=swap" "noatime"];
-  };
-
-  fileSystems."/var" = {
-    device = "/dev/disk/by-uuid/cdcbc2c9-fd67-40f4-b1ae-d83866e8b32a";
-    fsType = "btrfs";
-    options = ["subvol=var" "compress=zstd"];
-  };
-
-  swapDevices = [{device = "/swap/swapfile";}];
+  fileSystems."/home" =
+    { device = "/dev/disk/by-uuid/6e892922-165f-4ab7-9efc-65f1ab3005c3";
+      fsType = "btrfs";
+      options = [ "subvol=hroot" "compress=zstd" ];
+    };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
