@@ -40,6 +40,7 @@
     enable = true;
     userName = "Aidan";
     userEmail = "aidanzcase@gmail.com";
+    signing.format = "openpgp";
   };
   programs.ripgrep.enable = true;
   programs.neovim.enable = true;
