@@ -114,6 +114,9 @@ in {
           hyperref
           capt-of
           etoolbox
+          ieeeconf
+          biblatex-ieee
+          ieeetran
           ;
       })
       # :lang nix
