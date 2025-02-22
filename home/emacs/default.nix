@@ -51,6 +51,8 @@
         org-noter
         org-appear
         org-super-agenda
+        citeproc
+        
         # PROGRAMMING
         corfu
         eglot
@@ -117,7 +119,6 @@ in {
           ieeeconf
           biblatex-ieee
           ieeetran
-          citeproc
           ;
       })
       # :lang nix

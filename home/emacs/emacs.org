@@ -39,6 +39,7 @@
   - [[#org-noter][Org Noter]]
   - [[#org-appear][Org Appear]]
   - [[#org-super-agenda][Org Super Agenda]]
+  - [[#citeproc][Citeproc]]
 - [[#programming][PROGRAMMING]]
   - [[#corfu][Corfu]]
   - [[#eglot][EGlot]]
@@ -711,6 +712,18 @@ TODO: Make sure to set this up accordingly.
       :demand t
       :config
       (org-super-agenda-mode))
+#+end_src
+
+** Citeproc
+:PROPERTIES:
+:CUSTOM_ID: citeproc
+:END:
+
+Do custom citations with .csl files
+
+#+begin_src emacs-lisp
+    (use-package citeproc
+      :after (org))
 #+end_src
 
 
