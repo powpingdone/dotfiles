@@ -117,6 +117,7 @@ in {
           ieeeconf
           biblatex-ieee
           ieeetran
+          citeproc
           ;
       })
       # :lang nix
