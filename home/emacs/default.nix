@@ -6,7 +6,7 @@
   ...
 }: let
   emacs-pkg =
-    (pkgs.emacsPackagesFor (pkgs.emacs30.override {
+    (pkgs.emacsPackagesFor (pkgs.emacs29.override {
       withGTK3 = true;
       withWebP = true;
       withSQLite3 = true;
