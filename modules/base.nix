@@ -45,6 +45,9 @@
     useXkbConfig = true; # use xkb.options in tty.
   };
 
+  # https://consoledonottrack.com/
+  environment.variables."DO_NOT_TRACK" = "1";
+
   services.xserver = {
     # Configure keymappkgs
     xkb.layout = "us";
