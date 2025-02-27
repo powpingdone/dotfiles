@@ -42,7 +42,6 @@
   - [[#citeproc][Citeproc]]
 - [[#programming][PROGRAMMING]]
   - [[#corfu][Corfu]]
-  - [[#eglot][EGlot]]
   - [[#flycheck][Flycheck]]
   - [[#format-all][Format all]]
   - [[#nix-mode][Nix Mode]]
@@ -750,7 +749,7 @@ That popup thing for mini completion.
       (prog-mode . corfu-mode))
 #+end_src
 
-** EGlot
+j** EGlot
 :PROPERTIES:
 :CUSTOM_ID: eglot
 :END:

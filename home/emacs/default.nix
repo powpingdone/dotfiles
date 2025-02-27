@@ -62,6 +62,7 @@
         nix-mode
         rust-mode
         cargo-mode
+        python-mode
         direnv
         web-mode
       ]);
