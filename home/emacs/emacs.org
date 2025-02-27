@@ -805,7 +805,7 @@ Auto format text/code.
 #+begin_src emacs-lisp
     (use-package format-all
       :defer t
-      :commands format-all-mode
+      :commands (format-all-mode format-all-buffer)
       :hook
       (prog-mode . format-all-mode))
 #+end_src
@@ -821,7 +821,7 @@ Syntax highlighting for nix.
       :defer t
       :commands (nix-mode)
       :hook
-      (nix-mode . eglot)
+      (nix-mode . eglot-ensure)
       :mode ; case insenitive
       ("\\.[Nn][Ii][Xx]\\'" . nix-mode))
 #+end_src
@@ -837,8 +837,6 @@ Rust mode.
       :commands (rust-mode rust-ts-mode)
       :mode ; case insenitive
       ("\\.[Rr][Ss]\\'" . rust-ts-mode)
-      :hook
-      (rust-mode . eglot)
       :init
       (setq rust-mode-treesitter-derive t))
 
@@ -856,9 +854,7 @@ Rust mode.
 Python mode.
 
 #+begin_src emacs-lisp
-    (use-package python-mode
-      :hook
-      (python-mode . eglot))
+    (use-package python-mode)
 #+end_src
 
 ** Direnv
