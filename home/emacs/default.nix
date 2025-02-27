@@ -21,7 +21,6 @@
         evil
         evil-collection
         evil-tutor
-        which-key
         general
         vertico
         consult
