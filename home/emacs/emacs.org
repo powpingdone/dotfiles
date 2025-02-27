@@ -142,7 +142,7 @@ I dunno why i'm using this but it's probably good.
         ;; buffer binds
         "b" '(:ignore t :wk "buffer")
         "bb" '(consult-buffer : "find buffer")
-        "bd" '(kill-this-buffer :wk "kill buffer")
+        "bd" '(kill-current-buffer :wk "kill buffer")
         "bn" '(next-buffer :wk "next buffer")
         "bp" '(previous-buffer :wk "previous buffer")
         "br" '(revert-buffer :wk "reload buffer")
