@@ -714,7 +714,7 @@ TODO: Make sure to set this up accordingly.
 
 #+begin_src emacs-lisp
     (use-package org-super-agenda
-      ;; depends on ht
+      ;; depends on ht ts
       :demand t
       :config
       (org-super-agenda-mode))
@@ -729,7 +729,7 @@ Do custom citations with .csl files
 
 #+begin_src emacs-lisp
     (use-package citeproc
-      ;; depends on f
+      ;; depends on f parsebib
       :after (org))
 #+end_src
 
