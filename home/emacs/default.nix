@@ -18,6 +18,7 @@
     .emacsWithPackages (epkgs:
       with epkgs; [
         # PRIORITY LOAD
+	s # early-init.el require
         evil
         evil-collection
         evil-tutor
@@ -30,6 +31,7 @@
         # APPEARANCE
         doom-themes
         doom-modeline
+	nerd-icons
         tree-sitter
         tree-sitter-langs
         treesit-auto
@@ -43,6 +45,7 @@
         sudo-edit
         undo-tree
         magit
+	llama
         vterm
         # ORG MODE
         ob-async
@@ -51,7 +54,6 @@
         org-appear
         org-super-agenda
         citeproc
-        
         # PROGRAMMING
         corfu
         eglot
