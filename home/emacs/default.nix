@@ -17,54 +17,92 @@
     }))
     .emacsWithPackages (epkgs:
       with epkgs; [
+	      # early-init.el require
+        s
+
         # PRIORITY LOAD
-	s # early-init.el require
         evil
         evil-collection
         evil-tutor
+
         general
+
         vertico
+
         consult
         consult-eglot
         consult-flycheck
+
         orderless
+
         # APPEARANCE
         doom-themes
+
         doom-modeline
-	nerd-icons
-        tree-sitter
-        tree-sitter-langs
+	      nerd-icons
+        shrink-path
+        
         treesit-auto
         treesit-grammars.with-all-grammars
+        tree-sitter
+        tree-sitter-langs
+
         beacon
+
         olivetti
+
         rainbow-delimiters
+
         # TOOLS
         nov
+
         pdf-tools
+
         sudo-edit
+
         undo-tree
+
         magit
-	llama
+	      llama
+        with-editor
+
         vterm
+        
         # ORG MODE
+        
         ob-async
+        
         org-make-toc
+        
         org-noter
+        
         org-appear
+        
         org-super-agenda
+        ht
+ 
         citeproc
+        f
+        
         # PROGRAMMING
         corfu
+
         eglot
+
         flycheck
         flycheck-eglot
+
         format-all
+
         nix-mode
+
         rust-mode
         cargo-mode
+
         python-mode
+
         direnv
+
         web-mode
       ]);
 in {

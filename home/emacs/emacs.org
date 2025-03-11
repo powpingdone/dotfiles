@@ -42,6 +42,7 @@
   - [[#citeproc][Citeproc]]
 - [[#programming][PROGRAMMING]]
   - [[#corfu][Corfu]]
+  - [[#eglot][EGlot]]
   - [[#flycheck][Flycheck]]
   - [[#format-all][Format all]]
   - [[#nix-mode][Nix Mode]]
@@ -57,6 +58,7 @@
 :CUSTOM_ID: notes
 :END:
 + use-package is already loaded in nix, and as such packages come from nix
++ make sure you add langs to eglot when you add their associated modes
   
 * PRIORITY LOAD
 :PROPERTIES:
@@ -378,6 +380,7 @@ My modeline looks so nice!
 
 #+begin_src emacs-lisp
     (use-package doom-modeline
+      ;; depends on nerd-icons shrink-path` 
       :demand t
       :hook after-init
       :init
@@ -501,7 +504,9 @@ Version controlled undo!
 The git client that everybody goes nuts over.
 
 #+begin_src emacs-lisp
-    (use-package magit)
+    (use-package magit
+      ;; depends on llama with-editor
+      )
 #+end_src
 
 ** XML
@@ -638,6 +643,7 @@ Do you think god stays in heaven because he fears org mode?
        (gnuplot . t)
        (python . t)
        (sql . t))))
+
 #+end_src
 
 ** Org babel async
@@ -708,6 +714,7 @@ TODO: Make sure to set this up accordingly.
 
 #+begin_src emacs-lisp
     (use-package org-super-agenda
+      ;; depends on ht
       :demand t
       :config
       (org-super-agenda-mode))
@@ -722,6 +729,7 @@ Do custom citations with .csl files
 
 #+begin_src emacs-lisp
     (use-package citeproc
+      ;; depends on f
       :after (org))
 #+end_src
 
@@ -749,7 +757,7 @@ That popup thing for mini completion.
       (prog-mode . corfu-mode))
 #+end_src
 
-j** EGlot
+** EGlot
 :PROPERTIES:
 :CUSTOM_ID: eglot
 :END:
