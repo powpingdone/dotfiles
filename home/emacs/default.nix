@@ -80,9 +80,11 @@
         
         org-super-agenda
         ht
+        ts
  
         citeproc
         f
+        parsebib
         
         # PROGRAMMING
         corfu
