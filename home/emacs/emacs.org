@@ -493,6 +493,7 @@ Version controlled undo!
 
 #+BEGIN_src emacs-lisp
     (use-package undo-tree
+      :demand t
       :config
       (global-undo-tree-mode))
 #+end_src
@@ -506,6 +507,7 @@ The git client that everybody goes nuts over.
 #+begin_src emacs-lisp
     (use-package magit
       ;; depends on llama with-editor
+      :demand 't
       )
 #+end_src
 
