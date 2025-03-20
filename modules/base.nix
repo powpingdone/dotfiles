@@ -33,9 +33,9 @@
     algorithm = "zstd";
   };
 
-  # Enable some SysRq keys (80 = sync + process kill)
+  # Enable some SysRq keys (208 = reboot + sync + process kill)
   # See: https://docs.kernel.org/admin-guide/sysrq.html
-  boot.kernel.sysctl."kernel.sysrq" = 80;
+  boot.kernel.sysctl."kernel.sysrq" = 208;
 
   # i18n
   i18n.defaultLocale = "en_US.UTF-8";
