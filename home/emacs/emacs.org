@@ -50,6 +50,7 @@
   - [[#python][Python]]
   - [[#direnv][Direnv]]
   - [[#web-mode][Web Mode]]
+  - [[#kotlin][Kotlin]]
 :END:
 
 
@@ -863,7 +864,8 @@ Rust mode.
 Python mode.
 
 #+begin_src emacs-lisp
-    (use-package python-mode)
+        (use-package python-mode
+          )
 #+end_src
 
 ** Direnv
@@ -901,3 +903,17 @@ Editing webstuff via emacs. What a novel concept!
        ("\\.html\\'" . web-mode)
        ("\\.jinja\\'" . web-mode)))
 #+end_src
+
+** Kotlin 
+:PROPERTIES:
+:CUSTOM_ID: kotlin
+:END:
+
+Basic thing to get me off the ground.
+
+#+begin_src emacs-lisp
+    (use-package kotlin-mode
+      :hook
+      (kotlin-mode . eglot-ensure))
+#+end_src
+

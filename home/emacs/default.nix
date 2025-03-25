@@ -78,6 +78,7 @@
         python-mode
         direnv
         web-mode
+        kotlin-mode
       ]);
 in {
   config = lib.mkIf config.ppd.emacs.enable {
