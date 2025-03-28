@@ -19,7 +19,6 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
 
     # yubi stuff
     yubikey-manager
-    yubikey-manager-qt
     yubikey-personalization
     yubikey-personalization-gui
     yubico-piv-tool
