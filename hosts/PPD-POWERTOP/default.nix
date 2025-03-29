@@ -33,33 +33,27 @@
   services.xserver.videoDrivers = ["amdgpu" "nvidia"];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/93960ac8-6786-4416-b944-0b8288c37706";
+    device = "/dev/disk/by-uuid/ff860b1e-2e52-4ae4-b2bc-eaddcad0a597";
     fsType = "btrfs";
     options = ["subvol=root" "compress=zstd:15"];
   };
 
   fileSystems."/boot/efi" = {
-    device = "/dev/disk/by-uuid/12CE-A600";
+    device = "/dev/disk/by-uuid/1EDB-585B";
     fsType = "vfat";
     options = ["fmask=0022" "dmask=0022"];
   };
 
   fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/93960ac8-6786-4416-b944-0b8288c37706";
+    device = "/dev/disk/by-uuid/ff860b1e-2e52-4ae4-b2bc-eaddcad0a597";
     fsType = "btrfs";
     options = ["subvol=home" "compress=zstd"];
   };
 
   fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/93960ac8-6786-4416-b944-0b8288c37706";
+    device = "/dev/disk/by-uuid/ff860b1e-2e52-4ae4-b2bc-eaddcad0a597";
     fsType = "btrfs";
     options = ["subvol=nix" "compress-force=zstd:15"];
-  };
-
-  fileSystems."/swap" = {
-    device = "/dev/disk/by-uuid/93960ac8-6786-4416-b944-0b8288c37706";
-    fsType = "btrfs";
-    options = ["subvol=swap"];
   };
 
   swapDevices = [];
