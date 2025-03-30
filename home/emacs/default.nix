@@ -125,13 +125,18 @@ in {
           wrapfig
           amsmath
           ulem
+
+          # IEEE paper stuffs
           hyperref
           capt-of
           etoolbox
           ieeeconf
           biblatex-ieee
           ieeetran
+
+          # begin_src syntax highlighting
           minted
+          upquote
           ;
       })
       # :lang nix
