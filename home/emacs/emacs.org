@@ -569,14 +569,9 @@ Do you think god stays in heaven because he fears org mode?
       :init
       (require 'doom-themes)
       (setq
-       org-capture-templates
-       '(("j" "Work Log Entry"
-          entry (file+olp+datetree "~/org/work-log.org")
-          "* %<%R> %?" :empty-lines 0)
-         ("t" "TODO"
-          entry (file+headline "~/org/tasks.org" "General Tasks")))
-       org-latex-classes 
-        '(("article" "\\documentclass[11pt]{article}"
+       ;; org latex
+       org-latex-classes
+       '(("article" "\\documentclass[11pt]{article}"
           ("\\section{%s}" . "\\section*{%s}")
           ("\\subsection{%s}" . "\\subsection*{%s}")
           ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
@@ -594,18 +589,35 @@ Do you think god stays in heaven because he fears org mode?
           ("\\section{%s}" . "\\section*{%s}")
           ("\\subsection{%s}" . "\\subsection*{%s}")
           ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
-         ("IEEEtran" "\\documentclass[]{IEEEtran}" 
-           ("\\section{%s}" . "\\section*{%s}")
-           ("\\subsection{%s}" . "\\subsection*{%s}")
-           ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
+         ("IEEEtran" "\\documentclass[]{IEEEtran}"
+          ("\\section{%s}" . "\\section*{%s}")
+          ("\\subsection{%s}" . "\\subsection*{%s}")
+          ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
        org-preview-latex-default-process 'dvisvgm
+       org-latex-src-block-backend 'minted
+       ;; -shell-excape is needed for minted
+       org-latex-pdf-process '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f")
+       org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize"))
+       org-latex-custom-lang-environments '((emacs-lisp "common-lispcode"))
+
+       ;; org capture/agenda
+       org-capture-templates
+       '(("j" "Work Log Entry"
+          entry (file+olp+datetree "~/org/work-log.org")
+          "* %<%R> %?" :empty-lines 0)
+         ("t" "TODO"
+          entry (file+headline "~/org/tasks.org" "General Tasks")))
+       org-default-notes-file "~/org/tasks.org"
+       org-agenda-files '("~/org")
+
+       ;; org style stuffs
        org-enforce-todo-dependencies t
        org-use-fast-todo-selection t
        org-hide-leading-stars t
        org-startup-indented t
        org-src-preserve-indentation 'nil
-       org-default-notes-file "~/org/tasks.org"
-       org-agenda-files '("~/org")
        org-log-done 'time
        org-return-follows-link t
        org-indent-indentation-per-level 4
@@ -637,6 +649,8 @@ Do you think god stays in heaven because he fears org mode?
       :config
       (require 'org-tempo)
       (require 'org-agenda)
+
+      ;; setup org babel fun stuff
       (require 'ob)
       (require 'ob-async)
       (org-babel-do-load-languages
@@ -646,8 +660,11 @@ Do you think god stays in heaven because he fears org mode?
          (latex . t)
          (gnuplot . t)
          (python . t)
-         (sql . t))))
+         (sql . t)))
 
+      ;; explicitly require minted for exporting src blocks
+      (require 'ox-latex)
+      (add-to-list 'org-latex-packages-alist '("minted")))
 #+end_src
 
 ** Org babel async
