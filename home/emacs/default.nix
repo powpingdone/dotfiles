@@ -60,10 +60,7 @@
         org-noter
         org-appear
         org-super-agenda
-        ht
-        ts
         citeproc
-        f
         parsebib
 
         # PROGRAMMING
@@ -134,6 +131,7 @@ in {
           ieeeconf
           biblatex-ieee
           ieeetran
+          minted
           ;
       })
       # :lang nix
