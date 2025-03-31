@@ -36,6 +36,7 @@
     services.pipewire = {
       enable = true;
       pulse.enable = true;
+      jack.enable = true;
       wireplumber = {
         enable = true;
         #extraConfig = {
@@ -50,7 +51,16 @@
     };
 
     # Enable Bluetooth
-    hardware.bluetooth.enable = true;
+    hardware.bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+    systemd.user.services.mpris-proxy = {
+      description = "Mpris proxy";
+      after = ["network.target" "sound.target"];
+      wantedBy = ["default.target"];
+      serviceConfig.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
+    };
 
     # Enable touchpad support (enabled default in most desktopManager).
     services.libinput.enable = true;
