@@ -595,8 +595,6 @@ Do you think god stays in heaven because he fears org mode?
           ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
        org-preview-latex-default-process 'dvisvgm
        org-latex-src-block-backend 'minted
-       ;; -shell-excape is needed for minted
-       org-latex-pdf-process '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f")
        org-latex-minted-options
        '(("frame" "lines")
          ("fontsize" "\\scriptsize"))
@@ -664,7 +662,7 @@ Do you think god stays in heaven because he fears org mode?
 
       ;; explicitly require minted for exporting src blocks
       (require 'ox-latex)
-      (add-to-list 'org-latex-packages-alist '(nil "minted" nil ("pdflatex"))))
+      (add-to-list 'org-latex-packages-alist '("cache=false" "minted" nil ("pdflatex"))))
 #+end_src
 
 ** Org babel async
