@@ -664,7 +664,7 @@ Do you think god stays in heaven because he fears org mode?
 
       ;; explicitly require minted for exporting src blocks
       (require 'ox-latex)
-      (add-to-list 'org-latex-packages-alist '("minted")))
+      (add-to-list 'org-latex-packages-alist '(nil "minted" nil ("pdflatex"))))
 #+end_src
 
 ** Org babel async
