@@ -340,6 +340,7 @@ Stock emacs stuff that makes me vomit less or make emacs work faster.
     (global-visual-line-mode 1)
     (electric-indent-mode -1)
     (auto-save-mode -1)
+    (pixel-scroll-precision-mode)
     ; setq
     (setq read-process-output-max (* 1024 1024)
           tab-always-indent 'complete
