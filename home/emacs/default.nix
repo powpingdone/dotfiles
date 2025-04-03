@@ -17,7 +17,7 @@
     }))
     .emacsWithPackages (epkgs:
       with epkgs; [
-	      # early-init.el require
+        # early-init.el require
         s
 
         # PRIORITY LOAD
@@ -34,7 +34,7 @@
         # APPEARANCE
         doom-themes
         doom-modeline
-	      nerd-icons
+        nerd-icons
         shrink-path
         treesit-auto
         treesit-grammars.with-all-grammars
@@ -43,6 +43,16 @@
         beacon
         olivetti
         rainbow-delimiters
+        (trivialBuild {
+          pname = "ultra-scroll";
+          version = "0.3.4";
+          src = pkgs.fetchFromGitHub {
+            owner = "jdtsmith";
+            repo = "ultra-scroll";
+            rev = "e74017326f6e38bdaad7b4dd497f2acaeead9f67";
+            hash = "sha256-MHlHsciVPNyvqwkop9arOQ1VTV5POxJZ+z+IZo/PrMM=";
+          };
+        })
 
         # TOOLS
         nov
@@ -50,7 +60,7 @@
         sudo-edit
         undo-tree
         magit
-	      llama
+        llama
         with-editor
         vterm
 
@@ -125,7 +135,6 @@ in {
           wrapfig
           amsmath
           ulem
-
           # IEEE paper stuffs
           hyperref
           capt-of
@@ -133,7 +142,6 @@ in {
           ieeeconf
           biblatex-ieee
           ieeetran
-
           # begin_src syntax highlighting
           minted
           upquote
@@ -143,27 +151,27 @@ in {
       nixd
       alejandra
     ];
-    
+
     # since we're using vterm, add this to the zsh init
     programs.zsh.initExtra = ''
-    vterm_printf() {
-        if [ -n "$TMUX" ] \
-            && { [ "$${TERM%%-*}" = "tmux" ] \
-                || [ "$${TERM%%-*}" = "screen" ]; }; then
-            # Tell tmux to pass the escape sequences through
-            printf "\ePtmux;\e\e]%s\007\e\\" "$1"
-        elif [ "$${TERM%%-*}" = "screen" ]; then
-            # GNU screen (screen, screen-256color, screen-256color-bce)
-            printf "\eP\e]%s\007\e\\" "$1"
-        else
-            printf "\e]%s\e\\" "$1"
-        fi
-    }
-    vterm_prompt_end() {
-        vterm_printf "51;A$(whoami)@$(hostname):$(pwd)"
-    }
-    setopt PROMPT_SUBST
-    PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
+      vterm_printf() {
+          if [ -n "$TMUX" ] \
+              && { [ "$${TERM%%-*}" = "tmux" ] \
+                  || [ "$${TERM%%-*}" = "screen" ]; }; then
+              # Tell tmux to pass the escape sequences through
+              printf "\ePtmux;\e\e]%s\007\e\\" "$1"
+          elif [ "$${TERM%%-*}" = "screen" ]; then
+              # GNU screen (screen, screen-256color, screen-256color-bce)
+              printf "\eP\e]%s\007\e\\" "$1"
+          else
+              printf "\e]%s\e\\" "$1"
+          fi
+      }
+      vterm_prompt_end() {
+          vterm_printf "51;A$(whoami)@$(hostname):$(pwd)"
+      }
+      setopt PROMPT_SUBST
+      PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
     '';
   };
 }

@@ -24,6 +24,7 @@
   - [[#beacon][Beacon]]
   - [[#olivetti][Olivetti]]
   - [[#rainbow-delimeters][Rainbow Delimeters]]
+  - [[#ultra-scroll][Ultra Scroll]]
 - [[#tools][TOOLS]]
   - [[#novel-epub-support][Nov.el (epub support)]]
   - [[#pdf-tools][PDF Tools]]
@@ -340,7 +341,6 @@ Stock emacs stuff that makes me vomit less or make emacs work faster.
     (global-visual-line-mode 1)
     (electric-indent-mode -1)
     (auto-save-mode -1)
-    (pixel-scroll-precision-mode)
     ; setq
     (setq read-process-output-max (* 1024 1024)
           tab-always-indent 'complete
@@ -445,6 +445,20 @@ Figure out what delimits what with color changing parens!
       prog-mode)
 #+end_src
 
+** Ultra Scroll
+:PROPERTIES:
+:CUSTOM_ID: ultra-scroll
+:END:
+Nicer & faster scrolling for mouse pads and high DPI mouse wheels. 
+
+#+begin_src emacs-lisp
+    (use-package ultra-scroll
+      :init
+      (setq scroll-conservatively 101
+    	scroll-margin 0)
+      :config
+      (ultra-scroll-mode))
+#+end_src
 
 * TOOLS
 :PROPERTIES:
