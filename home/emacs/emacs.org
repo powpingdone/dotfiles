@@ -460,6 +460,7 @@ Nicer & faster scrolling for mouse pads and high DPI mouse wheels.
       (ultra-scroll-mode))
 #+end_src
 
+
 * TOOLS
 :PROPERTIES:
 :CUSTOM_ID: tools
@@ -677,7 +678,10 @@ Do you think god stays in heaven because he fears org mode?
 
       ;; explicitly require minted for exporting src blocks
       (require 'ox-latex)
-      (add-to-list 'org-latex-packages-alist '("cache=false" "minted" nil ("pdflatex"))))
+      (add-to-list 'org-latex-packages-alist '("cache=false" "minted" nil ("pdflatex")))
+      
+      ;; use inlinetask
+      (require 'org-inlinetask))
 #+end_src
 
 ** Org babel async
