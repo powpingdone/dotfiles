@@ -36,8 +36,6 @@
         doom-modeline
         nerd-icons
         shrink-path
-        treesit-auto
-        treesit-grammars.with-all-grammars
         tree-sitter
         tree-sitter-langs
         beacon

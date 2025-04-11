@@ -87,7 +87,7 @@ Basically, nixos provides the packages (for rollback reasons) and emacs loads th
     (use-package evil
       :demand t
       :init
-      (setq
+      (setopt
        evil-vsplit-window-right t
        evil-split-window-below t
        evil-toggle-key "C-~"
@@ -272,10 +272,10 @@ Completion framework for various commands.
 
     (use-package emacs
       :init
-      (setq enable-recursive-minibuffers t
-            read-extended-command-predicate #'command-completion-default-include-p
-            minibuffer-prompt-properties
-            '(read-only t cursor-intangible t face minibuffer-prompt))
+      (setopt enable-recursive-minibuffers t
+              read-extended-command-predicate #'command-completion-default-include-p
+              minibuffer-prompt-properties
+              '(read-only t cursor-intangible t face minibuffer-prompt))
       :hook
       (minibuffer-setup . cursor-intangible-mode))
 #+end_src
@@ -341,10 +341,12 @@ Stock emacs stuff that makes me vomit less or make emacs work faster.
     (global-visual-line-mode 1)
     (electric-indent-mode -1)
     (auto-save-mode -1)
-    ; setq
-    (setq read-process-output-max (* 1024 1024)
+    ; setopt
+    (setopt read-process-output-max (* 1024 1024)
           tab-always-indent 'complete
-          completion-cycle-threshold 2)
+          completion-cycle-threshold 2
+          isearch-allow-motion t
+          isearch-motion-changes-direction t)
     ; hook some stuff
     (dolist (mode '(term-mode-hook eshell-mode-hook))
       (add-hook mode (lambda () (display-line-numbers-mode -1))))
@@ -365,8 +367,8 @@ I wish I had something similar to sainnhe/edge.
     (use-package doom-themes
       :demand t
       :init
-      (setq doom-themes-enable-bold t
-            doom-themes-enable-italic t)
+      (setopt doom-themes-enable-bold t
+              doom-themes-enable-italic t)
       :config
       (load-theme 'doom-city-lights t)
       (custom-set-faces
@@ -386,7 +388,7 @@ My modeline looks so nice!
       :demand t
       :hook after-init
       :init
-      (setq doom-modeline-height 28))
+      (setopt doom-modeline-height 28))
 #+end_src
 
 ** Tree sitter
@@ -396,10 +398,11 @@ My modeline looks so nice!
 Fancy syntax highlighting. NixOS provides all the treesit-grammars.
 
 #+begin_src emacs-lisp
-    (use-package treesit-auto
-      :demand t
+    (use-package tree-sitter
+      :hook
+      (tree-sitter-after-on . tree-sitter-hl-mode)
       :config
-      (global-treesit-auto-mode))
+      (global-tree-sitter-mode))
 #+end_src
 
 ** Beacon
@@ -425,8 +428,8 @@ Zen mode but nicer.
     (use-package olivetti
       :commands olivetti-mode
       :init
-      (setq olivetti-style 'fancy
-            olivetti-body-width 96)
+      (setopt olivetti-style 'fancy
+              olivetti-body-width 96)
       :config
       (set-face-attribute 'olivetti-fringe nil
                               :background (doom-color 'base3)
@@ -454,8 +457,8 @@ Nicer & faster scrolling for mouse pads and high DPI mouse wheels.
 #+begin_src emacs-lisp
     (use-package ultra-scroll
       :init
-      (setq scroll-conservatively 101
-    	scroll-margin 0)
+      (setopt scroll-conservatively 101
+    	  scroll-margin 0)
       :config
       (ultra-scroll-mode))
 #+end_src
@@ -524,8 +527,7 @@ The git client that everybody goes nuts over.
 #+begin_src emacs-lisp
     (use-package magit
       ;; depends on llama with-editor
-      :demand 't
-      )
+      :demand 't)
 #+end_src
 
 ** XML
@@ -584,7 +586,7 @@ Do you think god stays in heaven because he fears org mode?
     (use-package org
       :init
       (require 'doom-themes)
-      (setq
+      (setopt
        ;; org latex
        org-latex-classes
        '(("article" "\\documentclass[11pt]{article}"
@@ -704,7 +706,7 @@ Adds a table of contents to an org mode documents.
 #+begin_src emacs-lisp
     (use-package org-make-toc
       :init
-      (setq org-make-toc-insert-custom-ids t)
+      (setopt org-make-toc-insert-custom-ids t)
       :after org
       :hook (org-mode . org-make-toc-mode))
 #+end_src
@@ -732,8 +734,8 @@ TODO: This doesn't seem to be functional right now.
 #+begin_src emacs-lisp
     (use-package org-appear
       :init
-      (setq org-appear-trigger 'manual
-            org-appear-autolinks t)
+      (setopt org-appear-trigger 'manual
+              org-appear-autolinks t)
       :hook
       (org-mode .
                 (lambda ()
@@ -785,12 +787,12 @@ That popup thing for mini completion.
 #+begin_src emacs-lisp
     (use-package corfu
       :init
-      (setq corfu-auto t
-    	corfu-auto-delay 0.375
-            corfu-cycle t
-    	corfu-quit-at-boundary nil
-    	corfu-preselect 'prompt
-    	corfu-on-exact-match nil)
+      (setopt corfu-auto t
+    	  corfu-auto-delay 0.375
+              corfu-cycle t
+    	  corfu-quit-at-boundary nil
+    	  corfu-preselect 'prompt
+    	  corfu-on-exact-match nil)
       :hook
       (prog-mode . corfu-mode))
 #+end_src
@@ -805,12 +807,12 @@ LSP. Nuff said. Configure langs as needed.
     (use-package eglot
       :commands (eglot eglot-ensure)
       :init
-      (setq eglot-sync-connect 1
-            eglot-autoshutdown 't
-            eglot-auto-display-help-buffer nil
-    	eglot-stay-out-of '(flymake)
-    	eglot-workspace-configuration
-    	'(:nixd (:formatting (:command [ "alejandra" ]))))
+      (setopt eglot-sync-connect 1
+              eglot-autoshutdown 't
+              eglot-auto-display-help-buffer nil
+    	  eglot-stay-out-of '(flymake)
+    	  eglot-workspace-configuration
+    	  '(:nixd (:formatting (:command [ "alejandra" ]))))
       :config
       (dolist (mode-server '(
         			 (nix-mode . ("nixd"))))
@@ -831,11 +833,11 @@ Inline syntax notes.
       :hook
       (after-init . global-flycheck-mode)
       :init
-      (setq flycheck-check-syntax-automatically
-            '(mode-enabled save new-line idle-change idle-buffer-switch)
-            flycheck-idle-change-delay 0.375
-            flycheck-idle-buffer-switch-delay 0.650
-            flycheck-buffer-switch-check-intermediate-buffers 'nil))
+      (setopt flycheck-check-syntax-automatically
+              '(mode-enabled save new-line idle-change idle-buffer-switch)
+              flycheck-idle-change-delay 0.375
+              flycheck-idle-buffer-switch-delay 0.650
+              flycheck-buffer-switch-check-intermediate-buffers 'nil))
 
     (use-package flycheck-eglot
       :hook (eglot-managed-mode . flycheck-eglot-mode))
@@ -883,13 +885,13 @@ Rust mode.
       :mode ; case insenitive
       ("\\.[Rr][Ss]\\'" . rust-ts-mode)
       :init
-      (setq rust-mode-treesitter-derive t))
+      (setopt rust-mode-treesitter-derive t))
 
     (use-package cargo-mode
       :hook
       (rust-mode . cargo-minor-mode)
       :config
-      (setq compilation-scroll-output t))
+      (setopt compilation-scroll-output t))
 #+end_src
 
 ** Python
@@ -899,8 +901,7 @@ Rust mode.
 Python mode.
 
 #+begin_src emacs-lisp
-        (use-package python-mode
-          )
+    (use-package python-mode)
 #+end_src
 
 ** Direnv
