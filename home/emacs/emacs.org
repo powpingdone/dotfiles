@@ -630,7 +630,7 @@ Do you think god stays in heaven because he fears org mode?
 
        ;; org style stuffs
        org-enforce-todo-dependencies t
-       org-use-fast-todo-selection t
+       org-use-fast-todo-selection 'auto
        org-hide-leading-stars t
        org-startup-indented t
        org-src-preserve-indentation 'nil
