@@ -12,6 +12,7 @@
     ../options
     ./emacs
     ./devel.nix
+    ./ghidra.nix
   ];
 
   home.stateVersion = "25.05";

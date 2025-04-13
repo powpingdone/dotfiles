@@ -45,6 +45,7 @@
     isHIDPI = lib.mkEnableOption "The default display has a DPI/PPI greater than 200";
     peekPoke.enable = lib.mkEnableOption "Install peekpoke, which toggles kernel options related to /dev/mem";
     idevice.enable = lib.mkEnableOption "Install git versions of software for recovering idevices.";
+    ghidra.enable = lib.mkEnableOption "Ghidra, the NSA reverse engineering tool";
   };
 
   # option defaults
@@ -56,4 +57,5 @@
   config.ppd.devenv.enable = lib.mkDefault config.ppd.desktop.enable;
   config.ppd.isHIDPI = lib.mkDefault false;
   config.ppd.idevice.enable = lib.mkDefault false;
+  config.ppd.ghidra.enable = lib.mkDefault config.ppd.desktop.enable;
 }
