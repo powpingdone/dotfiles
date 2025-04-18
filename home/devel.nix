@@ -18,7 +18,7 @@
     # gdb script to add cool thing for detecting deadlocks with `blocked` command
     # taken from https://github.com/DamZiobro/gdb-automatic-deadlock-detector
     xdg.configFile = {
-      "gdb/gdbinit".source =
+      "gdb/gdbinit".text =
 ''
 python
 ${lib.readFile ./gdbDisplayLockedThreads.py}
