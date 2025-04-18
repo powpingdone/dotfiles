@@ -3,36 +3,6 @@
 #
 # Copyright © 2017 Damian Ziobro <damian@xmementoit.com>
 
-"""
-This script shows blocking C/C++ threads in gdb based on data from core file.
-
-Author: Damian Ziobro <damian@xmementoit.com>
-
-Instruction: 
-1) Add this to your file 'gdbcommands' (or your .gdbinit file)
-'
-python 
-import gdbDisplayLockedThreads
-end
-
-thread apply all bt
-
-blocked
-'
-2. Run this command:
-gdb -c core /path/to/exec -x gdbcommands -batch
-
-3. You should see all backtraces from your process followd by additionally info of 
-which threads are waiting for mutexes holding by which other threads ex.
-
-Thread: 27184 waits for thread: 27185  AND DEADLOCKED
-Thread: 27185 waits for thread: 27184  AND DEADLOCKED
-
-It means that thread 27184 waits for mutex holded by thread 27185 AND thread 27185 
-waits for mutex holded by thread 27184 - so threas 27185 and 27184 are deadlocked
-
-"""
-
 import gdb
 
 class Thread():
@@ -46,7 +16,6 @@ class Thread():
         
 
 class DisplayLockedThreads(gdb.Command):
-    """custom command => blocked - command show how threads blocks themselves waiting on mutexes"""
     def __init__(self):
         super (DisplayLockedThreads, self).__init__("blocked", gdb.COMMAND_SUPPORT,gdb.COMPLETE_NONE,True)
         print (self.__doc__)
