@@ -5,8 +5,8 @@ final: prev: {
     src = prev.fetchFromGitHub {
       owner = "libimobiledevice";
       repo = "libplist";
-      rev = "44099d4b79c8d6a7d599d652ebef62db8dae6696";
-      hash = "sha256-fJKdqFs36MA61nI08OZ1bDL9DSeSlpovI/QcHLMQkkQ=";
+      rev = "d031e94d7aee14c4e7646e67623c94e6164b99e3";
+      hash = "sha256-A5YBY2cqym0E7m7jBhWCOO3gbVtkpuIjelk/8WDV1U4=";
     };
   });
   libtatsu = prev.stdenv.mkDerivation rec {
@@ -36,8 +36,8 @@ final: prev: {
     src = prev.fetchFromGitHub {
       owner = "libimobiledevice";
       repo = "libimobiledevice-glue";
-      rev = "fe28a576b65f6fdcccb0f85721d79b9d3965faa9";
-      hash = "sha256-+dm31Lgt88LEwrdctt2P9voYLyRt/fWkY4+zqsJRjNY=";
+      rev = "c915351cb322d041afabc04f780eb35142cdaea5";
+      hash = "sha256-lgTwURnBO3Os2Rg72s9BVCm5XWouZfCyuUfZ900SxkE=";
     };
   });
   usbmuxd = prev.usbmuxd.overrideAttrs (finalAttrs: prevAttrs: {
@@ -63,8 +63,8 @@ final: prev: {
     src = prev.fetchFromGitHub {
       owner = "libimobiledevice";
       repo = "libimobiledevice";
-      rev = "f61a3bb6329009c71a32be3fe372edd9094ccbdc";
-      hash = "sha256-jXtlvYXYbtFQzkSCkD6/8P7tP5LZd2GHVWIDO7SPLcM=";
+      rev = "a6b6c35d1550acbd2552d49c2fe38115deec8fc0";
+      hash = "sha256-dZpRuUP71LnBFIYRlxNYnEgeeVXdpwuCje/EJ2JHxHE=";
     };
     propagatedBuildInputs = [final.libtatsu] ++ prevAttrs.propagatedBuildInputs;
     patches = null;
@@ -74,8 +74,8 @@ final: prev: {
     src = prev.fetchFromGitHub {
       owner = "libimobiledevice";
       repo = "libirecovery";
-      rev = "6462ea1506fb133ebbf79c3e1660d84a94ae703f";
-      hash = "sha256-jcO0VvDAdAD2hHx/yoblVH0FGClwsrwkMRcQta6o16M=";
+      rev = "638056a593b3254d05f2960fab836bace10ff105";
+      hash = "sha256-loIbNSbwiVE8/jDVIbCVReV7ZkEOxIC7g8zPaSbOA3E=";
     };
   });
   idevicerestore = prev.idevicerestore.overrideAttrs (finalAttrs: prevAttrs: {
@@ -83,8 +83,8 @@ final: prev: {
     src = prev.fetchFromGitHub {
       owner = "libimobiledevice";
       repo = "idevicerestore";
-      rev = "bb5591d690a057fbc6533df2617189005ea95f40";
-      hash = "sha256-u9H1k9VRlbhPIXN0XKOzJ1amCo5TrNa1Tvu6om8ue2E=";
+      rev = "a5905b7f905fc3cc83033ebd963f0dcba071e512";
+      hash = "sha256-syzGhQhLoQ0d4EMsmQ9HertPvWYRJ5gpb6unM547w3g=";
     };
     buildInputs = [final.libtatsu] ++ prevAttrs.buildInputs;
   });
