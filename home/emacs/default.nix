@@ -152,7 +152,7 @@ in {
     ];
 
     # since we're using vterm, add this to the zsh init
-    programs.zsh.initExtra = ''
+    programs.zsh.initContent = ''
       vterm_printf() {
           if [ -n "$TMUX" ] \
               && { [ "$${TERM%%-*}" = "tmux" ] \
