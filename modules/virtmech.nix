@@ -12,12 +12,13 @@
           ovmf.enable = true; # enable UEFI
           runAsRoot = false;
         };
+        # do not start up vms automatically, I will configure that
+        onBoot = "ignore";
       };
     }
     // lib.mkIf config.ppd.virtManager.enable {
-      
       # base always installs my user, so just make him the god
-      users.groups.libvirtd.members = [ "powpingdone" ];
+      users.groups.libvirtd.members = ["powpingdone"];
 
       programs.virt-manager.enable = true;
     };
