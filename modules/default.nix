@@ -10,5 +10,6 @@
     ./emacs.nix
     ./steam.nix
     ./peekpoke.nix
+    ./virtmech.nix
   ];
 }

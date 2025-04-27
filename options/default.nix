@@ -46,6 +46,8 @@
     peekPoke.enable = lib.mkEnableOption "Install peekpoke, which toggles kernel options related to /dev/mem";
     idevice.enable = lib.mkEnableOption "Install git versions of software for recovering idevices.";
     ghidra.enable = lib.mkEnableOption "Ghidra, the NSA reverse engineering tool";
+    libvirtd.enable = lib.mkEnableOption "Install libvirtd, the vm hosting tool";
+    virtManager.enable = lib.mkEnableOption "Install virt-manager, the frontend for libvirtd";
   };
 
   # option defaults
@@ -58,4 +60,6 @@
   config.ppd.isHIDPI = lib.mkDefault false;
   config.ppd.idevice.enable = lib.mkDefault false;
   config.ppd.ghidra.enable = lib.mkDefault config.ppd.desktop.enable;
+  config.ppd.libvirtd.enable = lib.mkDefault false;
+  config.ppd.virtManager.enable = lib.mkDefault false;
 }
