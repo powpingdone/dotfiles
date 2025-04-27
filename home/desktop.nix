@@ -59,6 +59,12 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
       "org/gnome/shell/extensions/blur-my-shell/panel".blur = false;
       # only show gamemoderun when it's actually active
       "org/gnome/shell/extensions/gamemodeshellextension".show-icon-only-when-active = true;
+      # if we're also installing libvirtd and virt-manager, make the default vm host us
+      "org/virt-manager/virt-manager/connections" = lib.mkIf (nixosConfig.ppd.libvirtd.enable 
+                                                              && nixosConfig.ppd.virtManager.enable) {
+        autoconnect = ["qemu:///system"];
+        uris = ["qemu:///system"];
+      };
     };
   };
 

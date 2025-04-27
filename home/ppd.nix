@@ -45,4 +45,5 @@
   programs.ripgrep.enable = true;
   programs.neovim.enable = true;
   programs.zsh.enable = true;
+      
 }
