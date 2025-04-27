@@ -10,6 +10,7 @@
     ./emacs.nix
     ./steam.nix
     ./peekpoke.nix
-    ./virtmech.nix
+    ./virtmanager.nix
+    ./libvirtd.nix
   ];
 }
