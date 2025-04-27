@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: {
   config =
@@ -8,17 +9,28 @@
       virtualisation.libvirtd = {
         enable = true;
         qemu = {
-          swtpm.enable = true; # enable using TPM
-          ovmf.enable = true; # enable UEFI
+          # TPM
+          swtpm.enable = true; 
+          # uefi
+          ovmf = { 
+            enable = true;
+            packages = [
+              pkgs.OVMFFull.fd
+            ];
+          };
+          # dont run qemu as root
           runAsRoot = false;
+          # shared folders
+          vhostUserPackages = [ pkgs.virtiofsd ];
         };
         # do not start up vms automatically, I will configure that
         onBoot = "ignore";
+
       };
     }
     // lib.mkIf config.ppd.virtManager.enable {
       # base always installs my user, so just make him the god
-      users.groups.libvirtd.members = ["powpingdone"];
+      users.users.powpingdone.extraGroups = ["libvirtd"];
 
       programs.virt-manager.enable = true;
     };
