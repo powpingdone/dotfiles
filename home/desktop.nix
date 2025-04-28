@@ -11,7 +11,7 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
   home.packages = with pkgs; [
     nextcloud-client
     gimp
-    libreoffice
+    onlyoffice-desktopeditors
     hunspell
     hunspellDicts.en_US
     vlc
