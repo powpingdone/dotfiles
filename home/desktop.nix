@@ -11,7 +11,12 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
   home.packages = with pkgs; [
     nextcloud-client
     gimp
-    onlyoffice-desktopeditors
+    (
+      # install onlyoffice, fallback to libreoffice if platform unsupported
+      if builtins.any (plat: nixosConfig.ppd.system == plat) onlyoffice-desktopeditors.meta.platforms
+      then onlyoffice-desktopeditors
+      else libreoffice
+    )
     hunspell
     hunspellDicts.en_US
     vlc
@@ -60,8 +65,8 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
       # only show gamemoderun when it's actually active
       "org/gnome/shell/extensions/gamemodeshellextension".show-icon-only-when-active = true;
       # if we're also installing libvirtd and virt-manager, make the default vm host us
-      "org/virt-manager/virt-manager/connections" = lib.mkIf (nixosConfig.ppd.libvirtd.enable 
-                                                              && nixosConfig.ppd.virtManager.enable) {
+      "org/virt-manager/virt-manager/connections" = lib.mkIf (nixosConfig.ppd.libvirtd.enable
+        && nixosConfig.ppd.virtManager.enable) {
         autoconnect = ["qemu:///system"];
         uris = ["qemu:///system"];
       };

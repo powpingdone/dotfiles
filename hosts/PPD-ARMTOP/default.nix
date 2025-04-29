@@ -14,7 +14,7 @@
 
   # this saves battery
   powerManagement.cpuFreqGovernor = "conservative";
-  
+
   # enable dtb
   hardware.deviceTree = {
     enable = true;

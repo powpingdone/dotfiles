@@ -17,30 +17,30 @@
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
   boot.kernelPackages = pkgs.linuxPackages_6_12;
-  
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/75cbb1f6-3b74-4420-a586-fba9d0774d8c";
-      fsType = "btrfs";
-      options = [ "subvol=root" "compress-force=zstd:15" ];
-    };
 
-  fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/75cbb1f6-3b74-4420-a586-fba9d0774d8c";
-      fsType = "btrfs";
-      options = [ "subvol=nix" "compress-force=zstd:15" "noatime"];
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/75cbb1f6-3b74-4420-a586-fba9d0774d8c";
+    fsType = "btrfs";
+    options = ["subvol=root" "compress-force=zstd:15"];
+  };
 
-  fileSystems."/boot/efi" =
-    { device = "/dev/disk/by-uuid/4C04-9A9D";
-      fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
-    };
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/75cbb1f6-3b74-4420-a586-fba9d0774d8c";
+    fsType = "btrfs";
+    options = ["subvol=nix" "compress-force=zstd:15" "noatime"];
+  };
 
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/6e892922-165f-4ab7-9efc-65f1ab3005c3";
-      fsType = "btrfs";
-      options = [ "subvol=hroot" "compress=zstd" ];
-    };
+  fileSystems."/boot/efi" = {
+    device = "/dev/disk/by-uuid/4C04-9A9D";
+    fsType = "vfat";
+    options = ["fmask=0022" "dmask=0022"];
+  };
+
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/6e892922-165f-4ab7-9efc-65f1ab3005c3";
+    fsType = "btrfs";
+    options = ["subvol=hroot" "compress=zstd"];
+  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
