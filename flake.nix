@@ -24,7 +24,6 @@
     # external deps
     x1e-nixos-config = {
       url = "github:kuruczgy/x1e-nixos-config";
-      #url = "github:powpingdone/x1e-nixos-config/try-audio";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
