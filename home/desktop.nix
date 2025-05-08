@@ -11,10 +11,10 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
   home.packages = with pkgs; [
     nextcloud-client
     gimp
-    inkscape-with-extensions.override
-    {
-      inkscapeExtensions = with pkgs.inkscape-extensions; [silhouette];
-    }
+    (inkscape-with-extensions.override
+      {
+        inkscapeExtensions = with pkgs.inkscape-extensions; [silhouette];
+      })
     (
       # install onlyoffice, fallback to libreoffice if platform unsupported
       if builtins.any (plat: nixosConfig.ppd.system == plat) onlyoffice-desktopeditors.meta.platforms
