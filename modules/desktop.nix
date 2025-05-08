@@ -19,6 +19,9 @@
     # enable usbmuxd for idevicerestore
     services.usbmuxd.enable = true;
 
+    # add ext for inkscape silloette
+    services.udev.extraRules = ''SUBSYSTEM=="usb", ATTR{idVendor}=="0b4d", ATTR{idProduct}=="113a", MODE="666"'';
+
     # nautilus a/v
     environment.sessionVariables.GST_PLUGIN_SYSTEM_PATH_1_0 = lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0" [
       pkgs.gst_all_1.gst-plugins-good
