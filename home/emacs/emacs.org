@@ -48,7 +48,6 @@
   - [[#format-all][Format all]]
   - [[#nix-mode][Nix Mode]]
   - [[#rust][Rust]]
-  - [[#python][Python]]
   - [[#direnv][Direnv]]
   - [[#web-mode][Web Mode]]
   - [[#kotlin][Kotlin]]
@@ -892,16 +891,6 @@ Rust mode.
       (rust-mode . cargo-minor-mode)
       :config
       (setopt compilation-scroll-output t))
-#+end_src
-
-** Python
-:PROPERTIES:
-:CUSTOM_ID: python
-:END:
-Python mode.
-
-#+begin_src emacs-lisp
-    (use-package python-mode)
 #+end_src
 
 ** Direnv
