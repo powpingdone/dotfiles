@@ -15,9 +15,16 @@
     channel.enable = false;
   };
 
-  boot.loader.systemd-boot = {
-    enable = true;
-    configurationLimit = 2;
+  boot.loader= {
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/efi";
+    };
+    grub = {
+      efiSupport = true;
+      device = "nodev";
+      useOSProber = true;
+    };
   };
 
   boot.tmp.cleanOnBoot = true;
@@ -25,8 +32,6 @@
   boot.initrd.systemd.enable = true;
 
   hardware.enableRedistributableFirmware = true;
-
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   zramSwap = {
     enable = true;
