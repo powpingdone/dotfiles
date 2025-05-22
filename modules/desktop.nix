@@ -14,10 +14,15 @@
       (lib.getBin (pkgs.elfutils.override {enableDebuginfod = true;}))
       # for fun things
       idevicerestore
+      # requires services.ratbagd.enable = true;
+      piper
     ];
 
     # enable usbmuxd for idevicerestore
     services.usbmuxd.enable = true;
+
+    # enable ratbagd for color customizations
+    services.ratbagd.enable = true;
 
     # add ext for inkscape silloette
     services.udev.extraRules = ''SUBSYSTEM=="usb", ATTR{idVendor}=="0b4d", ATTR{idProduct}=="113a", MODE="666"'';
