@@ -13,7 +13,6 @@
       withPgtk = true;
       withTreeSitter = true;
       withSmallJaDic = true;
-      withImageMagick = true;
     }))
     .emacsWithPackages (epkgs:
       with epkgs; [
