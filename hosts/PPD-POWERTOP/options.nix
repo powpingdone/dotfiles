@@ -6,5 +6,6 @@
 
     desktop.enable = true;
     steam.enable = true;
+    bootloader.grub = true;
   };
 }

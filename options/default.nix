@@ -47,18 +47,26 @@
     ghidra.enable = lib.mkEnableOption "Ghidra, the NSA reverse engineering tool";
     libvirtd.enable = lib.mkEnableOption "Install libvirtd, the vm hosting tool";
     virtManager.enable = lib.mkEnableOption "Install virt-manager, the frontend for libvirtd";
+    bootloader = {
+      grub = lib.mkEnableOption "Enable grub bootloader";
+      systemd-boot = lib.mkEnableOption "Enable systemd-boot bootloader (works with UEFI dtb)";
+    };
   };
 
   # option defaults
-  config.ppd.peekPoke.enable = lib.mkDefault false;
-  config.ppd.desktop.enable = lib.mkDefault false;
-  config.ppd.emacs.enable = lib.mkDefault false;
-  config.ppd.nixIndex.enable = lib.mkDefault true;
-  config.ppd.steam.enable = lib.mkDefault config.ppd.desktop.enable;
-  config.ppd.devenv.enable = lib.mkDefault config.ppd.desktop.enable;
-  config.ppd.isHIDPI = lib.mkDefault false;
-  config.ppd.idevice.enable = lib.mkDefault false;
-  config.ppd.ghidra.enable = lib.mkDefault config.ppd.desktop.enable;
-  config.ppd.libvirtd.enable = lib.mkDefault false;
-  config.ppd.virtManager.enable = lib.mkDefault false;
+  config.ppd = {
+    bootloader.grub = lib.mkDefault false;
+    bootloader.systemd-boot = lib.mkDefault false;
+    peekPoke.enable = lib.mkDefault false;
+    desktop.enable = lib.mkDefault false;
+    emacs.enable = lib.mkDefault false;
+    nixIndex.enable = lib.mkDefault true;
+    steam.enable = lib.mkDefault config.ppd.desktop.enable;
+    devenv.enable = lib.mkDefault config.ppd.desktop.enable;
+    isHIDPI = lib.mkDefault false;
+    idevice.enable = lib.mkDefault false;
+    ghidra.enable = lib.mkDefault config.ppd.desktop.enable;
+    libvirtd.enable = lib.mkDefault false;
+    virtManager.enable = lib.mkDefault false;
+  };
 }

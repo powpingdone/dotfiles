@@ -17,5 +17,6 @@
         };
       };
     };
+    bootloader.grub = true;
   };
 }

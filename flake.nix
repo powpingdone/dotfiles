@@ -86,10 +86,10 @@
 
               # general
               {nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];}
-              ./options
               ./modules
               nixpkgs.nixosModules.notDetected
               nix-index-database.nixosModules.nix-index
+              ./options
 
               # home-manager
               home-manager.nixosModules.home-manager
