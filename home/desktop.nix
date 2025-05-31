@@ -40,18 +40,27 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
   dconf = {
     enable = true;
     settings = {
-      # enable dark mode for gtk4
-      "org/gnome/desktop/interface".color-scheme = "prefer-dark";
+      "org/gnome/desktop/interface" = {
+        # enable dark mode for most programs
+        color-scheme = "prefer-dark";
+        # show battery percent
+        show-battery-percentage = true;
+      };
 
       "org/gnome/mutter" = {
-        # regular things for me
+        # unlimited workspaces
         dynamic-workspaces = true;
+        # window tiling
         edge-tiling = true;
-        # turn on fractional scaling
+        # turn on "ok-ish" fractional scaling
         experimental-features = ["scale-monitor-framebuffer"];
         # on multi monitors, I only want one with workspaces
         workspaces-only-on-primary = true;
       };
+
+      # power off on power button pressed
+      "org/gnome/settings-daemon/plugins/power".power-button-action = "interactive";
+
       # win+enter for open terminal
       "org/gnome/settings-daemon/plugins/media-keys".custom-keybindings = ["/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"];
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
@@ -59,10 +68,13 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
         command = "kgx";
         name = "Open Terminal";
       };
+
       # turn off panel blur-my-shell
       "org/gnome/shell/extensions/blur-my-shell/panel".blur = false;
+
       # only show gamemoderun when it's actually active
       "org/gnome/shell/extensions/gamemodeshellextension".show-icon-only-when-active = true;
+
       # if we're also installing libvirtd and virt-manager, make the default vm host us
       "org/virt-manager/virt-manager/connections" = lib.mkIf (nixosConfig.ppd.libvirtd.enable
         && nixosConfig.ppd.virtManager.enable) {
