@@ -7,25 +7,27 @@
   config = lib.mkIf config.ppd.desktop.enable {
     # base packages that I *always* need.
     environment.systemPackages = with pkgs; [
-      # connectwise. make sure to nix-shell rpm and desktop-file-utils
-      # to init it's stuff
-      openjdk17
       # debuginfod
       (lib.getBin (pkgs.elfutils.override {enableDebuginfod = true;}))
       # for fun things
       idevicerestore
-      # requires services.ratbagd.enable = true;
-      piper
     ];
 
     # enable usbmuxd for idevicerestore
     services.usbmuxd.enable = true;
 
-    # enable ratbagd for color customizations
-    services.ratbagd.enable = true;
+    # enable extra hardware like rotation and light sensors
+    hardware.sensor.iio.enable = true;
 
     # add ext for inkscape silloette
     services.udev.extraRules = ''SUBSYSTEM=="usb", ATTR{idVendor}=="0b4d", ATTR{idProduct}=="113a", MODE="666"'';
+
+    # connectwise. make sure to nix-shell rpm and desktop-file-utils
+    # to init it's stuff
+    programs.java = {
+      enable = true;
+      package = pkgs.openjdk21;
+    };
 
     # nautilus a/v
     environment.sessionVariables.GST_PLUGIN_SYSTEM_PATH_1_0 = lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0" [
@@ -100,19 +102,16 @@
       openFirewall = true;
     };
 
-    # Enable the X11 windowing system.
-    services.xserver = {
-      enable = true;
-      # use gnome
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
-    };
-
     # setup gdm properly
     services.displayManager = {
       enable = true;
+      # use gnome display manager
+      gdm.enable = true;
       defaultSession = "gnome";
     };
+
+    # use gnome
+    services.desktopManager.gnome.enable = true;
 
     # I don't need the gnome web browser and email client
     environment.gnome.excludePackages = with pkgs; [
@@ -132,16 +131,27 @@
     # use ozone on desktop
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-    # have reasonable font coverage
     fonts = {
       packages = with pkgs; [
+        # noto for reasonable, non bitmap coverage
         noto-fonts
         noto-fonts-emoji
         noto-fonts-cjk-sans
         noto-fonts-cjk-serif
+
+        # other, regular fonts
+        winePackages.fonts
+        roboto
+        ubuntu_font_family
+        dejavu_fonts
+        freefont_ttf
+        gyre-fonts 
+        liberation_ttf
+        noto-fonts-color-emoji
+
+        # nerd fonts, because I am gamer
         nerd-fonts.symbols-only
       ];
-      enableDefaultPackages = true;
       fontconfig =
         {
           enable = true;
