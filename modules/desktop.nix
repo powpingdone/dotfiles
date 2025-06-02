@@ -47,6 +47,12 @@
       enable = true;
       pulse.enable = true;
       jack.enable = true;
+      extraConfig.pipewire."92-set-larger-quantum" = {
+        "context.properties" = {
+          "default.clock.min-quantum" = 256;
+          "default.clock.max-quantum" = 256;
+        };
+      };
       wireplumber = {
         enable = true;
         #extraConfig = {
@@ -145,7 +151,7 @@
         ubuntu_font_family
         dejavu_fonts
         freefont_ttf
-        gyre-fonts 
+        gyre-fonts
         liberation_ttf
         noto-fonts-color-emoji
 
