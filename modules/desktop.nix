@@ -19,8 +19,11 @@
     # enable extra hardware like rotation and light sensors
     hardware.sensor.iio.enable = true;
 
-    # add ext for inkscape silloette
-    services.udev.extraRules = ''SUBSYSTEM=="usb", ATTR{idVendor}=="0b4d", ATTR{idProduct}=="113a", MODE="666"'';
+    # add ext for inkscape silloette, ifixit usb 
+    services.udev.extraRules = ''
+SUBSYSTEM=="usb", ATTR{idVendor}=="0b4d", ATTR{idProduct}=="113a", MODE="666"
+SUBSYSTEM=="usb", ATTR{idVendor}=="346c", ATTR{idProduct}=="1f01", MODE="666"
+'';
 
     # connectwise. make sure to nix-shell rpm and desktop-file-utils
     # to init it's stuff
