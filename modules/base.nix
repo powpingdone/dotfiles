@@ -36,6 +36,13 @@
       channel.enable = false;
     };
 
+    age = {
+      identityPaths = ["/home/powpingdone/.ssh/id_ed25519.pub"];
+      secrets = {
+        email.file = ../secrets/email.age;
+      };
+    };
+
     boot.loader = {
       efi = {
         canTouchEfiVariables = true;
@@ -100,7 +107,8 @@
       git
       killall
       # used encryption stuff (secrets in this repo)
-      git-crypt
+      rage
+      ragenix
     ];
 
     # nix-ld for stuffs that is not nix
@@ -138,31 +146,6 @@
 
     # being able to use security keys is a big thing
     services.pcscd.enable = true;
-
-    # enable gnupg
-    programs.gnupg = {
-      dirmngr.enable = true;
-      agent = with pkgs; {
-        enable = true;
-        enableSSHSupport = true;
-        enableBrowserSocket = true;
-        pinentryPackage =
-          if config.ppd.emacs.enable
-          then pinentry-emacs
-          else
-            (
-              if config.ppd.desktop.enable
-              then pinentry-gnome3
-              else pinentry-curses
-            );
-      };
-    };
-
-    # disable ssh agent because gnupg is taken over
-    programs.ssh.startAgent = false;
-
-    # add some yubikey udev rules
-    services.udev.packages = [pkgs.yubikey-personalization];
 
     # nh is a nice frontend
     programs.nh = {

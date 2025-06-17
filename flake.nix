@@ -26,23 +26,26 @@
       url = "github:kuruczgy/x1e-nixos-config";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    agenix = {
+      url = "github:yaxitech/ragenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
-    self,
     nixpkgs,
     home-manager,
-    flake-utils,
     emacs-overlay,
     nix-index-database,
-    dwarffs,
-    x1e-nixos-config,
+    agenix,
     ...
   } @ inputs: {
     nixosConfigurations = nixpkgs.lib.genAttrs ["PPD-POWERTOP" "PPD-ARMTOP" "PPD-TOWER"] (hostName: (
       let
+        # import the skeleton config.pdd
         ppdOpts = (import ./hosts/${hostName}/options.nix {}).ppd;
         system = ppdOpts.system;
+        # extra nixpkgs patches
         pkgs_patched =
           (import inputs.nixpkgs {
             inherit system;
@@ -53,6 +56,7 @@
             patches = [
             ];
           };
+        # then setting pkgs
         pkgs = import pkgs_patched {
           inherit system;
           config.allowUnfree = true;
@@ -60,11 +64,13 @@
             [
               emacs-overlay.overlays.default
             ]
+            # my overlays
             ++ (
               if ppdOpts ? overlays
               then ppdOpts.overlays
               else []
             )
+            # idevice overlay
             ++ (
               if ppdOpts ? idevice.enable && ppdOpts.idevice.enable
               then [(import options/idevice.nix)]
@@ -79,7 +85,7 @@
 
           modules =
             [
-              # host specific
+              # host specific, import from ./hosts
               {networking.hostName = hostName;}
               ./hosts/${hostName}
               ./hosts/${hostName}/options.nix
@@ -89,6 +95,7 @@
               ./modules
               nixpkgs.nixosModules.notDetected
               nix-index-database.nixosModules.nix-index
+              agenix.nixosModules.default
               ./options
 
               # home-manager
@@ -101,14 +108,7 @@
                 home-manager.useUserPackages = true;
                 home-manager.users.powpingdone = import ./home/ppd.nix;
               }
-            ]
-            ++ (
-              if (hostName == "PPD-ARMTOP")
-              then [
-                x1e-nixos-config.nixosModules.x1e
-              ]
-              else []
-            );
+            ];
         }
     ));
   };

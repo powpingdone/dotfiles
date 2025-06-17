@@ -2,8 +2,10 @@
   pkgs,
   nixpkgs,
   lib,
+  inputs,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware-configuration.nix
   ];
@@ -25,3 +27,4 @@
 
   boot.kernelPatches = [];
 }
+// inputs.x1e-nixos-config.modules.x1e
