@@ -26,10 +26,6 @@
       url = "github:kuruczgy/x1e-nixos-config";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    agenix = {
-      url = "github:yaxitech/ragenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
@@ -37,7 +33,6 @@
     home-manager,
     emacs-overlay,
     nix-index-database,
-    agenix,
     ...
   } @ inputs: {
     nixosConfigurations = nixpkgs.lib.genAttrs ["PPD-POWERTOP" "PPD-ARMTOP" "PPD-TOWER"] (hostName: (
@@ -95,7 +90,6 @@
               ./modules
               nixpkgs.nixosModules.notDetected
               nix-index-database.nixosModules.nix-index
-              agenix.nixosModules.default
               ./options
 
               # home-manager

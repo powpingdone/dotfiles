@@ -36,13 +36,6 @@
       channel.enable = false;
     };
 
-    age = {
-      identityPaths = ["/home/powpingdone/.ssh/id_ed25519.pub"];
-      secrets = {
-        email.file = ../secrets/email.age;
-      };
-    };
-
     boot.loader = {
       efi = {
         canTouchEfiVariables = true;
