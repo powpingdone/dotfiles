@@ -20,12 +20,15 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
     hunspellDicts.en_US
     vlc
     bitwarden-desktop
+    thunderbird
 
     # yubi stuff
     yubikey-manager
     yubico-piv-tool
     yubioath-flutter
+    
   ];
+
 
   programs.gnome-shell.enable = true;
 
