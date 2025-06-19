@@ -4,10 +4,10 @@
   lib,
   inputs,
   ...
-}:
-{
+}: {
   imports = [
     ./hardware-configuration.nix
+    inputs.x1e-nixos-config.nixosModules.x1e
   ];
 
   swapDevices = [{device = "/swap/swapfile";}];
@@ -27,4 +27,3 @@
 
   boot.kernelPatches = [];
 }
-// inputs.x1e-nixos-config.modules.x1e
