@@ -5,8 +5,8 @@ final: prev: {
     src = prev.fetchFromGitHub {
       owner = "libimobiledevice";
       repo = "libplist";
-      rev = "d031e94d7aee14c4e7646e67623c94e6164b99e3";
-      hash = "sha256-A5YBY2cqym0E7m7jBhWCOO3gbVtkpuIjelk/8WDV1U4=";
+      rev = "cf5897a71ea412ea2aeb1e2f6b5ea74d4fabfd8c";
+      hash = "sha256-Rc1KwJR+Pb2lN8019q5ywERrR7WA2LuLRiEvNsZSxXc=";
     };
   });
   libtatsu = prev.stdenv.mkDerivation rec {
@@ -15,8 +15,8 @@ final: prev: {
     src = prev.fetchFromGitHub {
       owner = "libimobiledevice";
       repo = "libtatsu";
-      rev = "7e1647b9883ff1daa6363de20af2c4129ed45dcd";
-      hash = "sha256-+KaoqBJWJ3LHn736eZiw9b9SIZK2lfajfd57nO2m4Ao=";
+      rev = "42329cb756682535c7c0f087987b78d1dd5b16c8";
+      hash = "sha256-vf4xBTTGDJCTj4TMLOhojjAfzSbkx+ogGBnf+UeumG0=";
     };
     enableParallelBuilding = true;
     buildInputs = [
@@ -36,8 +36,8 @@ final: prev: {
     src = prev.fetchFromGitHub {
       owner = "libimobiledevice";
       repo = "libimobiledevice-glue";
-      rev = "c915351cb322d041afabc04f780eb35142cdaea5";
-      hash = "sha256-lgTwURnBO3Os2Rg72s9BVCm5XWouZfCyuUfZ900SxkE=";
+      rev = "aef2bf0f5bfe961ad83d224166462d87b1df2b00";
+      hash = "sha256-cUcJARbZV9Yaqd9TP3NVmF9p8Pjz88a3GmAh4c4sEHo=";
     };
   });
   usbmuxd = prev.usbmuxd.overrideAttrs (finalAttrs: prevAttrs: {
@@ -54,8 +54,8 @@ final: prev: {
     src = prev.fetchFromGitHub {
       owner = "libimobiledevice";
       repo = "libusbmuxd";
-      rev = "19d6bec393c9f9b31ccb090059f59268da32e281";
-      hash = "sha256-W2R/wDQ+Gh3yXNWOwoQ7HjZ66letDIOJM3pW23jsfpc=";
+      rev = "adf9c22b9010490e4b55eaeb14731991db1c172c";
+      hash = "sha256-o1EFY/cv+pQrGexvPOwMs5mz9KRcffnloXCQXMzbmDY=";
     };
   });
   libimobiledevice = prev.libimobiledevice.overrideAttrs (finalAttrs: prevAttrs: {
@@ -63,8 +63,8 @@ final: prev: {
     src = prev.fetchFromGitHub {
       owner = "libimobiledevice";
       repo = "libimobiledevice";
-      rev = "a6b6c35d1550acbd2552d49c2fe38115deec8fc0";
-      hash = "sha256-dZpRuUP71LnBFIYRlxNYnEgeeVXdpwuCje/EJ2JHxHE=";
+      rev = "34b170f03ab97b7c9ab6cf009cd8da280c6db97c";
+      hash = "sha256-0Ovwh8izxE+EtybmSxklvlEWiq4mhp+hJo6sdv2jCpE=";
     };
     propagatedBuildInputs = [final.libtatsu] ++ prevAttrs.propagatedBuildInputs;
     patches = null;
@@ -83,8 +83,8 @@ final: prev: {
     src = prev.fetchFromGitHub {
       owner = "libimobiledevice";
       repo = "idevicerestore";
-      rev = "a5905b7f905fc3cc83033ebd963f0dcba071e512";
-      hash = "sha256-syzGhQhLoQ0d4EMsmQ9HertPvWYRJ5gpb6unM547w3g=";
+      rev = "8061f08b4e0a8f0ab5d1548b7e9978f3cc8647a2";
+      hash = "sha256-u/W0rvtPj5bJNt2jaYe6B69pxAUM7lBCejd/0O3AMi4=";
     };
     buildInputs = [final.libtatsu] ++ prevAttrs.buildInputs;
   });
