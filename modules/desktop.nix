@@ -6,14 +6,18 @@
 }: {
   config = lib.mkIf config.ppd.desktop.enable {
     # base packages that I *always* need.
-    environment.systemPackages = with pkgs; [
-      # debuginfod
-      (lib.getBin (pkgs.elfutils.override {enableDebuginfod = true;}))
-      # for fun things
-      idevicerestore
-    ];
+    environment.systemPackages = with pkgs;
+      [
+        # debuginfod
+        (lib.getBin (pkgs.elfutils.override {enableDebuginfod = true;}))
+      ]
+      ++ (
+        if config.ppd.idevice.enable
+        then [idevicerestore]
+        else []
+      );
 
-    # enable usbmuxd for idevicerestore
+    # enable usbmuxd for idevicerestore/gvfs
     services.usbmuxd.enable = true;
 
     # enable extra hardware like rotation and light sensors
@@ -64,14 +68,6 @@
       };
       wireplumber = {
         enable = true;
-        #extraConfig = {
-        #  "log-level-debug" = {
-        #    "context.properties" = {
-        #      # Output Debug log messages as opposed to only the default level (Notice)
-        #      "log.level" = "D";
-        #    };
-        #  };
-        #};
       };
     };
 
