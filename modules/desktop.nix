@@ -10,7 +10,7 @@
       [
         # debuginfod
         (lib.getBin (pkgs.elfutils.override {enableDebuginfod = true;}))
-        mission-control
+        mission-center
       ]
       ++ (
         if config.ppd.idevice.enable
