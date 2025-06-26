@@ -7,7 +7,6 @@
     desktop.enable = true;
     steam.enable = false;
     isHIDPI = true;
-    idevice.enable = true;
     bootloader.systemd-boot = true;
   };
 }
