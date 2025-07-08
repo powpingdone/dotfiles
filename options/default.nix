@@ -38,7 +38,7 @@
     box64 = {
       enable = lib.mkEnableOption "Enable box64";
       cmakeFlags = lib.mkOption {
-        type = (with lib.types; listOf string);
+        type = with lib.types; listOf string;
         default = [];
       };
     };
@@ -54,6 +54,7 @@
     ghidra.enable = lib.mkEnableOption "Ghidra, the NSA reverse engineering tool";
     libvirtd.enable = lib.mkEnableOption "Install libvirtd, the vm hosting tool";
     virtManager.enable = lib.mkEnableOption "Install virt-manager, the frontend for libvirtd";
+    fonts.enable = lib.mkEnableOption "Install fonts";
     bootloader = {
       grub = lib.mkEnableOption "Enable grub bootloader";
       systemd-boot = lib.mkEnableOption "Enable systemd-boot bootloader (works with UEFI dtb)";
@@ -63,20 +64,10 @@
 
   # option defaults
   config.ppd = {
-    bootloader.grub = lib.mkDefault false;
-    bootloader.systemd-boot = lib.mkDefault false;
-    box64.enable = lib.mkDefault false;
     box64.cmakeFlags = lib.mkDefault [];
-    peekPoke.enable = lib.mkDefault false;
-    desktop.enable = lib.mkDefault false;
-    emacs.enable = lib.mkDefault false;
-    nixIndex.enable = lib.mkDefault true;
     steam.enable = lib.mkDefault config.ppd.desktop.enable;
     devenv.enable = lib.mkDefault config.ppd.desktop.enable;
-    isHIDPI = lib.mkDefault false;
-    idevice.enable = lib.mkDefault false;
     ghidra.enable = lib.mkDefault config.ppd.desktop.enable;
-    libvirtd.enable = lib.mkDefault false;
-    virtManager.enable = lib.mkDefault false;
+    fonts.enable = lib.mkDefault config.ppd.desktop.enable;
   };
 }

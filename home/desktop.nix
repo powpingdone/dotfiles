@@ -26,9 +26,7 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
     yubikey-manager
     yubico-piv-tool
     yubioath-flutter
-    
   ];
-
 
   programs.gnome-shell.enable = true;
 

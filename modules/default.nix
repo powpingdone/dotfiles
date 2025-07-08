@@ -13,5 +13,6 @@
     ./virtmanager.nix
     ./libvirtd.nix
     ./wsl.nix
+    ./fonts.nix
   ];
 }
