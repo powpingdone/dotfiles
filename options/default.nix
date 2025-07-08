@@ -35,6 +35,13 @@
         default = {};
       };
     };
+    box64 = {
+      enable = lib.mkEnableOption "Enable box64";
+      cmakeFlags = lib.mkOption {
+        type = (with lib.types; listOf string);
+        default = [];
+      };
+    };
 
     # enable options
     desktop.enable = lib.mkEnableOption "Enable Desktop";
@@ -57,6 +64,8 @@
   config.ppd = {
     bootloader.grub = lib.mkDefault false;
     bootloader.systemd-boot = lib.mkDefault false;
+    box64.enable = lib.mkDefault false;
+    box64.cmakeFlags = lib.mkDefault [];
     peekPoke.enable = lib.mkDefault false;
     desktop.enable = lib.mkDefault false;
     emacs.enable = lib.mkDefault false;

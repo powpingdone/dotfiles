@@ -26,6 +26,10 @@
       url = "github:kuruczgy/x1e-nixos-config";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -35,51 +39,57 @@
     nix-index-database,
     ...
   } @ inputs: {
-    nixosConfigurations = nixpkgs.lib.genAttrs ["PPD-POWERTOP" "PPD-ARMTOP" "PPD-TOWER"] (hostName: (
-      let
-        # import the skeleton config.pdd
-        ppdOpts = (import ./hosts/${hostName}/options.nix {}).ppd;
-        system = ppdOpts.system;
-        # extra nixpkgs patches
-        pkgs_patched =
-          (import inputs.nixpkgs {
-            inherit system;
-          })
+    nixosConfigurations =
+      nixpkgs.lib.genAttrs [
+        "PPD-POWERTOP"
+        "PPD-ARMTOP"
+        "PPD-TOWER"
+        "PPD-WSL-ARM64"
+        "PPD-WSL-INTEL"
+      ] (hostName: (
+        let
+          # import the skeleton config.pdd
+          ppdOpts = (import ./hosts/${hostName}/options.nix {}).ppd;
+          system = ppdOpts.system;
+          # extra nixpkgs patches
+          pkgs_patched =
+            (import inputs.nixpkgs {
+              inherit system;
+            })
           .applyPatches {
-            name = "ppd-patches";
-            src = inputs.nixpkgs;
-            patches = [
-            ];
+              name = "ppd-patches";
+              src = inputs.nixpkgs;
+              patches = [
+              ];
+            };
+          # then setting pkgs
+          pkgs = import pkgs_patched {
+            inherit system;
+            config.allowUnfree = true;
+            overlays =
+              [
+                emacs-overlay.overlays.default
+              ]
+              # my overlays
+              ++ (
+                if ppdOpts ? overlays
+                then ppdOpts.overlays
+                else []
+              )
+              # idevice overlay
+              ++ (
+                if ppdOpts ? idevice.enable && ppdOpts.idevice.enable
+                then [(import options/idevice.nix)]
+                else []
+              );
           };
-        # then setting pkgs
-        pkgs = import pkgs_patched {
-          inherit system;
-          config.allowUnfree = true;
-          overlays =
-            [
-              emacs-overlay.overlays.default
-            ]
-            # my overlays
-            ++ (
-              if ppdOpts ? overlays
-              then ppdOpts.overlays
-              else []
-            )
-            # idevice overlay
-            ++ (
-              if ppdOpts ? idevice.enable && ppdOpts.idevice.enable
-              then [(import options/idevice.nix)]
-              else []
-            );
-        };
-      in
-        nixpkgs.lib.nixosSystem {
-          inherit system pkgs;
+        in
+          nixpkgs.lib.nixosSystem {
+            inherit system pkgs;
 
-          specialArgs = {inherit inputs hostName ppdOpts;};
+            specialArgs = {inherit inputs hostName ppdOpts;};
 
-          modules =
-            [
+            modules = [
               # host specific, import from ./hosts
               {networking.hostName = hostName;}
               ./hosts/${hostName}
@@ -103,7 +113,7 @@
                 home-manager.users.powpingdone = import ./home/ppd.nix;
               }
             ];
-        }
-    ));
+          }
+      ));
   };
 }
