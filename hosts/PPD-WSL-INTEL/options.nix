@@ -6,5 +6,6 @@
 
     emacs.enable = true;
     devenv.enable = true;
+    bootloader.wsl = true;
   };
 }

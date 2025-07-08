@@ -18,7 +18,7 @@
               else 0
             ))
           0
-          (with config.ppd.bootloader; [grub systemd-boot])
+          (with config.ppd.bootloader; [grub systemd-boot wsl])
           == 1;
 
         message = "enable a bootloader for this host/too many bootloaders";

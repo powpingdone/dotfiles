@@ -12,5 +12,6 @@
     ./peekpoke.nix
     ./virtmanager.nix
     ./libvirtd.nix
+    ./wsl.nix
   ];
 }

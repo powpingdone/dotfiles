@@ -57,6 +57,7 @@
     bootloader = {
       grub = lib.mkEnableOption "Enable grub bootloader";
       systemd-boot = lib.mkEnableOption "Enable systemd-boot bootloader (works with UEFI dtb)";
+      wsl = lib.mkEnableOption "Use wsl for bootloader";
     };
   };
 

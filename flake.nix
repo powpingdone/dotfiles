@@ -37,6 +37,7 @@
     home-manager,
     emacs-overlay,
     nix-index-database,
+    nixos-wsl,
     ...
   } @ inputs: {
     nixosConfigurations =
@@ -96,10 +97,14 @@
               ./hosts/${hostName}/options.nix
 
               # general
-              {nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];}
+              {
+                nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+                system.stateVersion = "25.05";
+              }
               ./modules
               nixpkgs.nixosModules.notDetected
               nix-index-database.nixosModules.nix-index
+              nixos-wsl.nixosModules.default
               ./options
 
               # home-manager
