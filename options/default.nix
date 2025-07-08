@@ -69,5 +69,6 @@
     devenv.enable = lib.mkDefault config.ppd.desktop.enable;
     ghidra.enable = lib.mkDefault config.ppd.desktop.enable;
     fonts.enable = lib.mkDefault config.ppd.desktop.enable;
+    nixIndex.enable = lib.mkDefault true;
   };
 }
