@@ -86,7 +86,7 @@
         kotlin-mode
       ]);
 in {
-  config = lib.mkIf config.ppd.emacs.enable {
+  config = lib.mkIf nixosConfig.ppd.emacs.enable {
     programs.emacs = {
       enable = true;
       package = emacs-pkg;
