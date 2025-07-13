@@ -42,9 +42,13 @@
         default = [];
       };
     };
+    desktop = {
+      enable = lib.mkEnableOption "Enable desktop related things";
+      gnome = lib.mkEnableOption "Use gnome";
+      kde = lib.mkEnableOption "Use KDE";
+    };
 
     # enable options
-    desktop.enable = lib.mkEnableOption "Enable Desktop";
     emacs.enable = lib.mkEnableOption "Enable Emacs";
     nixIndex.enable = lib.mkEnableOption "Enable nix-index (aka command-not-found for flakes)";
     devenv.enable = lib.mkEnableOption "Install devenv related stuff";
@@ -69,6 +73,8 @@
     devenv.enable = lib.mkDefault config.ppd.desktop.enable;
     ghidra.enable = lib.mkDefault config.ppd.desktop.enable;
     fonts.enable = lib.mkDefault config.ppd.desktop.enable;
+    # defaults to gnome
+    desktop.gnome = lib.mkDefault (config.ppd.desktop.enable && !config.ppd.desktop.kde);
     nixIndex.enable = lib.mkDefault true;
   };
 }

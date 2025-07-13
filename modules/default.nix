@@ -1,6 +1,4 @@
 {
-  lib,
-  config,
   ...
 }: {
   imports = [
@@ -14,5 +12,7 @@
     ./libvirtd.nix
     ./wsl.nix
     ./fonts.nix
+    ./gnome.nix
+    ./kde.nix
   ];
 }

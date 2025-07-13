@@ -61,16 +61,25 @@
       enable = true;
       pulse.enable = true;
       jack.enable = true;
-      extraConfig.pipewire."92-set-larger-quantum" = {
+      extraConfig.pipewire."92-set-larger-static-quantum" = {
         "context.properties" = {
-          "default.clock.min-quantum" = 256;
-          "default.clock.max-quantum" = 256;
+          "default.clock.min-quantum" = 384;
+          "default.clock.max-quantum" = 384;
         };
       };
       wireplumber = {
         enable = true;
       };
     };
+    
+    # power management related things...
+    powerManagement.enable = true;
+
+    # monitor color correction
+    services.colord.enable = true;
+    
+    # nfs related shenatigans
+    services.samba.enable = true;
 
     # Enable Bluetooth
     hardware.bluetooth = {
@@ -117,19 +126,7 @@
     # setup gdm properly
     services.displayManager = {
       enable = true;
-      # use gnome display manager
-      gdm.enable = true;
-      defaultSession = "gnome";
     };
-
-    # use gnome
-    services.desktopManager.gnome.enable = true;
-
-    # I don't need the gnome web browser and email client
-    environment.gnome.excludePackages = with pkgs; [
-      epiphany
-      geary
-    ];
 
     # enable portals
     xdg.portal = {

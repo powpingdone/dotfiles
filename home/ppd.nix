@@ -9,6 +9,8 @@
 }: {
   imports = [
     ./desktop.nix
+    ./gnome.nix
+    ./kde.nix
     ../options
     ./emacs
     ./devel.nix
