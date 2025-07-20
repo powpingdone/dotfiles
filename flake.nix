@@ -61,8 +61,6 @@
               name = "ppd-patches";
               src = inputs.nixpkgs;
               patches = [
-                ./425710.patch
-                ./425299.patch
               ];
             };
           # then setting pkgs
