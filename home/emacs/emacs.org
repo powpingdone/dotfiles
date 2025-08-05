@@ -559,13 +559,11 @@ Really, this is just adding hideshow support for XML docs.
 :PROPERTIES:
 :CUSTOM_ID: projectile
 :END:
-
 Project management.
 
 #+begin_src emacs-lisp
     (use-package projectile
-      :ensure t
-      :init
+      :config
       (projectile-mode +1))
 #+end_src
 
