@@ -61,6 +61,7 @@
         llama
         with-editor
         vterm
+        projectile
 
         # ORG MODE
         ob-async

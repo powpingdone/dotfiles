@@ -32,6 +32,7 @@
   - [[#undo-tree][Undo Tree]]
   - [[#magit][Magit]]
   - [[#xml][XML]]
+  - [[#projectile][Projectile]]
   - [[#vterm][VTerm]]
 - [[#org-mode][ORG MODE]]
   - [[#org-config][Org config]]
@@ -141,6 +142,8 @@ I dunno why i'm using this but it's probably good.
       (leader-key
         ;; magit menu
         "G" '(magit-dispatch :wk "Git menu (magit-dispatch)")
+        ;; projectile menu
+        "P" '(projectile-command-map :wk "Project menu (projectile-command-map)")
         ;; buffer binds
         "b" '(:ignore t :wk "buffer")
         "bb" '(consult-buffer : "find buffer")
@@ -552,6 +555,19 @@ Really, this is just adding hideshow support for XML docs.
       (nxml-mode . hs-minor-mode))
 #+end_src
 
+** Projectile
+:PROPERTIES:
+:CUSTOM_ID: projectile
+:END:
+
+Project management.
+
+#+begin_src emacs-lisp
+    (use-package projectile
+      :init
+      (projectile-mode +1))
+#+end_src
+
 ** VTerm
 :PROPERTIES:
 :CUSTOM_ID: vterm
@@ -929,7 +945,7 @@ Editing webstuff via emacs. What a novel concept!
        ("\\.jinja\\'" . web-mode)))
 #+end_src
 
-** Kotlin 
+** Kotlin
 :PROPERTIES:
 :CUSTOM_ID: kotlin
 :END:
@@ -941,4 +957,3 @@ Basic thing to get me off the ground.
       :hook
       (kotlin-mode . eglot-ensure))
 #+end_src
-
