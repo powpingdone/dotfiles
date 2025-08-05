@@ -60,8 +60,8 @@
         magit
         llama
         with-editor
-        vterm
         projectile
+        vterm
 
         # ORG MODE
         ob-async
