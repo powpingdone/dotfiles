@@ -61,23 +61,76 @@
       enable = true;
       pulse.enable = true;
       jack.enable = true;
-      extraConfig.pipewire."92-set-larger-static-quantum" = {
-        "context.properties" = {
-          "default.clock.min-quantum" = 384;
-          "default.clock.max-quantum" = 384;
+      extraConfig.pipewire = {
+        "92-set-larger-static-quantum" = {
+          # try preventing extra audio crackle by increasing quantum buffer size
+          "context.properties" = {
+            "default.clock.min-quantum" = 384;
+            "default.clock.max-quantum" = 384;
+          };
         };
       };
       wireplumber = {
         enable = true;
+        extraConfig = {
+          "disable-camera" = lib.mkIf (config.networking.hostname == "PPD-ARMTOP") {
+            "wireplumber.profiles" = {
+              "main" = {
+                "monitor.libcamera" = "disabled";
+              };
+            };
+          };
+
+          "noBluetoothPops" = {
+            "monitor.alsa.rules" = [
+              {
+                matches = [
+                  {
+                    # Matches all sources
+                    "node.name" = "~alsa_input.*";
+                  }
+                  {
+                    # Matches all sinks
+                    "node.name" = "~alsa_output.*";
+                  }
+                ];
+                actions = {
+                  update-props = {
+                    "session.suspend-timeout-seconds" = 0;
+                  };
+                };
+              }
+            ];
+            "monitor.bluez.rules" = [
+              {
+                matches = [
+                  {
+                    # Matches all sources
+                    "node.name" = "~bluez_input.*";
+                  }
+                  {
+                    # Matches all sinks
+                    "node.name" = "~bluez_output.*";
+                  }
+                ];
+                actions = {
+                  update-props = {
+                    "session.suspend-timeout-seconds" = 0;
+                  };
+                };
+              }
+            ];
+          };
+        };
       };
     };
-    
+
     # power management related things...
     powerManagement.enable = true;
 
     # monitor color correction
     services.colord.enable = true;
-    
+
     # nfs related shenatigans
     services.samba.enable = true;
 
