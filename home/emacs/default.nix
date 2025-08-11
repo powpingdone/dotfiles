@@ -36,8 +36,6 @@
         nerd-icons
         shrink-path
         treesit-grammars.with-all-grammars
-        tree-sitter
-        tree-sitter-langs
         beacon
         olivetti
         rainbow-delimiters

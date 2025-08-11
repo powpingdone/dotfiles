@@ -20,7 +20,6 @@
   - [[#emacs-config][Emacs Config]]
   - [[#doom-themes][Doom themes]]
   - [[#doom-modeline][Doom Modeline]]
-  - [[#tree-sitter][Tree sitter]]
   - [[#beacon][Beacon]]
   - [[#olivetti][Olivetti]]
   - [[#rainbow-delimeters][Rainbow Delimeters]]
@@ -391,20 +390,6 @@ My modeline looks so nice!
       :hook after-init
       :init
       (setopt doom-modeline-height 28))
-#+end_src
-
-** Tree sitter
-:PROPERTIES:
-:CUSTOM_ID: tree-sitter
-:END:
-Fancy syntax highlighting. NixOS provides all the treesit-grammars.
-
-#+begin_src emacs-lisp
-    (use-package tree-sitter
-      :hook
-      (tree-sitter-after-on . tree-sitter-hl-mode)
-      :config
-      (global-tree-sitter-mode))
 #+end_src
 
 ** Beacon
