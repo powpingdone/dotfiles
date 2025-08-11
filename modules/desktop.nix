@@ -73,7 +73,7 @@
       wireplumber = {
         enable = true;
         extraConfig = {
-          "disable-camera" = lib.mkIf (config.networking.hostname == "PPD-ARMTOP") {
+          "disable-camera" = lib.mkIf (config.networking.hostName == "PPD-ARMTOP") {
             "wireplumber.profiles" = {
               "main" = {
                 "monitor.libcamera" = "disabled";
