@@ -5,8 +5,9 @@
     jobs = 3;
 
     desktop.enable = true;
-    steam.enable = false;
+    #steam.enable = false;
     isHIDPI = true;
     bootloader.systemd-boot = true;
+    box64.enable = true;
   };
 }

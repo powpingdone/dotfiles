@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  nixpkgs,
 }: let
   box64_dynaRec = pkgs.box64.override {withDynarec = true;};
   box64_ = box64_dynaRec.overrideAttrs (finalAttrs: prevAttrs: {
