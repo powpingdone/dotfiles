@@ -99,9 +99,7 @@
       htop
       git
       killall
-      # used encryption stuff (secrets in this repo)
-      rage
-      ragenix
+      nix-output-monitor
     ];
 
     # nix-ld for stuffs that is not nix
