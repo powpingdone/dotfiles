@@ -65,8 +65,9 @@
         "92-set-larger-static-quantum" = {
           # try preventing extra audio crackle by increasing quantum buffer size
           "context.properties" = {
-            "default.clock.min-quantum" = 384;
-            "default.clock.max-quantum" = 384;
+            "default.clock.min-quantum" = 1024;
+            "default.clock.max-quantum" = 8192;
+	    "default.clock.quantum" = 1024;
           };
         };
       };
