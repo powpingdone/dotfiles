@@ -21,5 +21,6 @@
       };
     };
     bootloader.grub = true;
+    podman.enable = true;
   };
 }
