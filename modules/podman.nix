@@ -5,7 +5,7 @@
   ...
 }:
 lib.mkIf config.ppd.podman.enable {
-  virtualization.podman = {
+  virtualisation.podman = {
     enable = true;
     dockerSocket.enable = true;
   };
