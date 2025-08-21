@@ -64,6 +64,7 @@
       systemd-boot = lib.mkEnableOption "Enable systemd-boot bootloader (works with UEFI dtb)";
       wsl = lib.mkEnableOption "Use wsl for bootloader";
     };
+    podman.enable = lib.mkEnableOption "Podman, the OCI runtime";
   };
 
   # option defaults

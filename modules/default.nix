@@ -14,5 +14,6 @@
     ./fonts.nix
     ./gnome.nix
     ./kde.nix
+    ./podman.nix
   ];
 }
