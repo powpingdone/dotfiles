@@ -99,22 +99,17 @@ in {
 
     # emacs packages
     home.packages = with pkgs; [
-      ## Emacs itself
       binutils # native-comp needs 'as', provided by this
-      ## magit
-      git
-      # consult
-      ripgrep
-      # tls
-      gnutls
-
-      ## Optional dependencies
+      git# magit
+      ripgrep #consult
+      gnutls # tls
       fd # faster projectile indexing
       imagemagick # for image-dired
       (lib.mkIf (nixosConfig.programs.gnupg.agent.enable)
         pinentry-emacs) # in-emacs gnupg prompts
       zstd # for undo-fu-session/undo-tree compression
       unzip # nov.el
+      zip # odf export
 
       ## Module dependencies
       # :checkers spell
