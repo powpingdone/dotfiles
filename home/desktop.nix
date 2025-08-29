@@ -21,6 +21,7 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
     vlc
     bitwarden-desktop
     thunderbird
+    signal-desktop
 
     # yubi stuff
     yubikey-manager
