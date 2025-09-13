@@ -18,7 +18,7 @@
   - [[#orderless-completion-style][Orderless (completion style)]]
 - [[#apperance][APPERANCE]]
   - [[#emacs-config][Emacs Config]]
-  - [[#doom-themes][Doom themes]]
+  - [[#doom-themes][Doom Themes]]
   - [[#doom-modeline][Doom Modeline]]
   - [[#beacon][Beacon]]
   - [[#olivetti][Olivetti]]
@@ -358,7 +358,7 @@ Stock emacs stuff that makes me vomit less or make emacs work faster.
     (setenv "TERM" "xterm-256color")
 #+end_src
 
-** Doom themes
+** Doom Themes
 :PROPERTIES:
 :CUSTOM_ID: doom-themes
 :END:
@@ -371,7 +371,7 @@ I wish I had something similar to sainnhe/edge.
       (setopt doom-themes-enable-bold t
               doom-themes-enable-italic t)
       :config
-      (load-theme 'doom-city-lights t)
+      (load-theme 'doom-acario-light t)
       (custom-set-faces
        `(variable-pitch ((t (:font "DejaVu Serif" :height 1.05))))
        `(fixed-pitch ((t (:font "DejaVu Sans Mono" :height 1.05))))))
