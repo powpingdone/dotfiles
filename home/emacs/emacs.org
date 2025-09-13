@@ -371,7 +371,7 @@ I wish I had something similar to sainnhe/edge.
       (setopt doom-themes-enable-bold t
               doom-themes-enable-italic t)
       :config
-      (load-theme 'doom-acario-light t)
+      (load-theme 'doom-solarized-light t)
       (custom-set-faces
        `(variable-pitch ((t (:font "DejaVu Serif" :height 1.05))))
        `(fixed-pitch ((t (:font "DejaVu Sans Mono" :height 1.05))))))
