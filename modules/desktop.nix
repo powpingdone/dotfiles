@@ -135,6 +135,9 @@
     # nfs related shenatigans
     services.samba.enable = true;
 
+    # i hate razer
+    services.input-remapper.enable = true;
+
     # Enable Bluetooth
     hardware.bluetooth = {
       enable = true;
