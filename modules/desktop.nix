@@ -53,7 +53,7 @@
 
     # enable debug info stuff
     environment.enableDebugInfo = true;
-    services.nixseparatedebuginfod.enable = true;
+    services.nixseparatedebuginfod2.enable = true;
 
     # Enable pipewire sound.
     services.pulseaudio.enable = false;
