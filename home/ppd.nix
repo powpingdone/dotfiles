@@ -41,8 +41,10 @@
   programs.git-credential-oauth.enable = true;
   programs.git = {
     enable = true;
-    userName = "Aidan";
-    userEmail = "aidanzcase@gmail.com";
+    settings = {
+      user.name = "Aidan";
+      user.email = "aidanzcase@gmail.com";
+    };
   };
   programs.ripgrep.enable = true;
   programs.neovim.enable = true;
