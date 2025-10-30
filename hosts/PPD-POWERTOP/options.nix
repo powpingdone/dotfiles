@@ -7,5 +7,6 @@
     desktop.enable = true;
     steam.enable = true;
     bootloader.grub = true;
+    lmms.enable = true;
   };
 }

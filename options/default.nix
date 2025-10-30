@@ -65,6 +65,7 @@
       wsl = lib.mkEnableOption "Use wsl for bootloader";
     };
     podman.enable = lib.mkEnableOption "Podman, the OCI runtime";
+    lmms.enable = lib.mkEnableOption "A daw, but the nightly version";
   };
 
   # option defaults
