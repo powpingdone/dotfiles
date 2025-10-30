@@ -32,86 +32,87 @@
   suil,
   wineWowPackages,
   withOptionals ? false,
-}:
-
-let
-  winePackage = if lib.isDerivation wineWowPackages then wineWowPackages else wineWowPackages.minimal;
+}: let
+  winePackage =
+    if lib.isDerivation wineWowPackages
+    then wineWowPackages
+    else wineWowPackages.minimal;
 in
-stdenv.mkDerivation {
-  pname = "lmms";
-  version = "0-unstable-2025-01-28";
+  stdenv.mkDerivation {
+    pname = "lmms";
+    version = "0-unstable-2025-01-28";
 
-  src = fetchFromGitHub {
-    owner = "LMMS";
-    repo = "lmms";
-    rev = "2c674eca3accbc6dab6f5aacbf34f7bd85af767e";
-    sha256 = "sha256-jq3Wog5BHBWIq5iLEBrHWIvYSzmKsCdb63Nu7j9kJRY=";
-    fetchSubmodules = true;
-  };
+    src = fetchFromGitHub {
+      owner = "LMMS";
+      repo = "lmms";
+      rev = "0fe697c4e568f19d3b11f9a3a55d2fa959edd225";
+      hash = "sha256-VBKwEGCEmhY65lX3tlZ9kAZF8+zvh1VkRPPJ+oCM4us=";
+      fetchSubmodules = true;
+    };
 
-  nativeBuildInputs = [
-    cmake
-    libsForQt5.qt5.qttools
-    pkg-config
-    qt5.wrapQtAppsHook
-  ];
-
-  buildInputs =
-    [
-      fftwFloat
-      libsForQt5.qt5.qtbase
-      libsForQt5.qt5.qtx11extras
-      libsamplerate
-      libsndfile
-    ]
-    ++ lib.optionals withOptionals [
-      SDL2
-      alsa-lib
-      carla
-      fltk
-      fluidsynth
-      glibc_multi
-      lame
-      libgig
-      libjack2
-      libogg
-      libpulseaudio
-      libsoundio
-      libvorbis
-      lilv
-      lv2
-      perl540
-      perl540Packages.ListMoreUtils
-      perl540Packages.XMLParser
-      portaudio
-      sndio
-      suil
-      winePackage
+    nativeBuildInputs = [
+      cmake
+      libsForQt5.qt5.qttools
+      pkg-config
+      qt5.wrapQtAppsHook
     ];
 
-  patches = lib.optionals withOptionals [
-    (substitute {
-      src = ./winepatch.patch;
-      substitutions = [
-        "--replace-fail"
-        "@WINE_LOCATION@"
+    buildInputs =
+      [
+        fftwFloat
+        libsForQt5.qt5.qtbase
+        libsForQt5.qt5.qtx11extras
+        libsamplerate
+        libsndfile
+      ]
+      ++ lib.optionals withOptionals [
+        SDL2
+        alsa-lib
+        carla
+        fltk
+        fluidsynth
+        glibc_multi
+        lame
+        libgig
+        libjack2
+        libogg
+        libpulseaudio
+        libsoundio
+        libvorbis
+        lilv
+        lv2
+        perl540
+        perl540Packages.ListMoreUtils
+        perl540Packages.XMLParser
+        portaudio
+        sndio
+        suil
         winePackage
       ];
-    })
-  ];
 
-  cmakeFlags = lib.optionals withOptionals [
-    "-DWANT_WEAKJACK=OFF"
-  ];
-
-  meta = with lib; {
-    description = "DAW similar to FL Studio (music production software)";
-    mainProgram = "lmms";
-    homepage = "https://lmms.io";
-    license = licenses.gpl2Plus;
-    platforms = [
-      "x86_64-linux"
+    patches = lib.optionals withOptionals [
+      (substitute {
+        src = ./winepatch.patch;
+        substitutions = [
+          "--replace-fail"
+          "@WINE_LOCATION@"
+          winePackage
+        ];
+      })
     ];
-    maintainers = with maintainers; [ wizardlink ];
-  };
-}
+
+    cmakeFlags = lib.optionals withOptionals [
+      "-DWANT_WEAKJACK=OFF"
+    ];
+
+    meta = with lib; {
+      description = "DAW similar to FL Studio (music production software)";
+      mainProgram = "lmms";
+      homepage = "https://lmms.io";
+      license = licenses.gpl2Plus;
+      platforms = [
+        "x86_64-linux"
+      ];
+      maintainers = with maintainers; [wizardlink];
+    };
+  }
