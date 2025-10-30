@@ -7,6 +7,7 @@
   fftwFloat,
   fltk,
   fluidsynth,
+  git,
   glibc_multi,
   lame,
   lib,
@@ -40,13 +41,13 @@
 in
   stdenv.mkDerivation {
     pname = "lmms";
-    version = "0-unstable-2025-01-28";
+    version = "0-unstable";
 
     src = fetchFromGitHub {
       owner = "LMMS";
       repo = "lmms";
       rev = "0fe697c4e568f19d3b11f9a3a55d2fa959edd225";
-      hash = "sha256-VBKwEGCEmhY65lX3tlZ9kAZF8+zvh1VkRPPJ+oCM4us=";
+      hash = "sha256-GelHVWMaQRLAVoTZpki1Rq4DvDgARE/pJrUdHkmUGw0=";
       fetchSubmodules = true;
     };
 
@@ -55,6 +56,7 @@ in
       libsForQt5.qt5.qttools
       pkg-config
       qt5.wrapQtAppsHook
+      git
     ];
 
     buildInputs =
