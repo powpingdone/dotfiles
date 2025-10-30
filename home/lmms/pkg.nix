@@ -91,7 +91,7 @@ stdenv.mkDerivation {
 
   patches = lib.optionals withOptionals [
     (substitute {
-      src = ./0001-fix-add-unique-string-to-FindWine-for-replacement-in.patch;
+      src = ./winepatch.patch;
       substitutions = [
         "--replace-fail"
         "@WINE_LOCATION@"
