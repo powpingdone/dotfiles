@@ -10,6 +10,20 @@
       devenv
     ];
 
+    programs.helix = {
+      enable = true;
+      settings = {
+        theme = "onedark";
+        editor.statusline = {
+          mode.normal = "   NORMAL   ";
+          mode.select = "   SELECT ##";
+          mode.insert = "## INSERT   ";
+        };
+      };
+    };
+
+    programs.jujutsu.enable = true;
+
     programs.direnv = {
       enable = true;
       nix-direnv.enable = true;
