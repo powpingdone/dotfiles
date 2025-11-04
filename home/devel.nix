@@ -22,7 +22,15 @@
       };
     };
 
-    programs.jujutsu.enable = true;
+    programs.jujutsu = {
+      enable = true;
+      settings = {
+        user = {
+          email = "aidanzcase@gmail.com";
+          name = "Aidan";
+        };
+      };
+    };
 
     programs.direnv = {
       enable = true;
