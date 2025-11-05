@@ -9,19 +9,18 @@ lib.mkIf config.ppd.fonts.enable {
     packages = with pkgs; [
       # noto for reasonable, non bitmap coverage
       noto-fonts
-      noto-fonts-emoji
       noto-fonts-cjk-sans
+      noto-fonts-color-emoji
       noto-fonts-cjk-serif
 
       # other, regular fonts
       winePackages.fonts
       roboto
-      ubuntu_font_family
+      ubuntu-classic
       dejavu_fonts
       freefont_ttf
       gyre-fonts
       liberation_ttf
-      noto-fonts-color-emoji
 
       # nerd fonts, because I am gamer
       nerd-fonts.symbols-only
