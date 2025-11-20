@@ -22,19 +22,19 @@
   boot.kernelPackages = pkgs.linuxPackages_6_12;
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/75cbb1f6-3b74-4420-a586-fba9d0774d8c";
+    device = "/dev/disk/by-uuid/af06c418-2abc-42a9-b440-0c202327d872";
     fsType = "btrfs";
     options = ["subvol=root" "compress-force=zstd:15"];
   };
 
   fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/75cbb1f6-3b74-4420-a586-fba9d0774d8c";
+    device = "/dev/disk/by-uuid/af06c418-2abc-42a9-b440-0c202327d872";
     fsType = "btrfs";
     options = ["subvol=nix" "compress-force=zstd:15" "noatime"];
   };
 
   fileSystems."/boot/efi" = {
-    device = "/dev/disk/by-uuid/4C04-9A9D";
+    device = "/dev/disk/by-uuid/12CE-A600";
     fsType = "vfat";
     options = ["fmask=0022" "dmask=0022"];
   };

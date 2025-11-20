@@ -11,12 +11,12 @@
         # TPM
         swtpm.enable = true;
         # uefi
-        ovmf = {
-          enable = true;
-          packages = [
-            pkgs.OVMFFull.fd
-          ];
-        };
+        #ovmf = {
+        #  enable = true;
+        #  packages = [
+        #    pkgs.OVMFFull.fd
+        #  ];
+        #};
         # dont run qemu as root
         runAsRoot = false;
         # shared folders
