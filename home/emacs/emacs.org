@@ -42,15 +42,16 @@
   - [[#org-super-agenda][Org Super Agenda]]
   - [[#citeproc][Citeproc]]
 - [[#programming][PROGRAMMING]]
+  - [[#direnv][Direnv]]
   - [[#corfu][Corfu]]
   - [[#eglot][EGlot]]
   - [[#flycheck][Flycheck]]
   - [[#format-all][Format all]]
   - [[#nix-mode][Nix Mode]]
   - [[#rust][Rust]]
-  - [[#direnv][Direnv]]
   - [[#web-mode][Web Mode]]
   - [[#kotlin][Kotlin]]
+  - [[#wgsl][WGSL]]
 :END:
 
 
@@ -60,6 +61,7 @@
 :END:
 + use-package is already loaded in nix, and as such packages come from nix
 + make sure you add langs to eglot when you add their associated modes
++ anything that may require direnv support must be loaded before direnv
   
 * PRIORITY LOAD
 :PROPERTIES:
@@ -777,6 +779,18 @@ Do custom citations with .csl files
 :PROPERTIES:
 :CUSTOM_ID: programming
 :END:
+** Direnv
+:PROPERTIES:
+:CUSTOM_ID: direnv
+:END:
+Auto setup special environments with an .envrc.
+
+#+begin_src emacs-lisp
+    (use-package direnv
+      :demand t
+      :config
+      (direnv-mode))
+#+end_src
 ** Corfu
 :PROPERTIES:
 :CUSTOM_ID: corfu
@@ -809,9 +823,7 @@ LSP. Nuff said. Configure langs as needed.
       (setopt eglot-sync-connect 1
               eglot-autoshutdown 't
               eglot-auto-display-help-buffer nil
-    	  eglot-stay-out-of '(flymake)
-    	  eglot-workspace-configuration
-    	  '(:nixd (:formatting (:command [ "alejandra" ]))))
+    	  eglot-stay-out-of '(flymake))
       :config
       (dolist (mode-server '(
         			 (nix-mode . ("nixd"))))
@@ -832,11 +844,18 @@ Inline syntax notes.
       :hook
       (after-init . global-flycheck-mode)
       :init
-      (setopt flycheck-check-syntax-automatically
-              '(mode-enabled save new-line idle-change idle-buffer-switch)
-              flycheck-idle-change-delay 0.375
-              flycheck-idle-buffer-switch-delay 0.650
-              flycheck-buffer-switch-check-intermediate-buffers 'nil))
+      (setopt
+       ;; set syntax check times
+       flycheck-check-syntax-automatically
+       '(mode-enabled save new-line idle-change idle-buffer-switch)
+       ;; prefix a direnv update before flycheck happens
+       flycheck-executable-find
+       (lambda (cmd) (direnv-update-environment default-directory) (executable-find cmd))
+       
+       ;; single line vars
+       flycheck-idle-change-delay 0.375
+       flycheck-idle-buffer-switch-delay 0.650
+       flycheck-buffer-switch-check-intermediate-buffers 'nil))
 
     (use-package flycheck-eglot
       :hook (eglot-managed-mode . flycheck-eglot-mode))
@@ -879,8 +898,15 @@ Syntax highlighting for nix.
 Rust mode.
 
 #+begin_src emacs-lisp
+    (use-package flycheck-rust
+      :commands (flycheck-rust-setup))
+
     (use-package rust-mode
-      :commands (rust-mode rust-ts-mode)
+      :hook
+      (rust-mode . eglot-ensure)
+      (rust-mode . flycheck-rust-setup)
+      (rust-ts-mode . eglot-ensure)
+      (rust-ts-mode . flycheck-rust-setup)
       :mode ; case insenitive
       ("\\.[Rr][Ss]\\'" . rust-ts-mode)
       :init
@@ -889,21 +915,9 @@ Rust mode.
     (use-package cargo-mode
       :hook
       (rust-mode . cargo-minor-mode)
+      (rust-ts-mode . cargo-minor-mode)
       :config
       (setopt compilation-scroll-output t))
-#+end_src
-
-** Direnv
-:PROPERTIES:
-:CUSTOM_ID: direnv
-:END:
-Auto setup special environments with an .envrc.
-
-#+begin_src emacs-lisp
-    (use-package direnv
-      :demand t
-      :config
-      (direnv-mode))
 #+end_src
 
 ** Web Mode
@@ -940,4 +954,14 @@ Basic thing to get me off the ground.
     (use-package kotlin-mode
       :hook
       (kotlin-mode . eglot-ensure))
+#+end_src
+
+** WGSL
+:PROPERTIES:
+:CUSTOM_ID: wgsl
+:END:
+Some syntax highlighting, maybe I should write my own with a previewer thingy.
+
+#+begin_src emacs-lisp
+    (use-package wgsl-ts-mode)
 #+end_src

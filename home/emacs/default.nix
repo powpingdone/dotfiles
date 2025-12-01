@@ -77,12 +77,23 @@
         flycheck-eglot
         format-all
         nix-mode
+        flycheck-rust
         rust-mode
         cargo-mode
         python-mode
         direnv
         web-mode
         kotlin-mode
+        (trivialBuild {
+          pname = "wgsl-ts-mode";
+          version = "1.0";
+          src = pkgs.fetchFromGitHub {
+            owner = "acowley";
+            repo = "wgsl-ts-mode";
+            rev = "f52538df1b85bb321de91e7348841aadd06d0469";
+            hash = "sha256-7aOBn7KFGC+oqRF8pTfUXG0+Wkloq+m5NjlS2AWM/xw=";
+          };
+        })
       ]);
 in {
   config = lib.mkIf (config.ppd.emacs.enable || nixosConfig.ppd.emacs.enable) {
