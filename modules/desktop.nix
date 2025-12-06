@@ -67,7 +67,7 @@
           "context.properties" = {
             "default.clock.min-quantum" = 1024;
             "default.clock.max-quantum" = 8192;
-	    "default.clock.quantum" = 1024;
+            "default.clock.quantum" = 1024;
           };
         };
       };

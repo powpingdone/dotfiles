@@ -3,9 +3,10 @@
   lib,
   pkgs,
   ...
-}: lib.mkIf config.ppd.fex.enable {
+}:
+lib.mkIf config.ppd.fex.enable {
   # TODO: fex rootfs
-  environment.systemPackages = [ pkgs.fex ];
+  environment.systemPackages = [pkgs.fex];
 
   boot.binfmt = lib.mkIf (config.nixpkgs.system == "aarch64-linux") {
     registrations = {

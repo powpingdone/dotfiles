@@ -111,7 +111,7 @@ in {
     # emacs packages
     home.packages = with pkgs; [
       binutils # native-comp needs 'as', provided by this
-      git# magit
+      git # magit
       ripgrep #consult
       gnutls # tls
       fd # faster projectile indexing

@@ -5,7 +5,7 @@
     jobs = 3;
 
     desktop.enable = true;
-    steam.enable = false;
+    #steam.enable = false;
     fex.enable = true;
     isHIDPI = true;
     bootloader.systemd-boot = true;
