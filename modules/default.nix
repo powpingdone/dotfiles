@@ -2,6 +2,7 @@
   ...
 }: {
   imports = [
+    ./fex.nix
     ./base.nix
     ./desktop.nix
     ./nixindex.nix

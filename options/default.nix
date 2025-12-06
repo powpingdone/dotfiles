@@ -35,13 +35,6 @@
         default = {};
       };
     };
-    box64 = {
-      enable = lib.mkEnableOption "Enable box64";
-      cmakeFlags = lib.mkOption {
-        type = with lib.types; listOf string;
-        default = [];
-      };
-    };
     desktop = {
       enable = lib.mkEnableOption "Enable desktop related things";
       gnome = lib.mkEnableOption "Use gnome";
@@ -66,11 +59,11 @@
     };
     podman.enable = lib.mkEnableOption "Podman, the OCI runtime";
     lmms.enable = lib.mkEnableOption "A daw, but the nightly version";
+    fex.enable = lib.mkEnableOption "Fex, the x86_64 emulator. Be sure to download a rootfs.";
   };
 
   # option defaults
   config.ppd = {
-    box64.cmakeFlags = lib.mkDefault [];
     steam.enable = lib.mkDefault config.ppd.desktop.enable;
     devenv.enable = lib.mkDefault config.ppd.desktop.enable;
     ghidra.enable = lib.mkDefault config.ppd.desktop.enable;
