@@ -61,13 +61,14 @@
               name = "ppd-patches";
               src = inputs.nixpkgs;
               patches =
-                [
-                ]
-                ++ (
+                (
                   if system != "x86_64-linux"
                   then [./no32bitsteam.patch]
                   else []
-                );
+                )
+                ++ [
+                ]
+                ;
             };
           # then setting pkgs
           pkgs = import pkgs_patched {
