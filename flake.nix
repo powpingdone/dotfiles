@@ -106,7 +106,6 @@
               # general
               {
                 nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
-                system.stateVersion = "25.05";
               }
               ./modules
               nixpkgs.nixosModules.notDetected

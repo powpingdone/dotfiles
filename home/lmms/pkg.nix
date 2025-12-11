@@ -29,7 +29,6 @@
   qt5,
   sndio,
   stdenv,
-  substitute,
   suil,
   wineWowPackages,
   withOptionals ? false,
@@ -46,11 +45,13 @@ in
     src = fetchFromGitHub {
       owner = "LMMS";
       repo = "lmms";
-      rev = "0fe697c4e568f19d3b11f9a3a55d2fa959edd225";
-      hash = "sha256-GelHVWMaQRLAVoTZpki1Rq4DvDgARE/pJrUdHkmUGw0=";
+      rev = "f0cb32ff088c604cb77a2cc4b35a53db761bcd65";
+      hash = "sha256-PdPDGWFpPg/tn5EXy93lps0sQmJSlX4Bgi3xDe8YBF8=";
       fetchSubmodules = true;
     };
 
+    enableParallelBuilding = true;
+    
     nativeBuildInputs = [
       cmake
       libsForQt5.qt5.qttools
@@ -92,19 +93,14 @@ in
         winePackage
       ];
 
-    patches = lib.optionals withOptionals [
-      (substitute {
-        src = ./winepatch.patch;
-        substitutions = [
-          "--replace-fail"
-          "@WINE_LOCATION@"
-          winePackage
-        ];
-      })
-    ];
-
     cmakeFlags = lib.optionals withOptionals [
       "-DWANT_WEAKJACK=OFF"
+      "-DWINE_INCLUDE_DIR=${winePackage}/include"
+      "-DWINE_BUILD=${winePackage}/bin/winebuild"
+      "-DWINE_CXX=${winePackage}/bin/wineg++"
+      "-DWINE_GCC=${winePackage}/bin/winegcc"
+      "-DWINE_32_LIBRARY_DIRS=${winePackage}/lib/wine/i386-unix"
+      "-DWINE_64_LIBRARY_DIRS=${winePackage}/lib/wine/x86_64-windows"
     ];
 
     meta = with lib; {
