@@ -37,16 +37,17 @@
     if lib.isDerivation wineWowPackages
     then wineWowPackages
     else wineWowPackages.minimal;
+  commit ="5e8f220b9c9801029465d7579c039c15cce28266";
 in
   stdenv.mkDerivation {
     pname = "lmms";
-    version = "0-unstable";
+    version = "0-git-${commit}";
 
     src = fetchFromGitHub {
       owner = "LMMS";
       repo = "lmms";
-      rev = "f0cb32ff088c604cb77a2cc4b35a53db761bcd65";
-      hash = "sha256-PdPDGWFpPg/tn5EXy93lps0sQmJSlX4Bgi3xDe8YBF8=";
+      rev = commit;
+      hash = "sha256-Y4Uwq/McRsdY40bYf/zZe4lPTzoEknl6mwvHOn3fOw4=";
       fetchSubmodules = true;
     };
 
