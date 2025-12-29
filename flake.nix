@@ -67,8 +67,7 @@
                   else []
                 )
                 ++ [
-                ]
-                ;
+                ];
             };
           # then setting pkgs
           pkgs = import pkgs_patched {

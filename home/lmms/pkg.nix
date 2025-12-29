@@ -37,7 +37,7 @@
     if lib.isDerivation wineWowPackages
     then wineWowPackages
     else wineWowPackages.minimal;
-  commit ="5e8f220b9c9801029465d7579c039c15cce28266";
+  commit = "5e8f220b9c9801029465d7579c039c15cce28266";
 in
   stdenv.mkDerivation {
     pname = "lmms";
@@ -52,7 +52,7 @@ in
     };
 
     enableParallelBuilding = true;
-    
+
     nativeBuildInputs = [
       cmake
       libsForQt5.qt5.qttools
