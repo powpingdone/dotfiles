@@ -19,6 +19,17 @@
           mode.select = "   SELECT ##";
           mode.insert = "## INSERT   ";
         };
+        languages = {
+          language = [
+            {
+              name = "slint";
+              auto-format = true;
+              formatter = {
+                command = "slint-lsp";
+                args = ["format" "--stdin"];
+              };
+            }];
+        };
       };
     };
 
