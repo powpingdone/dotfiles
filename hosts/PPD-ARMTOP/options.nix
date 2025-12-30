@@ -8,6 +8,7 @@
     steam.enable = false;
     fex.enable = true;
     isHIDPI = true;
+    idevice.enable = true;
     bootloader.systemd-boot = true;
   };
 }

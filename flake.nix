@@ -60,14 +60,8 @@
           .applyPatches {
               name = "ppd-patches";
               src = inputs.nixpkgs;
-              patches =
-                (
-                  if system != "x86_64-linux"
-                  then [./no32bitsteam.patch]
-                  else []
-                )
-                ++ [
-                ];
+              patches = [
+              ];
             };
           # then setting pkgs
           pkgs = import pkgs_patched {
@@ -81,12 +75,6 @@
               ++ (
                 if ppdOpts ? overlays
                 then ppdOpts.overlays
-                else []
-              )
-              # idevice overlay
-              ++ (
-                if ppdOpts ? idevice.enable && ppdOpts.idevice.enable
-                then [(import options/idevice.nix)]
                 else []
               );
           };
