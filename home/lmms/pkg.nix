@@ -32,6 +32,7 @@
   suil,
   wineWowPackages,
   withOptionals ? false,
+  withWine ? false,
 }: let
   winePackage =
     if lib.isDerivation wineWowPackages
@@ -75,7 +76,6 @@ in
         carla
         fltk
         fluidsynth
-        glibc_multi
         lame
         libgig
         libjack2
@@ -91,27 +91,37 @@ in
         portaudio
         sndio
         suil
+      ]
+      ++ lib.optionals withWine [
+        glibc_multi
         winePackage
       ];
 
-    cmakeFlags = lib.optionals withOptionals [
-      "-DWANT_WEAKJACK=OFF"
-      "-DWINE_INCLUDE_DIR=${winePackage}/include"
-      "-DWINE_BUILD=${winePackage}/bin/winebuild"
-      "-DWINE_CXX=${winePackage}/bin/wineg++"
-      "-DWINE_GCC=${winePackage}/bin/winegcc"
-      "-DWINE_32_LIBRARY_DIRS=${winePackage}/lib/wine/i386-unix"
-      "-DWINE_64_LIBRARY_DIRS=${winePackage}/lib/wine/x86_64-windows"
-    ];
+    cmakeFlags =
+      lib.optionals withOptionals [
+        "-DWANT_WEAKJACK=OFF"
+      ]
+      ++ lib.optionals withWine [
+        "-DWINE_INCLUDE_DIR=${winePackage}/include"
+        "-DWINE_BUILD=${winePackage}/bin/winebuild"
+        "-DWINE_CXX=${winePackage}/bin/wineg++"
+        "-DWINE_GCC=${winePackage}/bin/winegcc"
+        "-DWINE_32_LIBRARY_DIRS=${winePackage}/lib/wine/i386-unix"
+        "-DWINE_64_LIBRARY_DIRS=${winePackage}/lib/wine/x86_64-windows"
+      ];
 
     meta = with lib; {
       description = "DAW similar to FL Studio (music production software)";
       mainProgram = "lmms";
       homepage = "https://lmms.io";
       license = licenses.gpl2Plus;
-      platforms = [
-        "x86_64-linux"
-      ];
+      platforms =
+        [
+          "x86_64-linux"
+        ]
+        ++ optionals (!withWine) [
+          "aarch64-linux"
+        ];
       maintainers = with maintainers; [wizardlink];
     };
   }

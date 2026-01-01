@@ -6,7 +6,18 @@
 }: {
   config = lib.mkIf nixosConfig.ppd.lmms.enable {
     home.packages = [
-      (pkgs.callPackage ./pkg.nix {withOptionals = true;})
+      (
+        if nixosConfig.system == "x86_64-linux"
+        then
+          (pkgs.callPackage ./pkg.nix {
+            withOptionals = true;
+            withWine = true;
+          })
+        else
+          (pkgs.callPackage ./pkg.nix {
+            withOptionals = true;
+          })
+      )
     ];
   };
 }

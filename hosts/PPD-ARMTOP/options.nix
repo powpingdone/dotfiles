@@ -9,6 +9,7 @@
     fex.enable = true;
     isHIDPI = true;
     idevice.enable = true;
+    lmms.enable = true;
     bootloader.systemd-boot = true;
   };
 }
