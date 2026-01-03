@@ -9,7 +9,6 @@
       wasm
       machinelearning
       ghidra-golanganalyzerextension
-      gnudisassembler
       ret-sync
       findcrypt
     ]);

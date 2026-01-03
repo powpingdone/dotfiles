@@ -12,6 +12,8 @@
 
   swapDevices = [{device = "/swap/swapfile";}];
 
+  environment.systemPackages = [pkgs.distrobox];
+
   # specific quirks regarding this laptop
 
   # this saves battery

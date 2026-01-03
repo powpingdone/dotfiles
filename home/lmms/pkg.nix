@@ -22,8 +22,8 @@
   libvorbis,
   lilv,
   lv2,
-  perl540,
-  perl540Packages,
+  perl5,
+  perl5Packages,
   pkg-config,
   portaudio,
   qt5,
@@ -85,9 +85,9 @@ in
         libvorbis
         lilv
         lv2
-        perl540
-        perl540Packages.ListMoreUtils
-        perl540Packages.XMLParser
+        perl5
+        perl5Packages.ListMoreUtils
+        perl5Packages.XMLParser
         portaudio
         sndio
         suil
