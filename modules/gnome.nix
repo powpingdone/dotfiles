@@ -19,4 +19,10 @@ lib.mkIf config.ppd.desktop.gnome {
     epiphany
     geary
   ];
+
+  qt = {
+    enable = true;
+    platformTheme = "gnome";
+    style = "adwaita-dark";
+  };
 }
