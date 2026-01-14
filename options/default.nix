@@ -66,7 +66,6 @@
   config.ppd = {
     steam.enable = lib.mkDefault config.ppd.desktop.enable;
     devenv.enable = lib.mkDefault config.ppd.desktop.enable;
-    ghidra.enable = lib.mkDefault config.ppd.desktop.enable;
     fonts.enable = lib.mkDefault config.ppd.desktop.enable;
     # defaults to gnome
     desktop.gnome = lib.mkDefault (config.ppd.desktop.enable && !config.ppd.desktop.kde);
