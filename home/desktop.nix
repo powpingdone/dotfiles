@@ -23,6 +23,7 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
     thunderbird
     signal-desktop
     prismlauncher
+    coppwr
 
     # yubi stuff
     yubikey-manager
