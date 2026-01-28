@@ -24,6 +24,7 @@
   - [[#olivetti][Olivetti]]
   - [[#rainbow-delimeters][Rainbow Delimeters]]
   - [[#ultra-scroll][Ultra Scroll]]
+  - [[#vc-jj][VC-JJ]]
 - [[#tools][TOOLS]]
   - [[#novel-epub-support][Nov.el (epub support)]]
   - [[#pdf-tools][PDF Tools]]
@@ -450,6 +451,15 @@ Nicer & faster scrolling for mouse pads and high DPI mouse wheels.
       (ultra-scroll-mode))
 #+end_src
 
+** VC-JJ
+:PROPERTIES:
+:CUSTOM_ID: vc-jj
+:END:
+Utilizing builtin VC to have Jujitsu work!
+
+#+begin_src emacs-lisp
+    (use-package vc-jj)
+#+end_src
 
 * TOOLS
 :PROPERTIES:

@@ -60,6 +60,15 @@
         with-editor
         projectile
         vterm
+        (trivialBuild {
+          pname = "vc-jj";
+          version = "0.5";
+          src = pkgs.fetchgit {
+            url = "https://codeberg.org/emacs-jj-vc/vc-jj.el.git";
+            tag = "v0.5";
+            outputHash = "sha256-on6T3S/vS0vEWwQDfayGm7sGsm2Dx4BywPf+VwV3G3M=";
+          };
+        })
 
         # ORG MODE
         ob-async
