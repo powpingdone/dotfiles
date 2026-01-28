@@ -23,5 +23,6 @@
     bootloader.grub = true;
     podman.enable = true;
     lmms.enable = true;
+    waydroid.enable = true;
   };
 }

@@ -14,5 +14,6 @@
     ./gnome.nix
     ./kde.nix
     ./podman.nix
+    ./waydroid.nix
   ];
 }

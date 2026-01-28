@@ -60,6 +60,7 @@
     podman.enable = lib.mkEnableOption "Podman, the OCI runtime";
     lmms.enable = lib.mkEnableOption "A daw, but the nightly version";
     fex.enable = lib.mkEnableOption "Fex, the x86_64 emulator. Be sure to download a rootfs.";
+    waydroid.enable = lib.mkEnableOption "Waydroid, an android userspace.";
   };
 
   # option defaults
