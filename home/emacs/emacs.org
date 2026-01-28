@@ -295,8 +295,6 @@ Some useful functions that use vertico.
       (consult-customize :preview-key 'any
     		     consult-ripgrep consult-git-grep consult-grep
     		     consult-bookmark consult-recent-file
-    		     consult--source-bookmark consult--source-file-register
-    		     consult--source-recent-file consult--source-project-recent-file
     		     :preview-key '(:debounce 0.625 any)))
 
     (use-package consult-flycheck
