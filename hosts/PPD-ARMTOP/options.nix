@@ -5,6 +5,7 @@
     jobs = 3;
 
     desktop.enable = true;
+    box64.enable = true;
     steam.enable = false;
     isHIDPI = true;
     idevice.enable = true;
