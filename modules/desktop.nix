@@ -196,5 +196,15 @@
 
     # use ozone on desktop
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  };
+
+    # increase locked memory limit (ulimit -l)
+    security.pam.loginLimits = [
+      {
+        domain = "*";
+        type = "hard";
+        item = "memlock";
+        value = "131072";
+      }
+    ];
+    };
 }
