@@ -18,7 +18,7 @@
     ./lmms
   ];
 
-  home.stateVersion = "25.05";
+  home.stateVersion = "26.05";
   # regular config
   home.username = "powpingdone";
   home.homeDirectory = "/home/powpingdone";

@@ -49,7 +49,7 @@
         "PPD-WSL-INTEL"
       ] (hostName: (
         let
-          # import the skeleton config.pdd
+          # import the skeleton config
           ppdOpts = (import ./hosts/${hostName}/options.nix {}).ppd;
           system = ppdOpts.system;
           # extra nixpkgs patches
