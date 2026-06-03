@@ -19,7 +19,6 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
     hunspell
     hunspellDicts.en_US
     vlc
-    bitwarden-desktop
     thunderbird
     signal-desktop
     prismlauncher
