@@ -5,7 +5,6 @@
   ...
 }:
 lib.mkIf config.ppd.box64.enable {
-
   nix.settings.extra-sandbox-paths = [
     "/run/binfmt"
     "${pkgs.box64}"

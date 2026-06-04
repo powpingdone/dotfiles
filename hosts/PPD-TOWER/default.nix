@@ -14,11 +14,16 @@
 
   services.lact.enable = true;
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "uas" "sd_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot = {
+    initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "uas" "sd_mod"];
+    initrd.kernelModules = [];
+    kernelModules = ["kvm-amd"];
+    extraModulePackages = [];
+    kernelPackages = pkgs.linuxPackages_latest;
+    kernelParams = [
+      "amdgpu.ppfeaturemask=0xfff77fff"
+    ];
+  };
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/af06c418-2abc-42a9-b440-0c202327d872";
