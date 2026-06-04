@@ -13,7 +13,6 @@
   ];
 
   services.lact.enable = true;
-  hardware.amdgpu.overdrive.enable = true;
 
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "uas" "sd_mod"];
   boot.initrd.kernelModules = [];
