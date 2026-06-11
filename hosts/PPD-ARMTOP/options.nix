@@ -4,9 +4,11 @@
     cores = 4;
     jobs = 3;
 
-    desktop.enable = true;
-    gnome.enable = false;
-    kde.enable = true;
+    desktop = {
+      enable = true;
+      gnome = false;
+      kde = true;
+    };
     box64.enable = true;
     steam.enable = false;
     isHIDPI = true;
