@@ -5,6 +5,8 @@
     jobs = 3;
 
     desktop.enable = true;
+    gnome.enable = false;
+    kde.enable = true;
     box64.enable = true;
     steam.enable = false;
     isHIDPI = true;
