@@ -37,7 +37,7 @@
     if lib.isDerivation wineWowPackages
     then wineWowPackages
     else wineWowPackages.minimal;
-  rev = "441fd905bee745a56de6f838812584306daa6add";
+  rev = "e215cd0c3120baf6badcb25443246c03a9f2cec0";
 in
   stdenv.mkDerivation {
     pname = "lmms";
@@ -47,7 +47,7 @@ in
       owner = "LMMS";
       repo = "lmms";
       inherit rev;
-      hash = "sha256-ts68Ds4h4BWrhtwIvmqotgcHhrry6aBln+ks0b3lXi8=";
+      hash = "sha256-xD0LH/WUvf7tbvHzeLsm6qDwwxqzUi/zwmW8GHUUFVY=";
       fetchSubmodules = true;
     };
 
