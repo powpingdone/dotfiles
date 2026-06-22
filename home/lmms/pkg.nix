@@ -47,7 +47,7 @@ in
       owner = "LMMS";
       repo = "lmms";
       inherit rev;
-      hash = "sha256-xD0LH/WUvf7tbvHzeLsm6qDwwxqzUi/zwmW8GHUUFVY=";
+      hash = "sha256-c0YAZsz+uEBkyrQg2hwKVDItINVr2odlUeQFx4k5wJk=";
       fetchSubmodules = true;
     };
 
