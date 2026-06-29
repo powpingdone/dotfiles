@@ -58,7 +58,7 @@
         magit
         llama
         with-editor
-        projectile
+        (projectile.overrideAttrs (final: prev: {buildInputs = prev.buildInputs ++ [consult];}))
         vterm
         (trivialBuild {
           pname = "vc-jj";
