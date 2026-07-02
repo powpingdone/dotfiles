@@ -15,5 +15,6 @@
     idevice.enable = true;
     bootloader.systemd-boot = true;
     ghidra.enable = false;
+    waydroid.enable = true;
   };
 }
