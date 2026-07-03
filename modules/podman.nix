@@ -9,4 +9,8 @@ lib.mkIf config.ppd.podman.enable {
     enable = true;
     dockerSocket.enable = true;
   };
+
+  environment.systemPackages = [ 
+    pkgs.distrobox
+  ];
 }
