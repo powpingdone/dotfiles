@@ -8,6 +8,7 @@
     home.packages = with pkgs; [
       gdb
       devenv
+      distrobox
     ];
 
     programs.helix = {
