@@ -559,6 +559,8 @@ Project management.
 
 #+begin_src emacs-lisp
     (use-package projectile
+      :init
+      (setq projectile-project-search-path '("~/extern"))
       :config
       (projectile-mode +1))
 #+end_src
