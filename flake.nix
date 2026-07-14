@@ -30,6 +30,12 @@
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # patches
+    nixpkgs-pr = { 
+      url = "https://github.com/NixOS/nixpkgs/commit/0ab4968115459c3ad208a6014723b9cc3181cbe8.diff?full_index=1";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -41,7 +47,7 @@
     ...
   } @ inputs: {
     nixosConfigurations =
-      nixpkgs.lib.genAttrs [
+      inputs.nixpkgs.lib.genAttrs [
         "PPD-POWERTOP"
         "PPD-ARMTOP"
         "PPD-TOWER"
@@ -49,22 +55,28 @@
         "PPD-WSL-INTEL"
       ] (hostName: (
         let
-          # import the skeleton config
+          # import the ppd skeleton config
           ppdOpts = (import ./hosts/${hostName}/options.nix {}).ppd;
           system = ppdOpts.system;
-          # extra nixpkgs patches
-          pkgs_patched =
-            (import inputs.nixpkgs {
+
+          # initially import nixpkgs to get fetchPatch2 and applyPatches
+          pkgs_init =
+            (import nixpkgs {
               inherit system;
-            })
-          .applyPatches {
+            });
+
+          # Now, patch nixpkgs
+          nixpkgs' = pkgs_init
+            .applyPatches {
               name = "ppd-patches";
               src = inputs.nixpkgs;
-              patches = [
+              patches = with inputs; [
+                nixpkgs-pr
               ];
             };
-          # then setting pkgs
-          pkgs = import pkgs_patched {
+
+          # then actually fully import it
+          pkgs = import nixpkgs' {
             inherit system;
             config.allowUnfree = true;
             overlays =
