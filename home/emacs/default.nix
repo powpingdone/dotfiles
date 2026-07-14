@@ -137,9 +137,7 @@ in {
       # :tools lookup & :lang org +roam
       sqlite
       # :lang latex & :lang org (latex previews)
-      (texlive.combine {
-        inherit
-          (texlive)
+      (texliveSmall.withPackages (tex: with tex; [
           scheme-medium
           dvisvgm
           dvipng # for preview and export as html
@@ -156,8 +154,8 @@ in {
           # begin_src syntax highlighting
           minted
           upquote
-          ;
-      })
+       ]   
+      ))
       # :lang nix
       nixd
       alejandra
