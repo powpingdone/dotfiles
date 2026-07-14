@@ -137,24 +137,26 @@ in {
       # :tools lookup & :lang org +roam
       sqlite
       # :lang latex & :lang org (latex previews)
-      (texliveSmall.withPackages (tex: with tex; [
-          scheme-medium
-          dvisvgm
-          dvipng # for preview and export as html
-          wrapfig
-          amsmath
-          ulem
-          # IEEE paper stuffs
-          hyperref
-          capt-of
-          etoolbox
-          ieeeconf
-          biblatex-ieee
-          ieeetran
-          # begin_src syntax highlighting
-          minted
-          upquote
-       ]   
+      (texliveSmall.withPackages (
+        tex:
+          with tex; [
+            scheme-medium
+            dvisvgm
+            dvipng # for preview and export as html
+            wrapfig
+            amsmath
+            ulem
+            # IEEE paper stuffs
+            hyperref
+            capt-of
+            etoolbox
+            ieeeconf
+            biblatex-ieee
+            ieeetran
+            # begin_src syntax highlighting
+            minted
+            upquote
+          ]
       ))
       # :lang nix
       nixd

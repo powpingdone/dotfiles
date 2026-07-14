@@ -27,5 +27,13 @@
 
   hardware.lenovo-yoga-slim7x.enable = true;
 
-  boot.kernelPatches = [];
+  boot.kernelPatches = [
+    {
+      name = "disable-amdgpu";
+      patch = null;
+      structuredExtraConfig = with lib.kernel; {
+        DRM_AMDGPU = no;
+      };
+    }
+  ];
 }

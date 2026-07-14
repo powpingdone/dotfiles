@@ -32,7 +32,7 @@
     };
 
     # patches
-    nixpkgs-pr = { 
+    nixpkgs-pr = {
       url = "https://github.com/NixOS/nixpkgs/commit/0ab4968115459c3ad208a6014723b9cc3181cbe8.diff?full_index=1";
       flake = false;
     };
@@ -60,20 +60,19 @@
           system = ppdOpts.system;
 
           # initially import nixpkgs to get fetchPatch2 and applyPatches
-          pkgs_init =
-            (import nixpkgs {
-              inherit system;
-            });
+          pkgs_init = import nixpkgs {
+            inherit system;
+          };
 
           # Now, patch nixpkgs
           nixpkgs' = pkgs_init
             .applyPatches {
-              name = "ppd-patches";
-              src = inputs.nixpkgs;
-              patches = with inputs; [
-                nixpkgs-pr
-              ];
-            };
+            name = "ppd-patches";
+            src = inputs.nixpkgs;
+            patches = with inputs; [
+              nixpkgs-pr
+            ];
+          };
 
           # then actually fully import it
           pkgs = import nixpkgs' {
