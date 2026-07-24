@@ -32,10 +32,15 @@
     };
 
     # patches
-    nixpkgs-pr = {
-      url = "https://github.com/NixOS/nixpkgs/commit/0ab4968115459c3ad208a6014723b9cc3181cbe8.diff?full_index=1";
-      flake = false;
-    };
+    #
+    # note to self in the future: applying patches to nixpkgs involves using
+    # this url format here (note the full_index) and then adding it to the patches
+    # in the `nixpkgs'` binding
+    # 
+    # nixpkgs-pr = {
+    #   url = "https://github.com/NixOS/nixpkgs/commit/0ab4968115459c3ad208a6014723b9cc3181cbe8.diff?full_index=1";
+    #   flake = false;
+    # };
   };
 
   outputs = {
@@ -69,8 +74,8 @@
             .applyPatches {
             name = "ppd-patches";
             src = inputs.nixpkgs;
-            patches = with inputs; [
-              nixpkgs-pr
+            patches = [
+              # inputs.nixpkgs-pr
             ];
           };
 
