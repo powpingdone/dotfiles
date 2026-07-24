@@ -560,7 +560,9 @@ Project management.
 #+begin_src emacs-lisp
     (use-package projectile
       :init
-      (setq projectile-project-search-path '("~/extern"))
+      (setq projectile-project-search-path '("~/extern")
+    	projectile-indexing-method 'alien
+    	projectile-enable-caching 'persistent)
       :config
       (projectile-mode +1))
 #+end_src
