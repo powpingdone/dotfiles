@@ -10,7 +10,7 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
 
   home.packages = with pkgs; [
     nextcloud-client
-    gimp
+    gimp-with-plugins
     (inkscape-with-extensions.override
       {
         inkscapeExtensions = with pkgs.inkscape-extensions; [silhouette];
