@@ -19,7 +19,7 @@
     programs.steam = {
       enable = true;
       package = pkgs.steam.override {
-        extraLibraries = pkgs: [pkgs.xorg.libxcb];
+        extraLibraries = pkgs: [pkgs.libxcb];
       };
       gamescopeSession = {
         enable = true;
@@ -40,6 +40,7 @@
       protontricks.enable = true;
       extraCompatPackages = with pkgs; [
         proton-ge-bin
+        dwproton-bin
       ];
     };
   };
