@@ -14,7 +14,6 @@
     ../options
     ./emacs
     ./devel.nix
-    ./ghidra.nix
     ./lmms
   ];
 

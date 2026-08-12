@@ -1,13 +1,12 @@
 {
-  pkgs,
   lib,
-  ghidra,
   gradle,
+  ghidra,
   fetchFromGitHub,
 }: let
   rev = "183b0a0b8dca2dff23ab1c650fd77277297360ff";
 in
-  ghidra.buildGhidraExtension
+ghidra.buildGhidraExtension
   (finalAttrs: {
     pname = "ghidra-switch-loader";
     version = rev;

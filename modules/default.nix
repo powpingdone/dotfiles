@@ -15,5 +15,6 @@
     ./kde.nix
     ./podman.nix
     ./waydroid.nix
+    ./ghidra.nix
   ];
 }

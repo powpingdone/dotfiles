@@ -87,6 +87,9 @@
               [
                 emacs-overlay.overlays.default
               ]
+              # specific "global" overlays
+              ++ [
+              ]
               # my overlays
               ++ (
                 if ppdOpts ? overlays
