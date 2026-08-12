@@ -22,6 +22,6 @@
     };
     bootloader.grub = true;
     podman.enable = true;
-    waydroid.enable = true;
+    ghidra.enable = true;
   };
 }
