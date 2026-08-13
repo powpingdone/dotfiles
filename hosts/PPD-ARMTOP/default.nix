@@ -31,9 +31,6 @@
     {
       name = "disable-amdgpu";
       patch = null;
-      structuredExtraConfig = with lib.kernel; {
-        DRM_AMDGPU = no;
-      };
     }
   ];
 }
