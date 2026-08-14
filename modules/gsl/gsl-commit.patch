@@ -20,3 +20,41 @@ index 7686167bd2..545d93c36e 100644
  }
  
  repositories {
+diff --git a/src/main/java/adubbz/nx/analyzer/IPCAnalyzer.java b/src/main/java/adubbz/nx/analyzer/IPCAnalyzer.java
+index b4a275c754..bb3cfc5541 100644
+--- a/src/main/java/adubbz/nx/analyzer/IPCAnalyzer.java
++++ b/src/main/java/adubbz/nx/analyzer/IPCAnalyzer.java
+@@ -12,9 +12,11 @@
+ import adubbz.nx.common.ElfCompatibilityProvider;
+ import adubbz.nx.common.NXRelocation;
+ import adubbz.nx.loader.SwitchLoader;
++import com.google.common.collect.HashBiMap;
+ import com.google.common.collect.HashMultimap;
+ import com.google.common.collect.ImmutableList;
+ import com.google.common.collect.Multimap;
++import com.google.common.collect.Sets;
+ import generic.stl.Pair;
+ import ghidra.app.services.AbstractAnalyzer;
+ import ghidra.app.services.AnalyzerType;
+@@ -51,8 +53,6 @@
+ import ghidra.util.exception.InvalidInputException;
+ import ghidra.util.task.TaskMonitor;
+ import org.apache.commons.compress.utils.Lists;
+-import org.python.google.common.collect.HashBiMap;
+-import org.python.google.common.collect.Sets;
+ 
+ import java.io.IOException;
+ import java.io.File;
+diff --git a/src/main/java/adubbz/nx/loader/nxo/NXOAdapter.java b/src/main/java/adubbz/nx/loader/nxo/NXOAdapter.java
+index 2f17104e2f..2be21b787a 100644
+--- a/src/main/java/adubbz/nx/loader/nxo/NXOAdapter.java
++++ b/src/main/java/adubbz/nx/loader/nxo/NXOAdapter.java
+@@ -127,7 +127,7 @@
+         {
+             memoryProviderLength = this.getMemoryProvider().length();
+         } 
+-        catch (IOException e) 
++        catch (Exception e) 
+         {
+             Msg.error(this, "Failed to get memory provider length", e);
+         }
