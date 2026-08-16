@@ -22,12 +22,12 @@
             vulkan-headers
             vulkan-loader
           ];
-        
-          cmakeFlags = ["-DLSFGVK_LAYER_LIBRARY_PATH='$out/lib/liblsfg-vk-layer.so'"];
-          
-          postPatch = "";
+
+          postPatch = null;
   
           postFixup = ''
+              substituteInPlace "$out/share/vulkan/implicit_layer.d/VkLayer_LSFGVK_frame_generation.json" \
+                --replace-fail "liblsfg-vk-layer.so" "$out/lib/liblsfg-vk-layer.so"
               patchelf --add-needed "${pkgs.vulkan-loader}/lib/libvulkan.so.1" "$out/bin/lsfg-vk-cli"
             '';
       });
