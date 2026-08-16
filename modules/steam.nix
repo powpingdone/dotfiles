@@ -8,6 +8,8 @@
     environment.systemPackages = with pkgs; [
       steam-run
       gamescope
+      # kinda silly but
+      lsfg-vk-ui
     ];
 
     hardware.steam-hardware.enable = true;
