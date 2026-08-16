@@ -61,6 +61,7 @@
     lmms.enable = lib.mkEnableOption "A daw, but the nightly version";
     box64.enable = lib.mkEnableOption "Box64, a easy emulator for x86.";
     waydroid.enable = lib.mkEnableOption "Waydroid, an android userspace.";
+    lsfgvk.enable = lib.mkEnableOption "A upscaler. Requires steam lossless scaling.";
   };
 
   # option defaults

@@ -23,5 +23,6 @@
     bootloader.grub = true;
     podman.enable = true;
     ghidra.enable = true;
+    lsfgvk.enable = true;
   };
 }

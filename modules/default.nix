@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./lsfgvk.nix
     ./fex.nix
     ./base.nix
     ./desktop.nix
