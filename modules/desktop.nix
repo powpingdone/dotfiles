@@ -11,6 +11,11 @@
         # debuginfod
         (lib.getBin (pkgs.elfutils.override {enableDebuginfod = true;}))
         mission-center
+
+        (blender.override {
+          config.cudaSupport = false;
+          config.rocmSupport = config.ppd.rocm.enable;
+        })
       ]
       ++ (
         if config.ppd.idevice.enable
@@ -41,7 +46,7 @@
     # to init it's stuff
     programs.java = {
       enable = true;
-      package = pkgs.openjdk21;
+      package = pkgs.openjdk25;
     };
 
     # nautilus a/v
