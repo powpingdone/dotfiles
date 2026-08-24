@@ -66,7 +66,9 @@
       algorithm = "zstd";
     };
 
+    # compute gpu things
     nixpkgs.config.rocmSupport = config.ppd.rocm.enable;
+    hardware.amdgpu.opencl.enable = config.ppd.rocm.enable;
 
     # Enable some SysRq keys (208 = reboot + sync + process kill)
     # See: https://docs.kernel.org/admin-guide/sysrq.html
