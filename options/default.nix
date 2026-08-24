@@ -62,6 +62,7 @@
     box64.enable = lib.mkEnableOption "Box64, a easy emulator for x86.";
     waydroid.enable = lib.mkEnableOption "Waydroid, an android userspace.";
     lsfgvk.enable = lib.mkEnableOption "A upscaler. Requires steam lossless scaling.";
+    rocm.enable = lib.mkEnableOption "The AMDGPU compute module stuff.";
   };
 
   # option defaults

@@ -66,6 +66,8 @@
       algorithm = "zstd";
     };
 
+    nixpkgs.config.rocmSupport = config.ppd.rocm.enable;
+
     # Enable some SysRq keys (208 = reboot + sync + process kill)
     # See: https://docs.kernel.org/admin-guide/sysrq.html
     boot.kernel.sysctl."kernel.sysrq" = 208;
