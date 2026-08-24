@@ -82,7 +82,13 @@
           # then actually fully import it
           pkgs = import nixpkgs' {
             inherit system;
-            config.allowUnfree = true;
+            config = {
+              # steam normally, but eh, i'm not "too" bothered
+              allowUnfree = true;
+
+              # enabling rocm requires setting some nixpkgs specific stuff
+              config.rocmSupport = ppdOpts.rocm.enable;
+            };
             overlays =
               [
                 emacs-overlay.overlays.default
@@ -111,6 +117,7 @@
 
               # general
               {
+                # allows referencing nixpkgs via <nixpkgs>
                 nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
               }
               ./modules

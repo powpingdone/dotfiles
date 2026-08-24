@@ -7,16 +7,18 @@
 in {
   config = lib.mkIf config.ppd.ghidra.enable {
     environment.systemPackages = [
-      (pkgs.ghidra.withExtensions (gext:
-          with gext; [
-            machinelearning
-            ghidra-golanganalyzerextension
-            ret-sync
-            findcrypt
-          ]
-        ++ [
-          pkgs.ghidra-switch-loader
-        ])
+      (
+        pkgs.ghidra.withExtensions (gext:
+          with gext;
+            [
+              machinelearning
+              ghidra-golanganalyzerextension
+              ret-sync
+              findcrypt
+            ]
+            ++ [
+              pkgs.ghidra-switch-loader
+            ])
       )
     ];
 

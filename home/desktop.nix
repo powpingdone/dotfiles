@@ -6,7 +6,6 @@
 }:
 lib.mkIf nixosConfig.ppd.desktop.enable {
   programs.firefox.enable = true;
-  ppd.emacs.enable = true;
 
   home.packages = with pkgs; [
     nextcloud-client
