@@ -11,6 +11,7 @@
         # debuginfod
         (lib.getBin (pkgs.elfutils.override {enableDebuginfod = true;}))
         mission-center
+        blender
       ]
       ++ (
         if config.ppd.idevice.enable
