@@ -22,6 +22,7 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
     signal-desktop
     prismlauncher
     coppwr
+    blender
 
     # yubi stuff
     yubikey-manager

@@ -11,11 +11,6 @@
         # debuginfod
         (lib.getBin (pkgs.elfutils.override {enableDebuginfod = true;}))
         mission-center
-
-        (blender.override {
-          config.cudaSupport = false;
-          config.rocmSupport = config.ppd.rocm.enable;
-        })
       ]
       ++ (
         if config.ppd.idevice.enable
