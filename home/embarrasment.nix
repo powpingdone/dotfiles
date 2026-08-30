@@ -1,28 +1,36 @@
-{config, nixosConfig, lib,...}:
+{
+  config,
+  nixosConfig,
+  lib,
+  ...
+}:
 lib.mkIf nixosConfig.ppd.ai-embarrasment.enable {
   services.ollama = {
     enable = true;
-    acceleration = if nixosConfig.ppd.rocm.enable then "rocm" else "vulkan";
+    acceleration =
+      if nixosConfig.ppd.rocm.enable
+      then "rocm"
+      else "vulkan";
     port = 11982;
   };
-  
+
   programs.pi-coding-agent = {
     enable = true;
     configDir = "${config.xdg.configHome}/pi/agent";
-
-    providers = {
-      ollama = {
-        api = "openai-completions";
-        apiKey = "ollama";
-        baseUrl = "http://localhost:11982/v1";
-        models = [
-          {
-            id = "mannix/llama3.1-8b-abliterated:q5_k_m";
-          }
-        ];
+    models = {
+      providers = {
+        ollama = {
+          api = "openai-completions";
+          apiKey = "ollama";
+          baseUrl = "http://localhost:11982/v1";
+          models = [
+            {
+              id = "mannix/llama3.1-8b-abliterated:q5_k_m";
+            }
+          ];
+        };
       };
     };
-
     settings = {
       defaultProvider = "ollama";
       defaultModel = "mannix/llama3.1-8b-abliterated:q5_k_m";

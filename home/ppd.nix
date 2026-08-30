@@ -15,6 +15,7 @@
     ./emacs
     ./devel.nix
     ./lmms
+    ./embarrasment.nix
   ];
 
   home.stateVersion = "26.05";

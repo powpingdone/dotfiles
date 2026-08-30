@@ -22,7 +22,10 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
     signal-desktop
     prismlauncher
     coppwr
-    (blender.override {config.rocmSupport = true; config.cudaSupport=false;})
+    (blender.override {
+      config.rocmSupport = true;
+      config.cudaSupport = false;
+    })
 
     # yubi stuff
     yubikey-manager
