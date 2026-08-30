@@ -16,6 +16,7 @@ lib.mkIf nixosConfig.ppd.ai-embarrasment.enable {
 
   programs.pi-coding-agent = {
     enable = true;
+    configDir = "${config.xdg.configHome}/pi/agent";
     models = {
       providers = {
         ollama = {
