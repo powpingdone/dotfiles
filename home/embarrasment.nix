@@ -25,7 +25,7 @@ lib.mkIf nixosConfig.ppd.ai-embarrasment.enable {
           baseUrl = "http://localhost:11982/v1";
           models = [
             {
-              id = "granite4.2:8b";
+              id = "granite4.2:8b-ppdv1";
             }
           ];
         };
@@ -33,7 +33,7 @@ lib.mkIf nixosConfig.ppd.ai-embarrasment.enable {
     };
     settings = {
       defaultProvider = "ollama";
-      defaultModel = "granite4.2:8b";
+      defaultModel = "granite4.2:8b-ppdv1";
     };
   };
 }
