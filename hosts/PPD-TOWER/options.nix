@@ -24,5 +24,6 @@
     podman.enable = true;
     ghidra.enable = true;
     rocm.enable = true;
+    ai-embarrasment.enable = true;
   };
 }

@@ -63,6 +63,7 @@
     waydroid.enable = lib.mkEnableOption "Waydroid, an android userspace.";
     lsfgvk.enable = lib.mkEnableOption "A upscaler. Requires steam lossless scaling.";
     rocm.enable = lib.mkEnableOption "The AMDGPU compute module stuff.";
+    ai-embarrasment.enable = lib.mkEnableOption "Pi coding agent";
   };
 
   # option defaults
