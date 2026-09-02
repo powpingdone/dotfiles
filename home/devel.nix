@@ -13,11 +13,17 @@
     programs.helix = {
       enable = true;
       settings = {
-        theme = "doom-one";
-        editor.statusline = {
-          mode.normal = "   NORMAL   ";
-          mode.select = "   SELECT ##";
-          mode.insert = "## INSERT   ";
+        theme = "zed_onedark";
+        editor = {
+          lsp = {
+            display-inlay-hints = true;
+            inlay-hints-length-limit = 48;
+          };
+          statusline = {
+            mode.normal = "   NORMAL   ";
+            mode.select = "   SELECT ##";
+            mode.insert = "## INSERT   ";
+          };
         };
       };
       languages = {
