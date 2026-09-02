@@ -13,7 +13,7 @@
     programs.helix = {
       enable = true;
       settings = {
-        theme = "onedark";
+        theme = "doom-one";
         editor.statusline = {
           mode.normal = "   NORMAL   ";
           mode.select = "   SELECT ##";
