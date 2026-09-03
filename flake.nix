@@ -41,6 +41,10 @@
     #   url = "https://github.com/NixOS/nixpkgs/commit/0ab4968115459c3ad208a6014723b9cc3181cbe8.diff?full_index=1";
     #   flake = false;
     # };
+    nixpkgs-pr = {
+      url = "https://github.com/NixOS/nixpkgs/commit/a3917dea04da5122eb346c8b2577dd601036e8e0.diff?full_index=1";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -75,7 +79,7 @@
             name = "ppd-patches";
             src = inputs.nixpkgs;
             patches = [
-              # inputs.nixpkgs-pr
+              inputs.nixpkgs-pr
             ];
           };
 
