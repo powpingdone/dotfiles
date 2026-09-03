@@ -37,7 +37,7 @@ lib.mkIf nixosConfig.ppd.desktop.enable {
           config.cudaSupport = false;
         })
       ]
-      else [blender]
+      else []
     );
 
   dconf = {
