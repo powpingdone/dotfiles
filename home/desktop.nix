@@ -7,31 +7,38 @@
 lib.mkIf nixosConfig.ppd.desktop.enable {
   programs.firefox.enable = true;
 
-  home.packages = with pkgs; [
-    nextcloud-client
-    gimp-with-plugins
-    (inkscape-with-extensions.override
-      {
-        inkscapeExtensions = with pkgs.inkscape-extensions; [silhouette];
-      })
-    libreoffice
-    hunspell
-    hunspellDicts.en_US
-    vlc
-    thunderbird
-    signal-desktop
-    prismlauncher
-    coppwr
-    (blender.override {
-      config.rocmSupport = true;
-      config.cudaSupport = false;
-    })
+  home.packages = with pkgs;
+    [
+      nextcloud-client
+      gimp-with-plugins
+      (inkscape-with-extensions.override
+        {
+          inkscapeExtensions = with pkgs.inkscape-extensions; [silhouette];
+        })
+      libreoffice
+      hunspell
+      hunspellDicts.en_US
+      vlc
+      thunderbird
+      signal-desktop
+      prismlauncher
+      coppwr
 
-    # yubi stuff
-    yubikey-manager
-    yubico-piv-tool
-    yubioath-flutter
-  ];
+      # yubi stuff
+      yubikey-manager
+      yubico-piv-tool
+      yubioath-flutter
+    ]
+    ++ (
+      if nixosConfig.ppd.rocm.enable
+      then [
+        (blender.override {
+          config.rocmSupport = true;
+          config.cudaSupport = false;
+        })
+      ]
+      else [blender]
+    );
 
   dconf = {
     enable = true;
