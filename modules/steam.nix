@@ -17,7 +17,7 @@
     };
 
     programs.steam = {
-      enable = true;
+      enable = !config.ppd.box64.enable;
       package = pkgs.steam.override {
         extraLibraries = pkgs: [pkgs.libxcb];
       };

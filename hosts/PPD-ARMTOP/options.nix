@@ -9,7 +9,7 @@
       gnome = false;
       kde = true;
     };
-    box64.enable = true;
+    box64.enable = false;
     steam.enable = false;
     isHIDPI = true;
     idevice.enable = true;
