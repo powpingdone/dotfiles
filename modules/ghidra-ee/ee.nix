@@ -1,8 +1,8 @@
-
 {
   lib,
   gradle,
   ghidra,
+  ant,
   fetchFromGitHub,
 }: let
   rev = "ae013ee1475dc970db4fdeba3ec88def6b933d43";
