@@ -18,6 +18,7 @@ in {
             ]
             ++ [
               pkgs.ghidra-switch-loader
+              pkgs.ghidra-emotionengine-reloaded
             ])
       )
     ];
@@ -25,6 +26,7 @@ in {
     nixpkgs.overlays = [
       (final: prev: {
         ghidra-switch-loader = prev.callPackage ./gsl/gsl.nix {ghidra = prev.ghidra;};
+        ghidra-emotionengine-reloaded = prev.callPackage ./ghidra-ee/ee.nix {ghidra = prev.ghidra;};
       })
     ];
   };
