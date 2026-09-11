@@ -18,6 +18,19 @@ in
       hash = "sha256-f2mEsZDsDEQpXtraslLwvFQuE2D7F3vnilJOtXpkp/s=";
     };
 
+    nativeBuildInputs = [ ant ];
+
+    configurePhase = ''
+      runHook preConfigure
+
+      # this doesn't really compile, it compresses sinc into sla
+      pushd data
+      ant -f build.xml -Dghidra.install.dir=${ghidra}/lib/ghidra sleighCompile
+      popd
+
+      runHook postConfigure
+    '';
+
     mitmCache = gradle.fetchDeps {
       pkg = finalAttrs.finalPackage;
       data = ./deps.json;
