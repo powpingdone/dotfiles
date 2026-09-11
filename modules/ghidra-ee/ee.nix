@@ -15,6 +15,7 @@ in
       owner = "chaoticgd";
       repo = "ghidra-emotionengine-reloaded";
       inherit rev;
+      hash = "sha256-f2mEsZDsDEQpXtraslLwvFQuE2D7F3vnilJOtXpkp/s=";
     };
 
     mitmCache = gradle.fetchDeps {
