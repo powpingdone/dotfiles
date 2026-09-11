@@ -27,6 +27,7 @@ in {
       (final: prev: {
         ghidra-switch-loader = prev.callPackage ./gsl/gsl.nix {ghidra = prev.ghidra;};
         ghidra-emotionengine-reloaded = prev.callPackage ./ghidra-ee/ee.nix {ghidra = prev.ghidra;};
+        chaoscc = prev.callPackage ./ghidra-ee/ccc.nix {};
       })
     ];
   };
