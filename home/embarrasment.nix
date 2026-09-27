@@ -11,7 +11,7 @@ lib.mkIf nixosConfig.ppd.ai-embarrasment.enable {
     port = 11982;
   };
 
-  programs.claude-code = {
-    enable = true;
-  };
+  #programs.claude-code = {
+  #  enable = true;
+  #};
 }
