@@ -26,5 +26,6 @@
     ghidra.enable = true;
     rocm.enable = true;
     ai-embarrasment.enable = true;
+    waydroid.enable = true;
   };
 }
