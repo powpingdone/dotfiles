@@ -13,8 +13,6 @@
   swapDevices = [{device = "/swap/swapfile";}];
 
   environment.systemPackages = [];
-  environment.systemPackages = [];
-  boot.kernelPackages = pkgs.linuxKernel.kernels.linux_latest;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # specific quirks regarding this laptop
@@ -22,13 +20,8 @@
   # this saves battery
   powerManagement.cpuFreqGovernor = "conservative";
 
-  # enable dtb
-  hardware.deviceTree = {
-    enable = true;
-    name = "qcom/x1e80100-lenovo-yoga-slim7x.dtb";
-  };
-
   hardware.lenovo-yoga-slim7x.enable = true;
+  x1e.el2.enable = true;
 
   boot.kernelPatches = [
     {
