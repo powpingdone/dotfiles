@@ -20,6 +20,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "";
     };
+    steam-arm64-nix = {
+      url = "github:Daaboulex/steam-arm64-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # external deps
     x1e-nixos-config = {
@@ -49,6 +53,7 @@
     emacs-overlay,
     nix-index-database,
     nixos-wsl,
+    steam-arm64-nix,
     ...
   } @ inputs: {
     nixosConfigurations =
@@ -89,11 +94,10 @@
               config.rocmSupport = ppdOpts.rocm.enable;
             };
             overlays =
+              # specific "global" overlays
               [
                 emacs-overlay.overlays.default
-              ]
-              # specific "global" overlays
-              ++ [
+                steam-arm64-nix.overlays.default
               ]
               # my overlays
               ++ (

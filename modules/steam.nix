@@ -5,10 +5,19 @@
   ...
 }: {
   config = lib.mkIf config.ppd.steam.enable {
-    environment.systemPackages = with pkgs; [
-      steam-run
-      gamescope
-    ];
+    environment.systemPackages = with pkgs;
+      [
+        gamescope
+      ]
+      ++ (
+        if config.ppd.system == "aarch64-linux"
+        then [
+          pkgs.steam-arm64
+        ]
+        else [
+          pkgs.        steam-run
+        ]
+      );
 
     hardware.steam-hardware.enable = true;
 
@@ -17,7 +26,7 @@
     };
 
     programs.steam = {
-      enable = !config.ppd.box64.enable;
+      enable = config.ppd.system != "aarch64-linux";
       package = pkgs.steam.override {
         extraLibraries = pkgs: [pkgs.libxcb];
       };

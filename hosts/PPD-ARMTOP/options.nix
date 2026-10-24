@@ -10,7 +10,7 @@
       kde = true;
     };
     box64.enable = false;
-    steam.enable = false;
+    steam.enable = true;
     isHIDPI = true;
     idevice.enable = true;
     bootloader.systemd-boot = true;

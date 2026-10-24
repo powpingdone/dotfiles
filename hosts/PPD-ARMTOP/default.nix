@@ -12,7 +12,10 @@
 
   swapDevices = [{device = "/swap/swapfile";}];
 
-  environment.systemPackages = [pkgs.distrobox];
+  environment.systemPackages = [];
+  environment.systemPackages = [];
+  boot.kernelPackages = pkgs.linuxKernel.kernels.linux_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # specific quirks regarding this laptop
 
