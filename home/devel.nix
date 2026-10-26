@@ -36,6 +36,13 @@
               args = ["format" "/dev/stdin"];
             };
           }
+          {
+            name = "wgsl";
+            auto-format = true;
+            formatter = {
+              command = "wgslfmt";
+            };
+          }
         ];
       };
     };
