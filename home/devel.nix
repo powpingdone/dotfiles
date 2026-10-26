@@ -41,6 +41,7 @@
             auto-format = true;
             formatter = {
               command = "wgslfmt";
+              args = ["-"];
             };
           }
         ];
