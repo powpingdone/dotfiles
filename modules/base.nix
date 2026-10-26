@@ -57,8 +57,6 @@
 
     boot.tmp.cleanOnBoot = true;
 
-    boot.initrd.systemd.enable = true;
-
     hardware.enableRedistributableFirmware = true;
 
     zramSwap = {
