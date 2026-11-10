@@ -12,10 +12,11 @@
       ++ (
         if config.ppd.system == "aarch64-linux"
         then [
-          pkgs.steam-arm64
+          (pkgs.steam-arm64.override { guest = false; })
+          (pkgs.steam-x86.override { guest = false; })
         ]
         else [
-          pkgs.        steam-run
+          pkgs.steam-run
         ]
       );
 
