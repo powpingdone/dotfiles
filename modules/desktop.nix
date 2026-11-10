@@ -61,7 +61,6 @@
     services.pipewire = {
       enable = true;
       pulse.enable = true;
-      jack.enable = true;
       extraConfig.pipewire = {
         "92-set-larger-static-quantum" = {
           # try preventing extra audio crackle by increasing quantum buffer size
