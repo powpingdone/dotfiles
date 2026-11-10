@@ -21,7 +21,6 @@
   powerManagement.cpuFreqGovernor = "conservative";
 
   hardware.lenovo-yoga-slim7x.enable = true;
-  x1e.el2.enable = true;
 
   boot.kernelPatches = [
     {
