@@ -24,16 +24,33 @@
     # enable extra hardware like rotation and light sensors
     hardware.sensor.iio.enable = true;
 
-    # add ext for inkscape silloette, ifixit usb, and nxdumptool
-    services.udev.packages = [
+    services.udev.packages = let
+      wirelessRegulatoryDomain = "US";
+      setWirelessRegdom = pkgs.writeScript "set-wireless-regdom" ''
+        #!/bin/sh
+        ${lib.getExe pkgs.iw} reg set ${wirelessRegulatoryDomain}
+      '';
+    in [
+      # add ext for inkscape silloette, ifixit usb, and nxdumptool
       (pkgs.writeTextFile {
         text = ''
           SUBSYSTEM=="usb", ATTR{idVendor}=="0b4d", ATTR{idProduct}=="113a", MODE:="0660", TAG+="uaccess"
           SUBSYSTEM=="tty", ATTR{idVendor}=="346c", ATTR{idProduct}=="1f01", MODE:="0660", TAG+="uaccess"
           SUBSYSTEM=="usb", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="3000", TAG+="uaccess"
         '';
-        name = "ppd-custom-udev rules";
+        name = "inkscape, ifixit, and nxdumptool rules";
         destination = "/lib/udev/rules.d/60-ppds-rules.rules";
+      })
+
+      # Wireless regulatory domain (which will always be US), see pr nixos/nixpkgs#528908
+      (pkgs.writeTextFile {
+        name = "regdom-udev-rule";
+        text = ''
+          # Set wireless regulatory domain at device creation
+
+          ACTION=="add", SUBSYSTEM=="module", DEVPATH=="/module/cfg80211", RUN+="${setWirelessRegdom}"
+        '';
+        destination = "/lib/udev/rules.d/85-regulatory.rules";
       })
     ];
 

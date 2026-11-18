@@ -92,6 +92,7 @@
       enable = true;
       plugins = lib.mkForce [];
     };
+    hardware.wirelessRegulatoryDatabase = true;
 
     # base packages that I *always* need.
     environment.systemPackages = with pkgs; [
