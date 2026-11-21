@@ -29,23 +29,10 @@
     programs.steam = {
       enable = config.ppd.system != "aarch64-linux";
       package = pkgs.steam.override {
-        extraLibraries = pkgs: [pkgs.libxcb];
+        extraLibraries = pkgs: [pkgs.libxcb pkgs.hidapi];
       };
-      gamescopeSession = {
-        enable = true;
-        args = [
-          "--hdr-enabled"
-          "--hdr-itm-enable"
-          "--hide-cursor-delay"
-          "3000"
-          "--fade-out-duration"
-          "200"
-          "--xwayland-count"
-          "2"
-          "-O"
-          "*,eDP-1"
-        ];
-      };
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
       extest.enable = true;
       protontricks.enable = true;
       extraCompatPackages = with pkgs; [
