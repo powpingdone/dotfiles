@@ -27,5 +27,6 @@
     rocm.enable = true;
     ai-embarrasment.enable = true;
     waydroid.enable = true;
+    emacs.enable = true;
   };
 }
