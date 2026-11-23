@@ -64,8 +64,8 @@
           pname = "vc-jj";
           version = "0.5";
           src = pkgs.fetchzip {
-            url = "https://elpa.gnu.org/packages/vc-jj-0.5.tar";
-            hash = "sha256-ePsXg5jjCUSgs55kWYVVt03NEmgxJNCF4hqGPYRk9gc";
+            url = "https://elpa.gnu.org/packages/vc-jj-0.6.tar";
+            hash = "sha256-XwK7UofK07rkNMK72bC6B+MWsS1m1rb0m+3dLI8k0H0=";
           };
         })
 
@@ -132,7 +132,7 @@ in {
 
       ## Module dependencies
       # :checkers spell
-      (aspellWithDicts (ds: with ds; [en] ))
+      (aspellWithDicts (ds: with ds; [en]))
       ispell
       # :tools lookup & :lang org +roam
       sqlite
