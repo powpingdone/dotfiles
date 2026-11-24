@@ -9,6 +9,7 @@
 :CONTENTS:
 - [[#notes][NOTES]]
 - [[#priority-load][PRIORITY LOAD]]
+  - [[#lexical-binding][Lexical Binding]]
   - [[#emacs-use-package-config][Emacs use-package config]]
   - [[#evil-mode-vim-binds][Evil Mode (vim binds)]]
   - [[#which-key][Which Key]]
@@ -68,6 +69,15 @@
 :PROPERTIES:
 :CUSTOM_ID: priority-load
 :END:
+
+** Lexical Binding 
+:PROPERTIES:
+:CUSTOM_ID: lexical-binding
+:END:
+Emacs started complaining about lexical binding, so shut it up.
+#+begin_src emacs-lisp 
+    ;; -*- mode: Lisp; lexical-binding: t; -*-
+#+end_src
 
 ** Emacs use-package config
 :PROPERTIES:
