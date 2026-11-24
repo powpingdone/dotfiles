@@ -1,4 +1,4 @@
--*- lexical-binding: t -*-
+;; -*- mode: Lisp; lexical-binding: t; -*-
 
 (defun ppd/reload-emacs ()
   (interactive)
