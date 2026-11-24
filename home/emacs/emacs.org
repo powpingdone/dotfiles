@@ -155,7 +155,7 @@ I dunno why i'm using this but it's probably good.
         ;; version control menu
         "v" '(:ignore t :wk "version control")
         "vG" '(magit-dispatch :wk "Git menu (magit-dispatch)")
-        "vJ" '(majutsu :wk "Jujitsu menu (majutsu)")
+        "vJ" '(majutsu-dispatch :wk "Jujitsu menu (majutsu-dispatch)")
         "vv" '(vc-dir-menu-map :wk "Emacs VC Menu")
         ;; projectile menu
         "P" '(projectile-command-map :wk "Project menu (projectile-command-map)")
