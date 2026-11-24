@@ -1,4 +1,4 @@
-;; TODO: add unload-feature
+-*- lexical-binding: t -*-
 
 (defun ppd/reload-emacs ()
   (interactive)
