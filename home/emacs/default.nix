@@ -39,35 +39,19 @@
         beacon
         olivetti
         rainbow-delimiters
-        (trivialBuild {
-          pname = "ultra-scroll";
-          version = "0.3.4";
-          src = pkgs.fetchFromGitHub {
-            owner = "jdtsmith";
-            repo = "ultra-scroll";
-            rev = "e74017326f6e38bdaad7b4dd497f2acaeead9f67";
-            hash = "sha256-MHlHsciVPNyvqwkop9arOQ1VTV5POxJZ+z+IZo/PrMM=";
-          };
-        })
+        ultra-scroll
 
         # TOOLS
         nov
         pdf-tools
         sudo-edit
         undo-tree
+        majutsu
         magit
         llama
         with-editor
         (projectile.overrideAttrs (final: prev: {buildInputs = prev.buildInputs ++ [consult];}))
         vterm
-        (trivialBuild {
-          pname = "vc-jj";
-          version = "0.5";
-          src = pkgs.fetchzip {
-            url = "https://elpa.gnu.org/packages/vc-jj-0.6.tar";
-            hash = "sha256-XwK7UofK07rkNMK72bC6B+MWsS1m1rb0m+3dLI8k0H0=";
-          };
-        })
 
         # ORG MODE
         ob-async
@@ -89,7 +73,7 @@
         rust-mode
         cargo-mode
         python-mode
-        direnv
+        envrc
         web-mode
         kotlin-mode
         (trivialBuild {

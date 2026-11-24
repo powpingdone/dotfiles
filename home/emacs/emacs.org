@@ -25,12 +25,12 @@
   - [[#olivetti][Olivetti]]
   - [[#rainbow-delimeters][Rainbow Delimeters]]
   - [[#ultra-scroll][Ultra Scroll]]
-  - [[#vc-jj][VC-JJ]]
 - [[#tools][TOOLS]]
   - [[#novel-epub-support][Nov.el (epub support)]]
   - [[#pdf-tools][PDF Tools]]
   - [[#sudo-edit][Sudo Edit]]
   - [[#undo-tree][Undo Tree]]
+  - [[#majutsu][Majutsu]]
   - [[#magit][Magit]]
   - [[#xml][XML]]
   - [[#projectile][Projectile]]
@@ -44,7 +44,7 @@
   - [[#org-super-agenda][Org Super Agenda]]
   - [[#citeproc][Citeproc]]
 - [[#programming][PROGRAMMING]]
-  - [[#direnv][Direnv]]
+  - [[#envrc][Envrc]]
   - [[#corfu][Corfu]]
   - [[#eglot][EGlot]]
   - [[#flycheck][Flycheck]]
@@ -75,6 +75,7 @@
 :CUSTOM_ID: lexical-binding
 :END:
 Emacs started complaining about lexical binding, so shut it up.
+
 #+begin_src emacs-lisp 
     ;; -*- mode: Lisp; lexical-binding: t; -*-
 #+end_src
@@ -120,7 +121,6 @@ Basically, nixos provides the packages (for rollback reasons) and emacs loads th
 :PROPERTIES:
 :CUSTOM_ID: which-key
 :END:
-
 You know what which key is.
 
 #+begin_src emacs-lisp
@@ -152,8 +152,11 @@ I dunno why i'm using this but it's probably good.
 
       ;; regular binds
       (leader-key
-        ;; magit menu
-        "G" '(magit-dispatch :wk "Git menu (magit-dispatch)")
+        ;; version control menu
+        "v" '(:ignore t :wk "version control")
+        "vG" '(magit-dispatch :wk "Git menu (magit-dispatch)")
+        "vJ" '(majutsu :wk "Jujitsu menu (majutsu)")
+        "vv" '(vc-dir-menu-map :wk "Emacs VC Menu")
         ;; projectile menu
         "P" '(projectile-command-map :wk "Project menu (projectile-command-map)")
         ;; buffer binds
@@ -270,7 +273,6 @@ I dunno why i'm using this but it's probably good.
 :PROPERTIES:
 :CUSTOM_ID: vertico-completion
 :END:
-
 Completion framework for various commands.
 
 #+begin_src emacs-lisp
@@ -321,7 +323,6 @@ Some useful functions that use vertico.
 :PROPERTIES:
 :CUSTOM_ID: orderless-completion-style
 :END:
-
 No grep needed. Just type in letters that exist.
 
 #+begin_src emacs-lisp
@@ -461,16 +462,6 @@ Nicer & faster scrolling for mouse pads and high DPI mouse wheels.
       (ultra-scroll-mode))
 #+end_src
 
-** VC-JJ
-:PROPERTIES:
-:CUSTOM_ID: vc-jj
-:END:
-Utilizing builtin VC to have Jujitsu work!
-
-#+begin_src emacs-lisp
-    (use-package vc-jj)
-#+end_src
-
 
 * TOOLS
 :PROPERTIES:
@@ -524,6 +515,16 @@ Version controlled undo!
       :demand t
       :config
       (global-undo-tree-mode))
+#+end_src
+
+** Majutsu
+:PROPERTIES:
+:CUSTOM_ID: majutsu
+:END:
+The jujitsu client that's like magit.
+
+#+begin_src emacs-lisp
+    (use-package majutsu)
 #+end_src
 
 ** Magit
@@ -802,17 +803,19 @@ Do custom citations with .csl files
 :PROPERTIES:
 :CUSTOM_ID: programming
 :END:
-** Direnv
+** Envrc
 :PROPERTIES:
-:CUSTOM_ID: direnv
+:CUSTOM_ID: envrc
 :END:
 Auto setup special environments with an .envrc.
 
 #+begin_src emacs-lisp
-    (use-package direnv
+    (use-package envrc
       :demand t
+      :init
+      (setopt envrc-async 1)
       :config
-      (direnv-mode))
+      (envrc-global-mode))
 #+end_src
 ** Corfu
 :PROPERTIES:
