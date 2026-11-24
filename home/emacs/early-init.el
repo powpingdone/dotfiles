@@ -1,3 +1,5 @@
+;; -*- mode: Lisp; lexical-binding: t; -*-
+
 (setopt package-enable-at-startup nil)
 
 ;; ignore use-package :ensure
